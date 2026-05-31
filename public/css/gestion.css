@@ -1,0 +1,572 @@
+:root {
+    color-scheme: dark;
+    --bg: #090909;
+    --panel: #111111;
+    --panel-strong: #1a1a1a;
+    --border: #333333;
+    --text: #f1f1f1;
+    --muted: #a7a7a7;
+    --accent: #f6c92f;
+    --accent-soft: rgba(246, 201, 47, 0.14);
+    --success: #30c14a;
+    --warning: #f5a31a;
+    --danger: #d93025;
+    --surface: rgba(255, 255, 255, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, rgba(246, 201, 47, 0.16), transparent 20%),
+        linear-gradient(180deg, #050505 0%, #0e0e0e 100%);
+    color: var(--text);
+}
+
+body {
+    padding: 32px;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+.app-shell {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.eyebrow {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+
+.button {
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 14px 24px;
+    cursor: pointer;
+    min-height: 50px;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button-primary {
+    background: #f6c92f;
+    color: #111;
+    font-weight: 700;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.button-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.button-small {
+    padding: 10px 16px;
+    min-height: 38px;
+    font-size: 0.85rem;
+}
+
+.panel-card {
+    background: rgba(0, 0, 0, 0.84);
+    border: 1px solid rgba(246, 201, 47, 0.35);
+    border-radius: 30px;
+    padding: 24px;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+}
+
+.panel-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid rgba(246, 201, 47, 0.25);
+}
+
+.tab-list {
+    display: flex;
+    gap: 12px;
+}
+
+.tab {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 11px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.tab.active {
+    background: #f6c92f;
+    color: #111;
+    border-color: rgba(246, 201, 47, 0.95);
+}
+
+.panel-view {
+    display: none;
+}
+
+.panel-view.active {
+    display: block;
+}
+
+.panel-body {
+    border-top: 1px solid rgba(246, 201, 47, 0.35);
+    padding-top: 18px;
+}
+
+.panel-view {
+    padding-bottom: 10px;
+}
+
+.category-chip {
+    border: 1px solid rgba(246, 201, 47, 0.55);
+    color: #f6c92f;
+    background: rgba(246, 201, 47, 0.08);
+    border-radius: 16px;
+    padding: 12px 22px;
+    font-weight: 700;
+}
+
+.category-chip:hover {
+    background: rgba(246, 201, 47, 0.12);
+}
+
+.category-chip--active {
+    background: #f6c92f;
+    color: #111;
+    border-color: rgba(246, 201, 47, 0.95);
+}
+
+.panel-view .table-scroll {
+    margin-top: 18px;
+}
+
+.panel-view .table-footer {
+    margin-top: 20px;
+}
+
+.subtext {
+    display: block;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.7rem;
+    margin-top: 4px;
+}
+
+.student-table th {
+    white-space: nowrap;
+}
+
+.controls-row--compact {
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.search-wrapper {
+    min-width: 260px;
+    max-width: 420px;
+}
+
+.search-wrapper input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 30px;
+    padding: 12px 20px;
+    background: #f1f1f1;
+    color: #222;
+    height: 48px;
+}
+
+.search-wrapper input::placeholder {
+    color: rgba(34, 34, 34, 0.55);
+}
+
+.controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.controls-row--compact {
+    align-items: center;
+}
+
+.dropdown-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-wrapper select {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    padding: 12px 22px;
+    background: rgba(17, 17, 17, 0.95);
+    color: #f1f1f1;
+    min-width: 200px;
+    height: 50px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    outline: none;
+    appearance: none;
+}
+
+.dropdown-wrapper select option {
+    background: #111;
+    color: #f1f1f1;
+}
+
+.category-badge {
+    background: rgba(17, 17, 17, 0.95);
+    color: #f6c92f;
+    border: 1px solid rgba(246, 201, 47, 0.9);
+    border-radius: 16px;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.student-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    min-width: 1080px;
+}
+
+.student-table thead th {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 16px 14px;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.student-table tbody tr {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.student-table tbody tr td {
+    padding: 16px 14px;
+    color: rgba(255, 255, 255, 0.88);
+    border: none;
+    vertical-align: middle;
+    background: rgba(15, 15, 15, 0.85);
+}
+
+.student-table tbody tr td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.student-table tbody tr td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.student-table tbody tr:hover {
+    background: rgba(246, 201, 47, 0.06);
+}
+
+.student-table td {
+    font-size: 0.95rem;
+}
+
+.status,
+.pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    min-width: 80px;
+}
+
+.status-active {
+    background: rgba(46, 183, 85, 0.2);
+    color: #c8f7d4;
+}
+
+.status-inactive {
+    background: rgba(245, 163, 26, 0.24);
+    color: #ffeb99;
+}
+
+.pill-paid {
+    background: rgba(46, 183, 85, 0.2);
+    color: #b2f9b0;
+}
+
+.pill-late {
+    background: rgba(192, 57, 43, 0.2);
+    color: #f9b3ad;
+}
+
+.table-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 18px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    min-height: 34px;
+    border-radius: 999px;
+    background: rgba(15, 15, 15, 0.9);
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-weight: 600;
+}
+
+.page:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text);
+}
+
+.page.active {
+    background: #f6c92f;
+    color: #111;
+    border-color: rgba(246, 201, 47, 0.95);
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    z-index: 20;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-card {
+    width: min(720px, 100%);
+    background: rgba(18, 18, 18, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.icon-button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.student-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
+}
+
+.student-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text);
+}
+
+.student-form input,
+.student-form select {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.page.ellipsis {
+    pointer-events: none;
+}
+
+@media (max-width: 880px) {
+
+    .panel-top,
+    .controls-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-wrapper,
+    .dropdown-wrapper,
+    .category-badge {
+        width: 100%;
+    }
+}
+
+/* Overrides para diseño idéntico */
+.app-header {
+    margin-bottom: 24px;
+}
+
+.button-primary {
+    border-radius: 10px;
+    padding: 12px 20px;
+    min-width: 165px;
+    min-height: 46px;
+}
+
+.panel-card {
+    border: 1px solid rgba(246, 201, 47, 0.25);
+    background: #090909;
+}
+
+.panel-top {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+}
+
+.tab {
+    background: #101010;
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+.tab.active {
+    background: #f6c92f;
+    color: #111;
+}
+
+.search-wrapper input,
+.dropdown-wrapper select,
+.student-form input,
+.student-form select {
+    background: #101010;
+}
+
+.student-table {
+    border-spacing: 0 6px;
+}
+
+.student-table tbody tr {
+    border: none;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.student-table tbody tr td {
+    padding: 16px 14px;
+}
+
+.student-table thead th {
+    font-size: 0.79rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.student-table td {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.student-table tbody tr:hover {
+    background: rgba(246, 201, 47, 0.05);
+}
+
+.category-badge {
+    background: rgba(246, 201, 47, 0.12);
+    border-color: rgba(246, 201, 47, 0.2);
+}
+
+.page {
+    min-width: 32px;
+    min-height: 32px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.page.active {
+    background: #f6c92f;
+    color: #111;
+}
