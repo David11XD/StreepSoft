@@ -66,7 +66,7 @@ class JugadorController {
         exit;
     }
 
-    // ─── MOSTRAR FORMULARIO EDITAR ───
+    // ─── MOSTRAR FORMULARIO PARA EDITAR ───
     public function edit(int $id): void {
         Auth::requerirLogin();
         $jugador = $this->jugadorModel->find($id);
