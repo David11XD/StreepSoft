@@ -8588,3 +8588,10 @@ Stack trace:
 [01-Sep-2026 22:16:43 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoft.pagos' doesn't exist
 [01-Sep-2026 22:16:43 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoft.pagos' doesn't exist
 [01-Sep-2026 22:16:43 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 12:37:39 America/Bogota] Logout manual: cdavidg4396@gmail.com - Cookies limpiadas
+[03-Sep-2026 12:37:39 America/Bogota] Logout: cdavidg4396@gmail.com
+[03-Sep-2026 12:37:40 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 12:37:40 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 12:37:40 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 12:37:48 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[03-Sep-2026 12:49:47 America/Bogota] Intento de login fallido: contraseña incorrecta: davi1@gmail.com
