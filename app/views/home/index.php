@@ -25,7 +25,7 @@ if ($quickLoginDisponible) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | Streepsotf</title>
+    <title>Inicio | Streepsoft</title>
     <link rel="stylesheet" href="/streepsoft/public/css/homepanel/panel.css">
     <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
 </head>
@@ -184,10 +184,14 @@ if ($quickLoginDisponible) {
 
     <footer class="footer">
         <div class="footer-copy">
-            <p>© 2026 Streepsotf — <span>Cop Co</span>lombia Internacional. Todos los derechos reservados</p>
+            <p>© 2026 Streepsoft — <span>Cop Co</span>lombia Internacional. Todos los derechos reservados</p>
         </div>
 
         <div class="footer-redes">
+             <a href="https://www.constructorsofpeace.org/" aria-label="Facebook" target="_blank">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z" />
+                </svg>
 
             <a href="https://www.facebook.com/copcolombiainterna/?locale=es_LA" aria-label="Facebook" target="_blank">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">

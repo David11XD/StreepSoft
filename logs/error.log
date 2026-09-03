@@ -8595,3 +8595,292 @@ Stack trace:
 [03-Sep-2026 12:37:40 America/Bogota] Home - COOKIE logout_manual: true
 [03-Sep-2026 12:37:48 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
 [03-Sep-2026 12:49:47 America/Bogota] Intento de login fallido: contraseña incorrecta: davi1@gmail.com
+[03-Sep-2026 14:28:18 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:28:18 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:28:18 America/Bogota] Home - COOKIE logout_manual: false
+[03-Sep-2026 14:28:28 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:28:28 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:28:28 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:28:28 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:28:28 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:28:31 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:31 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:31 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:31 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:31 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:28:31 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:28:31 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:31 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:31 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:31 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:31 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:28:31 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:28:43 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[03-Sep-2026 14:28:43 America/Bogota] Logout: davidangel11222@gmail.com
+[03-Sep-2026 14:28:43 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:28:43 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:28:43 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 14:28:50 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:28:50 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:28:50 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[03-Sep-2026 14:28:50 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:28:50 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:28:50 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:28:53 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:53 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:53 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:53 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:53 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:28:53 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:28:53 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:53 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:28:53 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:53 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:28:53 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:28:53 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:13 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:13 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:13 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:13 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:58 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:58 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:58 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:58 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:58 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:58 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:58 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:58 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:29:58 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:58 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:29:58 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:58 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:29:59 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:29:59 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:00 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:30:00 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:00 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:00 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:30:01 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:01 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:01 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:30:01 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:01 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:01 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:30:04 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[03-Sep-2026 14:30:04 America/Bogota] Logout: davidangel11222@gmail.com
+[03-Sep-2026 14:30:04 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:30:04 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:30:04 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 14:30:08 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:30:08 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:30:08 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 14:30:14 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:30:14 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:30:14 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[03-Sep-2026 14:30:14 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:14 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:14 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:30:18 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:18 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:18 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:18 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:18 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:30:18 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:30:18 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:18 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:18 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:18 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:18 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:30:18 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:30:22 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[03-Sep-2026 14:30:22 America/Bogota] Logout: davidangel11222@gmail.com
+[03-Sep-2026 14:30:23 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:30:23 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:30:23 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 14:30:41 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:30:41 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:30:41 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[03-Sep-2026 14:30:41 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:41 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:30:41 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:30:43 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:43 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:43 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:43 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:43 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:30:43 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:30:43 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:43 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:30:43 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:43 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:30:43 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:30:43 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:33:37 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:33:37 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:33:37 America/Bogota] Home - COOKIE logout_manual: false
+[03-Sep-2026 14:33:40 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:33:40 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:33:40 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:33:44 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[03-Sep-2026 14:33:44 America/Bogota] Logout: davidangel11222@gmail.com
+[03-Sep-2026 14:33:44 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:33:44 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:33:44 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 14:33:50 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:33:50 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:33:50 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[03-Sep-2026 14:33:50 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:33:50 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:33:50 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:33:54 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:33:54 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:33:54 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:33:54 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:33:54 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:33:54 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:33:54 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:33:54 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:33:54 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:33:54 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:33:54 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:33:54 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:34:36 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[03-Sep-2026 14:34:36 America/Bogota] Logout: davidangel11222@gmail.com
+[03-Sep-2026 14:34:36 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:34:36 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:34:36 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 14:36:45 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:36:45 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:36:45 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 14:36:52 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:36:52 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 14:36:52 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[03-Sep-2026 14:36:52 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:36:52 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:36:52 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:36:55 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:36:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:36:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:36:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:36:55 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:36:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:36:55 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:36:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 14:36:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:36:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 14:36:55 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:36:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 14:36:59 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:36:59 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 14:36:59 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 14:37:10 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[03-Sep-2026 14:37:10 America/Bogota] Logout: davidangel11222@gmail.com
+[03-Sep-2026 14:37:10 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 14:37:10 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 14:37:10 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 15:07:06 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 15:07:06 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 15:07:06 America/Bogota] Home - COOKIE logout_manual: false
+[03-Sep-2026 15:07:18 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 15:07:18 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 15:07:18 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:07:18 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:07:18 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 15:07:24 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:24 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:24 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:24 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:24 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:24 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:29 America/Bogota] Deudas (listar): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.concepto' in 'field list'
+[03-Sep-2026 15:07:31 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:07:31 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:07:31 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 15:07:33 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:33 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:33 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:33 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:57 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:57 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:57 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:57 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:57 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:57 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:59 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:59 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:59 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:59 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:07:59 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:07:59 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:07:59 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:08:06 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[03-Sep-2026 15:08:06 America/Bogota] Logout: davidangel11222@gmail.com
+[03-Sep-2026 15:08:06 America/Bogota] Home - quickLoginDisponible: false
+[03-Sep-2026 15:08:06 America/Bogota] Home - COOKIE quick_login_data: false
+[03-Sep-2026 15:08:06 America/Bogota] Home - COOKIE logout_manual: true
+[03-Sep-2026 15:09:09 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 15:09:09 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[03-Sep-2026 15:09:09 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[03-Sep-2026 15:09:09 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:09:09 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:09:09 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 15:09:13 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:09:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:09:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:09:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:09:13 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:09:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:09:13 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:09:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:09:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:09:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:09:13 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:09:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:16:51 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:16:51 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[03-Sep-2026 15:16:51 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[03-Sep-2026 15:17:36 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:17:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:17:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:17:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:17:36 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:17:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:17:36 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:17:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 367
+[03-Sep-2026 15:17:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:17:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 368
+[03-Sep-2026 15:17:36 America/Bogota] PHP Warning:  Undefined array key "fecha_limite_pago" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
+[03-Sep-2026 15:17:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 384
