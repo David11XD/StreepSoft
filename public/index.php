@@ -1,16 +1,83 @@
 <?php
 declare(strict_types=1);
+
+ini_set('session.cookie_lifetime', '0');
+ini_set('session.gc_maxlifetime', '600');
+
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/streepsoft/',
+    'secure' => false,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+
 session_start();
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'];
+$base = dirname($_SERVER['SCRIPT_NAME']);
+$base = str_replace('\\', '/', $base);
 
+// IMPORTANTE: Si la ruta termina en /public, quitar /public
+// Esto sucede cuando el archivo está en /public/index.php
+if (basename($base) === 'public') {
+    $base = dirname($base);
+}
 
-define('BASE_URL', 'http://localhost/streepsoft/');
-require_once '../config/database.php';
-require_once '../app/core/Auth.php';
-require_once '../app/models/Jugador.php';
-require_once '../app/controllers/JugadorController.php';
+// ============================================================================
+// 1. CONFIGURACIÓN INICIAL
+// ============================================================================
 
+// Definir la URL base de la aplicación
+define('BASE_URL', rtrim($protocol. '://' . $host . $base, '/') . '/');
+define('APP_PATH', __DIR__ . '/../app');
+define('CONFIG_PATH', __DIR__ . '/../config');
+
+// Zona horaria
+date_default_timezone_set('America/Bogota');
+
+// Configuración de errores
+error_reporting(E_ALL);
+ini_set('display_errors', '0');  // No mostrar errores en pantalla (seguridad)
+ini_set('log_errors', '1');      // Loguear errores en archivo
+ini_set('error_log', __DIR__ . '/../logs/error.log');
+
+// ============================================================================
+// 2. CARGAR ARCHIVOS NECESARIOS
+// ============================================================================
+
+// Cargar configuración de base de datos
+require_once CONFIG_PATH . '/database.php';
+
+// Cargar clases base (Core)
+require_once APP_PATH . '/core/Model.php';
+require_once APP_PATH . '/core/Controller.php';
+require_once APP_PATH . '/core/Auth.php';
+require_once APP_PATH . '/core/SessionTimeout.php';
+require_once APP_PATH . '/helpers/url.php';
+
+// ========================================================================
+// CARGAR MODELOS
+// =========================================================================
+
+require_once APP_PATH . '/models/Usuario.php';
+require_once APP_PATH . '/models/Jugador.php';
+require_once APP_PATH . '/models/Estadistica.php';
+require_once APP_PATH . '/models/Recuperacion.php';
+require_once APP_PATH . '/models/Categoria.php';
+require_once APP_PATH . '/models/Instructor.php';
+require_once APP_PATH . '/models/Eps.php';
+require_once APP_PATH . '/models/TipoDocumento.php';
+require_once APP_PATH . '/models/Documento.php';
+require_once APP_PATH . '/models/Deuda.php';
+require_once APP_PATH . '/models/MetodoPago.php';
+require_once APP_PATH . '/models/TipoBeca.php';
+require_once APP_PATH . '/models/Actividad.php';
 
 // Verificar si la sesion expiro por timeout
 SessionTimeout::check();
@@ -28,7 +95,7 @@ if (Auth::check()) {
 }
 
 // Hacer disponible la conexión PDO globalmente
-$GLOBALS['pdo'] = $pdo ?? null;
+$GLOBALS['pdo'] = $pdo ??  null;
 
 // ============================================================================
 // 3. DEFINIR RUTAS
@@ -69,14 +136,23 @@ if (Auth::check()) {
     $rutasProtegidas = [
         'GET' => [
             '/dashboard' => ['controller' => 'DashboardController', 'method' => 'index'],
+            '/nav-menu' => ['controller' => 'NavController', 'method' => 'render'],
             '/jugadores/gestion' => ['controller' => 'JugadorController', 'method' => 'gestion'],
-            '/jugadores/deudas' => ['controller' => 'JugadorController', 'method' => 'deudas'],
+            '/jugadores/deudas' => ['controller' => 'DeudaController', 'method' => 'listar'],
+            '/deudas/:id/pago' => ['controller' => 'DeudaController', 'method' => 'mostrarPago'],
             '/jugadores/crear' => ['controller' => 'JugadorController', 'method' => 'crear'],
+            '/perfil-jugador' => ['controller' => 'JugadorController', 'method' => 'perfil'],
+            '/pagos/historial' => ['controller' => 'PagosController', 'method' => 'matriz'],
+            '/perfil/administrador' => ['controller' => 'PerfilAdminController', 'method' => 'perfil'],
+            '/reportes/generar' => ['controller' => 'ReporteController', 'method' => 'generar'],
         ],
         
         'POST' => [
             '/jugadores/guardar' => ['controller' => 'JugadorController', 'method' => 'guardar'],
             '/jugadores/eliminar/:id' => ['controller' => 'JugadorController', 'method' => 'eliminar'],
+            '/deudas/registrar-pago' => ['controller' => 'DeudaController', 'method' => 'registrarPago'],
+            '/perfil/actualizar' => ['controller' => 'PerfilAdminController', 'method' => 'actualizarPerfil'],
+            '/perfil/cambiar-foto' => ['controller' => 'PerfilAdminController', 'method' => 'cambiarFoto'],
         ]
     ];
     
@@ -134,12 +210,12 @@ try {
     
     if (isset($rutas[$metodo])) {
         foreach ($rutas[$metodo] as $ruta => $detalles) {
-            // Convertir :id a regex
-            $patrón = str_replace(':id', '(\d+)', preg_quote($ruta, '#'));
+            // Convertir :id a un patrón numérico y construir la regex
+            $patron = '#^' . str_replace(':id', '(\d+)', $ruta) . '$#';
             
-            if (preg_match('#^' . $patrón . '$#', $uri, $matches)) {
+            if (preg_match($patron, $uri, $matches)) {
                 $rutaEncontrada = $detalles;
-                array_shift($matches);  // Remover el match completo
+                array_shift($matches); // Remover el match completo
                 $parametros = $matches;
                 break;
             }

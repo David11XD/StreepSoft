@@ -5,37 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperación de Contraseña</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/streepsoft/public/css/login/login.css">
+    <link rel="stylesheet" href="/streepsoft/public/css/login/log.css">
 </head>
 <body>
-    <div class="background-login">
-        <div class="login-card">
-            <form action="/streepsoft/app/controllers/RecuperacionController.php" method="POST">
-                
-                <img src="/streepsoft/public/Image/CopColombiaInternacional.png" alt="Logo" class="logoLogin" draggable="false">
-      
-                <h1 class="h1-recover">Escriba su correo por favor</h1>
-                
-                <p class="message-code">Le enviaremos un código de verificación para restablecer su contraseña.</p>
 
-                <div class="input-group">
-                    <label for="usuario">Email</label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" 
-                               id="usuario"
-                               name="usuario" 
-                               placeholder="correo@ejemplo.com"
-                               required>
+    <div class="background-login">
+        <div class="page-wrapper">
+
+            <div class="card">
+                <div class="card-img">
+                    <div class="imagen-logo">
+                        <img src="/streepsoft/public/Image/CopColombiaInternacional.png" alt="logo" width="90px" height="50px">
                     </div>
                 </div>
+            </div>
 
-                <button class="buttonRecover" type="submit" name="enviar_correo">Enviar</button>
-                
-                <div class="link">
-                    <a href="/streepsoft/app/views/auth/login.php">Volver al Login</a>
-                </div>
-            </form>
+            <div class="login-card">
+                <form action="/streepsoft/app/controllers/RecuperacionController.php" method="POST">
+    
+                    <h1 class="h1-recover">Recuperar <span>Contraseña</span></h1>
+                    
+                    <p class="message-code">Para hacer la recuerparacion de tu cuenta ingresa el correo electronico.</p>
+
+                    <div class="input-group">
+                        <label for="usuario">Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" 
+                                id="usuario"
+                                name="usuario" 
+                                placeholder="correo@ejemplo.com"
+                                required>
+                        </div>
+                    </div>
+
+                    <button class="buttonRecover" type="submit" name="enviar_correo">Enviar</button>
+                    
+                    <div class="link">
+                        <a  href="/streepsoft/app/views/auth/login.php">cancelar</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -81,4 +91,7 @@
 
     <?php endif; ?>
 </body>
+
+    <script src="/streepsoft/public/js/login/login.js"></script>
+    <script src="/streepsoft/public/js/login/recover.js"></script>
 </html>

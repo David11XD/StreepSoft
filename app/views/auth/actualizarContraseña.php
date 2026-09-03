@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar contraseña</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="/streepsoft/public/css/login/login.css">
+    <link rel="stylesheet" href="/streepsoft/public/css/login/log.css">
 </head>
 <body class="background-login">
     <div class="page-wrapper">
+        
+    <div class="card">
+        <div class="card-img">
+            <div class="imagen-logo">
+                <img src="/streepsoft/public/Image/CopColombiaInternacional.png" alt="logo" width="90px" height="50px">
+            </div>
+        </div>
+    </div>   
+
     <div class="login-card">
-        <img
-            src="/streepsoft/public/Image/CopColombiaInternacional.svg"
-            alt="Logo"
-            class="logo-recover"
-            draggable="false"
-        >
-        <h1 class="h1-Password-recovered">Contraseña recuperada</h1>
+
+        <h1 class="h1-Password-recovered">Contraseña <span>recuperada</span></h1>
+
+        <p class="messege-recoverd">Porfavor digite su nueva contraseña </p>
 
         <form action="/streepsoft/app/controllers/RecuperacionController.php" method="POST" id="formPassword">
 
@@ -69,4 +75,3 @@
     <script src="/streepsoft/public/js/login/newpassword.js"></script>
 </body>
 </html>
-

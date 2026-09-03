@@ -37,5 +37,10 @@ abstract class Model
         return $stmt->execute($params);
     }
 
+    
+    protected function lastInsertId(): int
+    {
+        return (int) $this->pdo->lastInsertId();
+    }
 
 }

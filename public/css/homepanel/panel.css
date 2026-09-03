@@ -1,0 +1,517 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #141414;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-des {
+    position: relative;
+    background: #212020;
+    height: 83px;
+}
+
+.nav-des::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 12px;
+
+    border-bottom: 2px solid #D09E10;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 0;
+}
+
+/* Diseño principal de navegacion */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+
+/* Imagen de Cop colombia */
+
+nav img {
+    height: 100px;
+    width: 130px;
+    margin: 5px;
+    margin-left: 15px;
+    position: relative;
+    bottom: 5px;
+}
+
+/* Botton de Iniciar sesion */
+
+nav .iniciar {
+    margin: 30px;
+    margin-right: 15px;
+    width: 159px;
+    height: 42px;
+    position: relative;
+    bottom: 5px;
+}
+
+.iniciar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #212020;
+    color: #cfcfcf;
+    font-size: 15px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.iniciar .icono-login  {
+    width: 18px;
+    height: 18px;
+    color: #D09E10;
+    transition: opacity 0.2s ease;
+    opacity: 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.iniciar:hover{
+    background: #2b2b2b;
+    color: #ffffff;
+    border-color: #2b2b2b;
+}
+
+.iniciar:hover .icono-login {
+    opacity: 1;
+}
+
+
+/* pagina de imagnes desplasbles */
+
+.des {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 12px;
+    margin-bottom: 2px;
+}
+
+.imagenes {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6 ease;
+}
+
+.slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/*Texto y clase overlay*/
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.15));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* siempre pegado abajo, sin valores fijos */
+    align-items: flex-start;
+    color: white;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.overlay h1 {
+    font-size: 2.6rem;
+    margin: 0 0 8px 0;
+    line-height: 1.25;
+}
+
+.overlay p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
+.overlay h1 span {
+    color: #D09E10;
+}
+
+
+/*Botones invisibles carrusel*/
+.zona-hero {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.zona-hero-izq {
+    left: 0;
+}
+
+.zona-hero-der {
+    right: 0;
+}
+
+/* Indicadores */
+
+.indicadores {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.indicadores span {
+    display: inline-block;
+    width: 35px;
+    /* Largo de la línea */
+    height: 3px;
+    /* Grosor */
+    margin: 0 4px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.indicadores .activo {
+    background: #D09E10;
+}
+
+/*Barra de estadísticas*/
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #1a1a1a;
+    border-top: 1px solid rgba(208, 158, 16, 0.15);
+    border-bottom: 1px solid rgba(208, 158, 16, 0.15);
+}
+
+.stat {
+    text-align: center;
+    padding: 24px 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat h2 {
+    color: #D09E10;
+    font-size: 26px;
+    margin: 0;
+}
+
+.stat p {
+    color: #999;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+
+/*Mision y Vision*/
+.proposito {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.proposito .kicker {
+    color: #D09E10;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.proposito h2 {
+    color: white;
+    font-size: 26px;
+    margin-top: 6px;
+}
+
+.tarjetas-proposito {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 40px;
+}
+
+.tarjeta {
+    background: #1a1a1a;
+    border: 1px solid rgba(208, 158, 16, 0.35);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.tarjeta h3 {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.tarjeta h3 span {
+    color: #D09E10;
+}
+
+.tarjeta p {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Galeria de imagenes*/
+.trayectoria-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 98%;
+    /* antes: max-width: 1100px */
+    margin: 40px auto 0;
+    padding: 0 40px;
+    /* mismo padding que .overlay */
+    box-sizing: border-box;
+}
+
+.trayectoria-header h3 {
+    color: white;
+    font-size: 18px;
+}
+
+.trayectoria-header a {
+    color: #D09E10;
+    font-size: 13px;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 140px;
+    gap: 8px;
+    width: 98%;
+    /* antes: max-width: 1100px */
+    margin: 16px auto 40px;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.bento-ancho {
+    grid-column: span 2;
+}
+
+/* solo ancho, ya es horizontal */
+.bento-alto {
+    grid-row: span 2;
+}
+
+/* solo alto, para las cuadradas */
+
+.bento-item {
+    background: #1a1a1a;
+    border: 1px solid rgba(208, 158, 16, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    /* clave para que el hover-zoom no se salga */
+    cursor: pointer;
+}
+
+.bento-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.bento-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Boton de ver galeria completa */
+.modal-galeria {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-galeria.oculto {
+    display: none;
+}
+
+.visor-foto {
+    position: relative;
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visor-foto img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    user-select: none;
+}
+
+.flecha-galeria {
+    position: absolute;
+    /* se posiciona respecto a .modal-galeria (que es fixed/inset:0) */
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(20, 20, 20, 0.6);
+    color: #fff;
+    border: 1px solid rgba(208, 158, 16, 0.4);
+    font-size: 22px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    z-index: 10;
+}
+
+.flecha-galeria:hover {
+    background: rgba(208, 158, 16, 0.85);
+    border-color: #D09E10;
+    color: #111;
+}
+
+.flecha-izq {
+    left: 24px;
+}
+
+.flecha-der {
+    right: 24px;
+}
+
+.cerrar {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #D09E10;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.contador-fotos {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ccc;
+    font-size: 12px;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #111;
+    color: #fff;
+    padding: 14px 24px;
+    border-top: 1px solid #333;
+}
+
+.footer-copy {
+    margin: 0;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+}
+
+.footer-redes {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer-logo {
+    height: 22px;
+    width: auto;
+    margin-right: 4px;
+}
+
+.footer-redes a {
+    color: #999;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.footer-redes a:hover {
+    color: #D09E10;
+    /* antes tenías #00a2ff, lo cambio para que combine con tu paleta gold */
+}
+
+/*Responsive*/
+@media (max-width: 768px) {
+    .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .tarjetas-proposito {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 130px;
+    }
+
+    .bento-ancho {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .overlay h1 {
+        font-size: 1.8rem;
+    }
+
+    .overlay {
+        padding: 20px;
+    }
+}

@@ -15,7 +15,8 @@
     
     <div id="nav-card"></div>
 
-    <section class="perfil-page">
+    <div class="main-content">
+            <section class="perfil-page">
 
         <div class="perfil-header">
             <h1 class="perfil-titulo">Perfil de Alumno</h1>
@@ -151,8 +152,10 @@
         </div>
 
     </section>
+    </div>
 
-    <script src="/streepsoft/public/js/dashboard/hamburguesa.js"></script>
+
+    <script src="/streepsoft/public/js/dashboard/dashboard.js"></script>
     <script type="module" src="/streepsoft/public/js/nav/export.js"></script>
 </body>
 

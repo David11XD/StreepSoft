@@ -4,22 +4,14 @@ declare(strict_types=1);
 /**
  * Jugador - Modelo de jugadores
  * 
- * ¿Qué hace?
- * - Obtiene jugadores de la base de datos
- * - Crea, actualiza, elimina jugadores
- * - Comunica con vista_jugadores
  */
 class Jugador extends Model
 {
     /**
      * Obtener todos los jugadores
      * 
-     * ¿Qué hace?
-     * - Consulta la base de datos
-     * - Retorna un array con todos los jugadores
-     * 
-     * @return array - Lista de jugadores
      */
+
     public function obtenerTodos(): array
     {
         $sql = "
@@ -33,10 +25,8 @@ class Jugador extends Model
 
     /**
      * Obtener un jugador por ID
-     * 
-     * @param int $id - ID del jugador
-     * @return array|null - Datos del jugador o null si no existe
      */
+
     public function obtenerPorId(int $id): ?array
     {
         $sql = "
@@ -52,9 +42,8 @@ class Jugador extends Model
     /**
      * Obtener jugadores por categoría
      * 
-     * @param int $categoriaId - ID de la categoría
-     * @return array - Jugadores de esa categoría
      */
+
     public function obtenerPorCategoria(int $categoriaId): array
     {
         $sql = "
@@ -77,7 +66,7 @@ class Jugador extends Model
         $sql = "
             SELECT * 
             FROM vista_jugadores
-            WHERE tiene_deuda = 1
+            WHERE pago IS NOT NULL
             ORDER BY apellidos, nombres
         ";
         
@@ -86,29 +75,45 @@ class Jugador extends Model
 
     /**
      * Crear un nuevo jugador
-     * 
-     * @param array $datos - Datos del jugador
-     * @return bool - True si fue exitoso
+     *
      */
-    public function crear(array $datos): bool
+    public function crear(array $datos): int
     {
         $sql = "
             INSERT INTO jugadores (
                 nombres,
                 apellidos,
-                email,
-                telefono,
-                id_categoria
-            ) VALUES (?, ?, ?, ?, ?)
+                fecha_nacimiento,
+                acudiente,
+                numero_acudiente,
+                id_categorias,
+                id_eps,
+                id_instructor,
+                foto,
+                iniciales
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ";
-        
-        return $this->execute($sql, [
-            $datos['nombres'] ?? null,
-            $datos['apellidos'] ?? null,
-            $datos['email'] ?? null,
-            $datos['telefono'] ?? null,
-            $datos['id_categoria'] ?? null,
+
+        $exito = $this->execute($sql, [
+            $datos['nombres'],
+            $datos['apellidos'],
+            $datos['fecha_nacimiento'],
+            $datos['acudiente'],
+            $datos['numero_acudiente'],
+            $datos['id_categorias'],
+            $datos['id_eps'],
+            $datos['id_instructor'],
+            $datos['foto'] ?? null,
+            $datos['iniciales'] ?? null,
         ]);
+
+        // Si el INSERT no funcionó, no hay id que devolver
+        if (!$exito) {
+            return 0;
+        }
+
+        // lastInsertId() viene de la clase base Model (ver Model.php)
+        return $this->lastInsertId();
     }
 
     /**
@@ -120,31 +125,37 @@ class Jugador extends Model
      */
     public function actualizar(int $id, array $datos): bool
     {
+        // NOTA: se corrigió igual que crear() -> mismas columnas reales
+        // de la tabla jugadores. Aún no está conectada a ninguna ruta,
+        // pero la dejamos coherente con el resto del modelo.
         $sql = "
             UPDATE jugadores
             SET nombres = ?,
                 apellidos = ?,
-                email = ?,
-                telefono = ?,
-                id_categoria = ?
+                fecha_nacimiento = ?,
+                acudiente = ?,
+                numero_acudiente = ?,
+                id_categorias = ?,
+                id_eps = ?,
+                id_instructor = ?
             WHERE id_jugadores = ?
         ";
-        
+
         return $this->execute($sql, [
             $datos['nombres'] ?? null,
             $datos['apellidos'] ?? null,
-            $datos['email'] ?? null,
-            $datos['telefono'] ?? null,
-            $datos['id_categoria'] ?? null,
+            $datos['fecha_nacimiento'] ?? null,
+            $datos['acudiente'] ?? null,
+            $datos['numero_acudiente'] ?? null,
+            $datos['id_categorias'] ?? null,
+            $datos['id_eps'] ?? null,
+            $datos['id_instructor'] ?? null,
             $id
         ]);
     }
 
     /**
      * Eliminar un jugador
-     * 
-     * @param int $id - ID del jugador a eliminar
-     * @return bool - True si fue exitoso
      */
     public function eliminar(int $id): bool
     {
@@ -154,8 +165,6 @@ class Jugador extends Model
 
     /**
      * Contar jugadores
-     * 
-     * @return int - Total de jugadores
      */
     public function contar(): int
     {

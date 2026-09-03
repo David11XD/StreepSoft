@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('../hamburguesa.css');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000; /* Fondo general oscuro acorde al diseño */
+    font-family: "Poppins", sans-serif;
+    padding: 0px 3px 2px;
+}
+
+.card-pagos{
+    width: 100%;
+}
+
+.card-text{
+    width: 100%;
+    padding: 12px 12px 22px;
+}
+
+.text-pagos{
+    margin: 12px;
+    padding: 12px 12px 22px;
+    border-bottom: 1px solid #D09E10;
+}
+
+.text-pagos h2{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+}
+
+.text-pagos p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    top: 10px;
+}
+
+.card-detalle-pago{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 2px 25px;
+    margin-top: -15px;
+}
+
+.card-registro-pago{
+    width: 50%;
+    height: auto;
+    background: #212020;
+    border-radius: 5px;
+}
+
+.detalle-pago{
+    margin-top: 3px;
+    padding: 3px 12px;
+}
+
+.text-detalle-pago h2{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: #D9D9D9;
+}
+
+.text-info-pagos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 3px 12px;
+}
+
+.info-pagos,
+.text-total{
+    display: flex;
+    flex-direction: row;
+}
+
+.info-pagos h3{
+    color: #4C534B;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.info-pagos p{
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    margin-left: auto;
+}
+
+.text-total h1{
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffff;
+} 
+
+.text-total p{
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    margin-left: auto;
+}
+
+.card-seleccion{
+    width: 50%;
+    height: 290px;
+    border-radius: 5px;
+}
+
+.card-registros{
+    display: flex;
+    flex-direction: column;
+    padding: 2px 10px;
+}
+
+.registro p{
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: #D9D9D9;
+}
+
+.card-info{
+    background: #282727;
+    border-radius: 12px;
+    width: 100%;
+    height: 30px;
+}
+
+.input-pago{
+    width: 100%;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+    text-align: justify;
+    padding: 0px 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    background: transparent;
+}
+
+.input-pago::placeholder{
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.select-tipo{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    background: #282727;
+    border-radius: 15px;
+    overflow: hidden;
+    align-items: center;
+    padding: 0px 12px;
+}
+
+.select-tipo select{
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.select-tipo label{
+    width: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+select, ::picker(select){
+    appearance: base-select;
+}
+
+select{
+    background: #010101;
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+::picker(select){
+    background: #000000;
+    color: #ffff;
+    border: none;
+    border-radius: 5px;
+}
+
+select option{
+    padding: 5px;
+}
+
+select option:hover, select option:checked{
+    background: #D09E10;
+}
+
+.card-guardar{
+    width: 100%;
+    padding: 28px 24px 22px;
+}
+
+.card-g-pago{
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid #D09E10;
+    display: flex;
+    gap: 12px;
+}
+
+.btn-cancelar{
+    margin-top: 22px;
+    margin-left: auto;
+}
+
+.btn-cancelar button{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 5px;
+    background: #4C534B;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.btn-aceptar{
+    margin-top: 22px;
+}
+
+.btn-aceptar button{
+    width: 130px;
+    height: 40px;
+    display: flex;
+    padding: 9px 38px;
+    border: none;
+    border-radius: 5px;
+    background: #D09E10;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #FFFFFF;
+}

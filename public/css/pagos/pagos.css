@@ -1,0 +1,535 @@
+@import url('../hamburguesa/hamburguer.css');
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #141414;
+    color: white;
+}
+
+/* Contenedor principal */
+.pagos-container {
+    width: calc(100% - 5px);
+    margin: 25px auto;
+}
+
+.pagos-container h1 {
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+    margin-bottom: 20px;
+}
+
+.sub-container {
+    border: 1px solid #D09E10;
+    overflow: hidden;
+    padding: 10px;
+}
+
+/* Panel que envuelve pestañas + tabla */
+.pagos-panel {
+    background: #1a1a1a;
+    border: 1px solid #D09E10;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Pestañas */
+.tabs-pagos {
+    display: flex;
+    margin: 12px;
+    position: relative;
+}
+
+.tabs-pagos::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+    right: -12px;
+    bottom: 0;
+    height: 2px;
+    background: #2b2b2b;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: clamp(12px, 1vw, 16px);
+    padding: 8px 22px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: #ccc;
+}
+
+.tab-btn.active {
+    color: #D09E10;
+    font-weight: 600;
+}
+
+
+.tab-btn.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: 2px;
+    height: 3px;
+    background: #D09E10;
+    z-index: 2;
+}
+
+/* Contenido de cada pestaña */
+.tab-contenido {
+    display: none;
+}
+
+.tab-contenido.active {
+    display: block;
+}
+
+.placeholder-tab {
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Tabla */
+.tabla-wrapper {
+    overflow-x: auto;
+    padding: 20px;
+    background: #000000;
+}
+
+.tabla-pagos {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: clamp(12px, 1.3vw, 18px);
+}
+
+
+.tabla-pagos thead th {
+    text-align: left;
+    color: #D09E10;
+    font-weight: 600;
+    font-size: clamp(12px, 1.5vw, 20px);
+    padding: 10px 14px;
+    border-bottom: 1px solid #2b2b2b;
+    white-space: nowrap;
+}
+
+.tabla-pagos tbody td {
+    padding: 14px;
+    border-bottom: 1px solid #333;
+    vertical-align: middle;
+}
+
+.tabla-pagos tbody tr.fila-pago:hover {
+    background: #1f1f1f;
+}
+
+/* Columna Alumno (avatar + nombre) */
+.col-alumno {
+    vertical-align: middle;
+}
+
+.alumno-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-iniciales {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #3a2f0a;
+    color: #D09E10;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.col-alumno strong {
+    display: block;
+    font-size: clamp(12px, 1.3vw, 18px);
+}
+
+.sub-categoria {
+    display: block;
+    font-size: clamp(9px, 0.9vw, 13px);
+    color: #777;
+}
+
+.valor-modificado {
+    color: #D09E10 !important;
+}
+
+/* Badges de estado */
+.badge-editado {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.badge-original {
+    background: rgba(255, 255, 255, 0.08);
+    color: #aaa;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Columna acciones*/
+.acciones-wrapper {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.btn-icono {
+    background: #1a1a1a;
+    border: 1px solid #2b2b2b;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-icono i {
+    font-size: 14px;
+    color: #D09E10;
+}
+
+.btn-icono:hover {
+    background: #2b2b2b;
+    border-color: #D09E10;
+}
+
+/* Fila de historial expandible */
+.fila-historial.oculto {
+    display: none;
+}
+
+.fila-historial td {
+    padding: 0;
+    border: none;
+}
+
+.detalle-historial {
+    display: flex;
+    gap: 12px;
+    background: #1A1919;
+    border-left: 3px solid #3b82f6;
+    border-radius: 6px;
+    padding: 16px;
+    margin: 8px 0;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.punto-azul {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3b82f6;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.cambio-valor {
+    margin-top: 6px;
+}
+
+.valor-anterior {
+    color: #f87171;
+    text-decoration: line-through;
+}
+
+.valor-nuevo {
+    color: #4ade80;
+}
+
+.motivo-texto {
+    margin-top: 6px;
+    color: #999;
+    font-style: italic;
+}
+
+/* Variante: registro sin modificaciones */
+.detalle-sin-cambios {
+    border-left-color: #555;
+    align-items: center;
+}
+
+.punto-gris {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #666;
+    flex-shrink: 0;
+}
+
+.detalle-sin-cambios p {
+    color: #888;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Modal Editar Pago */
+.modal-pago {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+    padding: 20px;
+}
+
+.modal-pago.oculto {
+    display: none;
+}
+
+.modal-pago-contenido {
+    background: #000000;
+    border: 3px solid #D09E10;
+    border-radius: 10px;
+    padding: 26px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-pago-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.modal-pago-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.modal-pago-subtitulo {
+    color: #888;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.cerrar-modal-pago {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cerrar-modal-pago:hover {
+    color: #fff;
+}
+
+/* Comparativa: registro actual vs corregido */
+.comparativa-pago {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.caja-registro {
+    background: #1e1e1e;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 14px;
+}
+
+.caja-corregida {
+    border-color: #D09E10;
+    background: #23200f;
+}
+
+.caja-titulo-actual {
+    color: #898994;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.caja-titulo-corregido {
+    color: #D09E10;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.dato-fila {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 4px 0;
+    color: #ccc;
+}
+
+.dato-fila span {
+    color: #888;
+}
+
+.flecha-comparativa {
+    color: #D09E10;
+    font-size: 20px;
+}
+
+/* Campos del formulario */
+.campos-edicion {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.campo-edicion {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo-ancho {
+    margin-bottom: 16px;
+}
+
+.campo-edicion label {
+    font-size: 12px;
+    color: #999;
+}
+
+.campo-edicion input,
+.campo-edicion select,
+.campo-edicion textarea {
+    background: #1e1e1e;
+    border: 1px solid #2b2b2b;
+    border-radius: 6px;
+    color: white;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.campo-edicion input:focus,
+.campo-edicion select:focus,
+.campo-edicion textarea:focus {
+    outline: none;
+    border-color: #D09E10;
+}
+
+.aviso-motivo {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #93c5fd;
+    margin-bottom: 16px;
+}
+
+.aviso-motivo i {
+    color: #60a5fa;
+    font-size: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.historial-mini {
+    background: #1a1a1a;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.sin-historial {
+    color: #666;
+    font-size: 13px;
+    font-style: italic;
+    margin: 0;
+}
+
+.acciones-modal-pago {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancelar-pago {
+    background: none;
+    border: 1px solid #3a3a3a;
+    color: #ccc;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-cancelar-pago:hover {
+    background: #222;
+}
+
+.btn-guardar-pago {
+    background: #D09E10;
+    border: none;
+    color: #111;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-guardar-pago:hover {
+    background: #e0ac1a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tabla-pagos {
+        font-size: 12px;
+    }
+
+    .comparativa-pago {
+        grid-template-columns: 1fr;
+    }
+
+    .flecha-comparativa {
+        transform: rotate(90deg);
+        justify-self: center;
+    }
+
+    .campos-edicion {
+        grid-template-columns: 1fr;
+    }
+}

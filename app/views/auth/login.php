@@ -50,26 +50,25 @@ if (isset($_GET['success'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-
     <!-- Font Awesome - librería de íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <link rel="stylesheet" href="/streepsoft/public/css/login/login.css">
-   <link rel="stylesheet" href="/streepsoft/public/css/login/login-alert.css">
-   
-
+    <link rel="stylesheet" href="/streepsoft/public/css/login/login-alert.css">
 </head>
 <body class="background-login">
     <div class="page-wrapper">
+        <div class="card">
+            <div class="card-img">
+                <div class="imagen-logo">
+                    <img src="/streepsoft/public/Image/CopColombiaInternacional.png" alt="logo" width="110px" height="70px">
+                </div>
+            </div>
+        </div>
+
         <div class="login-card">
 
-            <div class="link-password">
-                <a href="/streepsoft/home"><img src="/streepsoft/public/Image/icon_arrow_back.svg" alt=""></a>
-            </div>
-
-            <img src="/streepsoft/public/Image/CopColombiaInternacional.svg" alt="Logo" class="logoLogin" draggable="false">
-
             <h1 class="h1-login">Iniciar Sesión</h1>
+            <p class="p1-login">Porfavor Ingresa tus credenciales para ingresar</p>
 
             <form action="/streepsoft/login" method="POST">
 
@@ -89,14 +88,27 @@ if (isset($_GET['success'])) {
                     </div>
                 </div>
 
-                <?php if(!empty($mensaje)): ?>
-                    <div id="mensajeError" class="alert-login-error">
-                        <p class="parrafo"><?= htmlspecialchars($mensaje) ?></p>
-                        <div class="barra-tiempo"></div>
-                    </div>
-                <?php endif; ?>
+                <?php if(!empty($mensaje)): ?> 
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    
+                    <script>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: <?= json_encode($mensaje) ?>,
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
 
-                <?php if (isset($_GET['password'])): ?>
+                        background: '#232323',
+                        color: '#ffffff',
+                        iconColor: '#f5c400'
+                    });
+                    </script>
+                <?php endif; ?> 
+
+                <?php if (isset($_GET['password'])): ?> 
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
                     <script>
@@ -115,14 +127,14 @@ if (isset($_GET['success'])) {
                         })
                     </script>
 
-                <?php endif; ?>
+                <?php endif; ?> 
 
 
-                <button class="buttonLogin" type="submit">Iniciar Sesión</button>
+                <button class="buttonLogin" type="submit">Ingresar</button>
 
                 <div class="link">
                     <div class="link-password">
-                        <a class="alogin" href="/streepsoft/app/views/auth/logincorreo.php">¿Olvidaste tu contraseña?</a>
+                        <a class="alogin" href="/streepsoft/app/views/auth/logincorreo.php">¿Olvidaste tu <span>contraseña?</span> </a>
                     </div>
 
                 </div>
@@ -132,9 +144,11 @@ if (isset($_GET['success'])) {
     </div>
 
     <script src="/streepsoft/public/js/login/login.js"></script>
+    <script src="/streepsoft/public/js/login/recover.js"></script>
+
     <script>
         // Contador de veces que el usuario intenta retroceder
-        let backClickCount = <?php echo $_SESSION['backClickCount'] ?? 0; ?>;
+        // let backClickCount = <?php echo $_SESSION['backClickCount'] ?? 0; ?>;
         const MAX_BACK_CLICKS = 2;
 
         // Prevenir retroceso (back button)
@@ -163,6 +177,6 @@ if (isset($_GET['success'])) {
                 body: JSON.stringify({ count: backClickCount })
             }).catch(e => {}); // Ignorar errores
         });
-    </script>
+    </script> 
 </body>
 </html>

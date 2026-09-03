@@ -35,7 +35,7 @@ class QuickLoginController extends Controller
 
         // Obtener usuario de la BD
         $usuarioModel = new Usuario($this->pdo);
-        $usuario = $usuarioModel->obtenerporusuario($quickLoginData['usuario']);
+        $usuario = $usuarioModel->obtenerporusuario($quickLoginData['usuario_nombre']);
 
         if (!$usuario) {
             $this->redirect('/streepsoft/?error=usuarioNoEncontrado');
