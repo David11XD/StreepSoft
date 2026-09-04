@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumno</title>
     <link rel="stylesheet" href="/streepsoft/public/css/nuevo/formularioJugador.css">
 </head>
+
 <body>
     <div class="contenedor">
         <div class="contenedor-pagina-1">
@@ -15,8 +18,8 @@
                     <h1>Nuevo Jugador</h1>
                     <i class="mingcute--user-add-fill"></i>
                 </div>
-                
-                <p>Complete los campos para agregar un nuevo alumno</p>      
+
+                <p>Complete los campos para agregar un nuevo alumno</p>
             </div>
 
             <div class="contenedor-pasos">
@@ -38,7 +41,7 @@
                         <span>uniforme</span>
                     </div>
 
-                    
+
                     <div class="paso">
                         <div class="circulo"></div>
                         <span>Acudiente</span>
@@ -58,27 +61,27 @@
         <?php if (isset($_GET['error'])): ?>
             <p style="color:#e74c3c; font-weight:bold;">
                 <?php
-                    $errores = [
-                        'csrf' => 'Token de seguridad inválido, intenta de nuevo.',
-                        'campos_vacios' => 'Faltan campos obligatorios por completar.',
-                        'fecha_invalida' => 'La fecha de nacimiento no es válida.',
-                        'creacion_fallida' => 'No se pudo guardar el alumno, intenta de nuevo.',
-                    ];
-                    echo htmlspecialchars($errores[$_GET['error']] ?? 'Ocurrió un error.');
+                $errores = [
+                    'csrf' => 'Token de seguridad inválido, intenta de nuevo.',
+                    'campos_vacios' => 'Faltan campos obligatorios por completar.',
+                    'fecha_invalida' => 'La fecha de nacimiento no es válida.',
+                    'creacion_fallida' => 'No se pudo guardar el alumno, intenta de nuevo.',
+                ];
+                echo htmlspecialchars($errores[$_GET['error']] ?? 'Ocurrió un error.');
                 ?>
             </p>
         <?php endif; ?>
 
         <form action="/streepsoft/jugadores/guardar" method="POST" enctype="multipart/form-data" id="formjugador" target="_top">
-            
+
             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken ?? '') ?>">
-            
+
             <section class="paso-formulario activo">
                 <div class="contenido-datos">
 
                     <div class="contenedor-foto">
                         <label class="zona-foto" id="zonaFoto">
-                            
+
                             <i class="fluent--camera-add-48-filled"></i>
 
                             <span class="texto-foto">
@@ -87,12 +90,12 @@
                             </span>
                             <img class="foto-miniatura" id="fotoMiniatura" src="#" alt="Foto del alumno" />
                         </label>
-                        
+
                         <input type="file"
-                               id="inputFoto"
-                               name="foto"
-                               accept="image/png, image/jpeg"
-                               hidden>
+                            id="inputFoto"
+                            name="foto"
+                            accept="image/png, image/jpeg"
+                            hidden>
 
                         <p class="foto-info">
                             JPG · PNG · MAX: 2 MB
@@ -108,28 +111,28 @@
 
                         <div class="grid-2">
                             <div class="grupo">
-                                <label for="">segundo apellido</label>
+                                <label for="">primer apellido</label>
                                 <input type="text"
                                     name="apellido2"
                                     placeholder="Opcional">
                             </div>
 
                             <div class="grupo">
-                                <label for="">segundo nombre</label>
+                                <label for="">segundo apellido</label>
                                 <input type="text"
                                     name="nombre2"
                                     placeholder="Opcional">
                             </div>
 
                             <div class="grupo">
-                                <label for="">primer apellido</label>
+                                <label for="">primer nombre</label>
                                 <input type="text"
                                     name="apellido1"
                                     placeholder="Obligatorio" required>
                             </div>
 
                             <div class="grupo">
-                                <label for="">primer Nombre</label>
+                                <label for="">segundo Nombre</label>
                                 <input type="text"
                                     name="nombre1"
                                     placeholder="Obligatorio" required>
@@ -162,7 +165,8 @@
                                 <label for="">Iniciales</label>
                                 <input type="text"
                                     name="iniciales"
-                                    placeholder="Opcinal">
+                                    maxlength="3"
+                                    placeholder="Opcional (máx 3 letras)">
                             </div>
                         </div>
                     </div>
@@ -232,7 +236,7 @@
                         </select>
                     </div>
 
-                    
+
                     <div class="grupo">
                         <label>Categoria</label>
 
@@ -260,12 +264,12 @@
 
                     <div class="grupo">
                         <label>Talla de camiseta</label>
-                        <input type="text" name="numero_camisa" inputmode="numeric" placeholder="Ej: 10" pattern="[0-9]*" maxlength="3">
+                        <input type="text" name="numero_camisa" inputmode="numeric" placeholder="Ej: XL" pattern="[0-9]*" maxlength="3">
                     </div>
 
                     <div class="grupo">
-                        <label>Talla de camiseta</label>
-                        <input type="text" name="talla_camisa" placeholder="Ej: XL" maxlength="3">
+                        <label>Numero de camiseta</label>
+                        <input type="text" name="talla_camisa" placeholder="Ej: 10" maxlength="3">
                     </div>
 
 
@@ -276,11 +280,11 @@
 
 
                     <div class="grupo">
-                        <label>Talla de media</label>
+                        <label>Talla de medias</label>
                         <input type="number" name="talla_media" placeholder="Ej: 35" maxlength="2">
                     </div>
                 </div>
-            </section> 
+            </section>
 
             <section class="paso-formulario">
                 <div class="titulo-seccion">
@@ -333,7 +337,7 @@
                 </div>
             </section>
 
-                       
+
             <section class="paso-formulario">
                 <div class="titulo-seccion">
                     <div class="fluent--money-24-filled"></div>
@@ -385,7 +389,7 @@
                     <div class="grupo">
                         <label>Tipo de beca</label>
 
-                           <select name="id_tipo_becas" required>
+                        <select name="id_tipo_becas" required>
                             <option value="">Seleccione</option>
                             <?php foreach (($tiposBeca ?? []) as $beca): ?>
                                 <option value="<?= (int) $beca['id_tipo_beca'] ?>">
@@ -397,8 +401,8 @@
 
                     <div class="grupo" id="grupoComprobante" style="display: none;">
                         <label for="comprobante">Número de comprobante</label>
-                        <input type="text" id="comprobante" name="comprobante" maxlength="10" 
-                                placeholder="Ingrese el número de comprobante" required>
+                        <input type="text" id="comprobante" name="comprobante" maxlength="10"
+                            placeholder="Ingrese el número de comprobante" required>
                     </div>
                 </div>
             </section>
@@ -406,28 +410,28 @@
 
             <footer class="acciones">
                 <button type="button"
-                        class="btn btn-cancelar"
-                        id="cerrarRegistro">   
+                    class="btn btn-cancelar"
+                    id="cerrarRegistro">
                     cancelar
                 </button>
 
                 <button type="button"
-                        class="btn btn-anterior"
-                        id="btnAnterior">
+                    class="btn btn-anterior"
+                    id="btnAnterior">
 
                     Anterior
                 </button>
 
                 <button type="button"
-                        class="btn btn-siguiente"
-                        id="btnSiguiente">
+                    class="btn btn-siguiente"
+                    id="btnSiguiente">
 
                     Siguiente
                 </button>
 
                 <button type="submit"
-                        class="btn btn-guardar"
-                        id="btnGuardar">
+                    class="btn btn-guardar"
+                    id="btnGuardar">
                     Guardar
                 </button>
             </footer>
@@ -459,4 +463,5 @@
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
 
 </body>
+
 </html>
