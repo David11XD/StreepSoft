@@ -1,17 +1,9 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Jugador - Modelo de jugadores
- * 
- */
 class Jugador extends Model
 {
-    /**
-     * Obtener todos los jugadores
-     * 
-     */
-
+    // ─── OBTENER TODOS ───
     public function obtenerTodos(): array
     {
         $sql = "
@@ -19,48 +11,34 @@ class Jugador extends Model
             FROM vista_jugadores
             ORDER BY apellidos, nombres
         ";
-        
         return $this->query($sql);
     }
 
-    /**
-     * Obtener un jugador por ID
-     */
-
+    // ─── OBTENER POR ID ───
     public function obtenerPorId(int $id): ?array
     {
         $sql = "
             SELECT * 
-            FROM vista_jugadores
+            FROM jugadores
             WHERE id_jugadores = ?
             LIMIT 1
         ";
-        
         return $this->queryOne($sql, [$id]);
     }
 
-    /**
-     * Obtener jugadores por categoría
-     * 
-     */
-
-    public function obtenerPorCategoria(int $categoriaId): array
+    // ─── OBTENER POR CATEGORÍA ───
+    public function obtenerPorCategoria(string $categoria): array
     {
         $sql = "
             SELECT * 
             FROM vista_jugadores
-            WHERE id_categoria = ?
+            WHERE categoria = ?
             ORDER BY apellidos, nombres
         ";
-        
-        return $this->query($sql, [$categoriaId]);
+        return $this->query($sql, [$categoria]);
     }
 
-    /**
-     * Obtener jugadores con deuda
-     * 
-     * @return array - Jugadores que tienen deuda
-     */
+    // ─── OBTENER CON DEUDA ───
     public function obtenerConDeuda(): array
     {
         $sql = "
@@ -69,107 +47,178 @@ class Jugador extends Model
             WHERE pago IS NOT NULL
             ORDER BY apellidos, nombres
         ";
-        
         return $this->query($sql);
     }
 
-    /**
-     * Crear un nuevo jugador
-     *
-     */
+    // ─── OBTENER ACTIVOS ───
+    public function obtenerActivos(): array
+    {
+        $sql = "
+            SELECT * 
+            FROM vista_jugadores
+            WHERE estado = 'Activo'
+            ORDER BY apellidos, nombres
+        ";
+        return $this->query($sql);
+    }
+
+    // ─── CREAR ───
     public function crear(array $datos): int
     {
         $sql = "
             INSERT INTO jugadores (
-                nombres,
-                apellidos,
-                fecha_nacimiento,
-                acudiente,
-                numero_acudiente,
-                id_categorias,
-                id_eps,
-                id_instructor,
                 foto,
-                iniciales
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                primer_apellido,
+                segundo_apellido,
+                primer_nombre,
+                segundo_nombre,
+                tipo_de_documento,
+                identificacion,
+                iniciales,
+                fecha_nacimiento,
+                edad,
+                sexo,
+                eps,
+                instructor,
+                categoria,
+                talla_camiseta,
+                numero_camiseta,
+                talla_pantaloneta,
+                talla_media,
+                acudiente,
+                tipo,
+                identificacion_acudiente,
+                numero_acudiente
+            ) VALUES (
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                ?, ?
+            )
         ";
 
         $exito = $this->execute($sql, [
-            $datos['nombres'],
-            $datos['apellidos'],
+            $datos['foto']                     ?? null,
+            $datos['primer_apellido'],
+            $datos['segundo_apellido']         ?? null,
+            $datos['primer_nombre'],
+            $datos['segundo_nombre']           ?? null,
+            $datos['tipo_de_documento']        ?? null,
+            $datos['identificacion']           ?? null,
+            $datos['iniciales']                ?? null,
             $datos['fecha_nacimiento'],
+            $datos['edad']                     ?? null,
+            $datos['sexo']                     ?? null,
+            $datos['eps']                      ?? null,
+            $datos['instructor']               ?? null,
+            $datos['categoria']                ?? null,
+            $datos['talla_camiseta']           ?? null,
+            $datos['numero_camiseta']          ?? null,
+            $datos['talla_pantaloneta']        ?? null,
+            $datos['talla_media']              ?? null,
             $datos['acudiente'],
-            $datos['numero_acudiente'],
-            $datos['id_categorias'],
-            $datos['id_eps'],
-            $datos['id_instructor'],
-            $datos['foto'] ?? null,
-            $datos['iniciales'] ?? null,
+            $datos['tipo']                     ?? null,
+            $datos['identificacion_acudiente'] ?? null,
+            $datos['numero_acudiente']         ?? null,
         ]);
 
-        // Si el INSERT no funcionó, no hay id que devolver
         if (!$exito) {
             return 0;
         }
 
-        // lastInsertId() viene de la clase base Model (ver Model.php)
         return $this->lastInsertId();
     }
 
-    /**
-     * Actualizar un jugador
-     * 
-     * @param int $id - ID del jugador
-     * @param array $datos - Nuevos datos
-     * @return bool - True si fue exitoso
-     */
+    // ─── ACTUALIZAR ───
     public function actualizar(int $id, array $datos): bool
     {
-        // NOTA: se corrigió igual que crear() -> mismas columnas reales
-        // de la tabla jugadores. Aún no está conectada a ninguna ruta,
-        // pero la dejamos coherente con el resto del modelo.
+        $valores = [
+            $datos ['foto']                    ??null, 
+            $datos['primer_apellido'],
+            $datos['segundo_apellido']         ?? null,
+            $datos['primer_nombre'],
+            $datos['segundo_nombre']           ?? null,
+            $datos['tipo_de_documento']        ?? null,
+            $datos['identificacion']           ?? null,
+            $datos['iniciales']                ?? null,
+            $datos['fecha_nacimiento'],
+            $datos['edad']                     ?? null,
+            $datos['sexo']                     ?? null,
+            $datos['eps']                      ?? null,
+            $datos['instructor']               ?? null,
+            $datos['categoria']                ?? null,
+            $datos['talla_camiseta']           ?? null,
+            $datos['numero_camiseta']          ?? null,
+            $datos['talla_pantaloneta']        ?? null,
+            $datos['talla_media']              ?? null,
+            $datos['acudiente'],
+            $datos['tipo']                     ?? null,
+            $datos['identificacion_acudiente'] ?? null,
+            $datos['numero_acudiente']         ?? null,
+        ];
+
         $sql = "
-            UPDATE jugadores
-            SET nombres = ?,
-                apellidos = ?,
-                fecha_nacimiento = ?,
-                acudiente = ?,
-                numero_acudiente = ?,
-                id_categorias = ?,
-                id_eps = ?,
-                id_instructor = ?
-            WHERE id_jugadores = ?
+            UPDATE jugadores SET
+                primer_apellido          = ?,
+                segundo_apellido         = ?,
+                primer_nombre            = ?,
+                segundo_nombre           = ?,
+                tipo_de_documento        = ?,
+                identificacion           = ?,
+                iniciales                = ?,
+                fecha_nacimiento         = ?,
+                edad                     = ?,
+                sexo                     = ?,
+                eps                      = ?,
+                instructor               = ?,
+                categoria                = ?,
+                talla_camiseta           = ?,
+                numero_camiseta          = ?,
+                talla_pantaloneta        = ?,
+                talla_media              = ?,
+                acudiente                = ?,
+                tipo                     = ?,
+                identificacion_acudiente = ?,
+                numero_acudiente         = ?
         ";
 
-        return $this->execute($sql, [
-            $datos['nombres'] ?? null,
-            $datos['apellidos'] ?? null,
-            $datos['fecha_nacimiento'] ?? null,
-            $datos['acudiente'] ?? null,
-            $datos['numero_acudiente'] ?? null,
-            $datos['id_categorias'] ?? null,
-            $datos['id_eps'] ?? null,
-            $datos['id_instructor'] ?? null,
-            $id
-        ]);
+        if (!empty($datos['foto'])) {
+            $sql     .= ", foto = ?";
+            $valores[] = $datos['foto'];
+        }
+
+        $sql     .= " WHERE id_jugadores = ?";
+        $valores[] = $id;
+
+        return $this->execute($sql, $valores);
     }
 
-    /**
-     * Eliminar un jugador
-     */
-    public function eliminar(int $id): bool
+    // ─── DESACTIVAR ───
+    public function desactivar(int $id): bool
     {
-        $sql = "DELETE FROM jugadores WHERE id_jugadores = ?";
+        $sql = "UPDATE deudas SET pago = 'mora' WHERE id_jugadores = ?";
         return $this->execute($sql, [$id]);
     }
 
-    /**
-     * Contar jugadores
-     */
+    // ─── ELIMINAR (desactiva) ───
+    public function eliminar(int $id): bool
+    {
+        return $this->desactivar($id);
+    }
+
+    // ─── CONTAR ───
     public function contar(): int
     {
-        $sql = "SELECT COUNT(*) as total FROM vista_jugadores";
+        $sql    = "SELECT COUNT(*) as total FROM jugadores";
         $result = $this->queryOne($sql);
-        return $result['total'] ?? 0;
+        return (int)($result['total'] ?? 0);
+    }
+
+    // ─── CALCULAR EDAD ───
+    public function calcularEdad(string $fechaNacimiento): int
+    {
+        $nacimiento = new DateTime($fechaNacimiento);
+        $hoy        = new DateTime();
+        return (int)$hoy->diff($nacimiento)->y;
     }
 }
+

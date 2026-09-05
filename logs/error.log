@@ -8966,3 +8966,160 @@ Stack trace:
 [04-Sep-2026 17:25:16 America/Bogota] Gestion jugadiores: SQLSTATE[HY000]: General error: 1356 View 'streepsoftbd.vista_jugadores' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
 [04-Sep-2026 17:26:20 America/Bogota] Gestion jugadiores: SQLSTATE[HY000]: General error: 1356 View 'streepsoftbd.vista_jugadores' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
 [04-Sep-2026 17:26:40 America/Bogota] Gestion jugadiores: SQLSTATE[HY000]: General error: 1356 View 'streepsoftbd.vista_jugadores' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+[05-Sep-2026 13:25:20 America/Bogota] Home - quickLoginDisponible: false
+[05-Sep-2026 13:25:20 America/Bogota] Home - COOKIE quick_login_data: false
+[05-Sep-2026 13:25:20 America/Bogota] Home - COOKIE logout_manual: false
+[05-Sep-2026 13:27:47 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 13:27:47 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 13:27:47 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 13:27:47 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 13:27:47 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 13:27:50 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 13:27:50 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 13:27:50 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 13:27:52 America/Bogota] Gestion jugadiores: SQLSTATE[HY000]: General error: 1356 View 'streepsoftbd.vista_jugadores' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+[05-Sep-2026 14:17:10 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:11 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:12 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:13 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:13 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:14 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:14 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:15 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:16 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:16 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:17 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:18 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:18 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:19 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:19 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:30 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:31 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:32 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:32 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:17:33 America/Bogota] PHP Parse error:  syntax error, unexpected token "}" in C:\xampp\htdocs\streepsoft\app\models\Jugador.php on line 17
+[05-Sep-2026 14:19:03 America/Bogota] Home - quickLoginDisponible: false
+[05-Sep-2026 14:19:03 America/Bogota] Home - COOKIE quick_login_data: false
+[05-Sep-2026 14:19:03 America/Bogota] Home - COOKIE logout_manual: false
+[05-Sep-2026 14:19:10 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:19:10 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:19:10 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:19:10 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:19:10 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:19:13 America/Bogota] PHP Fatal error:  Uncaught Error: Class "Jugador" not found in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php:34
+Stack trace:
+#0 C:\xampp\htdocs\streepsoft\public\index.php(300): JugadorController->__construct(Object(PDO))
+#1 C:\xampp\htdocs\streepsoft\index.php(3): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 34
+[05-Sep-2026 14:19:26 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:19:26 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:19:26 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:19:26 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:19:26 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:19:28 America/Bogota] PHP Fatal error:  Uncaught Error: Class "Jugador" not found in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php:34
+Stack trace:
+#0 C:\xampp\htdocs\streepsoft\public\index.php(300): JugadorController->__construct(Object(PDO))
+#1 C:\xampp\htdocs\streepsoft\index.php(3): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 34
+[05-Sep-2026 14:20:02 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:20:02 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:20:02 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:20:02 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:20:02 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:20:07 America/Bogota] Deudas (listar): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.concepto' in 'field list'
+[05-Sep-2026 14:20:15 America/Bogota] PHP Fatal error:  Uncaught Error: Class "Jugador" not found in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php:34
+Stack trace:
+#0 C:\xampp\htdocs\streepsoft\public\index.php(300): JugadorController->__construct(Object(PDO))
+#1 C:\xampp\htdocs\streepsoft\index.php(3): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 34
+[05-Sep-2026 14:23:17 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:23:17 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:23:17 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:17 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:17 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:23:31 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:31 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:31 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:23:32 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:32 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:32 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:23:33 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:33 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:33 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:23:34 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:34 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:34 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:23:38 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[05-Sep-2026 14:23:38 America/Bogota] Logout: davidangel11222@gmail.com
+[05-Sep-2026 14:23:38 America/Bogota] Home - quickLoginDisponible: false
+[05-Sep-2026 14:23:38 America/Bogota] Home - COOKIE quick_login_data: false
+[05-Sep-2026 14:23:38 America/Bogota] Home - COOKIE logout_manual: true
+[05-Sep-2026 14:23:46 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:23:46 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:23:46 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[05-Sep-2026 14:23:46 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:46 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:23:46 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:24:09 America/Bogota] PHP Fatal error:  Uncaught Error: Class "Jugador" not found in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php:34
+Stack trace:
+#0 C:\xampp\htdocs\streepsoft\public\index.php(300): JugadorController->__construct(Object(PDO))
+#1 C:\xampp\htdocs\streepsoft\index.php(3): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 34
+[05-Sep-2026 14:24:10 America/Bogota] PHP Fatal error:  Uncaught Error: Class "Jugador" not found in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php:34
+Stack trace:
+#0 C:\xampp\htdocs\streepsoft\public\index.php(300): JugadorController->__construct(Object(PDO))
+#1 C:\xampp\htdocs\streepsoft\index.php(3): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 34
+[05-Sep-2026 14:24:12 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:24:12 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:24:12 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:24:14 America/Bogota] PHP Fatal error:  Uncaught Error: Class "Jugador" not found in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php:34
+Stack trace:
+#0 C:\xampp\htdocs\streepsoft\public\index.php(300): JugadorController->__construct(Object(PDO))
+#1 C:\xampp\htdocs\streepsoft\index.php(3): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 34
+[05-Sep-2026 14:25:01 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:25:01 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:25:01 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:25:01 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:25:01 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:26:02 America/Bogota] PHP Fatal error:  Uncaught Error: Class "Jugador" not found in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php:34
+Stack trace:
+#0 C:\xampp\htdocs\streepsoft\public\index.php(300): JugadorController->__construct(Object(PDO))
+#1 C:\xampp\htdocs\streepsoft\index.php(3): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 34
+[05-Sep-2026 14:26:42 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:26:42 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:26:42 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:26:42 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:26:42 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:26:56 America/Bogota] Error: Clase controlador no encontrada: JugadorController
+[05-Sep-2026 14:26:57 America/Bogota] Error: Clase controlador no encontrada: JugadorController
+[05-Sep-2026 14:26:58 America/Bogota] Error: Clase controlador no encontrada: JugadorController
+[05-Sep-2026 14:26:58 America/Bogota] Error: Clase controlador no encontrada: JugadorController
+[05-Sep-2026 14:26:59 America/Bogota] Error: Clase controlador no encontrada: JugadorController
+[05-Sep-2026 14:26:59 America/Bogota] Error: Clase controlador no encontrada: JugadorController
+[05-Sep-2026 14:27:00 America/Bogota] Error: Clase controlador no encontrada: JugadorController
+[05-Sep-2026 14:33:11 America/Bogota] Home - quickLoginDisponible: false
+[05-Sep-2026 14:33:11 America/Bogota] Home - COOKIE quick_login_data: false
+[05-Sep-2026 14:33:11 America/Bogota] Home - COOKIE logout_manual: false
+[05-Sep-2026 14:37:06 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:37:06 America/Bogota] Login exitoso: davidangel11222@gmail.com
+[05-Sep-2026 14:37:06 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:37:06 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:37:06 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:43:34 America/Bogota] Dashboard: Error obteniendo recaudación por mes: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:43:34 America/Bogota] Dashboard: Error obteniendo recaudación total: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'streepsoftbd.pagos' doesn't exist
+[05-Sep-2026 14:43:34 America/Bogota] Dashboard: Error obteniendo deuda total: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'monto' in 'field list'
+[05-Sep-2026 14:43:48 America/Bogota] Logout manual: davidangel11222@gmail.com - Cookies limpiadas
+[05-Sep-2026 14:43:48 America/Bogota] Logout: davidangel11222@gmail.com
+[05-Sep-2026 14:43:48 America/Bogota] Home - quickLoginDisponible: false
+[05-Sep-2026 14:43:48 America/Bogota] Home - COOKIE quick_login_data: false
+[05-Sep-2026 14:43:48 America/Bogota] Home - COOKIE logout_manual: true

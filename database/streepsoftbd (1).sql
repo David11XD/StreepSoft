@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-09-2026 a las 00:52:03
+-- Tiempo de generación: 05-09-2026 a las 20:49:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -50,11 +50,6 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categorias`, `nombre`) VALUES
-(2, 'Sub-10'),
-(3, 'Sub-13'),
-(4, 'Sub-15'),
-(5, 'Sub-17'),
-(6, 'Sub-20'),
 (1, 'Sub-6');
 
 -- --------------------------------------------------------
@@ -76,14 +71,6 @@ CREATE TABLE `deudas` (
   `id_tipo_becas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `deudas`
---
-
-INSERT INTO `deudas` (`id_deudas`, `id_jugadores`, `matricula`, `mes`, `anio`, `totalidad`, `fecha_limite_pago`, `fecha_pago`, `pago`, `id_tipo_becas`) VALUES
-(6, 10, 100000.00, 'Junio', '2026', 150000.00, '2026-06-30', NULL, 'mora', 1),
-(7, 9, 90000.00, 'Junio', '2026', 80000.00, '2026-06-29', NULL, 'mora', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -96,14 +83,6 @@ CREATE TABLE `documentos` (
   `documento` varchar(25) DEFAULT NULL,
   `id_tipo_documento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `documentos`
---
-
-INSERT INTO `documentos` (`id_documento`, `id_jugadores`, `documento`, `id_tipo_documento`) VALUES
-(7, 10, '1023456789', 2),
-(8, 9, '1034567890', 2);
 
 -- --------------------------------------------------------
 
@@ -189,19 +168,8 @@ CREATE TABLE `jugadores` (
   `tipo` enum('R.C','T.I','C.C','C.E') DEFAULT NULL,
   `identificacion_acudiente` varchar(10) DEFAULT NULL,
   `numero_acudiente` varchar(10) DEFAULT NULL,
-  `id_categorias` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `id_eps` int(11) NOT NULL,
-  `id_instructor` int(11) NOT NULL
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `jugadores`
---
-
-INSERT INTO `jugadores` (`id_jugadores`, `foto`, `primer_apellido`, `segundo_apellido`, `primer_nombre`, `segundo_nombre`, `tipo_de_documento`, `identificacion`, `iniciales`, `fecha_nacimiento`, `edad`, `sexo`, `eps`, `instructor`, `categoria`, `talla_camiseta`, `numero_camiseta`, `talla_pantaloneta`, `talla_media`, `acudiente`, `tipo`, `identificacion_acudiente`, `numero_acudiente`, `id_categorias`, `created_at`, `id_eps`, `id_instructor`) VALUES
-(9, 'juan.jpg', '', NULL, '', NULL, 'R.C', '', 'JDP', '2010-05-15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Carlos Pérez', NULL, NULL, '3001234567', 1, '2026-06-22 04:51:13', 2, 1),
-(10, 'maria.jpg', '', NULL, '', NULL, 'R.C', '', 'MFL', '2011-08-20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ana Ruiz', NULL, NULL, '3119876543', 1, '2026-06-22 04:51:13', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -392,10 +360,7 @@ ALTER TABLE `instructor`
 -- Indices de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD PRIMARY KEY (`id_jugadores`),
-  ADD KEY `fk_jugador_categoria` (`id_categorias`),
-  ADD KEY `idx_jugador_instructor` (`id_instructor`),
-  ADD KEY `fk_jugadores_eps` (`id_eps`);
+  ADD PRIMARY KEY (`id_jugadores`);
 
 --
 -- Indices de la tabla `metodo_pago`
@@ -510,14 +475,6 @@ ALTER TABLE `deudas`
 ALTER TABLE `documentos`
   ADD CONSTRAINT `fk_jugadores_documentos` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`),
   ADD CONSTRAINT `fk_tipo_documento` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`);
-
---
--- Filtros para la tabla `jugadores`
---
-ALTER TABLE `jugadores`
-  ADD CONSTRAINT `fk_jugador_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id_categorias`),
-  ADD CONSTRAINT `fk_jugadores_eps` FOREIGN KEY (`id_eps`) REFERENCES `eps` (`id_eps`),
-  ADD CONSTRAINT `fk_jugadores_instructores` FOREIGN KEY (`id_instructor`) REFERENCES `instructor` (`id_instructor`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
