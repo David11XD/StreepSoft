@@ -38,6 +38,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/streepsoft/public/css/jugadores/tablejugadores.css">
+    <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
     <title>Jugadores</title>
 </head>
 <body>
@@ -364,7 +365,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     </td>
                                     <td>
                                         <div class="table-text">
-                                            <h3><?= htmlspecialchars($jugador['acudiente']) ?></h3>
+                                            <h3><?= htmlspecialchars($jugador['responsable_nombre']) ?></h3>
                                             <p><?= htmlspecialchars($jugador['numero_acudiente']) ?></p>
                                         </div>
                                     </td>
@@ -392,7 +393,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                             </button>
 
                                             <div class="menu-acciones">
-                                                <button class="btn-editar">Editar</button>
+                                                <button class="btn-editar" type="button" data-id-jugador="<?= (int) $jugador['id_jugadores'] ?>">Editar</button>
                                                 <button class="btn-perfil">ver perfil</button>
                                             </div>
                                         </div>
@@ -449,14 +450,13 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
     <div class="modal-registro" id="modalRegistro">
         <div class="modal-registro-contenido">
             <button class="cerrar-registro" id="cerrarRegistro">&times;</button>
-            <iframe src="/streepsoft/jugadores/crear" class="iframe-registro" id="iframeRegistro"></iframe>
+            <iframe src="" class="iframe-registro" id="iframeRegistro"></iframe>
         </div>
     </div>
 
     <script src="/streepsoft/public/js/dashboard/dashboard.js"></script>
     <script src="/streepsoft/public/js/jugadores/table.js"></script>
     <script type="module" src="/streepsoft/public/js/nav/export.js"></script>
-    <script src="/streepsoft/public/js/nuevo/nuevo.js"></script>
 </body>
 </html>
 

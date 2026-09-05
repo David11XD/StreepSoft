@@ -291,16 +291,23 @@
                 <div class="grid-3">
 
                     <div class="grupo">
-                        <label for="">Acudiente</label>
+                        <label for="">Nombres del Acudiente</label>
                         <input type="text"
-                            name="acudiente"
-                            placeholder="Nombres y apellidos">
+                            name="responsable_nombres"
+                            placeholder="Nombres">
                     </div>
 
                     <div class="grupo">
-                        <label>Tipo</label>
+                        <label for="">Apellidos del acudiente</label>
+                        <input type="text"
+                            name="responsable_apellidos"
+                            placeholder="Apellidos">
+                    </div>
 
-                        <select name="id_tipo_documento_acudiente" required>
+                    <div class="grupo">
+                        <label>Tipo de documento</label>
+
+                        <select name="responsable_id_tipo_documento">
                             <option value="">Seleccione</option>
                             <?php foreach (($tiposDocumento ?? []) as $tipo): ?>
                                 <option value="<?= (int)$tipo['id_tipo_documento'] ?>">
@@ -308,14 +315,13 @@
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        </select>
                     </div>
 
                     <div class="grupo">
                         <label for="">Identificacion</label>
                         <input type="text"
                             inputmode="numeric"
-                            name="Identificacion"
+                            name="responsable_identificacion"
                             placeholder="Escribe tu Documento"
                             pattern="[0-9]*"
                             maxlength="10">
@@ -325,7 +331,7 @@
                         <label for="">Numero</label>
                         <input type="text"
                             inputmode="numeric"
-                            name="numero_acudiente"
+                            name="responsable_numero_celular"
                             placeholder="Telefono de contacto"
                             pattern="[0-9]*"
                             maxlength="10">

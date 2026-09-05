@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificar Codigo</title>
     <link rel="stylesheet" href="/streepsoft/public/css/login/log.css">
+    <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
 </head>
 <body class="background-login">
     <div class="page-wrapper">

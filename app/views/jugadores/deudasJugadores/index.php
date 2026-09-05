@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Alumnos</title>
     <link rel="stylesheet" href="/streepsoft/public/css/jugadores/tablePagos.css" />
+        <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
 </head>
 <body>
     <div id="nav-card"></div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-09-2026 a las 01:39:45
+-- Tiempo de generación: 05-09-2026 a las 21:00:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -33,6 +33,13 @@ CREATE TABLE `actividad` (
   `descripcion` varchar(150) NOT NULL,
   `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad` (`id`, `id_usuario`, `descripcion`, `creado_en`) VALUES
+(1, 5, 'Actualizó su información de perfil', '2026-09-02 00:10:49');
 
 -- --------------------------------------------------------
 
@@ -85,7 +92,7 @@ CREATE TABLE `deudas` (
 --
 
 INSERT INTO `deudas` (`id_deudas`, `id_jugadores`, `matricula`, `mes`, `anio`, `totalidad`, `fecha_limite_pago`, `fecha_pago`, `id_metodo_pago`, `concepto`, `descuento_porcentaje`, `valor_pagado`, `pago`, `id_tipo_becas`) VALUES
-(9, 24, 90000.00, 'Septiembre', '2026', 80000.00, '2026-09-01', '2026-09-01', 3, 'Matrícula y mensualidad de inscripción', 0, 170000.00, 'pagado', 1);
+(11, 26, 90000.00, 'Septiembre', '2026', 80000.00, '2026-09-01', '2026-09-01', 3, 'Matrícula y mensualidad de inscripción', 0, 170000.00, 'pagado', 1);
 
 -- --------------------------------------------------------
 
@@ -105,7 +112,7 @@ CREATE TABLE `documentos` (
 --
 
 INSERT INTO `documentos` (`id_documento`, `id_jugadores`, `documento`, `id_tipo_documento`) VALUES
-(21, 24, '1056789922', 3);
+(23, 26, '1056789922', 2);
 
 -- --------------------------------------------------------
 
@@ -176,8 +183,6 @@ CREATE TABLE `jugadores` (
   `apellidos` varchar(100) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `iniciales` varchar(10) DEFAULT NULL,
-  `acudiente` varchar(100) NOT NULL,
-  `numero_acudiente` varchar(20) NOT NULL,
   `id_responsable` int(11) DEFAULT NULL,
   `id_categorias` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -189,8 +194,8 @@ CREATE TABLE `jugadores` (
 -- Volcado de datos para la tabla `jugadores`
 --
 
-INSERT INTO `jugadores` (`id_jugadores`, `foto`, `nombres`, `apellidos`, `fecha_nacimiento`, `iniciales`, `acudiente`, `numero_acudiente`, `id_responsable`, `id_categorias`, `created_at`, `id_eps`, `id_instructor`) VALUES
-(24, '76bc64a6e1e58ada2870899b4fd6e021.jpg', 'Kevin', 'Martinez', '2007-06-20', 'MCK', 'Juan', '3100293045', NULL, 3, '2026-09-01 22:09:33', 3, 2);
+INSERT INTO `jugadores` (`id_jugadores`, `foto`, `nombres`, `apellidos`, `fecha_nacimiento`, `iniciales`, `id_responsable`, `id_categorias`, `created_at`, `id_eps`, `id_instructor`) VALUES
+(26, NULL, 'Kevin', 'Martinez jorge', '2011-09-01', 'MGK', 9, 4, '2026-09-02 02:57:02', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -232,14 +237,7 @@ CREATE TABLE `responsables` (
 --
 
 INSERT INTO `responsables` (`id_responsable`, `nombres`, `apellidos`, `id_tipo_documento`, `identificacion`, `numero_celular`) VALUES
-(1, 'Carlos', 'Pérez', 3, '', '3001234567'),
-(2, 'Ana', 'Ruiz', 3, '', '3119876543'),
-(3, 'Lopez', 'Lopez', 3, '', '300024904'),
-(4, 'julian', 'julian', 3, '', '312227789'),
-(5, 'Lopez', 'Lopez', 3, '', '3216733893'),
-(6, 'Andres', 'Andres', 3, '', '320789222334'),
-(7, 'cristian', 'cristian', 3, '', '3146649074'),
-(8, 'sdsdsdsds', 'sdsdsdsds', 3, '', 'dsdsdsds');
+(9, 'David', 'Martinez', 3, '30947844', '3124500000');
 
 -- --------------------------------------------------------
 
@@ -311,7 +309,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nombre_completo`, `usuario`, `documento_identidad`, `telefono`, `foto`, `contrasena`, `creado_en`, `pin_recuperacion`, `token_password`, `expired_session`, `request_password`) VALUES
 (1, 'David mora', 'davi1@gmail.com', NULL, NULL, NULL, '$2y$10$aFuRwi7s9XI9m0nDGWM92OEqSXninYWWIg5RexHdyVtd4EpFbX5DW', '0000-00-00 00:00:00', '$2y$10$uVpBPJnHhM96bhIH2fzFS.Cy3OTnWOlvJPpTaoM3CX1W0TURplSfW', '4f5a39adaecee0ee98e902f88bdb268e7a2675607282b61211893a968bc564aa', '2026-08-04 05:40:14', 0),
 (2, 'Noni', 'Noni@gmail.com', NULL, NULL, NULL, '$2y$10$aFuRwi7s9XI9m0nDGWM92OEqSXninYWWIg5RexHdyVtd4EpFbX5DW', '2026-05-17 23:20:48', NULL, NULL, NULL, 0),
-(5, 'cristian', 'cdavidg4396@gmail.com', '1099922277', '3146649074', NULL, '$2y$10$kW.AWrCQUAUATwRnvuZCMOUkeRlkfsQjn888H7ST8.C/fwwgqjEsC', '2026-05-26 15:54:10', '$2y$10$N8M44q.KCAvOq.2uIVuKqunMGmPevTVeAkJSXSQIp7f32waVY38jW', 'ef384ea181bba152d426ea67e005965f169356701d8846fa226e960058846403', '2026-08-21 00:10:29', 0),
+(5, 'cristian', 'cdavidg4396@gmail.com', '1099922278', '3146649074', '9aa2c989998307649473b19f5069a901.png', '$2y$10$kW.AWrCQUAUATwRnvuZCMOUkeRlkfsQjn888H7ST8.C/fwwgqjEsC', '2026-05-26 15:54:10', '$2y$10$N8M44q.KCAvOq.2uIVuKqunMGmPevTVeAkJSXSQIp7f32waVY38jW', 'ef384ea181bba152d426ea67e005965f169356701d8846fa226e960058846403', '2026-08-21 00:10:29', 0),
 (6, 'JuanS', 'jsebastian1315@gmail.com', NULL, NULL, NULL, '$2y$10$StsqBLHimiWOmybVBZxeHuw647eiOScW4jTFzNclez3hKUbOkR.0W', '2026-05-26 23:19:13', '$2y$10$aTDDQCYkr.HaM/jb/0VdOe6F9NgZfaoB4MY28rLKkJ9ZwRFULX63K', '9bba13f36a47a4570ea8ef80d5919ecbf8862a215f9dc4448ddd541c067fd4af', '2026-07-20 07:58:29', 0),
 (7, 'David Angel', 'davidangel11222@gmail.com', NULL, NULL, NULL, '$2y$10$rIIaAD07wWtThQHaLq6M3uaZaC4W1fKCrjGaNuw/1Pbn9VdVjItcm', '2026-07-23 03:58:21', NULL, NULL, NULL, 0);
 
@@ -327,8 +325,12 @@ CREATE TABLE `vista_jugadores` (
 ,`apellidos` varchar(100)
 ,`nombres` varchar(100)
 ,`iniciales` varchar(10)
-,`acudiente` varchar(100)
-,`numero_acudiente` varchar(20)
+,`id_categorias` int(11)
+,`id_eps` int(11)
+,`id_instructor` int(11)
+,`id_responsable` int(11)
+,`responsable_nombre` varchar(201)
+,`id_tipo_documento` int(11)
 ,`documentos` varchar(25)
 ,`tipo_documento` varchar(100)
 ,`fecha_nacimiento` date
@@ -349,7 +351,7 @@ CREATE TABLE `vista_jugadores` (
 --
 DROP TABLE IF EXISTS `vista_jugadores`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_jugadores`  AS SELECT `j`.`id_jugadores` AS `id_jugadores`, `j`.`foto` AS `foto`, `j`.`apellidos` AS `apellidos`, `j`.`nombres` AS `nombres`, `j`.`iniciales` AS `iniciales`, `j`.`acudiente` AS `acudiente`, `j`.`numero_acudiente` AS `numero_acudiente`, `dc`.`documento` AS `documentos`, `td`.`nombre` AS `tipo_documento`, `j`.`fecha_nacimiento` AS `fecha_nacimiento`, timestampdiff(YEAR,`j`.`fecha_nacimiento`,curdate()) AS `edad`, `c`.`nombre` AS `categoria`, `tb`.`nombre` AS `tipo_beca`, `i`.`nombres` AS `instructor`, CASE WHEN `d`.`pago` = 'mora' THEN 'Inactivo' ELSE 'Activo' END AS `estado`, `d`.`fecha_pago` AS `fecha_pago`, `d`.`fecha_limite_pago` AS `fecha_limite_pago`, `d`.`pago` AS `pago` FROM ((((((`jugadores` `j` join `categorias` `c` on(`j`.`id_categorias` = `c`.`id_categorias`)) left join `deudas` `d` on(`d`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipos_beca` `tb` on(`tb`.`id_tipo_beca` = `d`.`id_tipo_becas`)) left join `documentos` `dc` on(`dc`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipo_documento` `td` on(`td`.`id_tipo_documento` = `dc`.`id_tipo_documento`)) left join `instructor` `i` on(`i`.`id_instructor` = `j`.`id_instructor`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_jugadores`  AS SELECT `j`.`id_jugadores` AS `id_jugadores`, `j`.`foto` AS `foto`, `j`.`apellidos` AS `apellidos`, `j`.`nombres` AS `nombres`, `j`.`iniciales` AS `iniciales`, `j`.`id_categorias` AS `id_categorias`, `j`.`id_eps` AS `id_eps`, `j`.`id_instructor` AS `id_instructor`, `j`.`id_responsable` AS `id_responsable`, concat(coalesce(`r`.`nombres`,''),' ',coalesce(`r`.`apellidos`,'')) AS `responsable_nombre`, `dc`.`id_tipo_documento` AS `id_tipo_documento`, `dc`.`documento` AS `documentos`, `td`.`nombre` AS `tipo_documento`, `j`.`fecha_nacimiento` AS `fecha_nacimiento`, timestampdiff(YEAR,`j`.`fecha_nacimiento`,curdate()) AS `edad`, `c`.`nombre` AS `categoria`, `tb`.`nombre` AS `tipo_beca`, `i`.`nombres` AS `instructor`, CASE WHEN `d`.`pago` = 'mora' THEN 'Inactivo' ELSE 'Activo' END AS `estado`, `d`.`fecha_pago` AS `fecha_pago`, `d`.`fecha_limite_pago` AS `fecha_limite_pago`, `d`.`pago` AS `pago` FROM (((((((`jugadores` `j` join `categorias` `c` on(`j`.`id_categorias` = `c`.`id_categorias`)) left join `deudas` `d` on(`d`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipos_beca` `tb` on(`tb`.`id_tipo_beca` = `d`.`id_tipo_becas`)) left join `documentos` `dc` on(`dc`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipo_documento` `td` on(`td`.`id_tipo_documento` = `dc`.`id_tipo_documento`)) left join `instructor` `i` on(`i`.`id_instructor` = `j`.`id_instructor`)) left join `responsables` `r` on(`r`.`id_responsable` = `j`.`id_responsable`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -448,7 +450,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -460,13 +462,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `deudas`
 --
 ALTER TABLE `deudas`
-  MODIFY `id_deudas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_deudas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `eps`
@@ -484,7 +486,7 @@ ALTER TABLE `instructor`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id_jugadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_jugadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
@@ -496,7 +498,7 @@ ALTER TABLE `metodo_pago`
 -- AUTO_INCREMENT de la tabla `responsables`
 --
 ALTER TABLE `responsables`
-  MODIFY `id_responsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_responsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_beca`

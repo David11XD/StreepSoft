@@ -253,20 +253,41 @@ document.addEventListener("click", (e) => {
 // Iniciar
 actualizarTabla();
 
+
 const btnNuevoJugador = document.getElementById("btnNuevoJugador");
 const modalRegistro = document.getElementById("modalRegistro");
 const cerrarRegistro = document.getElementById("cerrarRegistro");
+const iframeRegistro = document.getElementById("iframeRegistro");
+
+// Modal reutilizable
+function abrirModalRegistro(url){
+    iframeRegistro.src = url;
+    modalRegistro.classList.add("activo");
+}
+
+function cerrarModalRegistro(){
+    modalRegistro.classList.remove("activo");
+    // Limpiar el src al cerrar: si no, la próxima vez que se abra
+    // (aunque sea para otro jugador) por un instante se alcanza a
+    // ver el formulario anterior mientras carga el nuevo.
+    iframeRegistro.src = "";
+}
 
 // Abrir modal
 btnNuevoJugador.addEventListener("click", (e) => {
     e.preventDefault();
-    modalRegistro.classList.add("activo");
+    abrirModalRegistro("/streepsoft/jugadores/crear");
 });
 
+tbody.addEventListener("click", (e) => {
+    const botonEditar = e.target.closest(".btn-editar");
+    if(botonEditar){
+        abrirModalRegistro("/streepsoft/jugadores/editar/" + botonEditar.dataset.idJugador);
+    }
+})
+
 // Cerrar modal (botón X)
-cerrarRegistro.addEventListener("click", () => {
-    modalRegistro.classList.remove("activo");
-});
+cerrarRegistro.addEventListener("click", cerrarModalRegistro);
 
 // Cerrar haciendo clic fuera del contenido
 modalRegistro.addEventListener("click", (e) => {

@@ -19,7 +19,7 @@
 
 
                 <a href="/streepsoft/perfil/administrador" class="navbar-items" title="Usuario">
-                    <img src="/streepsoft/public/Image/usuario.png" alt="usuario" class="navbar-icon">
+                    <img src="/streepsoft/public/Image/admins/<?php echo htmlspecialchars($admin['foto']); ?>" alt="usuario" class="navbar-icon">
                     
                     <div class="navbar-user-info">
                         <h1><?php echo isset($admin['nombre_completo']) ? htmlspecialchars($admin['nombre_completo']) : 'Administrador'; ?></h1>
@@ -30,7 +30,7 @@
 
             <div class="navbar-group">
                 <button class="navbar-item btn-menu" onclick="toggleMenu()" aria-label="Abrir menú">
-                    <img src="/streepsoft/public/Image/menu.png" alt="hamburguesa" class="navbar-icon">
+                    <img src="/streepsoft/public/Image/menu.png" alt="hamburguesa" class="navbar-icon-1">
                 </button>
                 <div class="navbar-logo">
                     <img src="/streepsoft/public/Image/CopColombiaInternacional.png" alt="logo">
