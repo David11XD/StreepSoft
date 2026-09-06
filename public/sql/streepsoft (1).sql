@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-09-2026 a las 21:00:38
+-- Tiempo de generación: 06-09-2026 a las 04:34:42
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,6 +44,35 @@ INSERT INTO `actividad` (`id`, `id_usuario`, `descripcion`, `creado_en`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cambios_masivos_estado`
+--
+
+CREATE TABLE `cambios_masivos_estado` (
+  `id_cambio` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `estado_aplicado` enum('inactivo','retirado') NOT NULL,
+  `motivo` varchar(150) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `jugadores_afectados` int(11) NOT NULL DEFAULT 0,
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cambios_masivos_jugadores`
+--
+
+CREATE TABLE `cambios_masivos_jugadores` (
+  `id` int(11) NOT NULL,
+  `id_cambio` int(11) NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  `estado_anterior` enum('activo','inactivo','retirado') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categorias`
 --
 
@@ -63,6 +92,41 @@ INSERT INTO `categorias` (`id_categorias`, `nombre`) VALUES
 (5, 'Sub-17'),
 (6, 'Sub-20'),
 (1, 'Sub-6');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ciclos_anio`
+--
+
+CREATE TABLE `ciclos_anio` (
+  `id_ciclo` int(11) NOT NULL,
+  `anio` year(4) NOT NULL,
+  `estado` enum('cerrado','activo','proximo') NOT NULL DEFAULT 'proximo',
+  `fecha_cierre` date DEFAULT NULL,
+  `alumnos_migrados` int(11) DEFAULT NULL,
+  `total_recaudado` decimal(12,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion_ciclos`
+--
+
+CREATE TABLE `configuracion_ciclos` (
+  `id_configuracion` int(11) NOT NULL,
+  `generacion_automatica` tinyint(1) NOT NULL DEFAULT 0,
+  `actualizado_en` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_usuario_actualizacion` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `configuracion_ciclos`
+--
+
+INSERT INTO `configuracion_ciclos` (`id_configuracion`, `generacion_automatica`, `actualizado_en`, `id_usuario_actualizacion`) VALUES
+(1, 1, '2026-09-06 02:33:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -149,6 +213,24 @@ INSERT INTO `eps` (`id_eps`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `historial_ciclo_jugadores`
+--
+
+CREATE TABLE `historial_ciclo_jugadores` (
+  `id_historial` int(11) NOT NULL,
+  `id_ciclo` int(11) NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  `id_categorias` int(11) NOT NULL,
+  `estado_cierre` enum('activo','inactivo','retirado') NOT NULL,
+  `migro_siguiente_ciclo` tinyint(1) NOT NULL DEFAULT 0,
+  `total_pagado` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `deuda_pendiente` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `instructor`
 --
 
@@ -187,15 +269,16 @@ CREATE TABLE `jugadores` (
   `id_categorias` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `id_eps` int(11) NOT NULL,
-  `id_instructor` int(11) NOT NULL
+  `id_instructor` int(11) NOT NULL,
+  `estado` enum('activo','inactivo','retirado') NOT NULL DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `jugadores`
 --
 
-INSERT INTO `jugadores` (`id_jugadores`, `foto`, `nombres`, `apellidos`, `fecha_nacimiento`, `iniciales`, `id_responsable`, `id_categorias`, `created_at`, `id_eps`, `id_instructor`) VALUES
-(26, NULL, 'Kevin', 'Martinez jorge', '2011-09-01', 'MGK', 9, 4, '2026-09-02 02:57:02', 4, 1);
+INSERT INTO `jugadores` (`id_jugadores`, `foto`, `nombres`, `apellidos`, `fecha_nacimiento`, `iniciales`, `id_responsable`, `id_categorias`, `created_at`, `id_eps`, `id_instructor`, `estado`) VALUES
+(26, '337bbefc09f6f552f29db79eac14d5a2.jpg', 'Kevin', 'Martinez jorge', '2011-09-01', 'MGK', 9, 4, '2026-09-02 02:57:02', 4, 1, 'activo');
 
 -- --------------------------------------------------------
 
@@ -365,11 +448,40 @@ ALTER TABLE `actividad`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
+-- Indices de la tabla `cambios_masivos_estado`
+--
+ALTER TABLE `cambios_masivos_estado`
+  ADD PRIMARY KEY (`id_cambio`),
+  ADD KEY `fk_cambio_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `cambios_masivos_jugadores`
+--
+ALTER TABLE `cambios_masivos_jugadores`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_cambio_jugador` (`id_cambio`,`id_jugadores`),
+  ADD KEY `fk_detalle_jugador` (`id_jugadores`);
+
+--
 -- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categorias`),
   ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
+-- Indices de la tabla `ciclos_anio`
+--
+ALTER TABLE `ciclos_anio`
+  ADD PRIMARY KEY (`id_ciclo`),
+  ADD UNIQUE KEY `anio` (`anio`);
+
+--
+-- Indices de la tabla `configuracion_ciclos`
+--
+ALTER TABLE `configuracion_ciclos`
+  ADD PRIMARY KEY (`id_configuracion`),
+  ADD KEY `fk_config_usuario` (`id_usuario_actualizacion`);
 
 --
 -- Indices de la tabla `deudas`
@@ -393,6 +505,15 @@ ALTER TABLE `documentos`
 --
 ALTER TABLE `eps`
   ADD PRIMARY KEY (`id_eps`);
+
+--
+-- Indices de la tabla `historial_ciclo_jugadores`
+--
+ALTER TABLE `historial_ciclo_jugadores`
+  ADD PRIMARY KEY (`id_historial`),
+  ADD UNIQUE KEY `uq_ciclo_jugador` (`id_ciclo`,`id_jugadores`),
+  ADD KEY `fk_historial_jugador` (`id_jugadores`),
+  ADD KEY `fk_historial_categoria` (`id_categorias`);
 
 --
 -- Indices de la tabla `instructor`
@@ -453,10 +574,34 @@ ALTER TABLE `actividad`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `cambios_masivos_estado`
+--
+ALTER TABLE `cambios_masivos_estado`
+  MODIFY `id_cambio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cambios_masivos_jugadores`
+--
+ALTER TABLE `cambios_masivos_jugadores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id_categorias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `ciclos_anio`
+--
+ALTER TABLE `ciclos_anio`
+  MODIFY `id_ciclo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `configuracion_ciclos`
+--
+ALTER TABLE `configuracion_ciclos`
+  MODIFY `id_configuracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `deudas`
@@ -475,6 +620,12 @@ ALTER TABLE `documentos`
 --
 ALTER TABLE `eps`
   MODIFY `id_eps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_ciclo_jugadores`
+--
+ALTER TABLE `historial_ciclo_jugadores`
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `instructor`
@@ -529,6 +680,25 @@ ALTER TABLE `actividad`
   ADD CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
 
 --
+-- Filtros para la tabla `cambios_masivos_estado`
+--
+ALTER TABLE `cambios_masivos_estado`
+  ADD CONSTRAINT `fk_cambio_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `cambios_masivos_jugadores`
+--
+ALTER TABLE `cambios_masivos_jugadores`
+  ADD CONSTRAINT `fk_detalle_cambio` FOREIGN KEY (`id_cambio`) REFERENCES `cambios_masivos_estado` (`id_cambio`),
+  ADD CONSTRAINT `fk_detalle_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`);
+
+--
+-- Filtros para la tabla `configuracion_ciclos`
+--
+ALTER TABLE `configuracion_ciclos`
+  ADD CONSTRAINT `fk_config_usuario` FOREIGN KEY (`id_usuario_actualizacion`) REFERENCES `usuarios` (`id`);
+
+--
 -- Filtros para la tabla `deudas`
 --
 ALTER TABLE `deudas`
@@ -542,6 +712,14 @@ ALTER TABLE `deudas`
 ALTER TABLE `documentos`
   ADD CONSTRAINT `fk_jugadores_documentos` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`),
   ADD CONSTRAINT `fk_tipo_documento` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`);
+
+--
+-- Filtros para la tabla `historial_ciclo_jugadores`
+--
+ALTER TABLE `historial_ciclo_jugadores`
+  ADD CONSTRAINT `fk_historial_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id_categorias`),
+  ADD CONSTRAINT `fk_historial_ciclo` FOREIGN KEY (`id_ciclo`) REFERENCES `ciclos_anio` (`id_ciclo`),
+  ADD CONSTRAINT `fk_historial_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`);
 
 --
 -- Filtros para la tabla `jugadores`

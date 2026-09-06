@@ -164,8 +164,8 @@
                             <div class="grupo">
                                 <label for="">Identificacion</label>
                                 <input type="text"
-                                    name="documentos"
-                                    value="<?= htmlspecialchars_decode($jugador['documentos'] ?? '') ?>"
+                                    name="documento"
+                                    value="<?= htmlspecialchars_decode($jugador['documento'] ?? '') ?>"
                                     placeholder="Escribe tu Documento" required>
                             </div>
 
