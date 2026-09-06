@@ -658,6 +658,34 @@ tbody td{
     align-items: center;
 }
 
+.estado-i{
+    width: 90px;
+    height: 30px;
+    margin: auto;
+    gap: 6px;
+    background: rgba(93, 92, 8, 0.493);
+    border: 2px solid #555d08;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.estado-i{
+    width: 90px;
+    height: 30px;
+    margin: auto;
+    gap: 6px;
+    background: rgba(93, 8, 8, 0.493);
+    border: 2px solid #5d0808;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .estado p{
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -666,6 +694,20 @@ tbody td{
 
 .ci{
     background: #0e5d08;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.ci-i{
+    background: #555d08;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.ci-r{
+    background: #5d0808;
     width: 8px;
     height: 8px;
     border-radius: 50%;
