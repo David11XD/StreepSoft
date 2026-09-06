@@ -1,0 +1,719 @@
+@import url('../hamburguesa/hamburguer.css');
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #141414;
+    color: #ffffff;
+}
+
+/* Estilos para el panel de filtros */
+.panel-filtro {
+    background: #000000;
+    border: 1px solid #D09E10;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-top: 20px;
+}
+
+.panel-filtro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.panel-filtro-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.panel-filtro-nota {
+    margin: 0;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.filtros-rapidos {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-filtro-rapido {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    border-radius: 20px;
+    padding: 6px 16px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-filtro-rapido.activo {
+    border-color: #D09E10;
+    color: #D09E10;
+    background: rgba(208, 158, 16, 0.1);
+}
+
+.filtros-avanzados {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.campo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.campo-filtro label {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.campo-filtro select,
+.campo-filtro input {
+    background: #141414;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+}
+
+.campo-nombre input {
+    min-width: 160px;
+}
+
+.btn-buscar {
+    background: #D09E10;
+    border: none;
+    color: #141414;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 9px 20px;
+    cursor: pointer;
+}
+
+/* Estilos para la tabla de jugadores */
+
+.panel-resultados {
+    background: #000000;
+    border: 1px solid #D09E10;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-top: 20px;
+    position: relative; /* ancla para la barra flotante */
+}
+
+.panel-resultados-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.panel-resultados-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.resultados-contador {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 14px;
+}
+
+#tablaDesactivacion {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaDesactivacion th {
+    text-align: left;
+    color: #999;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 10px 8px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+#tablaDesactivacion td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #2b2b2b;
+    font-size: 0.9rem;
+}
+
+.celda-jugador {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.avatar-iniciales {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #575252;
+    color: #D09E10;
+    font-weight: 900;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.celda-jugador-texto h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.celda-jugador-texto p {
+    margin: 2px 0 0;
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.celda-deuda {
+    color: #F87171;
+    font-weight: 600;
+}
+
+.resultados-footer {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #999;
+    text-align: center;
+}
+
+.resultados-footer a {
+    color: #D09E10;
+    text-decoration: none;
+}
+
+.oculto {
+    display: none !important;
+}
+
+.barra-seleccion {
+    position: fixed;
+    bottom: 20px;
+    left: 52.5%;
+    transform: translateX(-50%); /* Centra la barra horizontalmente */
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    z-index: 1000;
+    background: #000000;
+    border: 1px solid #D09E10;
+    border-radius: 8px;
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgb(79 76 23);
+}
+
+.barra-seleccion-acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-secundario {
+    background: transparent;
+    border: 1px solid #555;
+    color: #ccc;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.btn-primario {
+    background: #D09E10;
+    border: none;
+    color: #141414;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+/* Historial de cambios */
+
+.panel-historial {
+    background: #000000;
+    border: 1px solid #D09E10;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-top: 20px;
+}
+
+.panel-historial h2 {
+    margin: 0 0 14px;
+    font-size: 1.2rem;
+}
+
+#tablaHistorial {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaHistorial th {
+    text-align: left;
+    color: #999;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 10px 8px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+#tablaHistorial td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #2b2b2b;
+    font-size: 0.9rem;
+}
+
+.celda-motivo {
+    color: #999;
+    max-width: 260px;
+}
+
+.badge-estado {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-inactivo {
+    background: rgba(153, 153, 153, 0.15);
+    color: #999;
+}
+
+.badge-retirado {
+    background: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
+}
+
+.btn-ver-detalle {
+    background: transparent;
+    border: none;
+    color: #D09E10;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: underline;
+}
+
+/* Modal wizard de 3 pasos */
+/* paso 1 */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: #000000;
+    border: 1px solid #D09E10;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 480px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 20px 22px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.modal-cerrar {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Indicador de pasos */
+.wizard-pasos {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.wizard-paso-indicador {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #444;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.wizard-paso-indicador.activo {
+    background: #D09E10;
+    border-color: #D09E10;
+    color: #141414;
+    font-weight: 700;
+}
+
+.wizard-paso-indicador.completado {
+    background: #2e7d32;
+    border-color: #2e7d32;
+    color: #fff;
+}
+
+.wizard-linea {
+    flex: 1;
+    height: 1px;
+    background: #444;
+    margin: 0 6px;
+}
+
+/* Contenido de cada paso */
+.wizard-pregunta {
+    margin: 0 0 4px;
+    font-size: 1rem;
+}
+
+.wizard-subtexto {
+    margin: 0 0 16px;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.opcion-estado {
+    display: flex;
+    gap: 10px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.opcion-estado:has(input:checked) {
+    border-color: #D09E10;
+    background: rgba(208, 158, 16, 0.08);
+}
+
+.opcion-estado-texto strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.opcion-estado-texto p {
+    margin: 0;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.campo-ancho {
+    width: 100%;
+    margin-top: 14px;
+}
+
+.campo-ancho select,
+.campo-ancho textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: #141414;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Paso 2 y 3 */
+
+.lista-revision {
+    max-height: 240px;
+    overflow-y: auto;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 2px 10px;
+}
+
+.item-revision {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 4px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.item-revision:last-child {
+    border-bottom: none;
+}
+
+.item-revision .celda-jugador-texto h3 {
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.btn-quitar {
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.resumen-confirmacion {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.resumen-item {
+    flex: 1;
+    background: #141414;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.resumen-etiqueta {
+    color: #999;
+    font-size: 0.75rem;
+}
+
+.resumen-item strong {
+    font-size: 1.1rem;
+}
+
+.resumen-estado-inactivo {
+    color: #999;
+}
+
+.resumen-estado-retirado {
+    color: #e74c3c;
+}
+
+.aviso-confirmacion {
+    display: flex;
+    gap: 10px;
+    background: rgba(231, 76, 60, 0.08);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    border-radius: 8px;
+    padding: 12px 14px;
+    cursor: pointer;
+}
+
+.aviso-confirmacion span {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+/* Reutilizables para el modal de detalle */
+.detalle-realizado-por {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.detalle-subtitulo {
+    margin: 18px 0 6px;
+    font-size: 0.95rem;
+}
+
+.detalle-motivo-texto {
+    color: #999;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.btn-reactivar {
+    background: transparent;
+    border: none;
+    color: #4caf50; 
+    font-size: 0.8rem;
+    font-weight: 600; 
+    cursor: pointer;
+    padding: 0;
+    margin-left: 15px; 
+}
+
+/* Modal de éxito */
+.modal-completado {
+    max-width: 440px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.modal-completado .modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+/* Alineación al centro para los textos dentro del cuerpo del modal */
+.modal-completado .modal-body-centrado {
+    text-align: center;
+    padding: 24px 20px;
+}
+
+/* Icono de éxito con borde circular en verde */
+.icono-exito {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(46, 125, 50, 0.15);
+    border: 1.5px solid #2e7d32;
+    color: #4caf50;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.completado-resumen {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    text-align: center; 
+}
+
+.completado-detalle {
+    color: #999999;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
+    text-align: center; 
+}
+
+.modal-completado .modal-footer-centrado {
+    padding: 16px 20px;
+    border-top: 1px solid #2b2b2b;
+    margin-top: 0;
+    display: flex;
+    justify-content: center; 
+}
+
+.modal-completado .modal-footer-centrado .btn-primario {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.modal-detalle-historial .modal-header {
+    padding: 18px 5px 18px 5px;
+    border-bottom: 1px solid #2b2b2b; 
+}
+
+.modal-detalle-historial .modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #2b2b2b; 
+}
+
+.modal-detalle-historial .modal-body {
+    padding: 24px 24px 1px 24px; 
+}
+
+.seccion-detalles-sup {
+    margin-bottom: 24px; 
+}
+
+.detalle-realizado-por {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin: 0 0 16px 0;
+}
+
+.detalle-subtitulo {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+}
+
+.detalle-motivo-texto {
+    color: #999;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.seccion-jugadores-card {
+    background: #141414; 
+    border: 1px solid #2b2b2b;
+    border-radius: 10px;
+    padding: 10px 1px 1px 8px;
+    box-shadow: 0 4px 15px rgb(121 108 26 / 50%)
+}
+
+.seccion-jugadores-card .detalle-subtitulo {
+    margin-bottom: 12px;
+}
+
+.seccion-jugadores-card .lista-revision {
+    max-height: 220px;
+    overflow-y: auto;
+    border: none; 
+    padding: 0;
+}
+
+.item-revision {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 4px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.btn-primario:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

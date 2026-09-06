@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -11,6 +12,10 @@ declare(strict_types=1);
  */
 class JugadorController extends Controller
 {
+    /**
+     * Modelo de jugador
+     * Lo usaremos para obtener datos de la BD
+     */
     private Jugador $jugadorModel;
     private Categoria $categoriaModel;
     private Instructor $instructorModel;
@@ -52,7 +57,7 @@ class JugadorController extends Controller
             error_log("Gestion jugadiores: " . $e->getMessage());
             $jugadores = [];
         }
-        
+
 
         // Enviar datos a la vista
         $this->view('jugadores/gestionJugadores/index', [
@@ -61,16 +66,21 @@ class JugadorController extends Controller
         ]);
     }
 
+    /**
+     * Mostrar deudas de jugadores
+     * 
+     * Se ejecuta cuando accedes a /jugadores/deudas
+     */
     public function deudas(): void
     {
         // Obtener solo jugadores con deuda
         try {
             $jugadores = $this->jugadorModel->obtenerConDeuda();
-        } catch (Exception $e){
+        } catch (Exception $e) {
             error_log("Deudas jugadores: " . $e->getMessage());
             $jugadores = [];
         }
-        
+
 
         // Enviar datos a la vista
         $this->view('jugadores/deudasJugadores/index', [
@@ -80,11 +90,96 @@ class JugadorController extends Controller
     }
 
     /**
+     * Mostrar pantalla de Desactivación de Jugadores
+     *
+     * Se ejecuta cuando accedes a /jugadores/desactivacion
+     *
+     * NOTA: por ahora usamos datos de PRUEBA (hardcodeados).
+     * En la fase de backend reemplazaremos este array por una
+     * consulta real, ej: $this->jugadorModel->obtenerConMesesSinPago()
+     */
+    public function desactivacion(): void
+    {
+        $jugadores = [
+            [
+                'id' => 1,
+                'nombres' => 'Santiago',
+                'apellidos' => 'Rúa',
+                'iniciales' => 'SR',
+                'documento' => 'TI 1.038.221.554',
+                'categoria' => 'Sub-14',
+                'meses_sin_pago' => 3,
+                'deuda' => 270000,
+            ],
+            [
+                'id' => 2,
+                'nombres' => 'Mariana',
+                'apellidos' => 'Gil',
+                'iniciales' => 'MG',
+                'documento' => 'TI 1.041.887.220',
+                'categoria' => 'Sub-12',
+                'meses_sin_pago' => 2,
+                'deuda' => 180000,
+            ],
+            [
+                'id' => 3,
+                'nombres' => 'Juan',
+                'apellidos' => 'Restrepo',
+                'iniciales' => 'JR',
+                'documento' => 'CC 1.045.117.602',
+                'categoria' => 'Sub-20',
+                'meses_sin_pago' => 2,
+                'deuda' => 180000,
+            ],
+            [
+                'id' => 4,
+                'nombres' => 'Valentina',
+                'apellidos' => 'Franco',
+                'iniciales' => 'VF',
+                'documento' => 'TI 1.092.330.981',
+                'categoria' => 'Sub-12',
+                'meses_sin_pago' => 4,
+                'deuda' => 360000,
+            ],
+        ];
+
+        $historialCambios = [
+            [
+                'id' => 1,
+                'fecha' => '15/07/2026',
+                'realizado_por' => 'David Aguirre',
+                'jugadores_afectados' => 7,
+                'estado_aplicado' => 'Inactivo',
+                'motivo' => '3+ meses sin pagar mensualidad',
+            ],
+            [
+                'id' => 2,
+                'fecha' => '02/03/2026',
+                'realizado_por' => 'Valentina Aguirre',
+                'jugadores_afectados' => 4,
+                'estado_aplicado' => 'Retirado',
+                'motivo' => 'Fin de temporada, no renovaron matrícula',
+            ],
+        ];
+
+        $this->view('jugadores/desactivacion/desactivacion', [
+            'jugadores' => $jugadores,
+            'historialCambios' => $historialCambios,
+            'titulo' => 'Desactivación de Jugadores',
+        ]);
+    }
+
+    /**
      * Mostrar formulario para crear nuevo jugador
+     * 
      * Se ejecuta cuando accedes a /jugadores/crear (GET)
      */
     public function crear(): void
     {
+        // ANTES esto apuntaba a 'jugadores/crear', pero ese archivo no
+        // existe: la vista real vive en 'jugadores/gestionJugadores/create'.
+        // Por eso Controller::view() lanzaba una Exception ("Vista no
+        // encontrada") que terminaba mostrando "Error en la aplicación".
         try {
             $categorias = $this->categoriaModel->obtenerTodas();
             $instructores = $this->instructorModel->obtenerTodos();
@@ -113,161 +208,9 @@ class JugadorController extends Controller
         ]);
     }
 
-
-    public function editar(int $id): void
-    {
-        $idJugador = (int) $id;
-        $jugador = $this->jugadorModel->obtenerParaEditar($idJugador);
-
-        if(!$jugador){
-            echo "Jugador no encontrado";
-            return;
-        }
-
-        try{
-            $categorias = $this->categoriaModel->obtenerTodas();
-            $instructores = $this->instructorModel->obtenerTodos();
-            $epsList = $this->epsModel->obtenerTodas();
-            $tiposDocumento = $this->tipoDocumentoModel->obtenerTodos();
-            $metodoPago = $this->metodoPagoModel->obtenerTodos();
-            $tipoBeca = $this->tipoBecaModel->obtenerTodas();
-
-            $responsableModel = new Responsable($this->pdo);
-            $responsables = $responsableModel->obtenerTodos();
-
-        }catch (Exception $e) {
-            error_log("Editar jugador (cargar catálogos): ". $e->getMessage());
-            $categorias = [];
-            $instructores = [];
-            $epsList = [];
-            $tiposDocumento = [];
-            $metodoPago = [];
-            $tipoBeca = [];
-            $responsables = [];
-        }
-
-        $this->view('jugadores/gestionJugadores/edit' ,[
-            'titulo' => 'Editar Jugador',
-            'jugador' => $jugador,
-            'categorias' => $categorias,
-            'instructores' => $instructores,
-            'epsList' => $epsList,
-            'tipoDocumento' => $tiposDocumento,
-            'metodoPago' => $metodoPago,
-            'tipoBecas' => $tipoBeca,
-            'responsables' => $responsables,
-        ]);
-
-    }
-
-    public function actualizar(): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            $this->redirect('/streepsoft/jugadores/gestion');
-        }
-
-        if (!$this->validateCSRFToken($_POST['_token'] ?? '')) {
-            $this->redirect('/streepsoft/jugadores/gestion?error=csrf');
-        }
-
-        $idJugador = (int) ($_POST['id_jugadores'] ?? 0);
-        if ($idJugador <= 0) {
-            $this->redirect('/streepsoft/jugadores/gestion?error=jugador_invalido');
-        }
-
-        $nombre1 = trim($_POST['nombre1'] ?? '');
-        $nombre2 = trim($_POST['nombre2'] ?? '');
-        $apellido1 = trim($_POST['apellido1'] ?? '');
-        $apellido2 = trim($_POST['apellido2'] ?? '');
-
-        $datos = [
-            'nombres'          => trim($nombre1 . ' ' . $nombre2),
-            'apellidos'        => trim($apellido1 . ' ' . $apellido2),
-            'fecha_nacimiento' => trim($_POST['fecha_nacimiento'] ?? ''),
-            'iniciales'        => trim($_POST['iniciales'] ?? ''),
-            'id_categorias'    => (int) ($_POST['id_categorias'] ?? 0),
-            'id_eps'           => (int) ($_POST['id_eps'] ?? 0),
-            'id_instructor'    => (int) ($_POST['id_instructor'] ?? 0),
-            'id_responsable'   => (int) ($_POST['id_responsable'] ?? 0),
-        ];
-
-        $documentoNumero = trim($_POST['documento'] ?? '');
-        $idTipoDocumento = (int) ($_POST['id_tipo_documento'] ?? 0);
-
-        $obligatorios = ['nombres', 'apellidos', 'fecha_nacimiento'];
-        foreach ($obligatorios as $campo) {
-            if ($datos[$campo] === '') {
-                $this->redirect('/streepsoft/jugadores/editar/' . $idJugador . '?error=campos_vacios');
-            }
-        }
-        if ($datos['id_categorias'] <= 0 || $datos['id_eps'] <= 0 || $datos['id_instructor'] <= 0) {
-            $this->redirect('/streepsoft/jugadores/editar/' . $idJugador . '?error=campos_vacios');
-        }
-
-        // La foto es opcional al editar: si no se tocó, se conserva la que ya tenía
-        try {
-            $datos['foto'] = $this->subirFotoJugador($_POST['foto_base64'] ?? null);
-        } catch (Exception $e) {
-            error_log('Actualizar jugador (foto): ' . $e->getMessage());
-            $this->redirect('/streepsoft/jugadores/editar/' . $idJugador . '?error=' . urlencode($e->getMessage()));
-        }
-
-        try {
-            $this->pdo->beginTransaction();
-
-            $responsableNombres = trim($_POST['responsable_nombres'] ?? '');
-            $responsableApellidos = trim($_POST['responsable_apellidos'] ?? '');
-            $responsableIdentificacion = trim($_POST['responsable_identificacion'] ?? '');
-            $responsableCelular = trim($_POST['responsable_numero_celular'] ?? '');
-            $responsableIdTipoDocumento = (int) ($_POST['responsable_id_tipo_documento'] ?? 0);
-
-            if ($responsableNombres !== '' && $responsableApellidos !== '' && 
-                $responsableIdentificacion !== '' && $responsableCelular !== '') {
-                
-                $responsableModel = new Responsable($this->pdo);
-                $idResponsable = (int) ($datos['id_responsable'] ?? 0);
-
-                if ($idResponsable > 0) {
-                    $responsableModel->actualizar($idResponsable, [
-                        'nombres' => $responsableNombres,
-                        'apellidos' => $responsableApellidos,
-                        'id_tipo_documento' => $responsableIdTipoDocumento,
-                        'identificacion' => $responsableIdentificacion,
-                        'numero_celular' => $responsableCelular,
-                    ]);
-                } else {
-                    $idResponsable = $responsableModel->crear([
-                        'nombres' => $responsableNombres,
-                        'apellidos' => $responsableApellidos,
-                        'id_tipo_documento' => $responsableIdTipoDocumento,
-                        'identificacion' => $responsableIdentificacion,
-                        'numero_celular' => $responsableCelular,
-                    ]);
-
-                    if ($idResponsable > 0) {
-                        $datos['id_responsable'] = $idResponsable;
-                    }
-                }
-            }
-
-            // 2) ACTUALIZAR JUGADOR
-            if (!$this->jugadorModel->actualizar($idJugador, $datos)) {
-                throw new Exception('No se pudo actualizar el jugador');
-            }
-
-            $this->documentoModel->guardarOActualizar($idJugador, $documentoNumero ?: null, $idTipoDocumento ?: null);
-
-            $this->pdo->commit();
-            $this->redirect('/streepsoft/jugadores/gestion?success=actualizado');
-        } catch (Exception $e) {
-            $this->pdo->rollBack();
-            error_log('Actualizar jugador: ' . $e->getMessage());
-            $this->redirect('/streepsoft/jugadores/editar/' . $idJugador . '?error=actualizacion_fallida');
-        }
-    }
-
     /**
      * Guardar un nuevo jugador
+     * 
      * Se ejecuta cuando envías el formulario (POST)
      */
     public function guardar(): void
@@ -282,7 +225,15 @@ class JugadorController extends Controller
             $this->redirect('/streepsoft/jugadores/crear?error=csrf');
         }
 
+        // ------------------------------------------------------------
         // 1) Recoger y limpiar los datos de texto del formulario
+        //    (trim() quita espacios sobrantes al inicio/final)
+        //
+        //    El formulario tiene 4 campos de nombre (primer/segundo
+        //    nombre y apellido) pero la tabla `jugadores` solo tiene
+        //    UNA columna `nombres` y UNA columna `apellidos`, así que
+        //    los combinamos aquí antes de guardar.
+        // ------------------------------------------------------------
         $nombre1 = trim($_POST['nombre1'] ?? '');
         $nombre2 = trim($_POST['nombre2'] ?? '');
         $apellido1 = trim($_POST['apellido1'] ?? '');
@@ -292,11 +243,12 @@ class JugadorController extends Controller
             'nombres'          => trim($nombre1 . ' ' . $nombre2),
             'apellidos'        => trim($apellido1 . ' ' . $apellido2),
             'fecha_nacimiento' => trim($_POST['fecha_nacimiento'] ?? ''),
+            'acudiente'        => trim($_POST['acudiente'] ?? ''),
+            'numero_acudiente' => trim($_POST['numero_acudiente'] ?? ''),
             'iniciales'        => trim($_POST['iniciales'] ?? ''),
             'id_categorias'    => (int) ($_POST['id_categorias'] ?? 0),
             'id_eps'           => (int) ($_POST['id_eps'] ?? 0),
             'id_instructor'    => (int) ($_POST['id_instructor'] ?? 0),
-            'id_responsable'   => (int) ($_POST['id_responsable'] ?? 0),
         ];
 
         $documentoNumero = trim($_POST['documento'] ?? '');
@@ -308,12 +260,17 @@ class JugadorController extends Controller
         $fechaPago = trim($_POST['fecha_pago'] ?? '');
         $idMetodoPago = (int) ($_POST['id_metodo_pago'] ?? 0);
         $idTipoBecas = (int) ($_POST['id_tipo_becas'] ?? 0);
-        
 
-        // 2) Validar los campos obligatorios 
+        // ------------------------------------------------------------
+        // 2) Validar los campos obligatorios (NOT NULL en la BD)
+        //    Si falta algo, no llegamos ni a tocar la base de datos.
+        // ------------------------------------------------------------
         $obligatorios = [
-            'nombres', 'apellidos', 'fecha_nacimiento',
-            'acudiente', 'numero_acudiente',
+            'nombres',
+            'apellidos',
+            'fecha_nacimiento',
+            'acudiente',
+            'numero_acudiente',
         ];
 
         foreach ($obligatorios as $campo) {
@@ -326,9 +283,9 @@ class JugadorController extends Controller
             $this->redirect('/streepsoft/jugadores/crear?error=campos_vacios');
         }
 
-        if ($mensualidad <= 0 || $fechaPago === '' || $idMetodoPago <= 0 || $idTipoBecas <= 0){
+        if ($mensualidad <= 0 || $fechaPago === '' || $idMetodoPago <= 0 || $idTipoBecas <= 0) {
             $this->redirect('/streepsoft/jugadores/crear?error=campos_vacios');
-        } 
+        }
 
         // Validar que la fecha de nacimiento tenga formato correcto y no sea futura
         $fecha = DateTime::createFromFormat('Y-m-d', $datos['fecha_nacimiento']);
@@ -339,22 +296,6 @@ class JugadorController extends Controller
         $fechaPagoObj = DateTime::createFromFormat('Y-m-d', $fechaPago);
         if (!$fechaPagoObj) {
             $this->redirect('/streepsoft/jugadores/crear?error=fecha_invalida');
-        }
-
-        // Validar datos del responsable
-        $responsableNombres = trim($_POST['responsable_nombres'] ?? '');
-        $responsableApellidos = trim($_POST['responsable_apellidos'] ?? '');
-        $responsableIdentificacion = trim($_POST['responsable_identificacion'] ?? '');
-        $responsableCelular = trim($_POST['responsable_numero_celular'] ?? '');
-        $responsableIdTipoDocumento = (int) ($_POST['responsable_id_tipo_documento'] ?? 0);
-
-        if ($responsableNombres === '' || $responsableApellidos === '' || 
-            $responsableIdentificacion === '' || $responsableCelular === '') {
-            $this->redirect('/streepsoft/jugadores/crear?error=datos_responsable_incompletos');
-        }
-
-        if ($responsableIdTipoDocumento <= 0) {
-            $this->redirect('/streepsoft/jugadores/crear?error=tipo_documento_responsable_invalido');
         }
 
         // ------------------------------------------------------------
@@ -370,24 +311,12 @@ class JugadorController extends Controller
 
         // ------------------------------------------------------------
         // 4) Guardar en la base de datos DENTRO de una transacción:
+        //    si falla el insert de documentos, deshacemos también el
+        //    del jugador (todo o nada, para no dejar datos a medias).
+        // ------------------------------------------------------------
         try {
             $this->pdo->beginTransaction();
 
-            $responsableModel = new Responsable($this->pdo);
-            $idResponsable = $responsableModel->crear([
-                'nombres' => $responsableNombres,
-                'apellidos' => $responsableApellidos,
-                'id_tipo_documento' => $responsableIdTipoDocumento,
-                'identificacion' => $responsableIdentificacion,
-                'numero_celular' => $responsableCelular,
-            ]);
-
-            if ($idResponsable === 0) {
-                throw new Exception('No se pudo crear el responsable');
-            }
-   
-            $datos['id_responsable'] = $idResponsable;
-            
             $idJugador = $this->jugadorModel->crear($datos);
 
             if ($idJugador === 0) {
@@ -397,11 +326,20 @@ class JugadorController extends Controller
             $this->documentoModel->crear($idJugador, $documentoNumero ?: null, $idTipoDocumento ?: null);
 
             $mesesEs = [
-                1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
-                5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
-                9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre',
+                1 => 'Enero',
+                2 => 'Febrero',
+                3 => 'Marzo',
+                4 => 'Abril',
+                5 => 'Mayo',
+                6 => 'Junio',
+                7 => 'Julio',
+                8 => 'Agosto',
+                9 => 'Septiembre',
+                10 => 'Octubre',
+                11 => 'Noviembre',
+                12 => 'Diciembre',
             ];
-            
+
             $idDeuda = $this->deudaModel->crearInicial([
                 'id_jugadores' => $idJugador,
                 'matricula' => $matricula,
@@ -414,11 +352,11 @@ class JugadorController extends Controller
                 'concepto' => 'Matrícula y mensualidad de inscripción',
                 'valor_pagado' => $matricula + $mensualidad,
             ]);
-            
+
             if ($idDeuda === 0) {
                 throw new Exception('No se pudo crear la deuda inicial');
             }
-            
+
             $this->pdo->commit();
 
             $this->redirect('/streepsoft/jugadores/gestion?success=creado');
@@ -431,7 +369,7 @@ class JugadorController extends Controller
 
     private function limpiarMonto(string $valor): float
     {
-        $limpio = preg_replace('/[^0-9\.]/', '', $valor); 
+        $limpio = preg_replace('/[^0-9\.]/', '', $valor);
         return $limpio === '' ? 0.0 : (float) $limpio;
     }
 
