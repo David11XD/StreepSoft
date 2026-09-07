@@ -511,18 +511,35 @@ class JugadorController extends Controller
     }
 
 
-    public function perfil(): void
+    public function perfil(int $id): void
     {
-        $jugador = $this->jugadorModel->obtenerTodos();
+        // ANTES: perfil() no recibía ningún $id, así que llamaba a
+        // obtenerTodos() (la lista COMPLETA de jugadores) y trataba
+        // el resultado como si fuera un solo jugador. Por eso salían
+        // los "undefined array key nombres/apellidos/estado": esas
+        // claves no existen en una lista, existen en una fila.
+        $jugador = $this->jugadorModel->obtenerPorId($id);
 
         if (!$jugador) {
             $this->redirect('/streepsoft/jugadores/gestion?error=no_encontrado');
             return;
         }
         
+        $responsable = null;
+        if (!empty($jugador['id_responsable'])) {
+            try {
+                $responsableModel = new Responsable($this->pdo);
+                $responsable = $responsableModel->obtenerPorId((int)$jugador['id_responsable']);
+            } catch (Exception $e) {
+                error_log("Cargar responsable: " . $e->getMessage());
+            }
+        }
+
+
         $this->view('perfilJugador/index', [
             'titulo' => 'Perfil de Alumnos',
-            'jugadores' => $jugador
+            'jugador' => $jugador,
+            'responsable' => $responsable 
         ]);
     }
 }

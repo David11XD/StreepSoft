@@ -290,7 +290,7 @@ tbody.addEventListener("click", (e) => {
     const botonPerfil = e.target.closest(".btn-perfil");
     if (botonPerfil) {
         const id = botonPerfil.dataset.idJugador;
-        window.location.href = "/streepsoft/jugadores/perfil/" + id;
+        window.location.href = "/streepsoft/perfil-jugador/" + id;
     }
 });
 

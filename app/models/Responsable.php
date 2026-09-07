@@ -14,7 +14,13 @@ class Responsable extends Model
 
     public function obtenerPorId(int $id): ?array
     {
-        $sql = "SELECT * FROM responsables WHERE id_responsable = ? LIMIT 1";
+        $sql = "
+            SELECT r.*, td.nombre AS tipo_documento
+            FROM responsables r
+            LEFT JOIN tipo_documento td ON td.id_tipo_documento = r.id_tipo_documento
+            WHERE r.id_responsable = ?
+            LIMIT 1
+        ";
         return $this->queryOne($sql, [$id]);
     }
 
