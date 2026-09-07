@@ -450,7 +450,9 @@ a {
     color: #fff;
     padding: 14px 24px;
     border-top: 1px solid #333;
+    position: relative;
 }
+
 
 .footer-copy {
     margin: 0;
@@ -462,13 +464,10 @@ a {
 .footer-redes {
     display: flex;
     align-items: center;
-    gap: 14px;
-}
-
-.footer-logo {
-    height: 22px;
-    width: auto;
-    margin-right: 4px;
+    gap: 20px;
+    position: absolute;
+    left: 53%;
+    transform: translateX(-50%);
 }
 
 .footer-redes a {
@@ -476,6 +475,10 @@ a {
     display: flex;
     align-items: center;
     transition: color 0.2s ease;
+}
+
+[id^="bp-web-widget"] {
+    bottom: 80px !important;
 }
 
 .footer-redes a:hover {
