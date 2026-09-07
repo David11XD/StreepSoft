@@ -104,7 +104,7 @@
                     </a>
 
 
-                    <a href="#">
+                    <a href="/streepsoft/instructores/listar">
                         <span class="submenu-icon">
                             <svg viewBox="0 0 24 24">
                                 <circle cx="12" cy="12" r="9"/>

@@ -4,29 +4,25 @@
 $totalAlumnos = count($jugadores);
 $totalActivos = 0;
 $totalInactivos = 0;
+$totalRetirados = 0;
 $totalConDeuda = 0;
 $totalVencePronto = 0;
 $hoy = new DateTime();
 
 foreach ($jugadores as $j){
-    if (($j['estado'] ?? '') === 'Activo'){
-        $totalActivos++;
-    } else {
-        $totalInactivos++;
+    switch ($j['estado'] ?? '') {
+        case 'Activo':
+            $totalActivos++;
+            break;
+        case 'Retirado':
+            $totalRetirados++;
+            break;
+        default:
+            $totalInactivos++;
     }
 
     if (!empty($j['pago'])){
         $totalConDeuda++;
-    }
-
-    if (!empty($j['fecha_limite_pago'])){
-        $limite = DateTime::createFromFormat('Y-m-d', $j['fecha_limite_pago']);
-        if ($limite) {
-            $dias = (int)$hoy->diff($limite)->format('%r%a');
-            if ($dias >= 0 && $dias <= 30){
-                $totalVencePronto ++;
-            }
-        }
     }
 }
 
@@ -200,6 +196,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     <option value="todo">Estado</option>
                                     <option value="Inactivo">Inactivo</option>
                                     <option value="Activo">Activo</option>
+                                    <option value="Retirado">Retirado</option>
                                 </select>
                             </div>
 
@@ -376,8 +373,15 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     </td>
                                     <td>
                                         <div class="estado">
-                                            <div class="ci"></div>
-                                            <p><?= htmlspecialchars($jugador['estado']) ?></p>
+                                            <?php
+                                                $claseCirculo = [
+                                                    'Activo'   => 'ci',
+                                                    'Inactivo' => 'ci-i',
+                                                    'Retirado' => 'ci-r',
+                                                ][$jugador['estado'] ?? ''] ?? 'ci';
+                                            ?>
+                                            <div class="<?= $claseCirculo ?>"></div>
+                                            <p><?= htmlspecialchars($jugador['estado'] ?? '') ?></p>
                                         </div>
                                     </td>
                                     <td>

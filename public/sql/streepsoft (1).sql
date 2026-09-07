@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2026 a las 04:34:42
+-- Tiempo de generación: 07-09-2026 a las 18:38:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -236,21 +236,26 @@ CREATE TABLE `historial_ciclo_jugadores` (
 
 CREATE TABLE `instructor` (
   `id_instructor` int(11) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `nombres` varchar(20) DEFAULT NULL,
   `apellidos` varchar(20) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL,
-  `numero_instructor` varchar(15) DEFAULT NULL
+  `numero_celular` varchar(20) DEFAULT NULL,
+  `id_categorias` int(11) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `estado` enum('activo','inactivo') NOT NULL DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `instructor`
 --
 
-INSERT INTO `instructor` (`id_instructor`, `nombres`, `apellidos`, `edad`, `numero_instructor`) VALUES
-(1, 'Crisitan Ivan ', 'Saenz', 20, '+57 3000000000'),
-(2, 'Julian David', 'Munevar', 20, '+57 3000000000'),
-(3, 'Estaban', 'Moreno Rojas', 25, '+57 3000000000'),
-(4, 'Luis Camilo', 'Beltran', 25, '+57 3000000000');
+INSERT INTO `instructor` (`id_instructor`, `foto`, `nombres`, `apellidos`, `edad`, `numero_celular`, `id_categorias`, `descripcion`, `estado`) VALUES
+(1, '034123d83ab0e2a2ac54502288581907.jpg', 'Crisitan Ivan', 'Saenz', 20, '+57 3000000000', 3, '-', 'activo'),
+(2, '4c454c45b18eb3ddf68c827f2cb9ae9d.jpg', 'Julian David', 'Munevar', 20, '+57 3000000000', 2, '-', 'activo'),
+(3, 'f4c569340c3f3d5edd08d4e6a59e4c3e.jpg', 'Estaban', 'Moreno Rojas', 25, '+57 3000000000', 4, '-', 'activo'),
+(4, 'cc2c8f2c01ee635baf88b3a342680b37.jpg', 'Luis Camilo', 'Beltran', 25, '+57 3000000000', 2, '-', 'activo'),
+(6, 'e7e5d5cd2b831c8a8d1c6f70a6524fee.jpg', 'Yonatan Javier', 'verga', 20, '+57 3000000000', 1, '-', 'activo');
 
 -- --------------------------------------------------------
 
@@ -434,7 +439,7 @@ CREATE TABLE `vista_jugadores` (
 --
 DROP TABLE IF EXISTS `vista_jugadores`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_jugadores`  AS SELECT `j`.`id_jugadores` AS `id_jugadores`, `j`.`foto` AS `foto`, `j`.`apellidos` AS `apellidos`, `j`.`nombres` AS `nombres`, `j`.`iniciales` AS `iniciales`, `j`.`id_categorias` AS `id_categorias`, `j`.`id_eps` AS `id_eps`, `j`.`id_instructor` AS `id_instructor`, `j`.`id_responsable` AS `id_responsable`, concat(coalesce(`r`.`nombres`,''),' ',coalesce(`r`.`apellidos`,'')) AS `responsable_nombre`, `dc`.`id_tipo_documento` AS `id_tipo_documento`, `dc`.`documento` AS `documentos`, `td`.`nombre` AS `tipo_documento`, `j`.`fecha_nacimiento` AS `fecha_nacimiento`, timestampdiff(YEAR,`j`.`fecha_nacimiento`,curdate()) AS `edad`, `c`.`nombre` AS `categoria`, `tb`.`nombre` AS `tipo_beca`, `i`.`nombres` AS `instructor`, CASE WHEN `d`.`pago` = 'mora' THEN 'Inactivo' ELSE 'Activo' END AS `estado`, `d`.`fecha_pago` AS `fecha_pago`, `d`.`fecha_limite_pago` AS `fecha_limite_pago`, `d`.`pago` AS `pago` FROM (((((((`jugadores` `j` join `categorias` `c` on(`j`.`id_categorias` = `c`.`id_categorias`)) left join `deudas` `d` on(`d`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipos_beca` `tb` on(`tb`.`id_tipo_beca` = `d`.`id_tipo_becas`)) left join `documentos` `dc` on(`dc`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipo_documento` `td` on(`td`.`id_tipo_documento` = `dc`.`id_tipo_documento`)) left join `instructor` `i` on(`i`.`id_instructor` = `j`.`id_instructor`)) left join `responsables` `r` on(`r`.`id_responsable` = `j`.`id_responsable`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_jugadores`  AS SELECT `j`.`id_jugadores` AS `id_jugadores`, `j`.`foto` AS `foto`, `j`.`apellidos` AS `apellidos`, `j`.`nombres` AS `nombres`, `j`.`iniciales` AS `iniciales`, `j`.`id_categorias` AS `id_categorias`, `j`.`id_eps` AS `id_eps`, `j`.`id_instructor` AS `id_instructor`, `j`.`id_responsable` AS `id_responsable`, concat(coalesce(`r`.`nombres`,''),' ',coalesce(`r`.`apellidos`,'')) AS `responsable_nombre`, `dc`.`id_tipo_documento` AS `id_tipo_documento`, `dc`.`documento` AS `documentos`, `td`.`nombre` AS `tipo_documento`, `j`.`fecha_nacimiento` AS `fecha_nacimiento`, timestampdiff(YEAR,`j`.`fecha_nacimiento`,curdate()) AS `edad`, `c`.`nombre` AS `categoria`, `tb`.`nombre` AS `tipo_beca`, `i`.`nombres` AS `instructor`, CASE `j`.`estado` WHEN 'activo' THEN 'Activo' WHEN 'inactivo' THEN 'Inactivo' WHEN 'retirado' THEN 'Retirado' ELSE 'Activo' END AS `estado`, `d`.`fecha_pago` AS `fecha_pago`, `d`.`fecha_limite_pago` AS `fecha_limite_pago`, `d`.`pago` AS `pago` FROM (((((((`jugadores` `j` join `categorias` `c` on(`j`.`id_categorias` = `c`.`id_categorias`)) left join `deudas` `d` on(`d`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipos_beca` `tb` on(`tb`.`id_tipo_beca` = `d`.`id_tipo_becas`)) left join `documentos` `dc` on(`dc`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipo_documento` `td` on(`td`.`id_tipo_documento` = `dc`.`id_tipo_documento`)) left join `instructor` `i` on(`i`.`id_instructor` = `j`.`id_instructor`)) left join `responsables` `r` on(`r`.`id_responsable` = `j`.`id_responsable`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -519,7 +524,8 @@ ALTER TABLE `historial_ciclo_jugadores`
 -- Indices de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  ADD PRIMARY KEY (`id_instructor`);
+  ADD PRIMARY KEY (`id_instructor`),
+  ADD KEY `fk_instructor_categoria` (`id_categorias`);
 
 --
 -- Indices de la tabla `jugadores`
@@ -631,7 +637,7 @@ ALTER TABLE `historial_ciclo_jugadores`
 -- AUTO_INCREMENT de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `id_instructor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_instructor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
@@ -720,6 +726,12 @@ ALTER TABLE `historial_ciclo_jugadores`
   ADD CONSTRAINT `fk_historial_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id_categorias`),
   ADD CONSTRAINT `fk_historial_ciclo` FOREIGN KEY (`id_ciclo`) REFERENCES `ciclos_anio` (`id_ciclo`),
   ADD CONSTRAINT `fk_historial_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`);
+
+--
+-- Filtros para la tabla `instructor`
+--
+ALTER TABLE `instructor`
+  ADD CONSTRAINT `fk_instructor_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id_categorias`);
 
 --
 -- Filtros para la tabla `jugadores`
