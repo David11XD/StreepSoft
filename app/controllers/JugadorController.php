@@ -513,11 +513,16 @@ class JugadorController extends Controller
 
     public function perfil(): void
     {
-        $jugadores = $this->jugadorModel->obtenerTodos();
+        $jugador = $this->jugadorModel->obtenerTodos();
 
+        if (!$jugador) {
+            $this->redirect('/streepsoft/jugadores/gestion?error=no_encontrado');
+            return;
+        }
+        
         $this->view('perfilJugador/index', [
             'titulo' => 'Perfil de Alumnos',
-            'jugadores' => $jugadores
+            'jugadores' => $jugador
         ]);
     }
 }
