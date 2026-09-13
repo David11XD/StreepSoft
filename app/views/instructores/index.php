@@ -203,7 +203,7 @@
                                     <th>Edad</th>
                                     <th>Numero celular</th>
                                     <th>Categorias</th>
-                                    <th>Descripcion</th>
+                                    <th>Sede</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>

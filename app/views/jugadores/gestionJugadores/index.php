@@ -398,7 +398,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
 
                                             <div class="menu-acciones">
                                                 <button class="btn-editar" type="button" data-id-jugador="<?= (int) $jugador['id_jugadores'] ?>">Editar</button>
-                                                <button class="btn-perfil">ver perfil</button>
+                                                <button class="btn-perfil" type="button" data-id-jugador="<?= (int) $jugador['id_jugadores'] ?>">ver perfil</button>
                                             </div>
                                         </div>
                                     </td>
