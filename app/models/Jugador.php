@@ -67,33 +67,16 @@ class Jugador extends Model
     {
         $sql = "
             INSERT INTO jugadores (
-                foto,
-                primer_apellido,
-                segundo_apellido,
-                primer_nombre,
-                segundo_nombre,
-                tipo_de_documento,
-                identificacion,
-                iniciales,
+                nombres,
+                apellidos,
                 fecha_nacimiento,
-                edad,
-                sexo,
-                eps,
-                instructor,
-                categoria,
-                talla_camiseta,
-                numero_camiseta,
-                talla_pantaloneta,
-                talla_media,
-                acudiente,
-                tipo,
-                identificacion_acudiente,
-                numero_acudiente
-            ) VALUES (
-                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                ?, ?
-            )
+                id_responsable,
+                id_categorias,
+                id_eps,
+                id_instructor,
+                foto,
+                iniciales
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ";
 
         $exito = $this->execute($sql, [
@@ -106,19 +89,12 @@ class Jugador extends Model
             $datos['identificacion']           ?? null,
             $datos['iniciales']                ?? null,
             $datos['fecha_nacimiento'],
-            $datos['edad']                     ?? null,
-            $datos['sexo']                     ?? null,
-            $datos['eps']                      ?? null,
-            $datos['instructor']               ?? null,
-            $datos['categoria']                ?? null,
-            $datos['talla_camiseta']           ?? null,
-            $datos['numero_camiseta']          ?? null,
-            $datos['talla_pantaloneta']        ?? null,
-            $datos['talla_media']              ?? null,
-            $datos['acudiente'],
-            $datos['tipo']                     ?? null,
-            $datos['identificacion_acudiente'] ?? null,
-            $datos['numero_acudiente']         ?? null,
+            $datos['id_responsables'] ?? null,
+            $datos['id_categorias'],
+            $datos['id_eps'],
+            $datos['id_instructor'],
+            $datos['foto'] ?? null,
+            $datos['iniciales'] ?? null,
         ]);
 
         if (!$exito) {
@@ -128,7 +104,33 @@ class Jugador extends Model
         return $this->lastInsertId();
     }
 
-    // ─── ACTUALIZAR ───
+    public function obtenerParaEditar(int $id): ?array
+    {
+        $sql = "
+            SELECT
+                j.*,
+                doc.documento,
+                doc.id_tipo_documento,
+                r.nombres AS responsable_nombres,
+                r.apellidos AS responsable_apellidos,
+                r.id_tipo_documento AS responsable_id_tipo_documento,
+                r.identificacion AS responsable_identificacion,
+                r.numero_celular AS responsable_numero_celular
+            FROM jugadores j
+            LEFT JOIN documentos doc ON doc.id_jugadores = j.id_jugadores
+            LEFT JOIN responsables r ON r.id_responsable = j.id_responsable
+            WHERE j.id_jugadores = ?
+            LIMIT 1
+        ";
+
+        return $this->queryOne($sql, [$id]);
+    }
+
+
+
+    /**
+     * Actualizar un jugador
+     */
     public function actualizar(int $id, array $datos): bool
     {
         $valores = [
@@ -157,39 +159,31 @@ class Jugador extends Model
         ];
 
         $sql = "
-            UPDATE jugadores SET
-                primer_apellido          = ?,
-                segundo_apellido         = ?,
-                primer_nombre            = ?,
-                segundo_nombre           = ?,
-                tipo_de_documento        = ?,
-                identificacion           = ?,
-                iniciales                = ?,
-                fecha_nacimiento         = ?,
-                edad                     = ?,
-                sexo                     = ?,
-                eps                      = ?,
-                instructor               = ?,
-                categoria                = ?,
-                talla_camiseta           = ?,
-                numero_camiseta          = ?,
-                talla_pantaloneta        = ?,
-                talla_media              = ?,
-                acudiente                = ?,
-                tipo                     = ?,
-                identificacion_acudiente = ?,
-                numero_acudiente         = ?
+            UPDATE jugadores
+            SET nombres = ?,
+                apellidos = ?,
+                fecha_nacimiento = ?,
+                id_responsable = ?,
+                id_categorias = ?,
+                id_eps = ?,
+                id_instructor = ?,
+                iniciales = ?,
+                foto = COALESCE(?, foto)
+            WHERE id_jugadores = ?
         ";
 
-        if (!empty($datos['foto'])) {
-            $sql     .= ", foto = ?";
-            $valores[] = $datos['foto'];
-        }
-
-        $sql     .= " WHERE id_jugadores = ?";
-        $valores[] = $id;
-
-        return $this->execute($sql, $valores);
+        return $this->execute($sql, [
+            $datos['nombres'] ?? null,
+            $datos['apellidos'] ?? null,
+            $datos['fecha_nacimiento'] ?? null,
+            $datos['id_responsable'] ?? null,
+            $datos['id_categorias'] ?? null,
+            $datos['id_eps'] ?? null,
+            $datos['id_instructor'] ?? null,
+            $datos['iniciales'] ?? null,
+            $datos['foto'] ?? null,
+            $id
+        ]);
     }
 
     // ─── DESACTIVAR ───

@@ -67,6 +67,15 @@ body {
 }
  
 .navbar-icon {
+    border: 1px solid #D09E10;
+    border-radius: 50%;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.navbar-icon-1 {
     width: var(--icon-size);
     height: var(--icon-size);
     object-fit: contain;

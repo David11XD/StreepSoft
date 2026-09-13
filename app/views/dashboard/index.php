@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estadistica | Streepssoft</title>
     <link rel="stylesheet" href="/streepsoft/public/css/dashboard/dash.css">
+    <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
 </head>
 
 <body>

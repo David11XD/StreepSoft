@@ -4,29 +4,25 @@
 $totalAlumnos = count($jugadores);
 $totalActivos = 0;
 $totalInactivos = 0;
+$totalRetirados = 0;
 $totalConDeuda = 0;
 $totalVencePronto = 0;
 $hoy = new DateTime();
 
 foreach ($jugadores as $j){
-    if (($j['estado'] ?? '') === 'Activo'){
-        $totalActivos++;
-    } else {
-        $totalInactivos++;
+    switch ($j['estado'] ?? '') {
+        case 'Activo':
+            $totalActivos++;
+            break;
+        case 'Retirado':
+            $totalRetirados++;
+            break;
+        default:
+            $totalInactivos++;
     }
 
     if (!empty($j['pago'])){
         $totalConDeuda++;
-    }
-
-    if (!empty($j['fecha_limite_pago'])){
-        $limite = DateTime::createFromFormat('Y-m-d', $j['fecha_limite_pago']);
-        if ($limite) {
-            $dias = (int)$hoy->diff($limite)->format('%r%a');
-            if ($dias >= 0 && $dias <= 30){
-                $totalVencePronto ++;
-            }
-        }
     }
 }
 
@@ -38,6 +34,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/streepsoft/public/css/jugadores/tablejugadores.css">
+    <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
     <title>Jugadores</title>
 </head>
 <body>
@@ -199,6 +196,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     <option value="todo">Estado</option>
                                     <option value="Inactivo">Inactivo</option>
                                     <option value="Activo">Activo</option>
+                                    <option value="Retirado">Retirado</option>
                                 </select>
                             </div>
 
@@ -364,7 +362,7 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     </td>
                                     <td>
                                         <div class="table-text">
-                                            <h3><?= htmlspecialchars($jugador['acudiente']) ?></h3>
+                                            <h3><?= htmlspecialchars($jugador['responsable_nombre']) ?></h3>
                                             <p><?= htmlspecialchars($jugador['numero_acudiente']) ?></p>
                                         </div>
                                     </td>
@@ -375,8 +373,15 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     </td>
                                     <td>
                                         <div class="estado">
-                                            <div class="ci"></div>
-                                            <p><?= htmlspecialchars($jugador['estado']) ?></p>
+                                            <?php
+                                                $claseCirculo = [
+                                                    'Activo'   => 'ci',
+                                                    'Inactivo' => 'ci-i',
+                                                    'Retirado' => 'ci-r',
+                                                ][$jugador['estado'] ?? ''] ?? 'ci';
+                                            ?>
+                                            <div class="<?= $claseCirculo ?>"></div>
+                                            <p><?= htmlspecialchars($jugador['estado'] ?? '') ?></p>
                                         </div>
                                     </td>
                                     <td>
@@ -392,8 +397,8 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                             </button>
 
                                             <div class="menu-acciones">
-                                                <button class="btn-editar">Editar</button>
-                                                <button class="btn-perfil">ver perfil</button>
+                                                <button class="btn-editar" type="button" data-id-jugador="<?= (int) $jugador['id_jugadores'] ?>">Editar</button>
+                                                <button class="btn-perfil" type="button" data-id-jugador="<?= (int) $jugador['id_jugadores'] ?>">ver perfil</button>
                                             </div>
                                         </div>
                                     </td>
@@ -449,14 +454,13 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
     <div class="modal-registro" id="modalRegistro">
         <div class="modal-registro-contenido">
             <button class="cerrar-registro" id="cerrarRegistro">&times;</button>
-            <iframe src="/streepsoft/jugadores/crear" class="iframe-registro" id="iframeRegistro"></iframe>
+            <iframe src="" class="iframe-registro" id="iframeRegistro"></iframe>
         </div>
     </div>
 
     <script src="/streepsoft/public/js/dashboard/dashboard.js"></script>
     <script src="/streepsoft/public/js/jugadores/table.js"></script>
     <script type="module" src="/streepsoft/public/js/nav/export.js"></script>
-    <script src="/streepsoft/public/js/nuevo/nuevo.js"></script>
 </body>
 </html>
 

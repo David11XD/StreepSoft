@@ -6,6 +6,7 @@
     <title>Actualizar contraseña</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/streepsoft/public/css/login/log.css">
+    <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
 </head>
 <body class="background-login">
     <div class="page-wrapper">

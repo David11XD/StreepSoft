@@ -73,6 +73,7 @@ require_once APP_PATH . '/models/Categoria.php';
 require_once APP_PATH . '/models/Instructor.php';
 require_once APP_PATH . '/models/Eps.php';
 require_once APP_PATH . '/models/TipoDocumento.php';
+require_once APP_PATH . '/models/Responsable.php';
 require_once APP_PATH . '/models/Documento.php';
 require_once APP_PATH . '/models/Deuda.php';
 require_once APP_PATH . '/models/MetodoPago.php';
@@ -141,18 +142,28 @@ if (Auth::check()) {
             '/jugadores/deudas' => ['controller' => 'DeudaController', 'method' => 'listar'],
             '/deudas/:id/pago' => ['controller' => 'DeudaController', 'method' => 'mostrarPago'],
             '/jugadores/crear' => ['controller' => 'JugadorController', 'method' => 'crear'],
-            '/perfil-jugador' => ['controller' => 'JugadorController', 'method' => 'perfil'],
+            '/jugadores/editar/:id' => ['controller' => 'JugadorController', 'method' => 'editar'],
+            '/perfil-jugador/:id' => ['controller' => 'JugadorController', 'method' => 'perfil'],
             '/pagos/historial' => ['controller' => 'PagosController', 'method' => 'matriz'],
             '/perfil/administrador' => ['controller' => 'PerfilAdminController', 'method' => 'perfil'],
             '/reportes/generar' => ['controller' => 'ReporteController', 'method' => 'generar'],
+            '/instructores/listar' => ['controller' => 'InstructorController', 'method' => 'listar'],
+            '/instructores/crear' => ['controller' => 'InstructorController', 'method' => 'crearForm'],
+            '/instructores/editar/:id' => ['controller' => 'InstructorController', 'method' => 'editarForm'],
         ],
         
         'POST' => [
             '/jugadores/guardar' => ['controller' => 'JugadorController', 'method' => 'guardar'],
+            '/jugadores/actualizar' => ['controller' => 'JugadorController', 'method' => 'actualizar'],
             '/jugadores/eliminar/:id' => ['controller' => 'JugadorController', 'method' => 'eliminar'],
             '/deudas/registrar-pago' => ['controller' => 'DeudaController', 'method' => 'registrarPago'],
             '/perfil/actualizar' => ['controller' => 'PerfilAdminController', 'method' => 'actualizarPerfil'],
             '/perfil/cambiar-foto' => ['controller' => 'PerfilAdminController', 'method' => 'cambiarFoto'],
+            '/instructores/guardar' => ['controller' => 'InstructorController', 'method' => 'guardar'],
+            '/instructores/actualizar/:id' => ['controller' => 'InstructorController', 'method' => 'actualizar'],
+            '/instructores/retirar/:id' => ['controller' => 'InstructorController', 'method' => 'retirar'],
+            '/instructores/subir-foto' => ['controller' => 'InstructorController', 'method' => 'subirFoto'],
+            '/instructores/eliminar-foto' => ['controller' => 'InstructorController', 'method' => 'eliminarFoto'],
         ]
     ];
     
@@ -306,7 +317,11 @@ try {
     
     // Ejecutar el método
     if (count($parametros) > 0) {
-        call_user_func_array([$controller, $methodName], $parametros);
+        $parametrosConvertidos = [];
+        foreach ($parametros as $param) {
+            $parametrosConvertidos[] = is_numeric($param) ? (int) $param : $param;
+        }
+        call_user_func_array([$controller, $methodName], $parametrosConvertidos);
     } else {
         $controller->$methodName();
     }

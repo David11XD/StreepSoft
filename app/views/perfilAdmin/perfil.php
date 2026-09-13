@@ -7,6 +7,7 @@
     <title>Perfil de Administrador | Streepsoft</title>
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="/streepsoft/public/css/perfilAdmin/perfilAdmin.css">
+        <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
 </head>
 
 <body>
