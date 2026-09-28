@@ -1,0 +1,642 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('../hamburguesa/hamburguer.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #141414;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.cierre-anio-container {
+    margin: 12px;
+}
+
+.cierre-anio-container h1 {
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    font-weight: 600;
+}
+
+
+/*Tarejas de cierre de año */
+
+.seccion-subtitulo {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    font-weight: 500;
+    color: #ccc;
+    margin: 20px 0 12px;
+}
+
+.ciclos-anio-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+}
+
+.tarjeta-ciclo {
+    flex: 0 0 auto;
+    width: 220px;
+    background: #1a1a1a;
+    border: 1px solid #2b2b2b;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.tarjeta-ciclo-activa {
+    border: 1px solid var(--card-bg);
+}
+
+.tarjeta-ciclo-anio {
+    font-size: 1.6rem;
+    margin: 10px 0 12px;
+}
+
+.badge-ciclo {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.badge-cerrado {
+    background: #2b2b2b;
+    color: #aaa;
+}
+
+.badge-activo {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+}
+
+.badge-proximo {
+    background: rgba(142, 68, 173, 0.15);
+    color: #af7ac5;
+}
+
+.tarjeta-ciclo-dato {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.tarjeta-ciclo-dato strong {
+    color: white;
+}
+
+.tarjeta-ciclo-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--card-bg);
+    text-decoration: none;
+}
+
+/* Panel de acción de cierre + toggle */
+
+.panel-accion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: #1a1a1a;
+    border: 1px solid var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 20px;
+}
+
+.panel-accion-texto h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.panel-accion-texto p {
+    font-size: 0.85rem;
+    color: #999;
+    max-width: 640px;
+    line-height: 1.5;
+}
+
+.btn-dorado {
+    flex-shrink: 0;
+    background: var(--card-bg);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.toggle-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggle-estado {
+    color: #2ecc71;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: #444;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background: var(--card-bg);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(20px);
+}
+
+/* Consultar historial de un año cerrado */
+
+.panel-historial {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    border: 1px solid #2b2b2b;
+}
+
+.panel-historial-header h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.panel-historial-controles {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.select-anio {
+    background: #141414;
+    color: white;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    min-width: 160px;
+}
+
+.btn-contorno {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #ccc;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-contorno:hover {
+    border-color: var(--card-bg);
+    color: var(--card-bg);
+}
+
+/* Modal wizard de cierre de año */
+
+.oculto {
+    display: none !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: #000000;
+    border: 1px solid var(--card-bg);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 480px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 20px 24px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.modal-cerrar {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.wizard-pasos {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.wizard-paso-indicador {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #444;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+.wizard-paso-indicador.activo {
+    background: var(--card-bg);
+    border-color: var(--card-bg);
+    color: #141414;
+    font-weight: 700;
+}
+
+.wizard-linea {
+    flex: 1;
+    height: 1px;
+    background: #444;
+    margin: 0 6px;
+}
+
+.wizard-pregunta {
+    margin: 0 0 4px;
+    font-size: 1rem;
+}
+
+.wizard-subtexto {
+    margin: 0 0 16px;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.resumen-confirmacion {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.resumen-item {
+    flex: 1;
+    background: #141414;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.resumen-etiqueta {
+    color: #999;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.resumen-item strong {
+    font-size: 1.1rem;
+}
+
+.lista-checks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lista-checks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+.lista-checks i {
+    color: #2ecc71;
+    margin-top: 2px;
+}
+
+.aviso-confirmacion {
+    display: flex;
+    gap: 10px;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 4px;
+}
+
+.aviso-info {
+    background: rgba(46, 204, 113, 0.08);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.aviso-info i {
+    color: #2ecc71;
+}
+
+.aviso-confirmacion span {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.aviso-confirmacion input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: #2ecc71;
+    cursor: pointer;
+}
+
+.aviso-confirmacion {
+    cursor: pointer;
+}
+
+.btn-primario:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-secundario {
+    background: transparent;
+    border: 1px solid #555;
+    color: #ccc;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-secundario:hover {
+    border-color: #888;
+}
+
+.btn-primario {
+    background: var(--card-bg);
+    border: none;
+    color: #141414;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* Modal de historial de pagos por año */
+
+.modal-historial-pagos {
+    max-width: 720px;
+}
+
+.modal-titulo-grupo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.badge-anio-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge-anio-cerrado {
+    background: rgba(153, 153, 153, 0.15);
+    color: #999;
+}
+
+.badge-anio-activo {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+}
+
+.resumen-historial {
+    flex-wrap: wrap;
+}
+
+.resumen-historial .resumen-item {
+    min-width: 140px;
+}
+
+.dato-deuda {
+    color: #F87171;
+}
+
+.historial-filtros {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.campo-busqueda {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+}
+
+.campo-busqueda i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.campo-busqueda input {
+    width: 100%;
+    background: #141414;
+    color: white;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 9px 12px 9px 34px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+}
+
+.historial-filtros select {
+    background: #141414;
+    color: white;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+}
+
+#tablaHistorialPagosAnio {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaHistorialPagosAnio th {
+    text-align: left;
+    color: #999;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 10px 8px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+#tablaHistorialPagosAnio td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #2b2b2b;
+    font-size: 0.9rem;
+}
+
+.celda-jugador {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-iniciales {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #575252;
+    color: var(--card-bg);
+    font-weight: 900;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.celda-jugador-texto h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.celda-deuda {
+    color: #F87171;
+    font-weight: 600;
+}
+
+.badge-estado {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge-mora {
+    background: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
+}
+
+.badge-aldia {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+}
+
+.badge-retirado {
+    background: rgba(153, 153, 153, 0.15);
+    color: #999;
+}
+
+.nota-solo-lectura {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 16px;
+    line-height: 1.5;
+}
+
+.resultados-footer-link {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--card-bg);
+    text-decoration: none;
+}
+

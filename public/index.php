@@ -146,6 +146,7 @@ if (Auth::check()) {
             '/pagos/historial' => ['controller' => 'PagosController', 'method' => 'matriz'],
             '/perfil/administrador' => ['controller' => 'PerfilAdminController', 'method' => 'perfil'],
             '/reportes/generar' => ['controller' => 'ReporteController', 'method' => 'generar'],
+            '/cierre-anio' => ['controller' => 'CierreAnioController', 'method' => 'index'],
         ],
         
         'POST' => [

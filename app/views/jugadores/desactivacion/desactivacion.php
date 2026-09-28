@@ -81,6 +81,7 @@
                         <thead>
                             <tr>
                                 <th><input type="checkbox" id="checkTodos"></th>
+                                <th></th>
                                 <th>Jugador</th>
                                 <th>Categoría</th>
                                 <th>Meses sin pago</th>
@@ -100,8 +101,11 @@
                                         <input type="checkbox" class="check-jugador" data-id="<?= (int)$jugador['id'] ?>">
                                     </td>
                                     <td>
+                                        <div class="avatar-iniciales"><?= htmlspecialchars($jugador['iniciales']) ?></div>
+                                    </td>
+                                    <td>
                                         <div class="celda-jugador">
-                                            <div class="avatar-iniciales"><?= htmlspecialchars($jugador['iniciales']) ?></div>
+                                            
                                             <div class="celda-jugador-texto">
                                                 <h3><?= htmlspecialchars($jugador['nombres'] . ' ' . $jugador['apellidos']) ?></h3>
                                                 <p><?= htmlspecialchars($jugador['documento']) ?></p>
