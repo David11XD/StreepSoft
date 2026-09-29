@@ -1,9 +1,17 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * Jugador - Modelo de jugadores
+ * 
+ */
 class Jugador extends Model
 {
-    // ─── OBTENER TODOS ───
+    /**
+     * Obtener todos los jugadores
+     * 
+     */
+
     public function obtenerTodos(): array
     {
         $sql = "
@@ -11,34 +19,48 @@ class Jugador extends Model
             FROM vista_jugadores
             ORDER BY apellidos, nombres
         ";
+        
         return $this->query($sql);
     }
 
-    // ─── OBTENER POR ID ───
+    /**
+     * Obtener un jugador por ID
+     */
+
     public function obtenerPorId(int $id): ?array
     {
         $sql = "
             SELECT * 
-            FROM jugadores
+            FROM vista_jugadores
             WHERE id_jugadores = ?
             LIMIT 1
         ";
+        
         return $this->queryOne($sql, [$id]);
     }
 
-    // ─── OBTENER POR CATEGORÍA ───
-    public function obtenerPorCategoria(string $categoria): array
+    /**
+     * Obtener jugadores por categoría
+     * 
+     */
+
+    public function obtenerPorCategoria(int $categoriaId): array
     {
         $sql = "
             SELECT * 
             FROM vista_jugadores
-            WHERE categoria = ?
+            WHERE id_categoria = ?
             ORDER BY apellidos, nombres
         ";
-        return $this->query($sql, [$categoria]);
+        
+        return $this->query($sql, [$categoriaId]);
     }
 
-    // ─── OBTENER CON DEUDA ───
+    /**
+     * Obtener jugadores con deuda
+     * 
+     * @return array - Jugadores que tienen deuda
+     */
     public function obtenerConDeuda(): array
     {
         $sql = "
@@ -47,22 +69,14 @@ class Jugador extends Model
             WHERE pago IS NOT NULL
             ORDER BY apellidos, nombres
         ";
+        
         return $this->query($sql);
     }
 
-    // ─── OBTENER ACTIVOS ───
-    public function obtenerActivos(): array
-    {
-        $sql = "
-            SELECT * 
-            FROM vista_jugadores
-            WHERE estado = 'Activo'
-            ORDER BY apellidos, nombres
-        ";
-        return $this->query($sql);
-    }
-
-    // ─── CREAR ───
+    /**
+     * Crear un nuevo jugador
+     *
+     */
     public function crear(array $datos): int
     {
         $sql = "
@@ -80,14 +94,8 @@ class Jugador extends Model
         ";
 
         $exito = $this->execute($sql, [
-            $datos['foto']                     ?? null,
-            $datos['primer_apellido'],
-            $datos['segundo_apellido']         ?? null,
-            $datos['primer_nombre'],
-            $datos['segundo_nombre']           ?? null,
-            $datos['tipo_de_documento']        ?? null,
-            $datos['identificacion']           ?? null,
-            $datos['iniciales']                ?? null,
+            $datos['nombres'],
+            $datos['apellidos'],
             $datos['fecha_nacimiento'],
             $datos['id_responsables'] ?? null,
             $datos['id_categorias'],
@@ -97,10 +105,12 @@ class Jugador extends Model
             $datos['iniciales'] ?? null,
         ]);
 
+        // Si el INSERT no funcionó, no hay id que devolver
         if (!$exito) {
             return 0;
         }
 
+        // lastInsertId() viene de la clase base Model (ver Model.php)
         return $this->lastInsertId();
     }
 
@@ -133,31 +143,9 @@ class Jugador extends Model
      */
     public function actualizar(int $id, array $datos): bool
     {
-        $valores = [
-            $datos ['foto']                    ??null, 
-            $datos['primer_apellido'],
-            $datos['segundo_apellido']         ?? null,
-            $datos['primer_nombre'],
-            $datos['segundo_nombre']           ?? null,
-            $datos['tipo_de_documento']        ?? null,
-            $datos['identificacion']           ?? null,
-            $datos['iniciales']                ?? null,
-            $datos['fecha_nacimiento'],
-            $datos['edad']                     ?? null,
-            $datos['sexo']                     ?? null,
-            $datos['eps']                      ?? null,
-            $datos['instructor']               ?? null,
-            $datos['categoria']                ?? null,
-            $datos['talla_camiseta']           ?? null,
-            $datos['numero_camiseta']          ?? null,
-            $datos['talla_pantaloneta']        ?? null,
-            $datos['talla_media']              ?? null,
-            $datos['acudiente'],
-            $datos['tipo']                     ?? null,
-            $datos['identificacion_acudiente'] ?? null,
-            $datos['numero_acudiente']         ?? null,
-        ];
-
+        // NOTA: se corrigió igual que crear() -> mismas columnas reales
+        // de la tabla jugadores. Aún no está conectada a ninguna ruta,
+        // pero la dejamos coherente con el resto del modelo.
         $sql = "
             UPDATE jugadores
             SET nombres = ?,
@@ -186,33 +174,22 @@ class Jugador extends Model
         ]);
     }
 
-    // ─── DESACTIVAR ───
-    public function desactivar(int $id): bool
+    /**
+     * Eliminar un jugador
+     */
+    public function eliminar(int $id): bool
     {
-        $sql = "UPDATE deudas SET pago = 'mora' WHERE id_jugadores = ?";
+        $sql = "DELETE FROM jugadores WHERE id_jugadores = ?";
         return $this->execute($sql, [$id]);
     }
 
-    // ─── ELIMINAR (desactiva) ───
-    public function eliminar(int $id): bool
-    {
-        return $this->desactivar($id);
-    }
-
-    // ─── CONTAR ───
+    /**
+     * Contar jugadores
+     */
     public function contar(): int
     {
-        $sql    = "SELECT COUNT(*) as total FROM jugadores";
+        $sql = "SELECT COUNT(*) as total FROM vista_jugadores";
         $result = $this->queryOne($sql);
-        return (int)($result['total'] ?? 0);
-    }
-
-    // ─── CALCULAR EDAD ───
-    public function calcularEdad(string $fechaNacimiento): int
-    {
-        $nacimiento = new DateTime($fechaNacimiento);
-        $hoy        = new DateTime();
-        return (int)$hoy->diff($nacimiento)->y;
+        return $result['total'] ?? 0;
     }
 }
-
