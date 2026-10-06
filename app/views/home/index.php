@@ -74,8 +74,8 @@ if ($quickLoginDisponible) {
             <div class="slide">
                 <img src="/streepsoft/public/Image/collaege-2.png" alt="imagen-2">
                 <div class="overlay">
-                    <h1>Cada partido es una <span>oportunidad</span>.</h1>
-                    <p>para demostrar quién eres.</p>
+                    <h1>Cada partido es una <span>oportunidad</span></h1>
+                    <p>para demostrar quién eres</p>
                 </div>
             </div>
 
