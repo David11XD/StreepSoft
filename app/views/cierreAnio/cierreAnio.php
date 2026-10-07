@@ -311,7 +311,7 @@
                 <div class="resumen-confirmacion resumen-historial">
                     <div class="resumen-item">
                         <span class="resumen-etiqueta">Total recaudado</span>
-                        <strong>$158.300.000</strong>
+                        <strong class="dato-recaudado">$158.300.000</strong>
                     </div>
                     <div class="resumen-item">
                         <span class="resumen-etiqueta">Alumnos con ciclo</span>
@@ -352,6 +352,7 @@
                     <table id="tablaHistorialPagosAnio">
                         <thead>
                             <tr>
+                                <th class="col-avatar" aria-label="Iniciales"></th>
                                 <th>Alumno</th>
                                 <th>Categoría</th>
                                 <th>Pagado en 2025</th>
@@ -361,56 +362,40 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <div class="celda-jugador">
-                                        <div class="avatar-iniciales">SR</div>
-                                        <div class="celda-jugador-texto">
-                                            <h3>Santiago Rúa</h3>
-                                        </div>
-                                    </div>
+                                <td class="col-avatar">
+                                    <div class="avatar-iniciales">SR</div>
                                 </td>
+                                <td class="col-alumno">Santiago<br>Rúa</td>
                                 <td>Sub-14</td>
                                 <td>$810.000</td>
                                 <td class="celda-deuda">$270.000</td>
                                 <td><span class="badge-estado badge-mora">En mora</span></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="celda-jugador">
-                                        <div class="avatar-iniciales">MG</div>
-                                        <div class="celda-jugador-texto">
-                                            <h3>Mariana Gil</h3>
-                                        </div>
-                                    </div>
+                                <td class="col-avatar">
+                                    <div class="avatar-iniciales">MG</div>
                                 </td>
+                                <td class="col-alumno">Mariana<br>Gil</td>
                                 <td>Sub-12</td>
                                 <td>$800.000</td>
                                 <td class="celda-deuda">$180.000</td>
                                 <td><span class="badge-estado badge-mora">En mora</span></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="celda-jugador">
-                                        <div class="avatar-iniciales">TP</div>
-                                        <div class="celda-jugador-texto">
-                                            <h3>Tomás Prieto</h3>
-                                        </div>
-                                    </div>
+                                <td class="col-avatar">
+                                    <div class="avatar-iniciales">TP</div>
                                 </td>
+                                <td class="col-alumno">Tomás<br>Prieto</td>
                                 <td>Sub-14</td>
                                 <td>Becado</td>
                                 <td>$0</td>
                                 <td><span class="badge-estado badge-aldia">Al día</span></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="celda-jugador">
-                                        <div class="avatar-iniciales">LM</div>
-                                        <div class="celda-jugador-texto">
-                                            <h3>Laura Méndez</h3>
-                                        </div>
-                                    </div>
+                                <td class="col-avatar">
+                                    <div class="avatar-iniciales">LM</div>
                                 </td>
+                                <td class="col-alumno">Laura<br>Méndez</td>
                                 <td>Sub-16</td>
                                 <td>$450.000</td>
                                 <td class="celda-deuda">$90.000</td>
