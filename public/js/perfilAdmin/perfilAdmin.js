@@ -135,6 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputFoto = document.getElementById('inputFoto');
     const formCambiarFoto = document.getElementById('formCambiarFoto');
 
+    // Acomoda la foto antes de guardarla y actualizarla
+       
+
+
+    
     botonCambiarFoto?.addEventListener('click', () => {
         inputFoto.click();
     });

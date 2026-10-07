@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadistica | Streepssoft</title>
+    <title>Estadistica | Streepsoft</title>
     <link rel="stylesheet" href="/streepsoft/public/css/dashboard/dash.css">
     <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
 </head>
@@ -18,13 +18,13 @@
         <div class="card-dashboard">
             <div class="card-admin">
                 <div class="card-text">
-                    <h1>¡Bienvenido, Administrador!</h1>
-                    <p>Aqui tienes resumen general de tu escuela de fubtbol</p>
+                    <h1>¡<?php echo $saludo ?? 'Bienvenido'; ?>, <?php echo htmlspecialchars($admin['nombre_completo'] ?? 'Administrador'); ?>!</h1>
+                    <p>Aqui tienes resumen general de Cop Colombia Internacional</p>
                 </div>
 
                 <div class="card-fetch">
                     <div class="mdi-light--calendar "></div>
-                    <p>12-05-2026</p>
+                    <p><?php echo date('d-m-Y');?></p>
                 </div>
             </div>
 

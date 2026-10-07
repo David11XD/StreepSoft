@@ -48,6 +48,7 @@
 
                         <div class="info-admin">
                             <h2><?php echo isset($admin['nombre_completo']) ? $admin['nombre_completo'] : 'No disponible'; ?></h2>
+                            
                             <p class="rol-admin">Administrador</p>
 
                             <div class="dato-linea">
@@ -299,6 +300,8 @@
                         <input type="text" id="input-nombre-completo" name="nombre_completo"
                             value="<?php echo isset($admin['nombre_completo']) ? htmlspecialchars($admin['nombre_completo']) : ''; ?>"
                             pattern="[A-Za-zÀ-ÿñÑ\s]+"
+                            maxlength="50"
+                            minlength="10"
                             title="Solo se permiten letras y espacios, sin números ni caracteres especiales"
                             required>
 

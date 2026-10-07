@@ -147,6 +147,11 @@ if (Auth::check()) {
             '/perfil/administrador' => ['controller' => 'PerfilAdminController', 'method' => 'perfil'],
             '/reportes/generar' => ['controller' => 'ReporteController', 'method' => 'generar'],
             '/cierre-anio' => ['controller' => 'CierreAnioController', 'method' => 'index'],
+            '/jugadores/editar/:id' => ['controller' => 'JugadorController', 'method' => 'editar'],
+            '/perfil-jugador/:id' => ['controller' => 'JugadorController', 'method' => 'perfil'],
+            '/instructores/listar' => ['controller' => 'InstructorController', 'method' => 'listar'],
+            '/instructores/crear' => ['controller' => 'InstructorController', 'method' => 'crearForm'],
+            '/instructores/editar/:id' => ['controller' => 'InstructorController', 'method' => 'editarForm'],
         ],
         
         'POST' => [
@@ -155,6 +160,11 @@ if (Auth::check()) {
             '/deudas/registrar-pago' => ['controller' => 'DeudaController', 'method' => 'registrarPago'],
             '/perfil/actualizar' => ['controller' => 'PerfilAdminController', 'method' => 'actualizarPerfil'],
             '/perfil/cambiar-foto' => ['controller' => 'PerfilAdminController', 'method' => 'cambiarFoto'],
+            '/instructores/guardar' => ['controller' => 'InstructorController', 'method' => 'guardar'],
+            '/instructores/actualizar/:id' => ['controller' => 'InstructorController', 'method' => 'actualizar'],
+            '/instructores/retirar/:id' => ['controller' => 'InstructorController', 'method' => 'retirar'],
+            '/instructores/subir-foto' => ['controller' => 'InstructorController', 'method' => 'subirFoto'],
+            '/instructores/eliminar-foto' => ['controller' => 'InstructorController', 'method' => 'eliminarFoto'],
         ]
     ];
     
