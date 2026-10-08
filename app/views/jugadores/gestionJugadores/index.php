@@ -206,9 +206,11 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     <button>
                                         <selectedcontent></selectedcontent>
                                     </button>
-                                    <option value="todo">Pago</option>
-                                    <option value="pagado">pagado</option>
+                                    <option value="todo">Seleccionar</option>
+                                    <option value="vigente">Vigente</option>
+                                    <option value="pendiente">Pendiente</option>
                                     <option value="mora">Mora</option>
+                                    <option value="pagado">Pagado</option>
                                 </select>
                             </div>
                         </div>
@@ -387,7 +389,30 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     <td>
                                         <div class="table-text">
                                             <h3><?= htmlspecialchars($jugador['fecha_limite_pago']) ?></h3>
-                                            <p class="table-text-estado">Mora 5 dias</p>
+                                            <?php 
+                                                $fechaLimite = new DateTime($jugador['fecha_limite_pago']);
+                                                $hoy = new DateTime('today');
+                                                $diasParaVencer = $hoy->diff($fechaLimite)->days;
+                                                $estadoDeuda = $jugador['pago'] ?? 'pendiente';
+
+                                                if ($estadoDeuda === 'pagado') {
+                                                    $estadoTexto = 'Pagado';
+                                                    $claseEstado = 'estado-pagado';
+                                                } elseif ($estadoDeuda === 'mora') {
+                                                    $estadoTexto = 'Mora ' . abs($diasParaVencer) . ' días';
+                                                    $claseEstado = 'estado-mora';
+                                                } elseif ($diasParaVencer < 0) {
+                                                    $estadoTexto = 'Vencida';
+                                                    $claseEstado = 'estado-mora'; 
+                                                } elseif ($diasParaVencer <= 5) {
+                                                    $estadoTexto = 'Pendiente';
+                                                    $claseEstado = 'estado-pendiente';
+                                                } else {
+                                                    $estadoTexto = 'Vigente';
+                                                    $claseEstado = 'estado-vigente';
+                                                }
+                                            ?>
+                                            <p class="table-text-estado <?= $claseEstado ?>"><?= $estadoTexto ?></p>
                                         </div>
                                     </td>
                                     <td>
