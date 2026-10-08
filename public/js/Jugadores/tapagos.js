@@ -1,6 +1,5 @@
 const btnFiltro = document.getElementById("btnFiltro");
 const menuFiltro = document.getElementById("menuFiltro");
-
 const tabla = document.getElementById("tablaJugadores");
 const tbody = tabla.querySelector("tbody");
 const cantidadRegistros = document.getElementById("cantidadRegistros");
@@ -15,100 +14,76 @@ const filtroPago = document.getElementById("filtroPago");
 
 let paginaActual = 1;
 
-const checkboxes = menuFiltro.querySelectorAll(
-    'input[type="checkbox"]'
+const checkboxesColumnas = menuFiltro.querySelectorAll(
+    'input[type="checkbox"][data-columna]'
 );
 
-buscador.addEventListener("input", function () {
-    paginaActual = 1;
-    actualizarTabla();
-});
+function mostrarOcultarColumna(numeroColumna, mostrar) {
 
-// Los 3 selects de filtro también reinician a página 1 y recalculan
-[filtroBeca, filtroEstado, filtroPago].forEach(control => {
-    if (!control) return; // por si algún id no existe todavía en el HTML
-    control.addEventListener("change", () => {
-        paginaActual = 1;
-        actualizarTabla();
+    const columna = Number(numeroColumna) + 1;
+
+    const celdas = document.querySelectorAll(
+        `#tablaJugadores tr > *:nth-child(${columna})`
+    );
+
+    celdas.forEach(celda => {
+        celda.style.display = mostrar ? "" : "none";
     });
-});
+}
 
-checkboxes.forEach(checkbox => {
+
+// Recuperar configuración guardada
+checkboxesColumnas.forEach(checkbox => {
 
     const numeroColumna = checkbox.dataset.columna;
 
-    // Recuperar estado guardado
-    const guardado = localStorage.getItem(
+    const estadoGuardado = localStorage.getItem(
         `columna_${numeroColumna}`
     );
 
-    if (guardado !== null) {
-        checkbox.checked = guardado === "true";
+    // Si existe una configuración guardada,
+    // utilizarla
+    if (estadoGuardado !== null) {
+        checkbox.checked = estadoGuardado === "true";
     }
 
-    // Aplicar estado al cargar
+    // Aplicar estado al cargar la página
     mostrarOcultarColumna(
         numeroColumna,
         checkbox.checked
     );
 
 
-    // Cuando el usuario cambia el checkbox
+    // Guardar cuando cambie
     checkbox.addEventListener("change", function () {
 
-        const estado = this.checked;
-
-        // Guardar estado
         localStorage.setItem(
             `columna_${numeroColumna}`,
-            estado
+            this.checked
         );
 
-        // Mostrar / ocultar
         mostrarOcultarColumna(
             numeroColumna,
-            estado
+            this.checked
         );
 
     });
 
 });
 
-function mostrarOcultarColumna(numeroColumna, mostrar) {
-
-    const numero = Number(numeroColumna) + 1;
-
-    const celdas = document.querySelectorAll(
-        `#tablaJugadores tr > *:nth-child(${numero})`
-    );
-
-    celdas.forEach(celda => {
-
-        celda.style.display = mostrar
-            ? ""
-            : "none";
-
-    });
-
-}
-
-// Abrir/cerrar menú
+// Abrir/cerrar menú de orden
 btnFiltro.addEventListener("click", () => {
     menuFiltro.classList.toggle("mostrar");
 });
 
-// Opciones de orden
+// Opciones de orden (A-Z / Z-A)
 document.querySelectorAll(".menu-filtro button").forEach(boton => {
-
     boton.addEventListener("click", () => {
-
         const orden = boton.dataset.orden;
-
         const filas = Array.from(tbody.querySelectorAll("tr"));
 
         filas.sort((a, b) => {
-
-            // Columna 1 = Nombres (columna 0 es la foto)
+            // Columna 1 = Apellidos (columna 0 es la foto)
             const apellidoA = a.cells[1].textContent.trim();
             const apellidoB = b.cells[1].textContent.trim();
 
@@ -118,42 +93,33 @@ document.querySelectorAll(".menu-filtro button").forEach(boton => {
         });
 
         filas.forEach(fila => tbody.appendChild(fila));
-
         menuFiltro.classList.remove("mostrar");
         paginaActual = 1;
         actualizarTabla();
     });
-
 });
 
-
-// (mostrarRegistros() mostraba/ocultaba filas por índice, sin tener en
-// cuenta búsqueda ni filtros -- quedó reemplazada por actualizarTabla(),
-// que primero filtra y luego pagina sobre el resultado filtrado.)
-cantidadRegistros.addEventListener("change", () => {
-    paginaActual = 1;
-    actualizarTabla();
-});
-
-
+// ======================================
+// FILTRO COMBINADO: búsqueda + 3 selects
+// ======================================
 function filaCumpleFiltros(fila) {
-    const texto = (buscador?.value ?? "").trim().toLowerCase();
+    const texto = buscador.value.trim().toLowerCase();
     if (texto && !fila.textContent.toLowerCase().includes(texto)) {
         return false;
     }
 
-    const beca = filtroBeca?.value ?? "todo";
+    const beca = filtroBeca.value;
     if (beca !== "todo" && fila.dataset.beca !== beca) {
         return false;
     }
 
-    const estado = filtroEstado?.value ?? "todo";
+    const estado = filtroEstado.value;
     if (estado !== "todo" && fila.dataset.estado !== estado) {
         return false;
     }
 
-    const pago = filtroPago?.value ?? "todo";
-    if (pago !== "todo" && fila.dataset.estado !== pago) {
+    const pago = filtroPago.value;
+    if (pago !== "todo" && fila.dataset.pago !== pago) {
         return false;
     }
 
@@ -164,77 +130,38 @@ function obtenerFilasFiltradas() {
     return Array.from(tbody.querySelectorAll("tr")).filter(filaCumpleFiltros);
 }
 
+// ======================================
+// PAGINACIÓN (sobre las filas ya filtradas)
+// ======================================
 function actualizarTabla() {
-
     const todasLasFilas = Array.from(tbody.querySelectorAll("tr"));
-    const filas = obtenerFilasFiltradas();
+    const filasFiltradas = obtenerFilasFiltradas();
 
     // Oculta primero las que no cumplen ningún filtro
     todasLasFilas.forEach(fila => {
-        if (!filas.includes(fila)) {
+        if (!filasFiltradas.includes(fila)) {
             fila.style.display = "none";
         }
     });
 
-    const totalRegistros = filas.length;
-
+    const totalRegistros = filasFiltradas.length;
     const registrosPorPagina = parseInt(cantidadRegistros.value);
-
-    const totalPaginas = Math.ceil(
-        totalRegistros / registrosPorPagina
-    );
-
-
-    // Evitar que la página actual sea mayor
-    // que el número de páginas disponibles
+    const totalPaginas = Math.ceil(totalRegistros / registrosPorPagina) || 1;
 
     if (paginaActual > totalPaginas) {
-        paginaActual = totalPaginas || 1;
+        paginaActual = totalPaginas;
     }
 
-
-    // ======================================
-    // CALCULAR DESDE Y HASTA
-    // ======================================
-
     const inicio = (paginaActual - 1) * registrosPorPagina;
+    const fin = Math.min(inicio + registrosPorPagina, totalRegistros);
 
-    const fin = Math.min(
-        inicio + registrosPorPagina,
-        totalRegistros
-    );
-
-
-    // ======================================
-    // MOSTRAR / OCULTAR FILAS
-    // ======================================
-
-    filas.forEach((fila, index) => {
-
-        if (index >= inicio && index < fin) {
-
-            fila.style.display = "";
-
-        } else {
-
-            fila.style.display = "none";
-
-        }
-
+    filasFiltradas.forEach((fila, index) => {
+        fila.style.display = (index >= inicio && index < fin) ? "" : "none";
     });
 
-
-    // ======================================
-    // TEXTO
-    // ======================================
-
     if (totalRegistros === 0) {
-
-        infoRegistros.textContent =
-            "Mostrando 0 - 0 de 0 jugadores";
-
+        infoRegistros.textContent = "Mostrando 0 - 0 de 0 jugadores";
     } else {
-
         infoRegistros.textContent =
             `Mostrando ${inicio + 1} - ${fin} de ${totalRegistros} jugadores`;
         infoRegistros.style.marginTop = "12px";
@@ -243,174 +170,173 @@ function actualizarTabla() {
         infoRegistros.style.fontSize = "clamp(10px, 2vw, 12px)";
         infoRegistros.style.fontWeight = "400";
         infoRegistros.style.color = "#c1bdbd";
-
     }
-
-
-    // ======================================
-    // CREAR NÚMEROS DE PÁGINA
-    // ======================================
 
     crearNumerosPaginas(totalPaginas);
 
-
-    // ======================================
-    // BOTONES ANTERIOR / SIGUIENTE
-    // ======================================
-
     btnAnterior.disabled = paginaActual === 1;
-
-    btnSiguiente.disabled =
-        paginaActual === totalPaginas || totalPaginas === 0;
-
+    btnSiguiente.disabled = paginaActual === totalPaginas || totalPaginas === 0;
 }
-
-
-// ======================================
-// CREAR NÚMEROS
-// ======================================
 
 function crearNumerosPaginas(totalPaginas) {
-
     numerosPaginas.innerHTML = "";
 
-
     for (let i = 1; i <= totalPaginas; i++) {
-
         const boton = document.createElement("button");
-
         boton.classList.add("pagina-numero");
-
         boton.textContent = i;
 
-
         if (i === paginaActual) {
-
             boton.classList.add("activo");
-
         }
-
 
         boton.addEventListener("click", () => {
-
             paginaActual = i;
-
             actualizarTabla();
-
         });
-
 
         numerosPaginas.appendChild(boton);
-
     }
-
 }
 
-
-// ======================================
-// BOTÓN ANTERIOR
-// ======================================
-
 btnAnterior.addEventListener("click", () => {
-
     if (paginaActual > 1) {
-
         paginaActual--;
-
         actualizarTabla();
-
     }
-
 });
-
-
-// ======================================
-// BOTÓN SIGUIENTE
-// ======================================
 
 btnSiguiente.addEventListener("click", () => {
-
-    const totalRegistros =
-        tbody.querySelectorAll("tr").length;
-
-    const registrosPorPagina =
-        parseInt(cantidadRegistros.value);
-
-    const totalPaginas =
-        Math.ceil(totalRegistros / registrosPorPagina);
-
-
+    const totalPaginas = Math.ceil(obtenerFilasFiltradas().length / parseInt(cantidadRegistros.value)) || 1;
     if (paginaActual < totalPaginas) {
-
         paginaActual++;
-
         actualizarTabla();
-
     }
-
 });
-
-
-// ======================================
-// CAMBIAR CANTIDAD DE REGISTROS
-// ======================================
 
 cantidadRegistros.addEventListener("change", () => {
-
     paginaActual = 1;
-
     actualizarTabla();
-
 });
 
+// Búsqueda y los 3 filtros: todos reinician a página 1 y recalculan
+[buscador, filtroBeca, filtroEstado, filtroPago].forEach(control => {
+    const evento = control === buscador ? "input" : "change";
+    control.addEventListener(evento, () => {
+        paginaActual = 1;
+        actualizarTabla();
+    });
+});
 
-// ======================================
-// INICIAR
-// ======================================
+// Delegación de eventos para los botones de acción (Editar / Ver perfil)
+tbody.addEventListener("click", (e) => {
+    if (e.target.closest(".btn-menu-accion")) {
+        const fila = e.target.closest(".table-accion");
+        const menu = fila.querySelector(".menu-acciones");
 
+        document.querySelectorAll(".menu-acciones").forEach(m => {
+            if (m !== menu) m.classList.remove("mostrar");
+        });
+
+        menu.classList.toggle("mostrar");
+    }
+});
+
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".table-accion")) {
+        document.querySelectorAll(".menu-acciones").forEach(m => {
+            m.classList.remove("mostrar");
+        });
+    }
+});
+
+// Iniciar
 actualizarTabla();
 
-// Abrir/cerrar el modal de "Registrar pago" de CADA fila
-document.querySelectorAll(".btn-pago[data-id-deuda]").forEach(boton => {
-    boton.addEventListener("click", () => {
-        const modal = document.getElementById("modalRegistro-" + boton.dataset.idDeuda);
-        if (modal) {
-            modal.classList.add("activo");
+
+const btnNuevoJugador = document.getElementById("btnNuevoJugador");
+const modalRegistro = document.getElementById("modalRegistro");
+const cerrarRegistro = document.querySelector(".cerrarRegistro");
+const iframeRegistro = document.getElementById("iframeRegistro");
+
+// Modal reutilizable
+function abrirModalRegistro(url){
+    iframeRegistro.src = url;
+    modalRegistro.classList.add("activo");
+}
+
+function cerrarModalRegistro(){
+    modalRegistro.classList.remove("activo");
+    // Limpiar el src al cerrar: si no, la próxima vez que se abra
+    // (aunque sea para otro jugador) por un instante se alcanza a
+    // ver el formulario anterior mientras carga el nuevo.
+    iframeRegistro.src = "";
+}
+
+// Abrir modal
+if (btnNuevoJugador) {
+    btnNuevoJugador.addEventListener("click", (e) => {
+        e.preventDefault();
+        abrirModalRegistro("/streepsoft/jugadores/deudas");
+    });
+}
+
+if (tbody) {
+    tbody.addEventListener("click", (e) => {
+        const botonEditar = e.target.closest(".btn-editar-historial");
+        if(botonEditar){
+            abrirModalRegistro("/streepsoft/" + botonEditar.dataset.idJugador);
+        }
+    })
+
+    tbody.addEventListener("click", (e) => {
+        const botonPerfil = e.target.closest(".btn-historial");
+        if (botonPerfil) {
+            const id = botonPerfil.dataset.idJugador;
+            window.location.href = "/streepsoft/" + id;
         }
     });
-});
+}
 
-document.querySelectorAll(".modal-registro").forEach(modal => {
-    const btnCerrar = modal.querySelector(".cerrar-registro");
+if (tbody) {
+    tbody.addEventListener("click", (e) => {
+        const btnPago = e.target.closest(".btn-pago");
+        if (btnPago) {
+            const idDeuda = btnPago.dataset.idDeuda;
+            const modalId = "modalRegistro-" + idDeuda;
+            const modal = document.getElementById(modalId);
+            
+            if (modal) {
+                modal.classList.add("activo");
+            }
+        }
+    });
+}
+
+// Cerrar modal (botón X)
+document.addEventListener("click", (e) => {
+    const btnCerrar = e.target.closest(".cerrar-registro");
     if (btnCerrar) {
-        btnCerrar.addEventListener("click", () => {
-            modal.classList.remove("activo");
-        });
-    }
-
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.classList.remove("activo");
+        const modal = btnCerrar.closest(".modal-registro");
+        if (modal) {
+            modal.classList.remove("activo");  // Cierra SOLO ese modal
         }
-    });
+    }
 });
 
-// Cerrar con ESC cualquier modal que este abierto
+// Cerrar haciendo clic fuera del contenido
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal-registro")) {
+        e.target.classList.remove("activo");
+    }
+});
+
+// Cerrar con tecla ESC
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-        document.querySelectorAll(".modal-registro.activo").forEach(modal => {
-            modal.classList.remove("activo");
-        });
-    }
-});
-
-// El formulario de "Registrar pago" vive dentro de un <iframe>. Su botón
-// "Cancelar" avisa por postMessage (no puede tocar el DOM del padre
-// directamente) para que cerremos el modal desde aquí afuera.
-window.addEventListener("message", (e) => {
-    if (e.data === "cerrarModalPago") {
-        document.querySelectorAll(".modal-registro.activo").forEach(modal => {
-            modal.classList.remove("activo");
-        });
+        const modalActivo = document.querySelector(".modal-registro.activo");
+        if (modalActivo) {
+            modalActivo.classList.remove("activo");
+        }
     }
 });

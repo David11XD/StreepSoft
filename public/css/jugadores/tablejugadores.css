@@ -920,6 +920,31 @@ tbody td{
     transform: scale(1.05);
 }
 
+.table-text-estado {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 1px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-top: 4px;
+}
+
+.table-text-estado.estado-pagado {
+    color: #4CAF50;
+}
+
+.table-text-estado.estado-vigente {
+    color: #2196F3;
+}
+
+.table-text-estado.estado-pendiente {
+    color: #FF9800;
+}
+
+.table-text-estado.estado-mora {
+    color: #f44336;
+}
+
 /* ==========================================
    MEDIA QUERIES PARA ADAPTACIÓN RESPONSIVA
    ========================================== */

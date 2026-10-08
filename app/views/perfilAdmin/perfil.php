@@ -269,6 +269,131 @@
                 <div class="linea-divisora"></div>
             </div>
 
+            <!-- Configuracion de pagos--->
+            <section class="configuracion">
+                <div class="card-configuracion">
+                    <span class="icon-park-outline--setting-config"></span>
+                    <div class="configuracion-texto">
+                        <h2>Configuración de pagos</h2>
+                        <p>Configure las fechas limites para los pagos de los alumnos</p>
+                    </div>
+                </div>
+                
+                <?php if (($_GET['success'] ?? '') === 'configuracion_guardada'): ?>
+                    <p class="modal-mensaje" style="color: #2ecc72">Configuración guardada</p>
+                <?php endif; ?>
+                <?php if (($_GET['error'] ?? '') === 'dia_invalido'): ?>
+                    <p class="modal-mesaje modal-mensaje-error">Elige und ia de cobro válido.</p>
+                <?php endif; ?>
+                <?php if (($_GET['error'] ?? '') === 'gracia_invalida'): ?>
+                    <p class="modal-mensaje modal-mensaje-error">Elige un perido de gracia válido.</p>
+                <?php endif; ?>
+                <?php if (($_GET['error'] ?? '') === 'configuracion_guardado'): ?>
+                    <p class="modal-mensaje modal-mensaje-error">No se pudo guardar la configuración de pagos.</p>
+                <?php endif; ?>
+                <?php if (($_GET['error'] ?? '') === 'gracia_invalida'): ?>
+                    <p class="modal-mensaje modal-mensaje-error">Elige un período de gracia válido.</p>
+                <?php endif; ?>
+
+                <form action="/streepsoft/perfil/configuracion-pagos" method="POST" id="formConfiguracionPagos">
+                    <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken) ?>">
+
+                    <div class="grid">
+                        <div class="card-1">
+                            <div class="limite-pago">
+                                <span class="lets-icons--date-fill"></span>
+                                <div class="text-limite">
+                                    <h2>Fecha de pago</h2>
+                                    <p>Selecciona el día máximo para realizar el pago mensual.</p>
+                                </div>
+                            </div>
+
+                            <div class="input-limite">
+                                <label>Dia de Pago</label>
+                                <select name="dia_cobro" id="selectDiaCobro">
+                                    <?php for ($dia = 1; $dia <= 31; $dia++): ?>
+                                        <option value="<?= $dia ?>" <?= $dia === $diaCobro  ? 'selected'  : '' ?>>
+                                            Dia <?= $dia ?> del mes
+                                        </option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card-2">
+                            <div class="periodo-gracia">
+                                <span class="ant-design--history-outlined"></span>
+                                <div class="text-periodo">
+                                    <h2>Periodo de Gracia</h2>
+                                    <p>Días adicionales antes de marcar el pago como mora.</p>
+                                </div>
+                            </div>
+
+                            <div class="input-periodo">
+                                <label>Dias de Gracia</label>
+                                <select name="dias_gracia" id="selectDiasGracia">
+                                    <?php for ($gracia = 0; $gracia <= 30; $gracia++): ?>
+                                        <option value="<?= $gracia ?>" <?= $gracia === $diasGracia ? 'selected' : '' ?>>
+                                            <?= $gracia === 0 ? 'Sin dias de gracia' : $gracia . ' ' . ($gracia === 1 ? 'dia' : 'dias') ?>
+                                        </option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="card-3">
+                            <div class="resumen">
+                                <span class="mynaui--danger-square-solid"></span>
+                                <div class="texto-resumen">
+                                    <h2>Resumen</h2>
+                                    <p>Vista previa de la configuraciòn</p>
+                                </div>
+                            </div>
+
+                            <div class="card-resumen">
+                                <div class="fecha">
+                                    <div class="fecha-pago-texto">
+                                        <h3>Fecha limite</h3>
+                                        <p id="resumenDiaCobro">Dia <?= $diaCobro ?> de cada mes</p>
+                                    </div>
+                                    <div class="fecha-gracia-texto">
+                                        <h3>Periodo de Gracia</h3>
+                                        <p id="resumentDiasGracia"><?= $diasGracia > 0 ? $diasGracia . ' dias de gracia' : 'sin dias de gracia' ?></p>
+                                    </div>
+                                </div>
+
+                                <div class="advertencia">
+                                    <div class="card-advertencia">
+                                        <span class="jam--triangle-danger-f"></span>
+                                        <div class="text-advertencia">
+                                            <h3>Inicio de mora</h3>
+                                            <p id="resumenInicioMora">A partir del día <?= $diaCobro + $diasGracia + 1 ?> de cada mes*</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-recordar">
+                                        <span class="hugeicons--idea-01"></span>
+                                        <div class="text-recordar">
+                                            <?php if ($diasGracia > 0): ?>
+                                                <p>El pago vence el día <?= $diaCobro ?>. Después tendrá <?= $diasGracia ?> días de gracia; la mora inicia al terminar ese periodo.</p>
+                                            <?php else: ?>
+                                                <p>El pago vence el día <?= $diaCobro ?> y la mora inicia al día siguiente si continúa pendiente.</p>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-configuracion">
+                        <button type="submit" class="btn-guardar">
+                            Guardar cambios
+                        </button>
+                    </div>
+                </form>
+            </section>
+
             <!-- Modal: Editar información -->
             <div class="modal-overlay" id="modalEditarInfo">
                 <div class="modal-caja">
@@ -297,7 +422,7 @@
                     <form action="/streepsoft/perfil/actualizar" method="POST" id="formEditarInfo">
 
                         <label for="input-nombre-completo">Nombre completo</label>
-                        <input type="text" id="input-nombre-completo" name="nombre_completo"
+                        <input type="text" maxlength="15" id="input-nombre-completo" name="nombre_completo"
                             value="<?php echo isset($admin['nombre_completo']) ? htmlspecialchars($admin['nombre_completo']) : ''; ?>"
                             pattern="[A-Za-zÀ-ÿñÑ\s]+"
                             maxlength="50"
@@ -306,7 +431,7 @@
                             required>
 
                         <label for="input-telefono">Teléfono</label>
-                        <input type="text" id="input-telefono" name="telefono"
+                        <input type="text"  inputmode="numeric" maxlength="10" id="input-telefono" name="telefono"
                             value="<?php echo isset($admin['telefono']) ? htmlspecialchars($admin['telefono']) : ''; ?>"
                             pattern="[0-9]+"
                             maxlength="10"
@@ -314,7 +439,7 @@
                             required>
 
                         <label for="input-documento">Documento de identidad</label>
-                        <input type="text" id="input-documento" name="documento_identidad"
+                        <input type="text" inputmode="numeric" maxlength="10" id="input-documento" name="documento_identidad"
                             value="<?php echo isset($admin['documento_identidad']) ? htmlspecialchars($admin['documento_identidad']) : ''; ?>"
                             pattern="[0-9]+"
                             maxlength="10"
@@ -329,6 +454,8 @@
                 </div>
             </div>
         </div>
+
+
 
     </div>
 

@@ -100,7 +100,7 @@
                             </svg>
                         </span>
 
-                        <div>Alumno</div>
+                        <div>Jugadores</div>
                     </a>
 
 

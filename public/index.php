@@ -76,9 +76,11 @@ require_once APP_PATH . '/models/TipoDocumento.php';
 require_once APP_PATH . '/models/Responsable.php';
 require_once APP_PATH . '/models/Documento.php';
 require_once APP_PATH . '/models/Deuda.php';
+require_once APP_PATH . '/models/HistorialDeuda.php';
 require_once APP_PATH . '/models/MetodoPago.php';
 require_once APP_PATH . '/models/TipoBeca.php';
 require_once APP_PATH . '/models/Actividad.php';
+require_once APP_PATH . '/models/Configuracion.php';
 
 // Verificar si la sesion expiro por timeout
 SessionTimeout::check();
@@ -102,8 +104,6 @@ $GLOBALS['pdo'] = $pdo ??  null;
 // 3. DEFINIR RUTAS
 // ============================================================================
 
-// Definir las rutas de la aplicación
-// Formato: method(ruta, 'ControllerName@methodName')
 
 // RUTAS PÚBLICAS (sin autenticación requerida)
 $rutas = [
@@ -157,8 +157,11 @@ if (Auth::check()) {
             '/jugadores/actualizar' => ['controller' => 'JugadorController', 'method' => 'actualizar'],
             '/jugadores/eliminar/:id' => ['controller' => 'JugadorController', 'method' => 'eliminar'],
             '/deudas/registrar-pago' => ['controller' => 'DeudaController', 'method' => 'registrarPago'],
+            '/deudas/generar-proximas' => ['controller' => 'GeneradorDeudasController', 'method' => 'generarProximas'],
+            '/deudas/actualizar-moras' => ['controller' => 'GeneradorDeudasController', 'method' => 'actualizarMoras'],
             '/perfil/actualizar' => ['controller' => 'PerfilAdminController', 'method' => 'actualizarPerfil'],
             '/perfil/cambiar-foto' => ['controller' => 'PerfilAdminController', 'method' => 'cambiarFoto'],
+            '/perfil/configuracion-pagos' => ['controller' => 'PerfilAdminController', 'method' => 'guardarConfiguracionPagos'],
             '/instructores/guardar' => ['controller' => 'InstructorController', 'method' => 'guardar'],
             '/instructores/actualizar/:id' => ['controller' => 'InstructorController', 'method' => 'actualizar'],
             '/instructores/retirar/:id' => ['controller' => 'InstructorController', 'method' => 'retirar'],
@@ -176,9 +179,6 @@ if (Auth::check()) {
     }
 }
  
-// ============================================================================
-// 4. PROCESAR LA PETICIÓN
-// ============================================================================
 
 try {
     // Obtener el método HTTP (GET, POST, etc)
