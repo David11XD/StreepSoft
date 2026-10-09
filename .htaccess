@@ -1,8 +1,30 @@
+#1. Ocultar el lista de archivos en directorios
+Options -Indexes
+
+
+#2. Definir codificación de caracteres por defecto
+AddDefaultCharset UTF-8
+
+#3. Configuracion de URLs Amigables
 <IfModule mod_rewrite.c>
+
+    # Activar el motor de reescritura de URLs
     RewriteEngine On
+
+     #Establecer la ruta base (modifica si tu proyecto esta en una subcarpeta)
     RewriteBase /streepsoft/
+
+    # Regla de excepcion 1: No redirigir si la peticion corresponde a un archivo real
+    # (ej: assets/css/estilos.css)
     RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Regla de excepcion 2: No redirigir si la peticion corresponde a una carpeta real
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} !^public/
-    RewriteRule ^(.*)$ public/index.php [QSA,L]
+
+    # Reescribir cualquier ruta del archivo index.php pasando la direccion como parametro "url"
+    #[QSA] = Mantiene parametros GET adicionales (ej: ?orden=asc)
+    #[L] = Ultima regla a procesar si esta condicion se cumple
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 </IfModule>
+
+
