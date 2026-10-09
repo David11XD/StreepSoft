@@ -1,2 +1,5 @@
 /vendor/
 /logs/
+public/Image/admins/*
+logs/
+!public/Image/admins/.gitkeep

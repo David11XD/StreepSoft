@@ -7,6 +7,7 @@
     <title>nav | streepsooft </title>
     <link rel="stylesheet" href="/streepsoft/public/css/hamburguesa/hamburguer.css">
 </head>
+
 <body>
     <div class="navbar">
         <nav class="main-navbar">
@@ -20,7 +21,7 @@
 
                 <a href="/streepsoft/perfil/administrador" class="navbar-items" title="Usuario">
                     <img src="/streepsoft/public/Image/admins/<?php echo htmlspecialchars($admin['foto']); ?>" alt="usuario" class="navbar-icon">
-                    
+
                     <div class="navbar-user-info">
                         <h1><?php echo isset($admin['nombre_completo']) ? htmlspecialchars($admin['nombre_completo']) : 'Administrador'; ?></h1>
                         <p><?php echo isset($admin['usuario']) ? htmlspecialchars($admin['usuario']) : ''; ?></p>
@@ -38,7 +39,7 @@
             </div>
         </nav>
     </div>
-    
+
     <aside id="side-menu" class="sidebar">
 
         <nav class="sidebar-links">
@@ -48,8 +49,8 @@
 
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24">
-                        <path d="M3 10.5L12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 19.5v-9z"/>
-                        <path d="M9 21v-6h6v6"/>
+                        <path d="M3 10.5L12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 19.5v-9z" />
+                        <path d="M9 21v-6h6v6" />
                     </svg>
                 </span>
 
@@ -63,18 +64,17 @@
             <!-- JUGADORES -->
             <div class="sidebar-item">
 
-                <button 
+                <button
                     class="sidebar-link players-btn"
                     onclick="togglePlayers()"
-                    title="Jugadores"
-                >
+                    title="Jugadores">
 
                     <span class="sidebar-icon-1">
                         <svg viewBox="0 0 24 24">
-                            <circle cx="9" cy="8" r="3"/>
-                            <circle cx="17" cy="9" r="2.5"/>
-                            <path d="M3.5 20c.5-3.5 2.5-5.5 5.5-5.5s5 2 5.5 5.5"/>
-                            <path d="M14 15c3-.5 5.5 1.5 6 5"/>
+                            <circle cx="9" cy="8" r="3" />
+                            <circle cx="17" cy="9" r="2.5" />
+                            <path d="M3.5 20c.5-3.5 2.5-5.5 5.5-5.5s5 2 5.5 5.5" />
+                            <path d="M14 15c3-.5 5.5 1.5 6 5" />
                         </svg>
                     </span>
 
@@ -95,8 +95,8 @@
                     <a href="/streepsoft/jugadores/gestion">
                         <span class="submenu-icon">
                             <svg viewBox="0 0 24 24">
-                                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/>
-                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" />
+                                <circle cx="12" cy="12" r="3" />
                             </svg>
                         </span>
 
@@ -107,9 +107,9 @@
                     <a href="/streepsoft/instructores/listar">
                         <span class="submenu-icon">
                             <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="9"/>
-                                <path d="M12 8v8"/>
-                                <path d="M8 12h8"/>
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M12 8v8" />
+                                <path d="M8 12h8" />
                             </svg>
                         </span>
 
@@ -117,12 +117,12 @@
                     </a>
 
 
-                    <a href="#">
+                    <a href="/streepsoft/jugadores/desactivacion">
                         <span class="submenu-icon">
                             <svg viewBox="0 0 24 24">
-                                <path d="M3 12a9 9 0 1 0 3-6.7"/>
-                                <path d="M3 4v6h6"/>
-                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M3 12a9 9 0 1 0 3-6.7" />
+                                <path d="M3 4v6h6" />
+                                <circle cx="12" cy="12" r="3" />
                             </svg>
                         </span>
 
@@ -138,9 +138,9 @@
 
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24">
-                        <rect x="3" y="6" width="18" height="13" rx="1"/>
-                        <path d="M3 10h18"/>
-                        <path d="M7 15h4"/>
+                        <rect x="3" y="6" width="18" height="13" rx="1" />
+                        <path d="M3 10h18" />
+                        <path d="M7 15h4" />
                     </svg>
                 </span>
 
@@ -154,10 +154,10 @@
 
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24">
-                        <path d="M5 3h9l5 5v13H5z"/>
-                        <path d="M14 3v6h5"/>
-                        <path d="M8 13h8"/>
-                        <path d="M8 17h6"/>
+                        <path d="M5 3h9l5 5v13H5z" />
+                        <path d="M14 3v6h5" />
+                        <path d="M8 13h8" />
+                        <path d="M8 17h6" />
                     </svg>
                 </span>
 
@@ -167,18 +167,19 @@
 
             </a>
 
-            <a href="#" class="sidebar-link" title="Actualización de datos">
+            <a href="/streepsoft/cierre-anio" class="sidebar-link" title="Cierre y Apertura de Año">
 
-                <div class="sidebar-icon">
+                <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24">
-                        <path d="M12 3a9 9 0 1 0 8.5 6"/>
-                        <path d="M12 7v5l3 2"/>
-                        <path d="M16 3h5v5"/>
+                        <rect x="3" y="5" width="18" height="16" rx="2" />
+                        <path d="M3 10h18" />
+                        <path d="M8 3v4" />
+                        <path d="M16 3v4" />
                     </svg>
-                </div>
+                </span>
 
                 <div class="sidebar-text">
-                    Actualización de datos
+                    Cierre y Apertura de Año
                 </div>
 
             </a>
@@ -191,9 +192,9 @@
 
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24">
-                        <path d="M9 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"/>
-                        <path d="M14 8l4 4-4 4"/>
-                        <path d="M8 12h10"/>
+                        <path d="M9 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+                        <path d="M14 8l4 4-4 4" />
+                        <path d="M8 12h10" />
                     </svg>
                 </span>
                 <div class="sidebar-text">
@@ -207,7 +208,5 @@
 
     <script src="/streepsoft/public/js/dashboard/dashboard.js"></script>
 </body>
+
 </html>
-
-
-
