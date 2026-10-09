@@ -22,11 +22,71 @@ class ConfiguracionController extends Controller
         $usuario = $this->usuarioModel->obtenerPorId($usuarioId);
         $estadisticas = $this->usuarioModel->obtenerEstadisticas();
 
+        // Obtener configuraciones actuales
+        $configPagos = $this->configuracionModel->obtenerConfiguracionPagos();
+        $diaGracia = $configPagos['dias_gracia'];
+        $diaPago = $configPagos['dia_cobro'];
+
         $this->view('configuracion/index', [
             'usuario' => $usuario,
             'estadisticas' => $estadisticas,
+            'dia_gracia' => $diaGracia,
+            'dia_cobro' => $diaPago,
             'titulo' => 'Configuración'
         ]);
+    }
+
+    /**
+     * Guardar configuración de deudas (días de gracia y día de pago)
+     * Ruta: /configuracion/guardar-deudas (POST)
+     */
+    public function guardarDeudas(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['error' => 'Método no permitido']);
+            return;
+        }
+
+        if (!$this->validateCSRFToken($_POST['_token'] ?? '')) {
+            http_response_code(403);
+            echo json_encode(['error' => 'Error de seguridad']);
+            return;
+        }
+
+        $diaGracia = (int) ($_POST['dia_gracia'] ?? 5);
+        $diaPago = (int) ($_POST['dia_cobro'] ?? $_POST['dia_pago'] ?? 1);
+
+        // Validaciones
+        if ($diaGracia < 0 || $diaGracia > 30) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Días de gracia debe estar entre 0 y 30']);
+            return;
+        }
+
+        if ($diaPago < 1 || $diaPago > 31) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Día de pago debe estar entre 1 y 31']);
+            return;
+        }
+
+        try {
+            // Guardar/actualizar días de gracia
+            $this->configuracionModel->actualizar('dias_gracia', (string) $diaGracia);
+            
+            // Guardar/actualizar día de pago
+            $this->configuracionModel->actualizar('dia_cobro', (string) $diaPago);
+
+            http_response_code(200);
+            echo json_encode([
+                'success' => true,
+                'mensaje' => 'Configuración guardada correctamente'
+            ]);
+        } catch (Exception $e) {
+            error_log("ConfiguracionController::guardarDeudas - " . $e->getMessage());
+            http_response_code(500);
+            echo json_encode(['error' => 'Error al guardar la configuración']);
+        }
     }
 
     /**
@@ -178,13 +238,4 @@ class ConfiguracionController extends Controller
 
         $this->redirect('/configuracion');
     }
-
-    /**
-     * Redirigir a una URL
-     */
-    // private function redirect(string $url): void
-    // {
-    //     header('Location: /proyecto' . $url);
-    //     exit;
-    // }
 }

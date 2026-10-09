@@ -5,7 +5,6 @@ declare(strict_types=1);
 
 abstract class Model
 {
-    /* La conexion a la base de datos */
     protected PDO $pdo;
 
     public function __construct(PDO $pdo)
@@ -13,34 +12,51 @@ abstract class Model
         $this->pdo = $pdo;
     }
 
-    /* Ejecutar una consulta de select */
+    /* Ejecutar una consulta SELECT */
     protected function query(string $sql, array $params = []): array
     {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
+
+        // No pasar un array vacío a execute(). Algunos drivers/configuraciones
+        // de PDO pueden producir HY093 cuando la consulta no tiene placeholders.
+        if ($params !== []) {
+            $stmt->execute($params);
+        } else {
+            $stmt->execute();
+        }
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /* Ejucutar una consulta que retorna Una fila */
+    /* Ejecutar una consulta que retorna una fila */
     protected function queryOne(string $sql, array $params = []): ?array
     {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params); 
+
+        if ($params !== []) {
+            $stmt->execute($params);
+        } else {
+            $stmt->execute();
+        }
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ?: null;
     }
-    
-    /* Ejecutar un INSERT, UPTADE o DELETE */
+
+    /* Ejecutar INSERT, UPDATE o DELETE */
     protected function execute(string $sql, array $params = []): bool
     {
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute($params);
+
+        if ($params !== []) {
+            return $stmt->execute($params);
+        }
+
+        return $stmt->execute();
     }
 
-    
     protected function lastInsertId(): int
     {
         return (int) $this->pdo->lastInsertId();
     }
-
 }

@@ -17,12 +17,65 @@ class PerfilAdminController extends Controller
             'instructores' => $estadisticaModel->totalInstructores()
         ];
 
+        $configuracionModel = new Configuracion($this->pdo);
+        $configPagos = $configuracionModel->obtenerConfiguracionPagos();
+        $diaCobro = $configPagos['dia_cobro'];
+        $diasGracia = $configPagos['dias_gracia'];
+
         $this->view('perfilAdmin/perfil', [
             'admin' => $admin,
             'actividad' => $actividad,
-            'stats' => $stats
+            'stats' => $stats,
+            'diaCobro' => $diaCobro,
+            'diasGracia' => $diasGracia,
         ]);
     }
+
+    public function guardarConfiguracionPagos(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->redirect('/perfil/administrador');
+            return;
+        }
+
+        if (!$this->validateCSRFToken($_POST['_token'] ?? '')){
+            $this->redirect('/perfil/administrador?error=csrf');
+            return;
+        }
+
+        $diaCobro = (int) ($_POST['dia_cobro'] ?? 0);
+        $diasGracia = (int) ($_POST['dias_gracia'] ?? 0);
+
+        if ($diaCobro < 1 || $diaCobro > 31){
+            $this->redirect('/perfil/administrador?error=dia_invalido');
+            return;
+        }
+
+        if ($diasGracia < 0 || $diasGracia > 30){
+            $this->redirect('/perfil/administrador?error=gracia_invalida');
+            return;
+        }
+
+        try {
+            $configuracionModel = new Configuracion($this->pdo);
+            $guardado = $configuracionModel->actualizarMultiples([
+                'dia_cobro' => $diaCobro,
+                'dias_gracia' => $diasGracia,
+            ]);
+
+            if (!$guardado) {
+                throw new RuntimeException('No se pudo guardar la configuración de pagos.');
+            }
+        } catch (Throwable $e) {
+            error_log('PerfilAdminController::guardarConfiguracionPagos - ' . $e->getMessage());
+            $this->redirect('/perfil/administrador?error=configuracion_guardado');
+            return;
+        }
+
+        $this->redirect('/perfil/administrador?success=configuracion_guardada');
+    }
+
+
     public function actualizarPerfil(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

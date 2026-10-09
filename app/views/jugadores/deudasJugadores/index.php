@@ -89,20 +89,19 @@
                         <div class="card-select">
                             <div class="select-tipo">
                                 <label class="la--users"></label>
-                                <select class="custom-select">
+                                <select class="custom-select" id="filtroBeca">
                                     <button>
                                         <selectedcontent></selectedcontent>
                                     </button>
                                     <option value="todo">Todos</option>
                                     <option value="">Beca</option>
                                     <option value="">Media-beca</option>
-                                    <option value="">Normal</option>
                                 </select>
                             </div>
 
                             <div class="select-tipo">
                                 <span class="material-symbols--brightness-1"></span>
-                                <select class="custom-select">
+                                <select class="custom-select" id="filtroEstado">
                                     <button>
                                         <selectedcontent></selectedcontent>
                                     </button>
@@ -114,13 +113,15 @@
 
                             <div class="select-tipo">
                                 <span class="tdesign--money-filled"></span>
-                                <select class="custom-select">
+                                <select class="custom-select" id="filtroPago">
                                     <button>
                                         <selectedcontent></selectedcontent>
                                     </button>
-                                    <option value="todo">Pago</option>
-                                    <option value="">pagado</option>
-                                    <option value="">Mora</option>
+                                    <option value="todo">seleccionar</option>
+                                    <option value="vigente">Vigente</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="mora">Mora</option>
+                                    <option value="pagado">Pagado</option>
                                 </select>
                             </div>
                         </div>
@@ -233,7 +234,7 @@
                                             }
                                         $advertenciaClase = $estado === 'mora' ? 'advertencia-m' : 'advertencia';
                                     ?>
-                                <tr>
+                                <tr data-estado="<?= htmlspecialchars($estado) ?>" data-pago="<?= htmlspecialchars($deuda['pago'] ?? 'pendiente') ?>">
                                     <td>
                                         <div class="foto">
                                             <p><?=  htmlspecialchars($iniciales) ?></p>
@@ -319,8 +320,8 @@
                                             </button>
 
                                             <div class="menu-acciones">
-                                                <button class="btn-editar">Editar</button>
-                                                <button class="btn-perfil">Historial</button>
+                                                <button class="btn-editar-historial" type="button">Editar</button>
+                                                <button class="btn-historial" type="button">Historial</button>
                                             </div>
                                         </div>
                                     </td>

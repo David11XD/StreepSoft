@@ -38,28 +38,31 @@ class DeudaController extends Controller
     }
 
 
-    public function mostrarPago(string $id): void
+    public function mostrarPago(int $id): void
     {
-        $idDeuda = (int) $id;
-        $deuda = $this->deudaModel->obtenerPorId($idDeuda);
+        $idDeuda = $id;
 
-        if (!$deuda){
-            echo "Deuda no encontrada";
-            return;
-        }
+        try {
+            $deuda = $this->deudaModel->obtenerPorId($idDeuda);
 
-        try{
+            if (!$deuda) {
+                http_response_code(404);
+                echo 'Deuda no encontrada';
+                return;
+            }
+
             $metodos = $this->metodoPagoModel->obtenerTodos();
-        } catch (Exception $e) {
-            error_log('Duedas (mostrar, cargar métodos):' . $e->getMessage());
-            $metodos = [];
-        }
 
-        $this->view('jugadores/deudasJugadores/create', [
-            'deuda' => $deuda,
-            'metodos' => $metodos,
-            'csrfToken' => $_SESSION['csrf_token'] ?? '',
-        ]);
+            $this->view('jugadores/deudasJugadores/create', [
+                'deuda' => $deuda,
+                'metodos' => $metodos,
+                'csrfToken' => $_SESSION['csrf_token'] ?? '',
+            ]);
+        } catch (Throwable $e) {
+            error_log('DeudaController::mostrarPago - ID deuda ' . $idDeuda . ' - ' . $e->getMessage());
+            http_response_code(500);
+            echo 'No se pudo cargar el formulario de registro de pago.';
+        }
     }
 
     public function registrarPago(): void
@@ -91,14 +94,18 @@ class DeudaController extends Controller
         $valorPagado = round($valor * (1 - ($descuento / 100)), 2);
 
         try {
-            $this->deudaModel->registrarPago($idDeuda, [
+            $ok = $this->deudaModel->registrarPago($idDeuda, [
                 'fecha_pago' => $fechaPago,
                 'id_metodo_pago' => $idMetodoPago,
                 'concepto' => $concepto !== '' ? $concepto : null,
                 'descuento_porcentaje' => $descuento,
                 'valor_pagado' => $valorPagado,
             ]);
-        } catch (Exception $e) {
+
+            if (!$ok) {
+                $this->redirect('/streepsoft/deudas/' . $idDeuda . '/pago?error=no_guardado');
+            }
+        } catch (Throwable $e) {
             error_log('Deudas (registrarPago): ' . $e->getMessage());
             $this->redirect('/streepsoft/deudas/' . $idDeuda . '/pago?error=no_guardado');
         }
