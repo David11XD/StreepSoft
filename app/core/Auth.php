@@ -55,15 +55,25 @@ class Auth {
     // cerrar la session completamente
     public static function logout(): void
     {
-        
         $nombre = self::nombre();
 
-        // Limpiar sesión
+        // Limpiar quick_login de sesión si existe
+        if (isset($_SESSION['quick_login'])) {
+            unset($_SESSION['quick_login']);
+        }
+
+        // Establecer cookie de logout manual (5 minutos)
+        setcookie('logout_manual', '1', time() + 300, '/streepsoft/', '', false, true);
+
+        // Limpiar cookie de quick_login_data (si existe)
+        setcookie('quick_login_data', '', time() - 3600, '/streepsoft/', '', false, true);
+
+        // Destruir sesión
         $_SESSION = [];
         session_destroy();
 
-        // Limpiar cookie
-        if (ini_get("session.use_cokies")) {
+        // Limpiar PHPSESSID
+        if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(
                 session_name(),
@@ -76,11 +86,11 @@ class Auth {
             );
         }
 
-        // Headers para evitar cache
-        header("Cache-control: no-store, no-cache, must-revalidate, max-age=0");
-        header("Pragma: no-cache");
+        error_log("Logout manual: $nombre - Cookies limpiadas");
         
-        error_log("Logout: $nombre");
+        // Headers anti-caché
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Pragma: no-cache");
     }
 
     // Verificar si es administrardor
