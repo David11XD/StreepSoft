@@ -162,6 +162,7 @@ if (Auth::check()) {
         'POST' => [
             '/jugadores/guardar' => ['controller' => 'JugadorController', 'method' => 'guardar'],
             '/jugadores/eliminar/:id' => ['controller' => 'JugadorController', 'method' => 'eliminar'],
+            '/jugadores/actualizar' => ['controller' => 'JugadorController', 'method' => 'actualizar'],
             '/deudas/registrar-pago' => ['controller' => 'DeudaController', 'method' => 'registrarPago'],
             '/deudas/generar-proximas' => ['controller' => 'GeneradorDeudasController', 'method' => 'generarProximas'],
             '/deudas/actualizar-moras' => ['controller' => 'GeneradorDeudasController', 'method' => 'actualizarMoras'],
