@@ -20,7 +20,7 @@ class ReporteJugadores implements ReporteDatos
     public function getColumnas(): array
     {
         return ['Apellidos', 'Nombres', 'Documentos', 'Fecha de Nacimiento', 'Edad', 'Categoría', 
-        'Tipo de Beca', 'Instructor', 'Estado', 'Fecha de Pago', 'Pago'];
+        'Tipo de Beca', 'Instructor', 'Estado', 'Fecha Limite', 'Pago'];
     }
 
     public function getFilas(): array
@@ -41,7 +41,7 @@ class ReporteJugadores implements ReporteDatos
                 $jugador['tipo_beca'],
                 $jugador['instructor'],
                 $jugador['estado'],
-                $jugador['fecha_pago'],
+                $jugador['fecha_limite_pago'],
                 $jugador['pago']
             ];
         }

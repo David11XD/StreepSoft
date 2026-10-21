@@ -1,80 +1,245 @@
 <?php
 declare(strict_types=1);
 
-/**Herramientas de PhpSpreadsheet para la gestión de archivos de Excel.*/
-use PhpOffice\PhpSpreadsheet\Spreadsheet; // Representa el archivo de Excel en memoria (crea hojas, celdas y estilos).
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx; // Herramienta para guardar y transformar los datos de la memoria en un archivo físico de Excel (.xlsx).
-use PhpOffice\PhpSpreadsheet\Cell\Coordinate; // Traductor que convierte letras de columnas (como 'A', 'B') a números (1, 2) para facilitar el uso de bucles.
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
 
-/**ExcelExportador
- * Implementa FormatoExportador para generar archivos .xlsx usando la
- * librería PhpSpreadsheet.*/
 class ExcelExportador implements FormatoExportador
 {
-    public function exportar(string $titulo, array $columnas, array $filas): void
-    {
-        // Crea el archivo en memoria y toma su hoja activa
+    public function exportar(
+        string $titulo,
+        array $columnas,
+        array $filas
+    ): void {
         $spreadsheet = new Spreadsheet();
         $hoja = $spreadsheet->getActiveSheet();
+
         $hoja->setTitle($this->tituloValido($titulo));
 
-        // Escribe la fila de encabezados (fila 1), recorriendo $columnas en vez de escribirlas a mano 
-        $numColumna = 1;
-        foreach ($columnas as $nombreColumna) {
-            $columnaLetra = Coordinate::stringFromColumnIndex($numColumna);
-            $hoja->setCellValue($columnaLetra . '1', $nombreColumna);
-            $numColumna++;
+        $totalColumnas = count($columnas);
+
+        if ($totalColumnas === 0) {
+            throw new RuntimeException(
+                'El reporte no tiene columnas para exportar.'
+            );
         }
 
-        // Escribe las filas de datos, empezando en la fila 2 porque
-        //    la fila 1 ya la ocupamos con los encabezados
-        $numFila = 2;
+        $ultimaColumna = Coordinate::stringFromColumnIndex(
+            $totalColumnas
+        );
+
+        // 1. Encabezado institucional
+        $hoja->mergeCells("A1:{$ultimaColumna}2");
+        $hoja->setCellValue(
+            'A1',
+            'COP COLOMBIA INTERNATIONAL'
+        );
+
+        $hoja->getRowDimension(1)->setRowHeight(30);
+        $hoja->getRowDimension(2)->setRowHeight(20);
+
+        $hoja->getStyle("A1:{$ultimaColumna}2")->applyFromArray([
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '000000'],
+            ],
+            'font' => [
+                'name' => 'Arial',
+                'bold' => true,
+                'size' => 18,
+                'color' => ['rgb' => 'FFD700'],
+            ],
+            'alignment' => [
+                'horizontal' => 'center',
+                'vertical' => 'center',
+            ],
+        ]);
+
+        // 2. Título del reporte
+        $hoja->mergeCells("A3:{$ultimaColumna}3");
+        $hoja->setCellValue('A3', $titulo);
+        $hoja->getRowDimension(3)->setRowHeight(25);
+
+        $hoja->getStyle("A3:{$ultimaColumna}3")->applyFromArray([
+            'font' => [
+                'name' => 'Arial',
+                'bold' => true,
+                'size' => 13,
+                'color' => ['rgb' => '222222'],
+            ],
+            'alignment' => [
+                'horizontal' => 'left',
+                'vertical' => 'center',
+            ],
+        ]);
+
+        // 3. Encabezados de las columnas
+        $filaEncabezado = 5;
+        $hoja->getRowDimension(4)->setRowHeight(8);
+
+        foreach ($columnas as $indice => $nombre) {
+            $letra = Coordinate::stringFromColumnIndex(
+                $indice + 1
+            );
+
+            $hoja->setCellValue(
+                $letra . $filaEncabezado,
+                $nombre
+            );
+        }
+
+        $hoja->getStyle(
+            "A{$filaEncabezado}:{$ultimaColumna}{$filaEncabezado}"
+        )->applyFromArray([
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '292929'],
+            ],
+            'font' => [
+                'name' => 'Arial',
+                'bold' => true,
+                'color' => ['rgb' => 'FFD700'],
+                'size' => 10,
+            ],
+            'alignment' => [
+                'horizontal' => 'center',
+                'vertical' => 'center',
+                'wrapText' => true,
+            ],
+            'borders' => [
+                'bottom' => [
+                    'borderStyle' => Border::BORDER_MEDIUM,
+                    'color' => ['rgb' => 'FFD700'],
+                ],
+            ],
+        ]);
+
+        $hoja->getRowDimension($filaEncabezado)->setRowHeight(32);
+
+        // 4. Datos y filas alternadas
+        $filaActual = $filaEncabezado + 1;
 
         foreach ($filas as $fila) {
-            $numColumna = 1;
+            foreach ($columnas as $indice => $nombre) {
+                $letra = Coordinate::stringFromColumnIndex(
+                    $indice + 1
+                );
 
-            foreach ($fila as $valor) {
-                $columnaLetra = Coordinate::stringFromColumnIndex($numColumna);
+                $valor = array_key_exists($indice, $fila)
+                    ? $fila[$indice]
+                    : '';
 
-                $hoja->setCellValue($columnaLetra . $numFila, $valor);
-
-                $numColumna++;
+                $hoja->setCellValue(
+                    $letra . $filaActual,
+                    $valor
+                );
             }
 
-            $numFila++;
+            $color = ($filaActual % 2 === 0)
+                ? 'FFFFFF'
+                : 'F1F3F5';
+
+            $hoja->getStyle(
+                "A{$filaActual}:{$ultimaColumna}{$filaActual}"
+            )->applyFromArray([
+                'fill' => [
+                    'fillType' => Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => $color],
+                ],
+                'font' => [
+                    'name' => 'Arial',
+                    'size' => 10,
+                    'color' => ['rgb' => '222222'],
+                ],
+                'borders' => [
+                    'bottom' => [
+                        'borderStyle' => Border::BORDER_HAIR,
+                        'color' => ['rgb' => 'D9DEE3'],
+                    ],
+                ],
+                'alignment' => [
+                    'vertical' => 'center',
+                ],
+            ]);
+
+            $hoja->getRowDimension($filaActual)->setRowHeight(22);
+            $filaActual++;
         }
 
-        //  encabezados en negrita
-        $ultimaColumna = Coordinate::stringFromColumnIndex(count($columnas));
-        $hoja->getStyle('A1:' . $ultimaColumna . '1')->getFont()->setBold(true);
+        // 5. Ajustes de lectura
+        for ($i = 1; $i <= $totalColumnas; $i++) {
+            $letra = Coordinate::stringFromColumnIndex($i);
+            $hoja->getColumnDimension($letra)->setAutoSize(true);
+        }
 
-        // Enviar el archivo al navegador como descarga 
+        $hoja->freezePane('A6');
+
+        if ($filaActual > $filaEncabezado + 1) {
+            $hoja->setAutoFilter(
+                "A{$filaEncabezado}:{$ultimaColumna}" .
+                ($filaActual - 1)
+            );
+        }
+
+        // 6. Configuración de impresión
+        $hoja->getPageSetup()
+            ->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+
+        $hoja->getPageSetup()
+            ->setFitToWidth(1);
+
+        $hoja->getPageSetup()
+            ->setFitToHeight(0);
+
+        $hoja->getPageSetup()
+            ->setPaperSize(PageSetup::PAPERSIZE_A4);
+
+        $hoja->getPageSetup()->setFitToPage(true);
+
+        $hoja->getPageMargins()->setTop(0.4);
+        $hoja->getPageMargins()->setBottom(0.4);
+        $hoja->getPageMargins()->setLeft(0.25);
+        $hoja->getPageMargins()->setRight(0.25);
+
+        // 7. Descargar el archivo
         $nombreArchivo = $this->nombreArchivo($titulo);
 
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
+        header(
+            'Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        );
+        header(
+            'Content-Disposition: attachment; filename="' .
+            $nombreArchivo . '"'
+        );
         header('Cache-Control: max-age=0');
 
         $writer = new Xlsx($spreadsheet);
-        $writer->save('php://output'); // "guarda" el archivo directo hacia la respuesta HTTP
+        $writer->save('php://output');
+
+        $spreadsheet->disconnectWorksheets();
         exit;
     }
 
-    /**Excel no permite ciertos caracteres en el nombre de la hoja (como
-     * ':' o '/') ni nombres de más de 31 caracteres. Esta pequeña
-     * limpieza evita que el reporte falle por un título largo o con
-     * caracteres raros.*/
     private function tituloValido(string $titulo): string
     {
-        $limpio = str_replace([':', '/', '\\', '?', '*', '[', ']'], '-', $titulo);
-        return substr($limpio, 0, 31);
+        $limpio = str_replace(
+            [':', '/', '\\', '?', '*', '[', ']'],
+            '-',
+            $titulo
+        );
+
+        return substr($limpio ?: 'Reporte', 0, 31);
     }
 
-    /** Convierte el título del reporte en un nombre de archivo seguro para descargar */
     private function nombreArchivo(string $titulo): string
     {
         $slug = strtolower(str_replace(' ', '_', $titulo));
         $slug = preg_replace('/[^a-z0-9_]/', '', $slug);
-        return $slug . '.xlsx';
+
+        return ($slug ?: 'reporte') . '.xlsx';
     }
 }

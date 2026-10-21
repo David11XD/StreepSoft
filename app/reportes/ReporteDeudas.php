@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**ReporteDeudas*/
 class ReporteDeudas implements ReporteDatos
 {
     private Deuda $deudaModel;
@@ -13,28 +12,59 @@ class ReporteDeudas implements ReporteDatos
 
     public function getTitulo(): string
     {
-        return 'Reporte de Deudas ' . date('Y');
+        return 'Reporte de Deudas Pendientes';
     }
 
     public function getColumnas(): array
     {
-        return ['Nombres y Apellidos', 'Categoría', 'Fecha Límite de Pago', 'Estado', 'Totalidad'];
+        return [
+            'Jugador',
+            'Categoría',
+            'Mes',
+            'Año',
+            'Concepto',
+            'Valor de la deuda',
+            'Valor pagado',
+            'Saldo pendiente',
+            'Fecha límite de pago',
+            'Estado'
+        ];
     }
 
     public function getFilas(): array
     {
-        $deudas = $this->deudaModel->obtenerPendientes();
+        $deudas = $this->deudaModel->obtenerTodasConEstado();
         $filas = [];
 
         foreach ($deudas as $deuda) {
+            $estado = strtolower((string) ($deuda['pago'] ?? 'pendiente'));
+
+            // El reporte muestra solamente deudas no pagadas.
+            if ($estado === 'pagado') {
+                continue;
+            }
+
+            $total = (float) ($deuda['totalidad'] ?? 0);
+            $pagado = (float) ($deuda['valor_pagado'] ?? 0);
+            $saldo = max(0, $total - $pagado);
+
             $filas[] = [
-                $deuda['nombres'] . ' ' . $deuda['apellidos'],
-                $deuda['categoria_nombre'],
-                $deuda['fecha_limite_pago'],
-                $deuda['pago'],
-                $deuda['totalidad']
+                trim(
+                    ($deuda['nombres'] ?? '') . ' ' .
+                    ($deuda['apellidos'] ?? '')
+                ),
+                $deuda['categoria'] ?? 'Sin categoría',
+                $deuda['mes'] ?? '',
+                $deuda['anio'] ?? '',
+                $deuda['concepto'] ?? 'Mensualidad',
+                $total,
+                $pagado,
+                $saldo,
+                $deuda['fecha_limite_pago'] ?? '',
+                ucfirst($estado)
             ];
         }
+
         return $filas;
     }
 }

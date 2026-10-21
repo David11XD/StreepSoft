@@ -17,6 +17,9 @@ require_once __DIR__ . '/../reportes/ReporteDeudas.php';
 require_once __DIR__ . '/../reportes/ExcelExportador.php';
 require_once __DIR__ . '/../reportes/PdfExportador.php';
 require_once __DIR__ . '/../reportes/WordExportador.php';
+require_once __DIR__ . '/../models/HistorialDeuda.php';
+require_once __DIR__ . '/../models/Deuda.php';
+
 class ReporteController extends Controller
 {
     public function __construct(PDO $pdo)
@@ -57,7 +60,7 @@ class ReporteController extends Controller
     private function obtenerReporte(string $tipo): ?ReporteDatos
     {
         return match ($tipo) {
-            'pagos' => new ReportePagos(new Deuda($this->pdo)),
+            'pagos' => new ReportePagos(new HistorialDeuda($this->pdo)),
             'jugadores' => new ReporteJugadores(new Jugador($this->pdo)),
             'deudas' => new ReporteDeudas(new Deuda($this->pdo)),
             default => null, // tipo desconocido -> no hay reporte que devolver

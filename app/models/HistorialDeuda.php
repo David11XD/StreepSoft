@@ -15,6 +15,37 @@ class HistorialDeuda extends Model
      * Archivar una deuda: copiarla aquí con sus datos de pago.
      * Se llama justo antes de borrarla de `deudas`.
      */
+
+    public function obtenerTodos(): array
+    {
+        $sql = "
+            SELECT
+                h.id_historial,
+                j.nombres,
+                j.apellidos,
+                c.nombre AS categoria_nombre,
+                h.mes,
+                h.anio,
+                h.concepto,
+                h.totalidad,
+                h.valor_pagado,
+                h.fecha_limite_pago,
+                h.fecha_pago,
+                h.descuento_porcentaje,
+                mp.tipo_metodo_pago AS metodo_pago
+            FROM historial_deuda h
+            INNER JOIN jugadores j
+                ON j.id_jugadores = h.id_jugadores
+            LEFT JOIN categorias c
+                ON c.id_categorias = j.id_categorias
+            LEFT JOIN metodo_pago mp
+                ON mp.id_metodo_pago = h.id_metodo_pago
+            ORDER BY h.fecha_pago DESC, h.id_historial DESC
+        ";
+
+        return $this->query($sql);
+    }
+    
     public function archivar(array $deuda): bool
     {
         $sql = "
