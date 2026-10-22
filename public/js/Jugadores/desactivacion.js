@@ -52,7 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Le pregunta al DOM, en el momento, cuáles checkboxes están marcados.
     // No guardamos esto en una variable aparte: así nunca se desincroniza.
     function obtenerSeleccionados() {
-        return Array.from(checksJugador).filter((check) => check.checked);
+        return Array.from(checksJugador).filter((check) => {
+            const fila = check.closest('tr');
+            return check.checked && fila.style.display !== 'none';
+        });
     }
 
     function actualizarBarraSeleccion() {
@@ -68,8 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // "Seleccionar todos" debe verse marcado SOLO si
-        // la cantidad de marcados es igual al total de filas.
-        checkTodos.checked = cantidad > 0 && cantidad === checksJugador.length;
+        // la cantidad de marcados es igual al total de filas VISIBLES.
+        const visibles = Array.from(checksJugador).filter(
+            (check) => check.closest('tr').style.display !== 'none'
+        ).length;
+
+        checkTodos.checked = cantidad > 0 && cantidad === visibles;
     }
 
     // Cada checkbox de fila avisa cuando cambia
@@ -77,10 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
         check.addEventListener('change', actualizarBarraSeleccion);
     });
 
-    // El checkbox maestro marca/desmarca a todos los demás
+    // El checkbox maestro marca/desmarca solo a los visibles
     checkTodos.addEventListener('change', () => {
         checksJugador.forEach((check) => {
-            check.checked = checkTodos.checked;
+            const fila = check.closest('tr');
+            if (fila.style.display !== 'none') {
+                check.checked = checkTodos.checked;
+            }
         });
         actualizarBarraSeleccion();
     });
@@ -91,6 +101,167 @@ document.addEventListener('DOMContentLoaded', () => {
             check.checked = false;
         });
         actualizarBarraSeleccion();
+    });
+
+    // 
+    // 3.b FILTROS: NOMBRE, CATEGORÍA Y MESES SIN PAGO
+    // 
+    // Filtra en el cliente las filas ya renderizadas. Cada filtro solo
+    // resta cuando tiene un valor distinto al de por defecto; así se
+    // puede filtrar por uno solo o combinarlos.
+    //
+    // Cuando el backend traiga datos reales, estos filtros pueden
+    // mantenerse igual o moverse a una consulta al servidor.
+
+    const buscadorNombre = document.getElementById('filtroNombre');
+    const btnBuscar = document.getElementById('btnBuscar');
+    const filtroCategoria = document.getElementById('filtroCategoria');
+    const sinPagoDesde = document.getElementById('sinPagoDesde');
+    const botonesFiltroRapido = document.querySelectorAll('.btn-filtro-rapido');
+    const tbodyDesactivacion = document.querySelector('#tablaDesactivacion tbody');
+    const resultadosContador = document.querySelector('.resultados-contador');
+    const resultadosFooter = document.querySelector('.resultados-footer');
+
+    // Guardamos los textos originales para restaurarlos cuando no haya filtros
+    const contadorOriginal = resultadosContador ? resultadosContador.textContent : '';
+    const footerOriginal = resultadosFooter ? resultadosFooter.innerHTML : '';
+
+    // Quita tildes y pasa a minúsculas: "Rúa" y "rua" deben coincidir
+    function normalizarTexto(texto) {
+        return (texto || '')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim();
+    }
+
+    // Solo las filas reales de jugadores (tienen data-id)
+    function obtenerFilasJugadores() {
+        return Array.from(tbodyDesactivacion.querySelectorAll('tr[data-id]'));
+    }
+
+    function mostrarFilaSinResultados(mostrar) {
+        let fila = tbodyDesactivacion.querySelector('.fila-sin-resultados');
+
+        if (!fila && mostrar) {
+            fila = document.createElement('tr');
+            fila.className = 'fila-sin-resultados';
+            fila.innerHTML = '<td colspan="6">No se encontraron jugadores con esos filtros.</td>';
+            tbodyDesactivacion.appendChild(fila);
+        }
+
+        if (fila) {
+            fila.style.display = mostrar ? '' : 'none';
+        }
+    }
+
+    function filtrarJugadores() {
+        const termino = normalizarTexto(buscadorNombre.value);
+        const categoriaSeleccionada = filtroCategoria.value;
+        const mesesSeleccionados = sinPagoDesde.value;
+        const mesesMinimos = mesesSeleccionados === 'todos'
+            ? 0
+            : parseInt(mesesSeleccionados, 10);
+
+        const filas = obtenerFilasJugadores();
+
+        let visibles = 0;
+
+        filas.forEach((fila) => {
+            const nombre = normalizarTexto(
+                fila.querySelector('.celda-jugador-texto h3')?.textContent
+            );
+            const documento = normalizarTexto(
+                fila.querySelector('.celda-jugador-texto p')?.textContent
+            );
+            const categoria = (fila.children[3]?.textContent || '').trim();
+            const meses = parseInt(fila.children[4]?.textContent || '0', 10);
+
+            const coincideNombre = termino === ''
+                || nombre.includes(termino)
+                || documento.includes(termino);
+            const coincideCategoria = categoriaSeleccionada === 'todo'
+                || categoria === categoriaSeleccionada;
+            const coincideMeses = meses >= mesesMinimos;
+
+            const coincide = coincideNombre && coincideCategoria && coincideMeses;
+
+            fila.style.display = coincide ? '' : 'none';
+
+            if (coincide) {
+                visibles++;
+            } else {
+                // Una fila oculta no puede quedar seleccionada
+                const check = fila.querySelector('.check-jugador');
+                if (check) check.checked = false;
+            }
+        });
+
+        // Si la tabla no tiene jugadores, la vista ya muestra su propio aviso
+        if (filas.length > 0) {
+            mostrarFilaSinResultados(visibles === 0);
+        }
+
+        // Hay filtros activos cuando alguno deja su valor por defecto.
+        // Al volver todos a por defecto, se restaura el texto original.
+        const hayFiltrosActivos = termino !== ''
+            || categoriaSeleccionada !== 'todo'
+            || mesesSeleccionados !== 'todos';
+
+        if (resultadosContador) {
+            resultadosContador.textContent = hayFiltrosActivos
+                ? `${visibles} de ${filas.length} jugadores`
+                : contadorOriginal;
+        }
+
+        if (resultadosFooter) {
+            resultadosFooter.innerHTML = hayFiltrosActivos
+                ? `Mostrando ${visibles} de ${filas.length} resultados`
+                : footerOriginal;
+        }
+
+        actualizarBarraSeleccion();
+    }
+
+    // Busca mientras se escribe...
+    buscadorNombre.addEventListener('input', filtrarJugadores);
+
+    // ...y también con el botón "Buscar" o al presionar Enter
+    btnBuscar.addEventListener('click', filtrarJugadores);
+
+    buscadorNombre.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Enter') {
+            evento.preventDefault();
+            filtrarJugadores();
+        }
+    });
+
+    // Marca como activo el botón rápido que coincide con el select
+    function sincronizarBotonRapido() {
+        botonesFiltroRapido.forEach((boton) => {
+            boton.classList.toggle(
+                'activo',
+                boton.dataset.meses === sinPagoDesde.value
+            );
+        });
+    }
+
+    // Al cambiar la categoría, se filtra al instante
+    filtroCategoria.addEventListener('change', filtrarJugadores);
+
+    // El select "Sin pago desde" y los botones rápidos son el mismo filtro:
+    // se mantienen sincronizados y ambos disparan el filtrado
+    sinPagoDesde.addEventListener('change', () => {
+        sincronizarBotonRapido();
+        filtrarJugadores();
+    });
+
+    botonesFiltroRapido.forEach((boton) => {
+        boton.addEventListener('click', () => {
+            sinPagoDesde.value = boton.dataset.meses;
+            sincronizarBotonRapido();
+            filtrarJugadores();
+        });
     });
 
     // 

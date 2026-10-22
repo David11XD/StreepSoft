@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="filtros-rapidos">
-                    <button type="button" class="btn-filtro-rapido activo" data-meses="2">2+ meses sin pago</button>
+                    <button type="button" class="btn-filtro-rapido" data-meses="2">2+ meses sin pago</button>
                     <button type="button" class="btn-filtro-rapido" data-meses="3">3+ meses sin pago</button>
                     <button type="button" class="btn-filtro-rapido" data-meses="1">1+ meses sin pago</button>
                 </div>
@@ -42,8 +42,9 @@
                     <div class="campo-filtro">
                         <label for="sinPagoDesde">Sin pago desde</label>
                         <select id="sinPagoDesde">
+                            <option value="todos" selected>Todos</option>
                             <option value="1">Hace 1 mes</option>
-                            <option value="2" selected>Hace 2 meses</option>
+                            <option value="2">Hace 2 meses</option>
                             <option value="3">Hace 3 meses</option>
                         </select>
                     </div>
@@ -73,7 +74,7 @@
 
                 <div class="panel-resultados-header">
                     <h2>Resultados</h2>
-                    <span class="resultados-contador"><?= count($jugadores) ?> jugadores con 2 o más meses sin pago</span>
+                    <span class="resultados-contador"><?= count($jugadores) ?> jugadores en total</span>
                 </div>
 
                 <div class="table-responsive">
@@ -393,7 +394,7 @@
     </div>
 
     <script type="module" src="/streepsoft/public/js/nav/export.js"></script>
-    <script src="/streepsoft/public/js/jugadores/desactivacion.js"></script>
+    <script src="/streepsoft/public/js/Jugadores/desactivacion.js"></script>
 </body>
 
 </html>
