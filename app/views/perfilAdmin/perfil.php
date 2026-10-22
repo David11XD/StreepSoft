@@ -431,15 +431,16 @@
                             required>
 
                         <label for="input-telefono">Teléfono</label>
-                        <input type="numeric"  inputmode="numeric" maxlength="10" id="input-telefono" name="telefono"
+                        <input type="text"  inputmode="numeric" id="input-telefono" name="telefono"
                             value="<?php echo isset($admin['telefono']) ? htmlspecialchars($admin['telefono']) : ''; ?>"
                             pattern="[0-9]+"
                             maxlength="10"
                             title="Solo se permiten números"
                             required>
+                            
 
                         <label for="input-documento">Documento de identidad</label>
-                        <input type="numeric" inputmode="numeric" maxlength="10" id="input-documento" name="documento_identidad"
+                        <input type="text" inputmode="numeric" id="input-documento" name="documento_identidad"
                             value="<?php echo isset($admin['documento_identidad']) ? htmlspecialchars($admin['documento_identidad']) : ''; ?>"
                             pattern="[0-9]+"
                             maxlength="10"

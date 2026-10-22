@@ -56,6 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputTelefono = document.getElementById('input-telefono');
     const inputDocumento = document.getElementById('input-documento');
 
+    inputTelefono?.addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+    
+    inputDocumento?.addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+
     formEditarInfo?.addEventListener('submit', function (evento) {
         evento.preventDefault(); // detiene el envío automático
 

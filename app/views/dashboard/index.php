@@ -81,7 +81,7 @@
                 <div class="card-uno">
                     <div class="card-ingresos">
                         <div class="text-ingesos">
-                            <h3>Ingresos <span>mensulaes</span></h3>
+                            <h3>Ingresos <span>mensuales</span></h3>
 
                             <div class="select-wrapper">
                                 <select class="custom-select">
