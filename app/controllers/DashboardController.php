@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -29,9 +30,23 @@ class DashboardController extends Controller
         $datos = json_encode([]);
         $error = null;
 
+        // Obtener datos del usuario actual
+        $usuarioModel = new Usuario($this->pdo);
+        $admin = $usuarioModel->obtenerPorId(Auth::id());
+
+        // Saludo según la hora de entrada
+        $hora = (int)date('H');
+        if ($hora >= 6 && $hora < 12){
+            $saludo = "Buenos días"; 
+        }else if($hora >= 12 && $hora < 18){
+            $saludo = "Buenas tardes";
+        }else{
+            $saludo = "Buenas noches";
+        }
+
+        
         try {
             // Intentar obtener datos, pero si falla, continuar con valores por defecto
-            
             try {
                 $recaudacionMeses = $this->estadisticaModel->recaudacionPorMes();
             } catch (Exception $e) {
@@ -66,7 +81,6 @@ class DashboardController extends Controller
                 error_log("Dashboard: Error obteniendo deuda total: " . $e->getMessage());
                 $deudaTotal = 0;
             }
-
         } catch (Exception $e) {
             error_log("Dashboard: Error general: " . $e->getMessage());
             $error = "Error al cargar datos del dashboard";
@@ -74,9 +88,18 @@ class DashboardController extends Controller
 
         // Preparar datos para el gráfico
         $mesesDelAnio = [
-            1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
-            5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
-            9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'
+            1 => 'Enero',
+            2 => 'Febrero',
+            3 => 'Marzo',
+            4 => 'Abril',
+            5 => 'Mayo',
+            6 => 'Junio',
+            7 => 'Julio',
+            8 => 'Agosto',
+            9 => 'Septiembre',
+            10 => 'Octubre',
+            11 => 'Noviembre',
+            12 => 'Diciembre'
         ];
 
         $labels_array = [];
@@ -84,7 +107,7 @@ class DashboardController extends Controller
 
         foreach ($mesesDelAnio as $numero => $nombre) {
             $labels_array[] = $nombre;
-            
+
             $monto = 0;
             foreach ($recaudacionMeses as $mes) {
                 if ($mes['mes_numero'] == $numero) {
@@ -98,6 +121,9 @@ class DashboardController extends Controller
         // Enviar datos a la vista
         $this->view('dashboard/index', [
             'titulo' => 'Estadísticas',
+            'admin' => $admin, 
+            'saludo' => $saludo,
+            'fechaActual' =>  $fechaActual = date ('d-m-Y'),
             'recaudacionMeses' => $recaudacionMeses,
             'recaudacionTotal' => $recaudacionTotal,
             'totalJugadores' => $totalJugadores,
@@ -106,6 +132,7 @@ class DashboardController extends Controller
             'labels' => json_encode($labels_array),
             'datos' => json_encode($datos_array),
             'error' => $error
+
         ]);
     }
 }

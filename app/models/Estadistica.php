@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -38,7 +39,7 @@ class Estadistica extends Model
             GROUP BY MONTH(fecha_pago)
             ORDER BY MONTH(fecha_pago)
         ";
-        
+
         return $this->query($sql);
     }
 
@@ -54,7 +55,7 @@ class Estadistica extends Model
             FROM pagos
             WHERE YEAR(fecha_pago) = YEAR(NOW())
         ";
-        
+
         $result = $this->queryOne($sql);
         return (float)($result['total'] ?? 0);
     }
@@ -79,11 +80,10 @@ class Estadistica extends Model
     public function jugadoresConDeuda(): int
     {
         $sql = "
-            SELECT COUNT(DISTINCT id_jugador) as total
-            FROM deudas
-            WHERE estado = 'pendiente'
-        ";
-        
+            SELECT COUNT(DISTINCT id_jugadores) as total 
+            FROM deudas 
+            WHERE pago IN ('pendiente', 'mora')";
+
         $result = $this->queryOne($sql);
         return (int)($result['total'] ?? 0);
     }
@@ -100,8 +100,36 @@ class Estadistica extends Model
             FROM deudas
             WHERE estado = 'pendiente'
         ";
-        
+
         $result = $this->queryOne($sql);
         return (float)($result['total'] ?? 0);
+    }
+
+    /*"Tener deuda" = el jugador debe dinero y "Estar en mora" = específicamente que ya se venció el plazo*/
+    public function jugadoresEnMora(): int
+    {
+        $sql = "SELECT COUNT(DISTINCT id_jugadores) as total 
+            FROM deudas 
+            WHERE pago = 'mora'";
+
+        $result = $this->queryOne($sql);
+        return (int)($result['total'] ?? 0);
+    }
+
+    public function pagosRegistrados(): int
+    {
+        $sql = "SELECT COUNT(*) as total 
+            FROM deudas 
+            WHERE pago = 'pagado'";
+
+        $result = $this->queryOne($sql);
+        return (int)($result['total'] ?? 0);
+    }
+
+    public function totalInstructores(): int
+    {
+        $sql = "SELECT COUNT(*) as total FROM instructor";
+        $result = $this->queryOne($sql);
+        return (int)($result['total'] ?? 0);
     }
 }

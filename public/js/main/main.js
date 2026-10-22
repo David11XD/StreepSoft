@@ -4,8 +4,6 @@ const total = slides.length;
 const contenedor = document.querySelector('.imagenes');
 const indicadores = document.querySelector('.indicadores')
 
-
-
 /* Crear punticos */
 
 for (let i = 0; i < total; i++){
@@ -44,3 +42,23 @@ setInterval(() => {
 }, 6000);
 
 actualizar();
+
+
+/*Swipe en móvil para el hero*/
+/* Es para que en celulares y tablets donde se pueda pasar de foto deslizando el dedo */
+let heroTouchStartX = 0;
+const heroContenedor = document.querySelector('.des');
+
+heroContenedor.addEventListener('touchstart', (e) => {
+    heroTouchStartX = e.touches[0].clientX;
+});
+
+heroContenedor.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchEndX - heroTouchStartX;
+    if (Math.abs(diff) > 50) {
+        if (diff < 0) index = (index + 1) % total;
+        else index = (index - 1 + total) % total;
+        actualizar();
+    }
+});
