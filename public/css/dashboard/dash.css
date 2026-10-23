@@ -1,0 +1,840 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('../hamburguesa/hamburguer.css');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.card-dashboard{
+    margin: 12px;
+}
+
+.card-admin{
+    display: flex;
+    flex-direction: row;
+}
+
+.card-fetch{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    background: #222222fd;
+    color: white;
+    margin-left: auto;
+    margin-top: 12px;
+    width: 140px;
+    height: 40px;
+    border: 2px solid var(--card-bg);
+    border-radius: 5px;
+}
+
+.card-fetch p{
+    margin-top: 5.85px;
+}
+
+.card-text{
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+.card-text h1{
+    font-weight: 500;
+    font-size: clamp(18px, 4vw, 28px);
+}
+
+.card-text p{
+    font-weight: 400;
+    font-size: clamp(12px, 2vw, 16px);
+}
+
+span{
+    color: var(--card-bg);
+}
+
+/* cards de infomacion estadistica */
+
+.card-estadisticas{
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+    gap: 12PX;
+    flex-wrap: wrap;
+}
+
+
+.card-info{
+    flex: 1 1 240px; /* Permite que las tarjetas se estiren equitativamente */
+    height: 100px;
+    background: #000000;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    justify-content: flex-start;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.info{
+    margin-top: 12PX;
+    margin-left: 12px;
+    color: white;
+
+}
+
+.info h2{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, 3vw, 15px);
+}
+
+.info h3 {
+    font-weight: 600;
+    font-size: clamp(11px, 5vw, 18px); 
+    margin: 2px 0;
+}
+
+.info p {
+    font-size: clamp(11px, 2vw, 14px);
+    color: #a0a0a0; /* Un gris tenue para contrastar con el blanco */
+}
+
+/* icon */
+.icon{
+    background: #222222fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(50px, 8vw, 75px);
+    height: clamp(50px, 8vw, 75px);
+    margin-top: 12px;
+    border-radius: 5px;
+    font-size: clamp(9px, 1.5vw, 14px);
+}
+
+.icon-money{
+    background: #222222fd;
+    justify-content: center;
+    width: clamp(50px, 8vw, 75px);
+    height: clamp(50px, 8vw, 75px);
+    margin-top: 12px;
+    margin-right: 12px;
+    border-radius: 5px;
+    font-size: clamp(9px, 1.5vw, 14px);
+}
+
+/* Iconos */
+.fa6-solid--users {
+  display: inline-block;
+  width: 4.25em;
+  height: 5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='black' d='M144 0a80 80 0 1 1 0 160a80 80 0 1 1 0-160m368 0a80 80 0 1 1 0 160a80 80 0 1 1 0-160M0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96H21.3C9.6 320 0 310.4 0 298.7M405.3 320h-.7c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7c58.9 0 106.7 47.8 106.7 106.7c0 11.8-9.6 21.3-21.3 21.3H405.4zM224 224a96 96 0 1 1 192 0a96 96 0 1 1-192 0m-96 261.3c0-73.6 59.7-133.3 133.3-133.3h117.3c73.7 0 133.4 59.7 133.4 133.3c0 14.7-11.9 26.7-26.7 26.7H154.6c-14.7 0-26.7-11.9-26.7-26.7z'/%3E%3C/svg%3E");
+  background-color: var(--card-bg);
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.tdesign--money-filled {
+  display: inline-block;
+  width: 4.24em;
+  height: 5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.5 16a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0'/%3E%3Cpath fill='black' d='m14.347.66l3.18 4.456l2.097-.715L21.538 10h.962v12h-21V10h.51v-.01l.648.006zM9.397 10h10.028l-1.037-3.033l-1.522.487zM7.839 8.417L15.55 5.79l-1.604-2.25zM5.5 12h-2v2a2 2 0 0 0 2-2m10 4a3.5 3.5 0 1 0-7 0a3.5 3.5 0 0 0 7 0m5 4v-2a2 2 0 0 0-2 2zm-2-8a2 2 0 0 0 2 2v-2zm-15 8h2a2 2 0 0 0-2-2z'/%3E%3C/svg%3E");
+  background-color: var(--card-bg);
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  margin-left: 10px;
+}
+
+.wi--time-3 {
+  display: inline-block;
+  width: 4.70em;
+  height: 5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath fill='black' d='M3.74 14.47c0-2.04.51-3.93 1.52-5.66s2.38-3.1 4.11-4.11s3.61-1.51 5.64-1.51c1.52 0 2.98.3 4.37.89s2.58 1.4 3.59 2.4s1.81 2.2 2.4 3.6s.89 2.85.89 4.39c0 1.52-.3 2.98-.89 4.37s-1.4 2.59-2.4 3.59s-2.2 1.8-3.59 2.39s-2.84.89-4.37.89s-3-.3-4.39-.89s-2.59-1.4-3.6-2.4s-1.8-2.2-2.4-3.58s-.88-2.84-.88-4.37m2.48 0c0 2.37.86 4.43 2.59 6.18c1.73 1.73 3.79 2.59 6.2 2.59c1.58 0 3.05-.39 4.39-1.18s2.42-1.85 3.21-3.2s1.19-2.81 1.19-4.39s-.4-3.05-1.19-4.4s-1.86-2.42-3.21-3.21s-2.81-1.18-4.39-1.18s-3.05.39-4.39 1.18S8.2 8.72 7.4 10.07s-1.18 2.82-1.18 4.4m7.92 0V7.81c0-.23.08-.43.24-.59s.36-.24.59-.24s.43.08.59.24s.24.36.24.59v5.82h3.78c.23 0 .43.08.59.24s.24.36.24.59c0 .22-.08.42-.24.59s-.36.25-.59.25h-4.44c-.03.01-.09.01-.18.01a.806.806 0 0 1-.82-.84'/%3E%3C/svg%3E");
+  background-color: var(--danger-red);
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.ph--soccer-ball {
+  display: inline-block;
+  width: 4.50em;
+  height: 5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='black' d='M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m76.52 147.42H170.9l-9.26-12.76l12.63-36.78l15-4.89l26.24 20.13a87.4 87.4 0 0 1-10.99 34.3m-164-34.3L66.71 117l15 4.89l12.63 36.78l-9.24 12.75H51.48a87.4 87.4 0 0 1-11.01-34.3Zm10-50.64l5.51 18.6l-15.32 11.69a87.3 87.3 0 0 1 9.72-30.29ZM109 152l-11.46-33.35L128 97.71l30.46 20.94L147 152Zm91.07-46.92l5.51-18.6a87.3 87.3 0 0 1 9.72 30.29Zm-6.2-35.38l-9.51 32.08l-15.07 4.89L136 83.79V68.21l29.09-20a88.6 88.6 0 0 1 28.77 21.49Zm-47.8-27.83L128 54.29l-18.07-12.42a88.2 88.2 0 0 1 36.14 0m-55.16 6.34l29.09 20v15.58l-33.28 22.88l-15.07-4.89l-9.51-32.08a88.6 88.6 0 0 1 28.77-21.49M63.15 187.42h20.37l7.17 20.27a88.4 88.4 0 0 1-27.54-20.27M110 214.13l-11.88-33.42l9.23-12.71h41.3l9.23 12.71l-11.83 33.42a88 88 0 0 1-36.1 0Zm55.36-6.44l7.17-20.27h20.37a88.4 88.4 0 0 1-27.59 20.27Z'/%3E%3C/svg%3E");
+  background-color: var(--card-bg);
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.mdi-light--calendar {
+  display: inline-block;
+  width: 2em;
+  height: 2.3em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7 2h1a1 1 0 0 1 1 1v1h5V3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3V3a1 1 0 0 1 1-1m8 2h1V3h-1zM8 4V3H7v1zM6 5a2 2 0 0 0-2 2v1h15V7a2 2 0 0 0-2-2zM4 18a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V9H4zm8-5h5v5h-5zm1 1v3h3v-3z'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.basil--document-outline {
+  display: inline-block;
+  width: 3em;
+  height: 2.1em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M15.75 13a.75.75 0 0 0-.75-.75H9a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 .75-.75m0 4a.75.75 0 0 0-.75-.75H9a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 .75-.75'/%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.25A2.75 2.75 0 0 0 4.25 5v14A2.75 2.75 0 0 0 7 21.75h10A2.75 2.75 0 0 0 19.75 19V7.968c0-.381-.124-.751-.354-1.055l-2.998-3.968a1.75 1.75 0 0 0-1.396-.695zM5.75 5c0-.69.56-1.25 1.25-1.25h7.25v4.397c0 .414.336.75.75.75h3.25V19c0 .69-.56 1.25-1.25 1.25H7c-.69 0-1.25-.56-1.25-1.25z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-color: var(--card-bg);
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.lucide--chevron-right {
+  display: inline-block;
+  width: 2em;
+  height: 1em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m9 18l6-6l-6-6'/%3E%3C/svg%3E");
+  background-color: white;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  margin-left: auto;
+}
+
+/* Estadisticas  */
+
+.card-table{
+    width: 100%;
+    height: 800px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.card-uno{
+    width: 63%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* estadistica de ingresos */
+
+.card-ingresos{
+    width: 100%;
+    height: 65%;
+    border-radius: 12px;
+    background: #212020;
+}
+
+.text-ingesos h3{
+    margin: 12px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: white;
+    font-size: clamp(16px, 3vw, 22px);
+}
+
+.text-ingesos{
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-right: 15px;
+}
+
+
+/* selecion de año*/
+.select-wrapper {
+    margin: 15px;
+    position: relative;;
+    width: auto;
+    height: 35px;
+}
+ 
+
+select, ::picker(select) {
+    appearance: base-select;
+}
+ 
+select {
+    background: #212020;
+    padding: 3px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid #6a6a6a;
+    transition: background 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+}
+ 
+select:hover, select:focus {
+    background: #D09E10;
+}
+ 
+select selectedcontent {
+    color: white;
+    font-weight: bold;
+}
+ 
+select::picker-icon {
+    color: #ffffff;
+    transition: 0.4s transform;
+}
+ 
+select:open::picker-icon {
+    color: #ffffff;
+    transform: rotate(180deg);
+}
+ 
+::picker(select) {
+    background: #131313a0;
+    color: #ffffff;
+    border: none;
+    border: 4px;
+}
+ 
+select option {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    padding: 15px;
+}
+ 
+select option:nth-of-type(odd) {
+    background: #00000031;
+    border: 1px solid #6a6a6a;
+    border-radius: 5px;
+}
+ 
+select option:hover {
+    background: #D09E10;
+}
+ 
+select option:checked {
+    background: #D09E10;
+}
+ 
+select option::checkmark {
+    order: 1;
+    margin-left: 32px;
+    content: "📌";
+}
+
+.card-etd{
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+    height: 81%;
+}
+
+.card-certi{
+    height: 63%;
+    width: 100%;
+    margin-top: -12px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column; 
+    gap: clamp(1px, 2vw, 2px) ; 
+}
+
+.card-document{
+    width: 100%;
+    height: 35%;
+    background: #212020;
+    border-radius: 12px;
+}
+
+.text-document h3{
+    margin: 10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    color: white;
+    font-size: clamp(15px, 3vw, 20px);
+}
+
+.ver-documentos{
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: clamp(14px, 2.5vw, 16px);
+    font-weight: 600;
+}
+
+.ver-documentos .flecha {
+    color: #D09E10;
+
+    font-size: 38px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+
+.ver-documentos:hover .flecha {
+    transform: translateX(5px);
+}
+
+.card-certificado{
+    padding: 12px;
+    margin: 4px;
+    width: 97%;
+    height: 47px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-bottom: 1px solid #5d5c59;
+}
+
+
+.text-certificado h3{
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-size: clamp(14px, 2.5vw, 20px);
+    color: white;
+}
+
+.card-red{
+    margin-left: auto;
+    background: var(--danger-red);
+    height: 30px;
+    width: 30px;
+    border-radius: 60px;
+}
+
+.card-red p{
+    margin-top: 3px;
+    text-align: center;
+    color: white;
+}
+
+
+.card-ver{
+    width: 98%;
+    height: 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card-ver a{
+    margin-left: 12px;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+    text-decoration: none;
+}
+
+/* jugaores y pagos*/
+.card-dos{
+    width: 35%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* jugadores */
+
+.card-jugadores{
+    width: 100%;
+    height: 50%;
+    background: #212020;
+    border-radius: 12px;
+
+}
+
+
+.text-jugadores h3{
+    font-family: "Poppins", sans-serif;
+    margin: 12px;
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 300;
+    color: white;
+}
+
+.grafica-categorias{
+    width: 100%;
+    height: auto;
+
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(15px, 3vw, 19px);
+
+    flex-wrap: wrap;
+    border-radius: 12px;
+    background: #212020;
+    margin-top: 45px;
+}
+
+.grafica-dona{
+    width: clamp(150px, 40vw, 130px);
+    height: clamp(120px, 40vw, 140px);
+
+    position: relative;
+    flex-shrink: 0;
+}
+
+.grafica-dona canvas{
+    width: 100% ;
+    height: 100% ;
+}
+
+.leyenda-categorias {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+    min-width: 130px;
+    font-size: clamp(3px, 2vw, 5px);
+}
+
+.item-categoria {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 12px;
+    font-family: Arial, sans-serif;
+    font-size: clamp(5px, 2vw, 2px);
+}
+
+.color-categoria{
+    width: clamp(4px, 1vw, 20px);
+    height: clamp(4px, 1vw, 20px);
+
+    border-radius: 8px;
+
+    flex-shrink: 0;
+}
+
+
+.nombre-categoria{
+    color: #ffffff;
+    font-size: clamp(12px, 2.5vw, 15px);
+    font-weight: 700;
+    word-break: break-word;  /* Permite que el texto se rompa */
+    flex: 1;
+    min-width: 80px;
+}
+
+.cantidad-categoria{
+    color: #5b5a5a95;
+    font-size: clamp(11px, 2vw, 13px);
+    word-break: break-word;  /* Se adapta al espacio */
+    flex: 0 1 100%;
+}
+
+.card-pagos{
+    width: 100%;
+    height: 48%;
+    background: #212020;
+    border-radius: 12px;
+}
+
+
+.text-pagos h3{
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: clamp(10px, 3vw, 17px);
+    margin: 5px;
+}
+
+.tabla-pagos-container {
+    width: 100%;
+    height: 5%;
+    background: #212020;
+    padding: 0 15px 10px;
+    box-sizing: border-box;
+}
+
+
+/* ==========================
+   TABLA
+========================== */
+
+.tabla-pagos {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+
+/* ==========================
+   FILAS
+========================== */
+
+.tabla-pagos tr {
+    border-bottom: 1px solid #444;
+}
+
+
+/* ==========================
+   JUGADOR
+========================== */
+
+.tabla-pagos .jugador {
+    width: 50%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 5px;
+}
+
+
+/* FOTO */
+
+.jugador img {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #D09E10;
+
+    flex-shrink: 0;
+}
+
+
+/* DATOS */
+
+.datos-jugador {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+/* NOMBRE */
+
+.nombre {
+    color: #ffffff;
+
+    font-size: clamp(10px, 2vw, 9px);
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* CATEGORIA */
+
+.categoria {
+    color: #ffffff;
+    font-size: clamp(11px, 2vw, 14px);
+    font-weight: 400;
+}
+
+
+/* ==========================
+   PAGO
+========================== */
+
+.tabla-pagos .pago {
+    width: 22%;
+
+    color: #00a82d;
+
+    font-size: clamp(13px, 2.5vw, 16px);
+
+    font-weight: 500;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================
+   FECHA
+========================== */
+
+.tabla-pagos .fecha {
+    width: 28%;
+
+    color: #ffffff;
+
+    font-size: clamp(12px, 2.5vw, 16px);
+
+    text-align: right;
+
+    padding-right: 5px;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================
+   VER TODOS
+========================== */
+
+.ver-pagos {
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: clamp(14px, 2.5vw, 16px);
+
+    font-weight: 600;
+}
+
+
+/* FLECHA */
+
+.ver-pagos .flecha {
+    color: #D09E10;
+
+    font-size: 38px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+
+.ver-pagos:hover .flecha {
+    transform: translateX(5px);
+}
+
+/* =========================================
+   MEDIA QUERIES PARA RESPONSIVIDAD
+========================================= */
+
+/* Pantallas medianas (Tablets - hasta 1024px) */
+@media screen and (max-width: 1024px) {
+    /* Las dos columnas principales pasan a ocupar el 100% y se apilan */
+    .card-uno, .card-dos {
+        width: 100%;
+    }
+    
+    .card-pagos{
+        width: 100%;
+        height: 400px;
+    }
+
+    /* El encabezado se adapta si el texto es muy largo */
+    .card-admin {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .card-fetch {
+        margin-left: 0;
+    }
+}
+
+/* Pantallas pequeñas (Celulares - hasta 768px) */
+@media screen and (max-width: 768px) {
+    /* Reducir márgenes globales para aprovechar el espacio en móvil */
+    .card-dashboard {
+        margin: 28px;
+    }
+
+    .card-pagos{
+        margin-top: 30px;
+    }
+
+    .text-pagos h3{
+        margin: 10px;
+        font-size: 19px;
+        font-weight: 300;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .tabla-pagos{
+        margin-top: 30px;
+    }
+    /* El título de ingresos y su botón se apilan */
+    .text-ingesos {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .select-wrapper {
+        margin: 0 15px 15px 15px;
+    }
+
+    /* La gráfica de dona y su leyenda se apilan verticalmente */
+    .grafica-categorias {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+    }
+
+    /* Ajustes menores de texto en la tabla para que no se desborde */
+    .tabla-pagos .fecha, .tabla-pagos .pago {
+        font-size: 13px;
+    }
+    
+    .datos-jugador .nombre {
+        font-size: 14px;
+    }
+
+    /* Reducir ligeramente los iconos de tarjetas en móviles */
+    .icon, .icon-money {
+        width: 60px;
+        height: 60px;
+        margin-top: 20px;
+    }
+}

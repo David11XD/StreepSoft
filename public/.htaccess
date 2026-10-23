@@ -1,0 +1,26 @@
+# public/.htaccess
+
+# Activar reescritura de URLs
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Si es un archivo real, servirlo directamente
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+    
+    # Si es una carpeta real, servirla directamente
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    
+    # Todo lo demás va a index.php
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# Ocultar listado de directorios
+Options -Indexes
+
+# Bloquear archivos sensibles
+<FilesMatch "\.(env|log|ini|sql|git|htaccess)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

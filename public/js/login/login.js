@@ -24,3 +24,32 @@ const autoHide = (id) => {
 autoHide("mensajeError");
 
 
+document.addEventListener("DOMContentLoaded",()=>{
+
+    const wrapper=document.querySelector(".page-wrapper");
+
+    wrapper.classList.add("entrar-login");
+
+    requestAnimationFrame(()=>{
+
+        wrapper.classList.remove("entrar-login");
+
+    });
+
+    const enlace=document.querySelector(".alogin");
+
+    enlace.addEventListener("click",(e)=>{
+
+        e.preventDefault();
+
+        wrapper.classList.add("salir-login");
+
+        setTimeout(()=>{
+
+            window.location.href=enlace.href;
+
+        },500);
+
+    });
+
+});

@@ -2,7 +2,7 @@ import  loadSection  from "./loader.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     Promise.all([
-        loadSection('nav-card', '/streepsoft/app/views/navegacion/navegacion.php')
+        loadSection('nav-card', '/streepsoft/nav-menu')
     ])
     .then(() => {
         console.log('Secciones cargadas');

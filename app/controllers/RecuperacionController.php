@@ -266,3 +266,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
+
+//@echo off
+echo ========================================
+echo   Instalando StreepSoft
+echo ========================================
+echo.
+
+echo [1/3] Verificando Composer...
+composer --version >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: Composer no está instalado.
+    echo Descárgalo de: https://getcomposer.org/download/
+    pause
+    exit /b 1
+)
+
+echo [2/3] Instalando dependencias...
+composer install
+
+echo [3/3] Verificando instalación...
+if exist vendor\autoload.php (
+    echo.
+    echo ========================================
+    echo   Instalación exitosa
+    echo ========================================
+    echo.
+    echo Ahora puedes abrir el proyecto en:
+    echo http://localhost/streepsoft
+) else (
+    echo.
+    echo ERROR: No se pudo crear vendor/autoload.php
+)
+
+pause//
