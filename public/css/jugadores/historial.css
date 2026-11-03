@@ -1,0 +1,519 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('../hamburguesa/hamburguer.css');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212; /* Fondo general oscuro acorde al diseño */
+    font-family: "Poppins", sans-serif;
+}
+
+.text-card h1{
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: white;
+    margin: 12px;
+}
+
+/* --- TARJETAS SUPERIORES --- */
+
+
+/* Iconos (Se conservan intactos) */
+
+
+.basil--search-solid {
+  display: inline-block;
+  width: 2em;
+  height: 1.5em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M14.385 15.446a6.751 6.751 0 1 1 1.06-1.06l5.156 5.155a.75.75 0 1 1-1.06 1.06zM6.46 13.884a5.25 5.25 0 1 1 7.43-.005l-.005.005l-.005.004a5.25 5.25 0 0 1-7.42-.004' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-color: #D09E10;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.uil--ellipsis-v {
+  display: inline-block;
+  width: 2em;
+  height: 2.3em;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 7a2 2 0 1 0-2-2a2 2 0 0 0 2 2m0 10a2 2 0 1 0 2 2a2 2 0 0 0-2-2m0-7a2 2 0 1 0 2 2a2 2 0 0 0-2-2'/%3E%3C/svg%3E");
+  background-color: #D09E10;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+
+/* --- BARRA DE OPCIONES / FILTROS (DISEÑO ESCRITORIO ORIGINAL) --- */
+.card-otp{
+    width: 100%;
+    padding: 10px;
+}
+
+.card-options{
+    width: 100%;
+    height: 120px;
+    display: flex; 
+    justify-content: space-between;
+    padding: 0 15px;
+    border-radius: 5px;
+}
+
+.card-one{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-two{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.buscar{
+    width: 180px;
+    height: 40px;
+    display: flex;;
+    right: 0;
+    background: #c1bdbd;
+    border-radius: 10px;
+    border: 1px solid #303030;
+    overflow: hidden;
+    margin-top: 90px;
+}
+
+.buscar input{
+    flex: 1;
+    background: transparent;
+    color: #000000;
+    border: none;
+    outline: none;
+    padding: 0 5px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+}
+
+.buscar button{
+    width: 25px;
+    height: 100%;
+    border: none;
+    background: #c1bdbd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.buscar:focus-within{
+    border-color: #D09E10;
+    box-shadow: 0 0 2px #D09E10;
+}
+
+.informacion-jugador{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.foto-jugador{
+    width: 130px;
+    height: 130px;
+    border-radius: 10%;
+    overflow: hidden;
+    background: #181818;
+    border: 1px solid #D09E10;
+}
+
+.foto-jugador img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.informacion h3 {
+    margin-top: 3px;
+    font-family: "Poppins", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #ffff;
+}
+
+.informacion p{
+    margin-top: 1px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: #ffff;
+}
+/* --- TABLA Y CONTENEDOR DE DATOS --- */
+.card-tb{
+    padding: 10px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.table-responsive{
+    overflow-x: auto;
+}
+
+.card-tables{
+    background: #212020;
+    width: 100%;
+    border-left: 10px solid #D09E10;
+    border-right: 5px solid #D09E10;
+    border-radius: 5px;
+}
+
+table{
+    width: 100%;
+    min-width: 1000px; /* Asegura que en pantallas grandes se vea idéntico a tu referencia */
+    padding: 12px;
+    color: #c1bdbd;
+    border-collapse: collapse;
+}
+
+thead th{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    height: 40px;
+    border-bottom: 1px solid #D09E10;
+    text-align: center;
+}
+
+tbody td{
+    height: 60px;
+    text-align: center;
+}
+
+.table-text h3{
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+
+.table-text h2{
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.table-text p{
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+
+.table-accion{
+    position: relative;
+    display: inline-block;
+    display: flex;
+    margin: 0px auto;
+    margin-left: 30px;
+}
+
+.menu-acciones {
+    display: none;
+    position: absolute;
+    right: 120%; 
+    top: 50%;   
+    transform: translateY(-50%);
+    background: #212020;
+    border: 1px solid #D09E10;
+    border-radius: 5px;
+    z-index: 9999;
+    min-width: 110px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.menu-acciones.mostrar {
+    display: block;
+}
+
+.menu-acciones button {
+    display: block;
+    width: 100%;
+    padding: 8px 1px;
+    color: #c1bdbd;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.menu-acciones button:hover {
+    background: #333;
+    color: #fff;
+}
+
+.table-accion button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* --- PAGINACIÓN INFERIOR --- */
+.card-paginacion{
+    width: 100%;
+    height: 50px;
+    background: #222222;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.info-registros p{
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    color: #c1bdbd;
+}
+
+.paginacion{
+    display: flex;
+    align-items: center;
+}
+
+.Pagina{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagina-btn{
+    height: 30px;
+    padding: 0 10px;
+    border: none;
+    background: transparent;
+    color: #c1bdbd;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.pagina-numero {
+    height: 30px;
+    min-width: 30px;
+    padding: 0 6px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.pagina-numero.activo{
+    color: white;
+}
+
+.cantidad-registros .registros{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.registros label,
+.registros span{
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    color: #c1bdbd;
+}
+
+.registros select{
+    color: #c1bdbd;
+    border: 1px solid #444;
+    background: #111;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+/* modal */
+
+.modal-registro {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.85);
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+.modal-registro.activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-registro-contenido {
+    position: relative;
+
+    width: 85%;
+    max-width: 720px;
+
+    height: 80vh;
+
+    background: white;
+
+    border-radius: 2px;
+
+    overflow: hidden;
+
+    transform: scale(0.9);
+
+    transition: 0.3s ease;
+}
+
+.modal-registro.activo .modal-registro-contenido {
+    transform: scale(1);
+}
+
+.iframe-registro {
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid #D09E10;
+}
+
+/* Botón cerrar */
+
+.cerrar-registro {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+
+    
+    color: #D09E10;
+
+    font-size: 24px;
+    line-height: 30px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+.cerrar-registro:hover {
+    transform: scale(1.05);
+}
+
+
+/* ==========================================
+   MEDIA QUERIES PARA ADAPTACIÓN RESPONSIVA
+   ========================================== */
+
+/* Laptops y Tablets Grandes (Pantallas medianas) */
+@media (max-width: 1024px) {
+    .card-options {
+        height: auto;
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+    }
+    
+    .card-one {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .buscar {
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .card-two {
+        width: 100%;
+    }
+}
+
+/* Celulares (Pantallas pequeñas) */
+@media (max-width: 768px) {
+    .text-card h1 {
+        font-size: 22px;
+    }
+
+    .card-ets {
+        flex-direction: column;
+    }
+
+    .card-alumno {
+        width: 100%;
+    }
+
+    .card-select {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .select-tipo {
+        flex: 1 1 45%;
+    }
+
+    .buscar {
+        width: 100%;
+    }
+
+    .card-paginacion {
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .info-registros, .paginacion, .cantidad-registros {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.mensaje-historial-ok {
+    margin: 10px 16px;
+    padding: 10px 14px;
+    border: 1px solid #247a3d;
+    border-radius: 6px;
+    color: #7fe29a;
+    background: rgba(22, 196, 69, 0.08);
+    font-size: 13px;
+}

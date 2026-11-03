@@ -101,6 +101,6 @@ class AuthController extends Controller
         error_log("Logout: $nombreUsuario");
 
         // Redirigir a home
-        $this->redirect('/streepsoft/home');
+        $this->redirect('/streepsoft/');
     }
 }

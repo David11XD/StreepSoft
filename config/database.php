@@ -19,7 +19,10 @@ try {
     $pdo->exec("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
 
 } catch(PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+    // Si la BD falla, mostrar error 503
+    http_response_code(503);
+    require_once __DIR__ . '/../app/views/errores/503.php';
+    exit;
 }
 
 
