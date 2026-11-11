@@ -83,6 +83,7 @@ require_once APP_PATH . '/models/TipoBeca.php';
 require_once APP_PATH . '/models/Actividad.php';
 require_once APP_PATH . '/models/Configuracion.php';
 require_once APP_PATH . '/models/CambioEstadoJugador.php';
+require_once APP_PATH . '/models/Notificacion.php';
 
 // Verificar si la sesion expiro por timeout
 SessionTimeout::check();
@@ -142,6 +143,7 @@ if (Auth::check()) {
             '/test-400' => ['controller' => 'Test400Controller', 'method' => 'error'],
             '/test-error' => ['controller' => 'TestController', 'method' => 'error'],
             '/dashboard' => ['controller' => 'DashboardController', 'method' => 'index'],
+            '/notificaciones/panel' => ['controller' => 'NotificacionController', 'method' => 'panel'],
             '/nav-menu' => ['controller' => 'NavController', 'method' => 'render'],
             '/jugadores/gestion' => ['controller' => 'JugadorController', 'method' => 'gestion'],
             '/jugadores/deudas' => ['controller' => 'DeudaController', 'method' => 'listar'],
@@ -165,6 +167,8 @@ if (Auth::check()) {
             '/instructores/editar/:id' => ['controller' => 'InstructorController', 'method' => 'editarForm'],
             '/documentos' => ['controller' => 'DocumentoController', 'method' => 'verificacion'],
             '/documentos/gestionar/:id' => ['controller' => 'DocumentoController', 'method' => 'gestionar'],
+            '/documentos/archivo/:id' => ['controller' => 'DocumentoController', 'method' => 'archivo'],
+            '/documentos/datos/:id' => ['controller' => 'DocumentoController', 'method' => 'datos'],
         ],
 
         'POST' => [
@@ -185,6 +189,9 @@ if (Auth::check()) {
             '/instructores/retirar/:id' => ['controller' => 'InstructorController', 'method' => 'retirar'],
             '/instructores/subir-foto' => ['controller' => 'InstructorController', 'method' => 'subirFoto'],
             '/instructores/eliminar-foto' => ['controller' => 'InstructorController', 'method' => 'eliminarFoto'],
+            '/documentos/accion' => ['controller' => 'DocumentoController', 'method' => 'accion'],
+            '/notificaciones/estado' => ['controller' => 'NotificacionController', 'method' => 'estado'],
+            '/notificaciones/configuracion' => ['controller' => 'NotificacionController', 'method' => 'guardarConfiguracion'],
         ]
     ];
 

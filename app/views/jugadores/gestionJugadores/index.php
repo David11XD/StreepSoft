@@ -1,6 +1,8 @@
 <?php
 /** @var array $jugadores */
 /** @var array $jugadoresVisibles */
+/** @var int $diasGracia */
+$diasGracia = max(0, min(30, (int)($diasGracia ?? 5))); 
 
 $totalAlumnos = count($jugadores);
 $totalActivos = 0;
@@ -179,39 +181,29 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                             <div class="select-tipo">
                                 <label class="la--users"></label>
                                 <select class="custom-select" id="filtroBeca">
-                                    <button>
-                                        <selectedcontent></selectedcontent>
-                                    </button>
-                                    <option value="todo">Todos</option>
-                                    <option value="Beca completa">Beca</option>
-                                    <option value="Media beca">Media-beca</option>
+                                    <option value="todo">Todas las becas</option>
+                                    <option value="Beca completa">Beca completa</option>
+                                    <option value="Media beca">Media beca</option>
+                                    <option value="Sin beca">Sin beca</option>
                                 </select>
                             </div>
 
                             <div class="select-tipo">
                                 <span class="material-symbols--brightness-1"></span>
                                 <select class="custom-select" id="filtroEstado">
-                                    <button>
-                                        <selectedcontent></selectedcontent>
-                                    </button>
                                     <option value="todo">Estado</option>
                                     <option value="Inactivo">Inactivo</option>
                                     <option value="Activo">Activo</option>
-                                    <option value="Retirado">Retirado</option>
                                 </select>
                             </div>
 
                             <div class="select-tipo">
                                 <span class="tdesign--money-filled"></span>
                                 <select class="custom-select" id="filtroPago">
-                                    <button>
-                                        <selectedcontent></selectedcontent>
-                                    </button>
-                                    <option value="todo">Seleccionar</option>
+                                    <option value="todo">Estado de pago</option>
                                     <option value="vigente">Vigente</option>
                                     <option value="pendiente">Pendiente</option>
                                     <option value="mora">Mora</option>
-                                    <option value="pagado">Pagado</option>
                                 </select>
                             </div>
                         </div>
@@ -320,7 +312,32 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                     </tr>
                                 <?php endif; ?>
                                 <?php foreach ($jugadoresVisibles as $jugador): ?>
-                                <tr data-beca="<?= htmlspecialchars($jugador['tipo_beca'] ?? '') ?>" data-estado="<?= htmlspecialchars($jugador['estado'] ?? '') ?>" data-pago="<?= htmlspecialchars($jugador['pago'] ?? '') ?>">
+                                <?php
+                                    $becaFila = trim((string)($jugador['tipo_beca'] ?? 'Sin beca'));
+                                    if ($becaFila === '') $becaFila = 'Sin beca';
+                                    $fechaLimiteFila = $jugador['fecha_limite_pago'] ?? null;
+                                    $pagoRegistradoFila = strtolower(trim((string)($jugador['pago'] ?? '')));
+                                    $estadoPagoFiltro = 'vigente';
+                                    if ($pagoRegistradoFila === 'pagado') {
+                                        $estadoPagoFiltro = 'pagado';
+                                    } elseif (!empty($fechaLimiteFila)) {
+                                        try {
+                                            $limiteFiltro = new DateTimeImmutable((string)$fechaLimiteFila);
+                                            $hoyFiltro = new DateTimeImmutable('today');
+                                            $diasVencidosFiltro = (int)$hoyFiltro->diff($limiteFiltro)->format('%r%a') * -1;
+                                            if ($diasVencidosFiltro > $diasGracia) {
+                                                $estadoPagoFiltro = 'mora';
+                                            } elseif ($diasVencidosFiltro > 0) {
+                                                $estadoPagoFiltro = 'pendiente';
+                                            }
+                                        } catch (Throwable $e) {
+                                            $estadoPagoFiltro = $pagoRegistradoFila === 'mora' ? 'mora' : 'pendiente';
+                                        }
+                                    } else {
+                                        $estadoPagoFiltro = $pagoRegistradoFila === 'mora' ? 'mora' : ($pagoRegistradoFila === 'pagado' ? 'pagado' : 'pendiente');
+                                    }
+                                    ?>
+                                <tr data-beca="<?= htmlspecialchars($becaFila, ENT_QUOTES, 'UTF-8') ?>" data-estado="<?= htmlspecialchars(mb_strtolower(trim((string)($jugador['estado'] ?? ''))), ENT_QUOTES, 'UTF-8') ?>" data-pago="<?= htmlspecialchars($estadoPagoFiltro, ENT_QUOTES, 'UTF-8') ?>">
                                     <td>
                                         <div class="foto">
                                             <?php if (!empty($jugador['foto'])): ?>
@@ -391,21 +408,20 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
                                         <div class="table-text">
                                             <h3><?= htmlspecialchars($jugador['fecha_limite_pago']) ?></h3>
                                             <?php 
-                                                $fechaLimite = new DateTime($jugador['fecha_limite_pago']);
-                                                $hoy = new DateTime('today');
-                                                $diasParaVencer = $hoy->diff($fechaLimite)->days;
-                                                $estadoDeuda = $jugador['pago'] ?? 'pendiente';
+                                                $fechaLimite = new DateTimeImmutable($jugador['fecha_limite_pago']);
+                                                $hoy = new DateTimeImmutable('today');
+                                                // Positivo: días que faltan. Negativo: días transcurridos desde el vencimiento.
+                                                $diasParaVencer = (int)$hoy->diff($fechaLimite)->format('%r%a');
+                                                $estadoDeuda = strtolower(trim((string)($jugador['pago'] ?? 'pendiente')));
+                                                $diasVencidos = max(0, -$diasParaVencer);
 
                                                 if ($estadoDeuda === 'pagado') {
                                                     $estadoTexto = 'Pagado';
                                                     $claseEstado = 'estado-pagado';
-                                                } elseif ($estadoDeuda === 'mora') {
-                                                    $estadoTexto = 'Mora ' . abs($diasParaVencer) . ' días';
+                                                } elseif ($diasVencidos > $diasGracia) {
+                                                    $estadoTexto = 'Mora ' . $diasVencidos . ' días';
                                                     $claseEstado = 'estado-mora';
-                                                } elseif ($diasParaVencer < 0) {
-                                                    $estadoTexto = 'Vencida';
-                                                    $claseEstado = 'estado-mora'; 
-                                                } elseif ($diasParaVencer <= 5) {
+                                                } elseif ($diasVencidos > 0) {
                                                     $estadoTexto = 'Pendiente';
                                                     $claseEstado = 'estado-pendiente';
                                                 } else {

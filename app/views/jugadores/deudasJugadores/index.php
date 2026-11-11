@@ -56,16 +56,34 @@
                     </div>
                 </div>
                 
-                <div class="card-alumno">
+                <div class="card-alumno card-recaudo-anual">
                     <div class="icon-circle">
                         <div class="circle">
                             <div class="mdi--cash-register"></div>
                         </div>
                     </div>
                     <div class="text-alumno">
-                        <h2>$<?= number_format((float) $resumen['total_recaudo'], 0, ',', '.') ?> cop</h2>
-                        <h3>Recaudo</h3>
-                        <p><?= (int) $resumen['porcentaje_recaudo'] ?> % del total</p>
+                        <div class="recaudo-anual-cabecera">
+                            <h2
+                                id="valorRecaudoAnual"
+                                data-valor="$<?= number_format((float) ($recaudoAnual ?? 0), 0, ',', '.') ?> cop"
+                            >$<?= number_format((float) ($recaudoAnual ?? 0), 0, ',', '.') ?> cop</h2>
+                            <button
+                                type="button"
+                                class="btn-ojo-recaudo"
+                                id="btnOjoRecaudo"
+                                aria-label="Ocultar recaudo anual"
+                                aria-pressed="false"
+                                title="Ocultar o mostrar recaudo anual"
+                            >
+                                <svg class="icono-ojo" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                        <h3>Recaudo del año <?= (int) ($anioRecaudo ?? date('Y')) ?></h3>
+                        <p>Pagos recibidos durante el año</p>
                     </div>
                 </div>
             </div>
@@ -90,38 +108,38 @@
                             <div class="select-tipo">
                                 <label class="la--users"></label>
                                 <select class="custom-select" id="filtroBeca">
-                                    <button>
-                                        <selectedcontent></selectedcontent>
-                                    </button>
-                                    <option value="todo">Todos</option>
-                                    <option value="">Beca</option>
-                                    <option value="">Media-beca</option>
+                                    <option value="todo">Todas las becas</option>
+                                    <?php
+                                    $becasFiltro = [];
+                                    foreach ($deudas as $deudaFiltro) {
+                                        $idBeca = (string) ($deudaFiltro['id_tipo_becas'] ?? '');
+                                        if ($idBeca !== '' && !isset($becasFiltro[$idBeca])) {
+                                            $becasFiltro[$idBeca] = (string) ($deudaFiltro['tipo_beca'] ?? 'Sin nombre');
+                                        }
+                                    }
+                                    asort($becasFiltro, SORT_NATURAL | SORT_FLAG_CASE);
+                                    foreach ($becasFiltro as $idBeca => $nombreBeca): ?>
+                                        <option value="<?= htmlspecialchars($idBeca, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($nombreBeca, ENT_QUOTES, 'UTF-8') ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="select-tipo">
                                 <span class="material-symbols--brightness-1"></span>
                                 <select class="custom-select" id="filtroEstado">
-                                    <button>
-                                        <selectedcontent></selectedcontent>
-                                    </button>
-                                    <option value="todo">Estado</option>
-                                    <option value="">Inactivo</option>
-                                    <option value="">Activo</option>
+                                    <option value="todo">Estado del jugador</option>
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
                                 </select>
                             </div>
 
                             <div class="select-tipo">
                                 <span class="tdesign--money-filled"></span>
                                 <select class="custom-select" id="filtroPago">
-                                    <button>
-                                        <selectedcontent></selectedcontent>
-                                    </button>
-                                    <option value="todo">seleccionar</option>
+                                    <option value="todo">Estado de deuda</option>
                                     <option value="vigente">Vigente</option>
                                     <option value="pendiente">Pendiente</option>
                                     <option value="mora">Mora</option>
-                                    <option value="pagado">Pagado</option>
                                 </select>
                             </div>
                         </div>
@@ -240,7 +258,10 @@
                                             }
                                         $advertenciaClase = $estado === 'mora' ? 'advertencia-m' : 'advertencia';
                                     ?>
-                                <tr data-estado="<?= htmlspecialchars($estado) ?>" data-pago="<?= htmlspecialchars($deuda['pago'] ?? 'pendiente') ?>">
+                                <tr
+                                    data-beca="<?= htmlspecialchars((string) ($deuda['id_tipo_becas'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+                                    data-estado="<?= htmlspecialchars(strtolower(trim((string) ($deuda['estado_jugador'] ?? 'activo'))), ENT_QUOTES, 'UTF-8') ?>"
+                                    data-pago="<?= htmlspecialchars($estado === 'pago' ? 'pagado' : $estado, ENT_QUOTES, 'UTF-8') ?>">
                                     <td>
                                         <div class="foto-estado-wrapper" aria-label="Foto y estado de <?= htmlspecialchars($nombreCompleto, ENT_QUOTES, 'UTF-8') ?>">
                                             <div class="foto">

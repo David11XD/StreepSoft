@@ -28,6 +28,7 @@ class Deuda extends Model
                 j.nombres,
                 j.apellidos,
                 j.foto,
+                j.estado AS estado_jugador,
                 c.nombre   AS categoria,
                 tb.nombre  AS tipo_beca
             FROM deudas d

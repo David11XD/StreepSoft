@@ -53,6 +53,7 @@ class DashboardController extends Controller
         $jugadoresEnMora = $consultar('jugadores en mora', fn() => $this->estadisticaModel->jugadoresEnMora(), 0);
         $totalInstructoresActivos = $consultar('instructores activos', fn() => $this->estadisticaModel->totalInstructoresActivos(), 0);
         $sinDocumento = $consultar('jugadores sin documento', fn() => $this->estadisticaModel->jugadoresSinDocumentoIdentidad(), 0);
+        $faltantesDocumentos = $consultar('faltantes por tipo de documento', fn() => $this->estadisticaModel->faltantesPorTipoDocumento(), ['eps' => 0, 'consentimiento' => 0, 'idrd' => 0]);
         $sinFoto = $consultar('jugadores sin foto', fn() => $this->estadisticaModel->jugadoresSinFoto(), 0);
         $sinResponsable = $consultar('jugadores sin responsable', fn() => $this->estadisticaModel->jugadoresSinResponsable(), 0);
         $deudasRecientes = $consultar('deudas recientes', fn() => $this->estadisticaModel->deudasRecientes(4), []);
@@ -98,6 +99,7 @@ class DashboardController extends Controller
             'jugadoresEnMora' => $jugadoresEnMora,
             'totalInstructoresActivos' => $totalInstructoresActivos,
             'sinDocumento' => $sinDocumento,
+            'faltantesDocumentos' => $faltantesDocumentos,
             'sinFoto' => $sinFoto,
             'sinResponsable' => $sinResponsable,
             'deudasRecientes' => $deudasRecientes,

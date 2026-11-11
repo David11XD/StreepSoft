@@ -9,6 +9,12 @@ body {
     margin: 20px;
 }
 
+.text-card h1{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 300;
+}
+
 /* Estilos para el panel de filtros */
 .panel-filtro {
     background: #1A1A1A;
@@ -31,6 +37,7 @@ body {
 .panel-filtro-header h2 {
     margin: 0;
     font-size: 1.2rem;
+    font-weight: revert-rule;
 }
 
 .panel-filtro-nota {
@@ -165,7 +172,7 @@ body {
 .panel-resultados-header h2 {
     margin: 12px;
     font-family: "Poppins", sans-serif;
-    font-weight: bold;
+    font-weight: revert-rule;
     font-size: 1.2rem;
 }
 
@@ -318,8 +325,8 @@ body {
 
 .panel-historial-text h2 {
     font-family: "Poppins", sans-serif;
-    font-weight: bold;
-    font-size: 1.2rem;    
+    font-weight: revert-rule;
+    font-size: 1.2rem;  
     position: relative;
     top: 12px;
     left: 12px;

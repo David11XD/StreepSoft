@@ -105,38 +105,28 @@
                         </div>
 
                         <div class="card-certi">
-                            <div class="card-certificado">
-                                <div class="at-icons--file-document"></div>
-                                <div class="text-certificado">
-                                    <h3>Certidicado Medico</h3>
+                            <?php
+                                $faltantesDocumentos = $faltantesDocumentos ?? [];
+                                $itemsDocumentos = [
+                                    'eps' => 'Certificado EPS',
+                                    'consentimiento' => 'Consentimiento informado',
+                                    'idrd' => 'Ficha IDRD',
+                                ];
+                            ?>
+                            <?php foreach ($itemsDocumentos as $clave => $etiqueta): ?>
+                                <div class="card-certificado">
+                                    <div class="at-icons--file-document"></div>
+                                    <div class="text-certificado">
+                                        <h3><?= htmlspecialchars($etiqueta, ENT_QUOTES, 'UTF-8') ?></h3>
+                                    </div>
+                                    <div class="card-red">
+                                        <p><?= number_format((int)($faltantesDocumentos[$clave] ?? 0), 0, ',', '.') ?></p>
+                                    </div>
                                 </div>
-                                <div class="card-red">
-                                    <p>4</p>
-                                </div>
-                            </div>
-
-                            <div class="card-certificado">
-                                <div class="at-icons--file-document"></div>
-                                <div class="text-certificado">
-                                    <h3>Autorizaciones</h3>
-                                </div>
-                                <div class="card-red">
-                                    <p>4</p>
-                                </div>
-                            </div>
-
-                            <div class="card-certificado">
-                                <div class="at-icons--file-document"></div>
-                                <div class="text-certificado">
-                                    <h3>Foto Actulizadas</h3>
-                                </div>
-                                <div class="card-red">
-                                    <p>4</p>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
 
-                        <a href="#" class="ver-documentos">
+                        <a href="/streepsoft/documentos" class="ver-documentos">
                             <span>Ver Todos los documentos</span>
 
                             <span class="flecha">›</span>

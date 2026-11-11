@@ -179,6 +179,36 @@ class Estadistica extends Model
         return $this->query($sql);
     }
 
+    /**
+     * Cuenta jugadores activos a quienes les falta cada documento requerido.
+     * Un documento rechazado también cuenta como faltante porque debe reemplazarse.
+     */
+    public function faltantesPorTipoDocumento(): array
+    {
+        $tipos = ['eps', 'consentimiento', 'idrd'];
+        $resultado = ['eps' => 0, 'consentimiento' => 0, 'idrd' => 0];
+
+        $sql = "
+            SELECT COUNT(*) AS total
+            FROM jugadores j
+            WHERE j.estado = 'activo'
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM documentos_gestion dg
+                  WHERE dg.id_jugadores = j.id_jugadores
+                    AND dg.clave = ?
+                    AND dg.estado <> 'rechazado'
+              )
+        ";
+
+        foreach ($tipos as $tipo) {
+            $fila = $this->queryOne($sql, [$tipo]);
+            $resultado[$tipo] = (int) ($fila['total'] ?? 0);
+        }
+
+        return $resultado;
+    }
+
     public function jugadoresSinDocumentoIdentidad(): int
     {
         $sql = "

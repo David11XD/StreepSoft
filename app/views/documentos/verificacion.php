@@ -1,26 +1,7 @@
 <?php
-
-/**
- * Vista: Documentos | Alumnos
- * Por ahora usa datos quemados (de prueba). Mas adelante este arreglo
- * llegara desde el controlador con informacion real de la base de datos.
- */
-
-$alumnos = [
-    ['id' => 1, 'nombre' => 'Carlos Tomas Gomez Perez', 'iniciales' => 'CTP', 'documento' => 'C.C 1087637289', 'categoria' => 'Sub-20', 'entregados' => 0, 'estado' => 'incompleto'],
-    ['id' => 2, 'nombre' => 'Carlos Tomas Gomez Perez', 'iniciales' => 'CTP', 'documento' => 'C.C 1087637289', 'categoria' => 'Sub-20', 'entregados' => 2, 'estado' => 'incompleto'],
-    ['id' => 3, 'nombre' => 'Carlos Tomas Gomez Perez', 'iniciales' => 'CTP', 'documento' => 'C.C 1087637289', 'categoria' => 'Sub-20', 'entregados' => 4, 'estado' => 'verificar'],
-    ['id' => 4, 'nombre' => 'Carlos Tomas Gomez Perez', 'iniciales' => 'CTP', 'documento' => 'C.C 1087637289', 'categoria' => 'Sub-20', 'entregados' => 4, 'estado' => 'completo'],
-];
-
-// Texto que se muestra debajo de la barra segun el estado
-$textoEstado = [
-    'incompleto' => 'Incompleto',
-    'verificar'  => 'Por verificar',
-    'completo'   => 'Completo',
-];
-
+$textoEstado = ['incompleto'=>'Incompleto', 'verificar'=>'Por verificar', 'completo'=>'Completo'];
 $totalDocumentos = 4;
+$esc = static fn($valor) => htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,6 +11,7 @@ $totalDocumentos = 4;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="/streepsoft/public/css/documentos/documentos.css">
+    <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
     <title>Documentos | Alumnos</title>
 </head>
 
@@ -49,7 +31,7 @@ $totalDocumentos = 4;
                     <i class="fi fi-rr-user-add"></i>
                 </span>
                 <div class="doc-card-texto">
-                    <strong>6</strong>
+                    <strong><?= (int)($resumenDocumentos['total'] ?? 0) ?></strong>
                     <span>Total de alumnos</span>
                     <small>esta temporada</small>
                 </div>
@@ -60,7 +42,7 @@ $totalDocumentos = 4;
                     <i class="fi fi-rr-check"></i>
                 </span>
                 <div class="doc-card-texto">
-                    <strong>1</strong>
+                    <strong><?= (int)($resumenDocumentos['completos'] ?? 0) ?></strong>
                     <span>Documentación completa</span>
                     <small>4 de 4 verificados</small>
                 </div>
@@ -71,7 +53,7 @@ $totalDocumentos = 4;
                     <i class="fi fi-rr-triangle-warning"></i>
                 </span>
                 <div class="doc-card-texto">
-                    <strong>4</strong>
+                    <strong><?= (int)($resumenDocumentos['incompletos'] ?? 0) ?></strong>
                     <span>Con documentos pendientes</span>
                     <small>falta al menos uno</small>
                 </div>
@@ -82,7 +64,7 @@ $totalDocumentos = 4;
                     <i class="fi fi-rr-memo-circle-check"></i>
                 </span>
                 <div class="doc-card-texto">
-                    <strong>2</strong>
+                    <strong><?= (int)($resumenDocumentos['verificar'] ?? 0) ?></strong>
                     <span>Por verificar</span>
                     <small>archivos subidos sin revisar</small>
                 </div>
@@ -95,33 +77,32 @@ $totalDocumentos = 4;
 
             <label class="doc-buscador">
                 <i class="fi fi-rr-search"></i>
-                <input type="text" placeholder="Buscar por nombre o identificacion">
+                <input type="text" id="doc-buscar" placeholder="Buscar por nombre o identificación">
             </label>
 
-            <label class="doc-select">
-                <i class="fi fi-rr-user"></i>
-                <select>
-                    <option>Todas las categorias</option>
-                    <option>Sub-12</option>
-                    <option>Sub-14</option>
-                    <option>Sub-20</option>
+            <!-- FILTRO DE CATEGORÍA -->
+            <div class="select-tipo doc-select">
+                <span class="fi fi-rr-user"></span>
+
+                <select class="custom-select" id="filtro-categoria">
+                    <option value="">Todas las categorías</option>
+                    <?php foreach (array_unique(array_filter(array_column($alumnos, 'categoria'))) as $categoria): ?>
+                        <option value="<?= $esc($categoria) ?>"><?= $esc($categoria) ?></option>
+                    <?php endforeach; ?>
                 </select>
-            </label>
+            </div>
 
-            <label class="doc-select">
-                <i class="fi fi-rr-document"></i>
-                <select>
-                    <option>Toda la documentacion</option>
-                    <option>Completo</option>
-                    <option>Incompleto</option>
-                    <option>Por verificar</option>
+            <!-- FILTRO DE DOCUMENTACIÓN -->
+            <div class="select-tipo doc-select">
+                <span class="fi fi-rr-document"></span>
+
+                <select class="custom-select" id="filtro-documentacion">
+                    <option value="">Toda la documentación</option>
+                    <option value="completo">Completo</option>
+                    <option value="incompleto">Incompleto</option>
+                    <option value="verificar">Por verificar</option>
                 </select>
-            </label>
-
-            <button type="button" class="doc-btn-filtro" title="Filtrar">
-                <i class="fi fi-rr-filter"></i>
-            </button>
-
+            </div>
         </section>
 
         <!--  TABLA DE ALUMNOS  -->
@@ -137,19 +118,30 @@ $totalDocumentos = 4;
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if (empty($alumnos)): ?>
+                        <tr><td colspan="4">No hay jugadores activos registrados.</td></tr>
+                    <?php endif; ?>
                     <?php foreach ($alumnos as $alumno): ?>
-                        <tr>
+                        <tr data-nombre="<?= $esc($alumno['nombre']) ?>" data-documento="<?= $esc($alumno['documento']) ?>" data-categoria="<?= $esc($alumno['categoria']) ?>" data-estado="<?= $esc($alumno['estado']) ?>">
                             <td>
                                 <div class="doc-alumno">
-                                    <span class="doc-avatar"><?= htmlspecialchars(mb_substr($alumno['iniciales'] ?? '', 0, 3)) ?></span>
+                                    <span class="doc-avatar">
+                                        <?php if (!empty($alumno['foto'])): ?>
+                                            <img src="/streepsoft/public/Image/jugadores/<?= rawurlencode(basename((string)$alumno['foto'])) ?>"
+                                                 alt="Foto de <?= $esc($alumno['nombre']) ?>"
+                                                 loading="lazy"
+                                                 onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+                                        <?php endif; ?>
+                                        <span <?= !empty($alumno['foto']) ? 'hidden' : '' ?>><?= $esc(mb_substr($alumno['iniciales'] ?? '', 0, 3)) ?></span>
+                                    </span>
                                     <div class="doc-alumno-info">
-                                        <p class="doc-alumno-nombre"><?= htmlspecialchars($alumno['nombre']) ?></p>
-                                        <small class="doc-alumno-doc"><?= htmlspecialchars($alumno['documento']) ?></small>
+                                        <p class="doc-alumno-nombre"><?= $esc($alumno['nombre']) ?></p>
+                                        <small class="doc-alumno-doc"><?= $esc($alumno['documento']) ?></small>
                                     </div>
                                 </div>
                             </td>
 
-                            <td class="doc-categoria"><?= htmlspecialchars($alumno['categoria']) ?></td>
+                            <td class="doc-categoria"><?= $esc($alumno['categoria']) ?></td>
 
                             <td>
                                 <div class="doc-entrega">
@@ -175,27 +167,11 @@ $totalDocumentos = 4;
                 </tbody>
             </table>
 
-            <!-- Paginacion simulada -->
-            <div class="doc-paginacion">
-                <span>Mostrando 1 - 125 de alumnos</span>
-
-                <nav class="doc-paginas">
-                    <a href="#">Anterior</a>
-                    <a href="#" class="activa">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">Despues</a>
-                </nav>
-
-                <label class="doc-registros">
-                    Mostrar
-                    <select>
-                        <option>5</option>
-                        <option>10</option>
-                        <option>25</option>
-                    </select>
+            <div class="doc-paginacion" id="doc-paginacion">
+                <span id="doc-info-registros">Mostrando 0 de 0 alumnos</span>
+                <nav class="doc-paginas" id="doc-paginas"></nav>
+                <label class="doc-registros">Mostrar
+                    <select id="doc-cantidad"><option>5</option><option>10</option><option>20</option></select>
                     registros
                 </label>
             </div>

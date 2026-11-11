@@ -15353,3 +15353,759 @@ Stack trace:
 [03-Nov-2026 21:32:24 America/Bogota] Login exitoso: cdavidg4396@gmail.com
 [03-Nov-2026 21:32:24 America/Bogota] Quick login cookie limpiada tras uso exitoso
 [03-Nov-2026 21:32:24 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 12:22:58 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[04-Nov-2026 12:22:58 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[04-Nov-2026 12:22:58 America/Bogota] Home - quickLoginDisponible: true
+[04-Nov-2026 12:22:58 America/Bogota] Home - COOKIE quick_login_data: true
+[04-Nov-2026 12:22:58 America/Bogota] Home - COOKIE logout_manual: false
+[04-Nov-2026 12:23:05 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 12:23:05 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[04-Nov-2026 12:23:05 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 12:25:32 America/Bogota] Home - quickLoginDisponible: false
+[04-Nov-2026 12:25:32 America/Bogota] Home - COOKIE quick_login_data: false
+[04-Nov-2026 12:25:32 America/Bogota] Home - COOKIE logout_manual: false
+[04-Nov-2026 12:44:45 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:44:45 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:44:45 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:44:45 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:44:45 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:44:45 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:44:45 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:44:45 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:12 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:48:42 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:49:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 12:50:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 13:35:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:07:22 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[04-Nov-2026 14:07:22 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[04-Nov-2026 14:07:22 America/Bogota] Home - quickLoginDisponible: true
+[04-Nov-2026 14:07:22 America/Bogota] Home - COOKIE quick_login_data: true
+[04-Nov-2026 14:07:22 America/Bogota] Home - COOKIE logout_manual: false
+[04-Nov-2026 14:07:24 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 14:07:24 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[04-Nov-2026 14:07:24 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 14:13:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:13:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:13:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:13:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:13:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:13:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:13:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:13:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:40 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:15:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:16:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:18:14 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:18:14 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:18:14 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:18:14 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:18:14 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:18:14 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:20:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:20:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:20:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:20:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:20:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 14:20:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[04-Nov-2026 18:48:53 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[04-Nov-2026 18:48:53 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[04-Nov-2026 18:48:53 America/Bogota] Home - quickLoginDisponible: true
+[04-Nov-2026 18:48:53 America/Bogota] Home - COOKIE quick_login_data: true
+[04-Nov-2026 18:48:53 America/Bogota] Home - COOKIE logout_manual: false
+[04-Nov-2026 18:48:56 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 18:48:56 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[04-Nov-2026 18:48:56 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 20:45:40 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[04-Nov-2026 20:45:40 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[04-Nov-2026 20:45:40 America/Bogota] Home - quickLoginDisponible: true
+[04-Nov-2026 20:45:40 America/Bogota] Home - COOKIE quick_login_data: true
+[04-Nov-2026 20:45:40 America/Bogota] Home - COOKIE logout_manual: false
+[04-Nov-2026 20:45:43 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 20:45:43 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[04-Nov-2026 20:45:43 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 21:19:19 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[04-Nov-2026 21:19:19 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[04-Nov-2026 21:19:19 America/Bogota] Home - quickLoginDisponible: true
+[04-Nov-2026 21:19:19 America/Bogota] Home - COOKIE quick_login_data: true
+[04-Nov-2026 21:19:19 America/Bogota] Home - COOKIE logout_manual: false
+[04-Nov-2026 21:19:21 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[04-Nov-2026 21:19:21 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[04-Nov-2026 21:19:21 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 11:24:25 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[05-Nov-2026 11:24:25 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[05-Nov-2026 11:24:25 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 11:24:25 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 11:24:25 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 11:24:27 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 11:24:27 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[05-Nov-2026 11:24:27 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 11:24:52 America/Bogota] Home - quickLoginDisponible: false
+[05-Nov-2026 11:24:52 America/Bogota] Home - COOKIE quick_login_data: false
+[05-Nov-2026 11:24:52 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 11:24:55 America/Bogota] Home - quickLoginDisponible: false
+[05-Nov-2026 11:24:55 America/Bogota] Home - COOKIE quick_login_data: false
+[05-Nov-2026 11:24:55 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 11:26:11 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 11:26:11 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 11:26:11 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 11:26:11 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 11:26:11 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 11:26:11 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 11:52:08 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[05-Nov-2026 11:52:08 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[05-Nov-2026 11:52:08 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 11:52:08 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 11:52:08 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 11:53:32 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 11:53:32 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[05-Nov-2026 11:53:32 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 12:00:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 12:00:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 12:00:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 12:00:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 12:00:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 12:00:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 13:38:23 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[05-Nov-2026 13:38:23 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[05-Nov-2026 13:38:23 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 13:38:23 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 13:38:23 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 13:38:25 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 13:38:25 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[05-Nov-2026 13:38:25 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 14:21:47 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[05-Nov-2026 14:21:47 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[05-Nov-2026 14:21:47 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 14:21:47 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 14:21:47 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 14:21:49 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 14:21:49 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[05-Nov-2026 14:21:49 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 14:52:42 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[05-Nov-2026 14:52:42 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[05-Nov-2026 14:52:42 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 14:52:42 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 14:52:42 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 14:53:07 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 14:53:07 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 14:53:07 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 14:53:09 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 14:53:09 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 14:53:09 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 14:53:10 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 14:53:10 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[05-Nov-2026 14:53:10 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 15:04:25 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:25 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:25 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:25 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:25 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:25 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:32 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:32 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:32 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:32 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:32 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:04:32 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:22 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:22 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:40 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:40 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:40 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:40 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:40 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 15:06:40 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:06:42 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[05-Nov-2026 20:06:42 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[05-Nov-2026 20:06:42 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 20:06:42 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 20:06:42 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 20:06:45 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 20:06:45 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[05-Nov-2026 20:06:45 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 20:31:24 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[05-Nov-2026 20:31:24 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[05-Nov-2026 20:31:24 America/Bogota] Home - quickLoginDisponible: true
+[05-Nov-2026 20:31:24 America/Bogota] Home - COOKIE quick_login_data: true
+[05-Nov-2026 20:31:24 America/Bogota] Home - COOKIE logout_manual: false
+[05-Nov-2026 20:31:26 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 20:31:26 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[05-Nov-2026 20:31:26 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[05-Nov-2026 20:37:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:37:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:37:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:37:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:37:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:37:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:38:12 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:38:12 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:38:12 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[05-Nov-2026 20:38:12 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 14:06:03 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[06-Nov-2026 14:06:03 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[06-Nov-2026 14:06:03 America/Bogota] Home - quickLoginDisponible: true
+[06-Nov-2026 14:06:03 America/Bogota] Home - COOKIE quick_login_data: true
+[06-Nov-2026 14:06:03 America/Bogota] Home - COOKIE logout_manual: false
+[06-Nov-2026 14:06:05 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 14:06:05 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[06-Nov-2026 14:06:05 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 16:53:12 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[06-Nov-2026 16:53:12 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[06-Nov-2026 16:53:12 America/Bogota] Home - quickLoginDisponible: true
+[06-Nov-2026 16:53:12 America/Bogota] Home - COOKIE quick_login_data: true
+[06-Nov-2026 16:53:12 America/Bogota] Home - COOKIE logout_manual: false
+[06-Nov-2026 16:53:14 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 16:53:14 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[06-Nov-2026 16:53:14 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 22:46:53 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[06-Nov-2026 22:46:53 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[06-Nov-2026 22:46:53 America/Bogota] Home - quickLoginDisponible: true
+[06-Nov-2026 22:46:53 America/Bogota] Home - COOKIE quick_login_data: true
+[06-Nov-2026 22:46:53 America/Bogota] Home - COOKIE logout_manual: false
+[06-Nov-2026 22:46:55 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 22:46:55 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[06-Nov-2026 22:46:55 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 22:48:49 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 22:48:49 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 22:48:49 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 22:48:49 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 22:48:49 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 22:48:49 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 22:48:49 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 22:48:49 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[06-Nov-2026 23:16:48 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[06-Nov-2026 23:16:48 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[06-Nov-2026 23:16:48 America/Bogota] Home - quickLoginDisponible: true
+[06-Nov-2026 23:16:48 America/Bogota] Home - COOKIE quick_login_data: true
+[06-Nov-2026 23:16:48 America/Bogota] Home - COOKIE logout_manual: false
+[06-Nov-2026 23:16:49 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 23:16:49 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[06-Nov-2026 23:16:49 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[06-Nov-2026 23:40:00 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[06-Nov-2026 23:40:00 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[06-Nov-2026 23:40:00 America/Bogota] Home - quickLoginDisponible: true
+[06-Nov-2026 23:40:00 America/Bogota] Home - COOKIE quick_login_data: true
+[06-Nov-2026 23:40:00 America/Bogota] Home - COOKIE logout_manual: false
+[06-Nov-2026 23:42:01 America/Bogota] Home - quickLoginDisponible: false
+[06-Nov-2026 23:42:01 America/Bogota] Home - COOKIE quick_login_data: false
+[06-Nov-2026 23:42:01 America/Bogota] Home - COOKIE logout_manual: false
+[07-Nov-2026 22:54:50 America/Bogota] Home - quickLoginDisponible: false
+[07-Nov-2026 22:54:50 America/Bogota] Home - COOKIE quick_login_data: false
+[07-Nov-2026 22:54:50 America/Bogota] Home - COOKIE logout_manual: false
+[07-Nov-2026 22:54:58 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[07-Nov-2026 22:55:06 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[07-Nov-2026 22:55:13 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[07-Nov-2026 22:55:13 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[07-Nov-2026 22:55:13 America/Bogota] Dashboard - jugadores con documentación pendiente: Call to undefined method Estadistica::jugadoresConDocumentacionIncompleta()
+[07-Nov-2026 22:55:19 America/Bogota] Dashboard - jugadores con documentación pendiente: Call to undefined method Estadistica::jugadoresConDocumentacionIncompleta()
+[09-Nov-2026 20:43:10 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[09-Nov-2026 20:43:10 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[09-Nov-2026 20:43:10 America/Bogota] Home - quickLoginDisponible: true
+[09-Nov-2026 20:43:10 America/Bogota] Home - COOKIE quick_login_data: true
+[09-Nov-2026 20:43:10 America/Bogota] Home - COOKIE logout_manual: false
+[09-Nov-2026 20:45:11 America/Bogota] Home - quickLoginDisponible: false
+[09-Nov-2026 20:45:11 America/Bogota] Home - COOKIE quick_login_data: false
+[09-Nov-2026 20:45:11 America/Bogota] Home - COOKIE logout_manual: false
+[09-Nov-2026 21:11:25 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[09-Nov-2026 21:11:30 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[09-Nov-2026 21:11:30 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[09-Nov-2026 21:15:44 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:15:44 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:15:44 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:15:44 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:15:44 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:15:44 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:15:44 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:15:44 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:16:29 America/Bogota] Home - quickLoginDisponible: false
+[09-Nov-2026 21:16:29 America/Bogota] Home - COOKIE quick_login_data: false
+[09-Nov-2026 21:16:29 America/Bogota] Home - COOKIE logout_manual: false
+[09-Nov-2026 21:16:34 America/Bogota] Home - quickLoginDisponible: false
+[09-Nov-2026 21:16:34 America/Bogota] Home - COOKIE quick_login_data: false
+[09-Nov-2026 21:16:34 America/Bogota] Home - COOKIE logout_manual: false
+[09-Nov-2026 21:35:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:35:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:35:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:35:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:35:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:35:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:35:16 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:35:16 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:06 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:36:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:41:36 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 369
+[09-Nov-2026 21:47:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:47:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:47:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:47:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:47:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:47:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:47:01 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:47:01 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 388
+[09-Nov-2026 21:48:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 21:48:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 21:48:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 21:48:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 21:48:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 21:48:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 21:48:33 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 21:48:33 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[09-Nov-2026 23:07:06 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[09-Nov-2026 23:07:06 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[09-Nov-2026 23:07:06 America/Bogota] Home - quickLoginDisponible: true
+[09-Nov-2026 23:07:06 America/Bogota] Home - COOKIE quick_login_data: true
+[09-Nov-2026 23:07:06 America/Bogota] Home - COOKIE logout_manual: false
+[09-Nov-2026 23:09:08 America/Bogota] Home - quickLoginDisponible: false
+[09-Nov-2026 23:09:08 America/Bogota] Home - COOKIE quick_login_data: false
+[09-Nov-2026 23:09:08 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 14:13:57 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 14:13:57 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 14:13:57 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 14:14:12 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:14:12 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:24:36 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[10-Nov-2026 14:24:36 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[10-Nov-2026 14:24:36 America/Bogota] Home - quickLoginDisponible: true
+[10-Nov-2026 14:24:36 America/Bogota] Home - COOKIE quick_login_data: true
+[10-Nov-2026 14:24:36 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 14:26:37 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 14:26:37 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 14:26:37 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 14:30:51 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:30:51 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:41:05 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[10-Nov-2026 14:41:05 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[10-Nov-2026 14:41:05 America/Bogota] Home - quickLoginDisponible: true
+[10-Nov-2026 14:41:05 America/Bogota] Home - COOKIE quick_login_data: true
+[10-Nov-2026 14:41:05 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 14:41:08 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:41:08 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[10-Nov-2026 14:41:08 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:41:21 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 14:41:21 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 14:41:21 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 14:41:29 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:41:29 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:41:29 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:41:29 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:41:29 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:41:29 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:41:29 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:41:29 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 14:52:29 America/Bogota] Logout manual: cdavidg4396@gmail.com - Cookies limpiadas
+[10-Nov-2026 14:52:29 America/Bogota] Logout: cdavidg4396@gmail.com
+[10-Nov-2026 14:52:29 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 14:52:29 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 14:52:29 America/Bogota] Home - COOKIE logout_manual: true
+[10-Nov-2026 14:52:37 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:52:37 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 14:52:37 America/Bogota] Cookie logout_manual limpiada (usuario logueado nuevamente)
+[10-Nov-2026 15:01:21 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:01:21 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:22:27 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[10-Nov-2026 15:22:27 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[10-Nov-2026 15:22:27 America/Bogota] Home - quickLoginDisponible: true
+[10-Nov-2026 15:22:27 America/Bogota] Home - COOKIE quick_login_data: true
+[10-Nov-2026 15:22:27 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 15:22:29 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 15:22:29 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[10-Nov-2026 15:22:29 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 15:26:29 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:26:29 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:26:29 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:26:29 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:26:29 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:26:29 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:27:42 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:27:42 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:27:42 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:27:42 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:27:42 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:27:42 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 15:31:24 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[10-Nov-2026 16:13:03 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[10-Nov-2026 16:13:03 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[10-Nov-2026 16:13:03 America/Bogota] Home - quickLoginDisponible: true
+[10-Nov-2026 16:13:03 America/Bogota] Home - COOKIE quick_login_data: true
+[10-Nov-2026 16:13:03 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 16:13:12 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 16:13:12 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 16:13:12 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 16:13:23 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 16:13:23 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 16:24:00 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[10-Nov-2026 16:24:00 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[10-Nov-2026 16:24:00 America/Bogota] Home - quickLoginDisponible: true
+[10-Nov-2026 16:24:00 America/Bogota] Home - COOKIE quick_login_data: true
+[10-Nov-2026 16:24:00 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 16:25:45 America/Bogota] Home - quickLoginDisponible: true
+[10-Nov-2026 16:25:45 America/Bogota] Home - COOKIE quick_login_data: true
+[10-Nov-2026 16:25:45 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 16:26:00 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 16:26:00 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 16:26:00 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 16:26:16 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 16:26:16 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 16:44:43 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[10-Nov-2026 16:44:43 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[10-Nov-2026 16:44:43 America/Bogota] Home - quickLoginDisponible: true
+[10-Nov-2026 16:44:43 America/Bogota] Home - COOKIE quick_login_data: true
+[10-Nov-2026 16:44:43 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 16:46:44 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 16:46:44 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 16:46:44 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 23:05:44 America/Bogota] Home - quickLoginDisponible: false
+[10-Nov-2026 23:05:44 America/Bogota] Home - COOKIE quick_login_data: false
+[10-Nov-2026 23:05:44 America/Bogota] Home - COOKIE logout_manual: false
+[10-Nov-2026 23:06:06 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 23:06:06 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[10-Nov-2026 23:06:16 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:06:18 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:06:31 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:06:48 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:06:51 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:07:10 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:07:12 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:07:18 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:07:49 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:08:16 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:11:19 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:11:20 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:11:37 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:11:39 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:12:11 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:12:12 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:12:28 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:12:29 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:13:00 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:13:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:13:16 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:13:52 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:13:52 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:14:13 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:14:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:14:31 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:14:32 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:14:56 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:15:18 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:15:19 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:15:21 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:15:40 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:15:46 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:17:36 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:17:37 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:17:41 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:02 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:03 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:06 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:32 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:36 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:40 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:41 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:41 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:42 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:42 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:18:43 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:19:21 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:19:22 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:19:53 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:19:54 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:20:10 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:20:11 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:20:20 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:20:22 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:20:39 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:20:40 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:21:12 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:21:13 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:21:21 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:21:47 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:22:01 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:22:02 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:22:10 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:22:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:22:33 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:22:51 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:22:54 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:23:06 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:23:26 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:23:31 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:23:48 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:23:52 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:24:03 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:24:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:24:22 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:24:32 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:24:42 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:24:46 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:00 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:01 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:11 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:13 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:33 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:34 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:46 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:25:48 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:26:48 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:26:58 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:26:59 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:27:04 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:28:09 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:28:09 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:28:12 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:28:12 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:28:17 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:28:17 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:28:25 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:28 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:29 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:33 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:33 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:36 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:36 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:37 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:37 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:29:55 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:31:37 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:33:08 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:35:37 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:15 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:16 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:18 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:20 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:32 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:33 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:34 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:36:53 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:37:01 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:37:01 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:37:10 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[10-Nov-2026 23:37:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 14:00:56 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[11-Nov-2026 14:00:56 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[11-Nov-2026 14:00:56 America/Bogota] Home - quickLoginDisponible: true
+[11-Nov-2026 14:00:56 America/Bogota] Home - COOKIE quick_login_data: true
+[11-Nov-2026 14:00:56 America/Bogota] Home - COOKIE logout_manual: false
+[11-Nov-2026 14:00:59 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[11-Nov-2026 14:00:59 America/Bogota] Quick login cookie limpiada tras uso exitoso
+[11-Nov-2026 14:00:59 America/Bogota] Quick login exitoso: cdavidg4396@gmail.com
+[11-Nov-2026 14:00:59 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 14:01:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 14:01:13 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 14:01:31 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 14:01:41 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 14:01:44 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 14:01:51 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:09:12 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[11-Nov-2026 15:09:12 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[11-Nov-2026 15:09:12 America/Bogota] Home - quickLoginDisponible: true
+[11-Nov-2026 15:09:12 America/Bogota] Home - COOKIE quick_login_data: true
+[11-Nov-2026 15:09:12 America/Bogota] Home - COOKIE logout_manual: false
+[11-Nov-2026 15:11:13 America/Bogota] Home - quickLoginDisponible: false
+[11-Nov-2026 15:11:13 America/Bogota] Home - COOKIE quick_login_data: false
+[11-Nov-2026 15:11:13 America/Bogota] Home - COOKIE logout_manual: false
+[11-Nov-2026 15:13:52 America/Bogota] Home - quickLoginDisponible: false
+[11-Nov-2026 15:13:52 America/Bogota] Home - COOKIE quick_login_data: false
+[11-Nov-2026 15:13:52 America/Bogota] Home - COOKIE logout_manual: false
+[11-Nov-2026 15:14:06 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[11-Nov-2026 15:14:11 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[11-Nov-2026 15:14:16 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[11-Nov-2026 15:14:27 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[11-Nov-2026 15:14:35 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[11-Nov-2026 15:14:35 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[11-Nov-2026 15:14:41 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:14:46 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:14:50 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:14:57 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:14:58 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:15:01 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:16:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:16:16 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:16:17 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:16:20 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:16:24 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:16:25 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:17:24 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:17:31 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:17:34 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:18:22 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:21:09 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:24:41 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:24:46 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:24:48 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:25:08 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:25:10 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:25:11 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:25:57 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:09 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:14 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:17 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:18 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:20 America/Bogota] Notificaciones estado: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:23 America/Bogota] Notificaciones estado: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:28 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:32 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:26:44 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:27:21 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:27:25 America/Bogota] Notificaciones generación: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'resolucion' in 'field list'
+[11-Nov-2026 15:39:10 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:10 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:10 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:10 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:10 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:10 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:10 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:10 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:39:57 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 15:41:08 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:00:30 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[11-Nov-2026 16:00:30 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[11-Nov-2026 16:00:30 America/Bogota] Home - quickLoginDisponible: true
+[11-Nov-2026 16:00:30 America/Bogota] Home - COOKIE quick_login_data: true
+[11-Nov-2026 16:00:30 America/Bogota] Home - COOKIE logout_manual: false
+[11-Nov-2026 16:08:42 America/Bogota] Home - quickLoginDisponible: false
+[11-Nov-2026 16:08:42 America/Bogota] Home - COOKIE quick_login_data: false
+[11-Nov-2026 16:08:42 America/Bogota] Home - COOKIE logout_manual: false
+[11-Nov-2026 16:08:51 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[11-Nov-2026 16:08:51 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[11-Nov-2026 16:08:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386
+[11-Nov-2026 16:08:55 America/Bogota] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\streepsoft\app\views\jugadores\gestionJugadores\index.php on line 386

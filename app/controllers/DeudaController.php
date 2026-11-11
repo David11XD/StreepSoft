@@ -24,9 +24,14 @@ class DeudaController extends Controller
 
             $deudas = $this->deudaModel->obtenerTodasConEstado();
             $resumen = $this->deudaModel->obtenerResumen();
+            // El recaudo anual sale del historial, donde se conservan los pagos realizados.
+            $anioRecaudo = (int) date('Y');
+            $recaudoAnual = $this->historialModel->totalRecaudadoDelAnio($anioRecaudo);
         } catch (Exception $e) {
             error_log('Deudas (listar): ' . $e->getMessage());
             $deudas = [];
+            $recaudoAnual = 0.0;
+            $anioRecaudo = (int) date('Y');
             $resumen = [
                 'total_alumnos' => 0, 'total_general' => 0,
                 'total_pendiente' => 0, 'total_mora' => 0, 'total_recaudo' => 0,
@@ -38,6 +43,8 @@ class DeudaController extends Controller
             'titulo' => 'Deudas de Jugadores',
             'deudas' => $deudas,
             'resumen' => $resumen,
+            'recaudoAnual' => $recaudoAnual,
+            'anioRecaudo' => $anioRecaudo,
         ]);
     }
 

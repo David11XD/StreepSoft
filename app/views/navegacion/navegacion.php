@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>nav | streepsoft </title>
     <link rel="stylesheet" href="/streepsoft/public/css/hamburguesa/hamburguer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/streepsoft/public/css/notificaciones/notificaciones.css">
 </head>
 
 <body>
     <div class="navbar">
         <nav class="main-navbar">
             <div class="navbar-group">
-                <a href="#" class="navbar-item" title="Notificaciones">
+                <button type="button" class="navbar-item ntf-bell" id="ntf-bell" title="Notificaciones" aria-label="Abrir notificaciones" aria-expanded="false">
                     <div class="mingcute--notification-line"></div>
-                </a>
+                    <span class="ntf-bell-count" id="ntf-bell-count" hidden>0</span>
+                </button>
 
                 <div class="line"></div>
 
@@ -204,8 +207,92 @@
         </form>
     </aside>
 
+    <!-- Modal de notificaciones (se abre con la campana y se cierra al tocar fuera) -->
+    <div class="ntf-drawer-backdrop" id="ntf-drawer-backdrop"></div>
+    <aside class="ntf-drawer" id="ntf-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Notificaciones" data-token="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+        <header class="ntf-drawer-header">
+            <div class="ntf-drawer-title">
+                <h2>Notificaciones</h2>
+                <button class="ntf-config-toggle" type="button" id="abrir-config" title="Configuración de notificaciones" aria-label="Configuración de notificaciones">⚙</button>
+            </div>
+
+            <!-- Al tocar una caja se filtra la lista; al volver a tocarla se quitan los filtros -->
+            <div class="ntf-drawer-stats">
+                <button type="button" class="ntf-stat alta" data-filtro="alta" aria-pressed="false">
+                    <span>Prioridad alta</span>
+                    <strong id="ntf-drawer-alta">0</strong>
+                </button>
+                <button type="button" class="ntf-stat seguimiento" data-filtro="seguimiento" aria-pressed="false">
+                    <span>Seguimiento</span>
+                    <strong id="ntf-drawer-seguimiento">0</strong>
+                </button>
+            </div>
+        </header>
+
+        <div class="ntf-drawer-list" id="ntf-drawer-list">
+            <p class="ntf-drawer-loading">Cargando notificaciones...</p>
+        </div>
+    </aside>
+
+    <!-- Configuración de los recordatorios (se abre con el engranaje del modal) -->
+    <div class="ntf-modal" id="modal-config" aria-hidden="true">
+        <div class="ntf-modal-card" role="dialog" aria-labelledby="ntf-config-titulo">
+
+            <button class="ntf-close" id="cerrar-config" type="button" aria-label="Cerrar">&times;</button>
+
+            <h2 id="ntf-config-titulo">Configuración de recordatorios</h2>
+            <p>Activa los avisos y define cada cuánto se repiten.</p>
+
+            <form id="form-config">
+                <div class="ntf-setting">
+                    <label><input type="checkbox" name="activar_mora" value="1"> Jugadores en mora</label>
+                    <label class="ntf-frequency">Repetir cada (días)
+                        <input type="number" name="frecuencia_mora" min="1" max="60" step="1">
+                    </label>
+                </div>
+
+                <div class="ntf-setting">
+                    <label><input type="checkbox" name="activar_inactivos" value="1"> Jugadores inactivos</label>
+                    <label class="ntf-frequency">Repetir cada (días)
+                        <input type="number" name="frecuencia_inactivos" min="1" max="60" step="1">
+                    </label>
+                </div>
+
+                <div class="ntf-setting">
+                    <label><input type="checkbox" name="activar_vencimientos" value="1"> Pagos próximos a vencer</label>
+                    <label class="ntf-frequency">Avisar con (días) de anticipación
+                        <input type="number" name="dias_anticipacion" min="1" max="60" step="1">
+                    </label>
+                </div>
+
+                <div class="ntf-setting">
+                    <label><input type="checkbox" name="activar_documentos_pendientes" value="1"> Documentos pendientes</label>
+                    <label class="ntf-frequency">Repetir cada (días)
+                        <input type="number" name="frecuencia_documentos" min="1" max="60" step="1">
+                    </label>
+                </div>
+
+                <div class="ntf-setting">
+                    <label><input type="checkbox" name="activar_pagos" value="1"> Pagos registrados</label>
+                    <label class="ntf-frequency">Desde ($, 0 = todos)
+                        <input type="number" class="ntf-monto" name="monto_pago_importante" min="0" max="100000000" step="1000">
+                    </label>
+                </div>
+
+                <div class="ntf-setting">
+                    <label><input type="checkbox" name="activar_documentos_rechazados" value="1"> Documentos rechazados (al producirse)</label>
+                </div>
+
+                <button class="ntf-save" type="submit">Guardar configuración</button>
+                <p class="ntf-feedback" id="config-feedback" role="status"></p>
+            </form>
+
+        </div>
+    </div>
+
     <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
+    <script src="/streepsoft/public/js/notificaciones/notificaciones.js"></script>
     <script src="/streepsoft/public/js/dashboard/dashboard.js"></script>
 </body>
 

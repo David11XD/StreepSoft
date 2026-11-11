@@ -1,117 +1,10 @@
 <?php
-
-/**
- * Vista: Documentos del alumno (se abre con el boton "Gestionar")
- * Por ahora usa datos quemados (de prueba). Mas adelante el controlador
- * buscara al alumno real usando $alumnoId.
- *
- * @var int $alumnoId
- */
-
-$alumno = [
-    'nombre'     => 'Carlos Tomas Gomez Perez',
-    'iniciales'  => 'ABC',
-    'documento'  => 'C.C 1087637289',
-    'categoria'  => 'Sub-20',
-    'activo'     => true,
-];
-
-// Los 4 documentos obligatorios.
-// estado: 'pendiente' (sin archivo), 'verificar' (subido, falta revisarlo) o 'verificado'
-// 'nombre' es el nombre corto (lo usa la barra del perfil) y 'nombreCompleto' el de la tarjeta
-$documentos = [
-    [
-        'clave'             => 'cedula',
-        'nombre'            => 'Documento de identidad',
-        'nombreCompleto'    => 'Fotocopia del documento de identidad',
-        'descripcion'       => 'Cédula o tarjeta de identidad, por ambas caras.',
-        'estado'            => 'verificar',
-        'archivo'           => 'cedula_gomez.pdf',
-        'tamano'            => '1.1 MB',
-        'fechaSubida'       => '20 oct 2026',
-        'subidoPor'         => 'Eliana',
-        'fechaVerificacion' => '',
-        'verificadoPor'     => '',
-    ],
-    [
-        'clave'             => 'consentimiento',
-        'nombre'            => 'Consentimiento',
-        'nombreCompleto'    => 'Consentimiento firmado',
-        'descripcion'       => 'Formato firmado por el acudiente o por el jugador mayor de edad.',
-        'estado'            => 'pendiente',
-        'archivo'           => '',
-        'tamano'            => '',
-        'fechaSubida'       => '',
-        'subidoPor'         => '',
-        'fechaVerificacion' => '',
-        'verificadoPor'     => '',
-    ],
-    [
-        'clave'             => 'idrd',
-        'nombre'            => 'Ficha IDRD',
-        'nombreCompleto'    => 'Ficha del IDRD',
-        'descripcion'       => 'Ficha de inscripción del IDRD diligenciada.',
-        'estado'            => 'verificado',
-        'archivo'           => 'ficha_idrd.pdf',
-        'tamano'            => '860 KB',
-        'fechaSubida'       => '12 oct 2026',
-        'subidoPor'         => 'Eliana',
-        'fechaVerificacion' => '13 oct 2026',
-        'verificadoPor'     => 'Eliana',
-    ],
-    [
-        'clave'             => 'eps',
-        'nombre'            => 'Certificado EPS',
-        'nombreCompleto'    => 'Certificado de EPS',
-        'descripcion'       => 'Certificado de afiliación vigente a salud.',
-        'estado'            => 'verificado',
-        'archivo'           => 'certificado_eps.pdf',
-        'tamano'            => '640 KB',
-        'fechaSubida'       => '12 oct 2026',
-        'subidoPor'         => 'Eliana',
-        'fechaVerificacion' => '13 oct 2026',
-        'verificadoPor'     => 'Eliana',
-    ],
-];
-
-// Datos que se le entregan al JavaScript de la tarjeta de documentos
-$datosTarjeta = [
-    'documentos'      => $documentos,
-    'numeroDocumento' => preg_replace('/\D/', '', $alumno['documento']),
-    'usuario'         => $authName ?? 'Administrador',
-];
-
-// Resumen de la tarjeta: se calcula a partir de la lista $documentos
-$totalDocumentos = count($documentos);
-$verificados     = 0;
-$faltanSubir     = [];   // nombres de documentos en estado "pendiente"
-$faltanVerificar = [];   // nombres de documentos en estado "verificar"
-
-foreach ($documentos as $documento) {
-    if ($documento['estado'] === 'verificado') {
-        $verificados++;
-    } elseif ($documento['estado'] === 'pendiente') {
-        $faltanSubir[] = $documento['nombre'];
-    } else {
-        $faltanVerificar[] = $documento['nombre'];
-    }
-}
-
-// Entregados = todos los que ya se subieron (todos menos los pendientes)
-$entregados = $totalDocumentos - count($faltanSubir);
-
-// Etiqueta general: si falta subir algo es Incompleto, si falta revisar es Por verificar
-if (count($faltanSubir) > 0) {
-    $estadoGeneral = ['clase' => 'incompleto', 'texto' => 'Incompleto'];
-} elseif (count($faltanVerificar) > 0) {
-    $estadoGeneral = ['clase' => 'verificar', 'texto' => 'Por verificar'];
-} else {
-    $estadoGeneral = ['clase' => 'completo', 'texto' => 'Completo'];
-}
+$esc = static fn($valor) => htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
+$faltanSubir = $faltanSubir ?? [];
+$faltanVerificar = $faltanVerificar ?? [];
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -119,11 +12,10 @@ if (count($faltanSubir) > 0) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="/streepsoft/public/css/documentos/gestionar.css">
+    <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
     <title>Documentos del alumno</title>
 </head>
-
 <body>
-
     <div id="nav-card"></div>
 
     <div class="main-content">
@@ -147,7 +39,15 @@ if (count($faltanSubir) > 0) {
         <section class="ges-perfil">
 
             <div class="ges-perfil-fila">
-                <span class="ges-avatar"><?= htmlspecialchars(mb_substr($alumno['iniciales'] ?? '', 0, 3)) ?></span>
+                <span class="ges-avatar">
+                    <?php if (!empty($alumno['foto'])): ?>
+                        <img src="/streepsoft/public/Image/jugadores/<?= rawurlencode(basename((string)$alumno['foto'])) ?>"
+                             alt="Foto de <?= $esc($alumno['nombre']) ?>"
+                             loading="lazy"
+                             onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+                    <?php endif; ?>
+                    <span class="ges-avatar-iniciales" <?= !empty($alumno['foto']) ? 'hidden' : '' ?>><?= $esc(mb_substr($alumno['iniciales'] ?? '', 0, 3)) ?></span>
+                </span>
 
                 <div class="ges-perfil-info">
                     <h2 class="ges-perfil-nombre"><?= htmlspecialchars($alumno['nombre']) ?></h2>
@@ -195,7 +95,7 @@ if (count($faltanSubir) > 0) {
 
             <div class="tdoc-cabecera">
                 <h2 class="tdoc-titulo">Documentos obligatorios de inscripción</h2>
-                <p class="tdoc-subtitulo">Selecciona un documento para revisarlo, subirlo o verificarlo. PDF, JPG o PNG · máx. 5 MB.</p>
+                <p class="tdoc-subtitulo">Selecciona un documento para revisarlo, subirlo o verificarlo. Solo archivos PDF · máximo 10 MB.</p>
             </div>
 
             <div class="tdoc-cuerpo">
@@ -255,11 +155,12 @@ if (count($faltanSubir) > 0) {
                         <label class="tdoc-zona" data-estados="pendiente">
                             <i class="fi fi-rr-upload"></i>
                             <span class="tdoc-zona-titulo">Arrastra el archivo aquí o <span class="tdoc-zona-enlace">selecciónalo</span></span>
-                            <span class="tdoc-zona-nota">PDF, JPG o PNG · máx. 5 MB</span>
-                            <input type="file" class="tdoc-input-archivo" accept=".pdf,.jpg,.jpeg,.png">
+                            <span class="tdoc-zona-nota">Solo PDF · máximo 10 MB</span>
+                            <input type="file" class="tdoc-input-archivo" accept="application/pdf,.pdf">
                         </label>
 
                         <img class="tdoc-imagen" id="tdocImagen" alt="Vista previa del documento cargado" hidden>
+                        <iframe id="tdocPdfPreview" class="tdoc-pdf-preview" title="Vista previa PDF" hidden></iframe>
 
                         <!-- Hoja de ejemplo: se ve cuando el documento está pendiente o cuando es un PDF -->
                         <div class="tdoc-hoja" id="tdocHoja" hidden>
@@ -279,7 +180,7 @@ if (count($faltanSubir) > 0) {
                     </div>
 
                     <!-- 4. Datos del archivo -->
-                    <div class="tdoc-datos" data-estados="verificar verificado">
+                    <div class="tdoc-datos" data-estados="verificar verificado rechazado">
                         <div class="tdoc-dato">
                             <span class="tdoc-dato-etiqueta">Archivo</span>
                             <span class="tdoc-dato-valor recortar" id="tdocArchivo"></span>
@@ -297,7 +198,7 @@ if (count($faltanSubir) > 0) {
                             <span class="tdoc-dato-valor" id="tdocVerificacion"></span>
                         </div>
                     </div>
-                    <span class="tdoc-ruta" id="tdocRuta" data-estados="verificar verificado"></span>
+                    <span class="tdoc-ruta" id="tdocRuta" data-estados="verificar verificado rechazado"></span>
 
                     <!-- 5. Confirmar rechazo -->
                     <div class="tdoc-confirmar" id="tdocConfirmarRechazo" hidden>
@@ -330,7 +231,7 @@ if (count($faltanSubir) > 0) {
                         <label class="tdoc-btn btn-dorado" data-estados="pendiente">
                             <i class="fi fi-rr-upload"></i>
                             Subir documento
-                            <input type="file" class="tdoc-input-archivo" accept=".pdf,.jpg,.jpeg,.png">
+                            <input type="file" class="tdoc-input-archivo" accept="application/pdf,.pdf">
                         </label>
 
                         <button type="button" class="tdoc-btn btn-dorado" data-accion="verificar" data-estados="verificar">
@@ -348,24 +249,24 @@ if (count($faltanSubir) > 0) {
                             Verificado · Revertir
                         </button>
 
-                        <button type="button" class="tdoc-btn" data-accion="descargar" data-estados="verificar verificado">
+                        <button type="button" class="tdoc-btn" data-accion="descargar" data-estados="verificar verificado rechazado">
                             <i class="fi fi-rr-download"></i>
                             Descargar
                         </button>
 
-                        <button type="button" class="tdoc-btn" data-accion="abrir" data-estados="verificar verificado">
+                        <button type="button" class="tdoc-btn" data-accion="abrir" data-estados="verificar verificado rechazado">
                             <i class="fi fi-rr-eye"></i>
                             Abrir
                         </button>
 
-                        <label class="tdoc-btn" data-estados="verificar verificado">
+                        <label class="tdoc-btn" data-estados="verificar verificado rechazado">
                             <i class="fi fi-rr-upload"></i>
                             Reemplazar
-                            <input type="file" class="tdoc-input-archivo" accept=".pdf,.jpg,.jpeg,.png">
+                            <input type="file" class="tdoc-input-archivo" accept="application/pdf,.pdf">
                         </label>
 
                         <button type="button" class="tdoc-btn btn-peligro btn-icono" data-accion="preguntar-quitar"
-                            data-estados="verificar verificado" title="Quitar documento" aria-label="Quitar documento">
+                            data-estados="verificar verificado rechazado" title="Eliminar documento" aria-label="Quitar documento">
                             <i class="fi fi-rr-trash"></i>
                         </button>
                     </div>

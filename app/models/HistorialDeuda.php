@@ -174,6 +174,32 @@ class HistorialDeuda extends Model
         return (bool) $this->queryOne($sql, [$idJugador, $mes, $anio]);
     }
 
+
+    /**
+     * Total realmente recaudado durante un año calendario.
+     * Los pagos finalizados se archivan en historial_deuda; por eso no se
+     * debe calcular este importe desde la tabla activa `deudas`.
+     */
+    public function totalRecaudadoDelAnio(?int $anio = null): float
+    {
+        $anio = $anio ?? (int) date('Y');
+        if ($anio < 2000 || $anio > 2100) {
+            throw new InvalidArgumentException('Año de recaudo no válido.');
+        }
+
+        $sql = "
+            SELECT COALESCE(SUM(valor_pagado), 0) AS total
+            FROM historial_deuda
+            WHERE fecha_pago >= ? AND fecha_pago < ?
+        ";
+
+        $desde = sprintf('%04d-01-01', $anio);
+        $hasta = sprintf('%04d-01-01', $anio + 1);
+        $fila = $this->queryOne($sql, [$desde, $hasta]);
+
+        return (float) ($fila['total'] ?? 0);
+    }
+
     /** Total recaudado por la academia (histórico completo, no solo el ciclo actual) */
     public function totalRecaudado(): float
     {

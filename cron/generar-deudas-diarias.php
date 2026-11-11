@@ -6,6 +6,7 @@ require_once PROJECT_ROOT . '/config/database.php';
 require_once APP_PATH . '/core/Model.php';
 require_once APP_PATH . '/models/Configuracion.php';
 require_once APP_PATH . '/utils/GeneradorDeudas.php';
+require_once APP_PATH . '/models/Notificacion.php';
 
 try {
     $pdo = new PDO(
@@ -48,6 +49,18 @@ if (!empty($resultado2['errores'])) {
     foreach ($resultado2['errores'] as $error) {
         echo "   - " . $error . "\n";
     }
+}
+
+echo "\n3. Generando notificaciones...\n";
+try {
+    $resultado3 = (new Notificacion($pdo))->generarAutomaticas();
+    echo "   Vigentes: " . $resultado3['procesadas']
+        . ", nuevas: " . $resultado3['nuevas']
+        . ", cerradas: " . $resultado3['resueltas'] . "\n";
+} catch (Throwable $e) {
+    // Un fallo en notificaciones no debe cortar el cron de deudas.
+    error_log('CRON - Notificaciones: ' . $e->getMessage());
+    echo "   Error: " . $e->getMessage() . "\n";
 }
 
 $log = sprintf(

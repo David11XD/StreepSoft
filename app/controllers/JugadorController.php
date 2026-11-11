@@ -66,7 +66,15 @@ class JugadorController extends Controller
             $jugadoresVisibles = [];
         }
 
+        $diasGracia = 5;
+        try {
+            $diasGracia = (new Configuracion($this->pdo))->obtenerDiasGracia();
+        } catch (Throwable $e) {
+            error_log("Gestión de jugadores (días de gracia): " . $e->getMessage());
+        }
+
         $this->view('jugadores/gestionJugadores/index', [
+            'diasGracia' => $diasGracia,
             'jugadores' => $jugadores,
             'jugadoresVisibles' => $jugadoresVisibles,
             'titulo' => 'Gestión de Jugadores'

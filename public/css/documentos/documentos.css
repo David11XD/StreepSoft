@@ -39,8 +39,9 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--doc-tarjeta);
+    background: #000000;
     border-radius: 6px;
+    border-right: 2px solid #d09e10;
     padding: 14px 16px;
 }
 
@@ -75,7 +76,7 @@ body {
 
 .doc-card-texto small {
     font-size: 0.8rem;
-    color: var(--doc-azul);
+    color: #9a9a9a;
 }
 
 /*
@@ -85,8 +86,9 @@ body {
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
-    background: var(--doc-tarjeta);
-    border: 1px solid var(--doc-dorado);
+    background: #1f1f1f;
+    border-top: 2px solid var(--doc-dorado);
+    border-bottom: 2px solid var(--doc-dorado);
     border-radius: 6px;
     padding: 14px;
     margin-top: 20px;
@@ -115,32 +117,125 @@ body {
     color: #222;
 }
 
-.doc-select {
+/* BARRA DE FILTROS */
+.doc-filtros {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    background: #1f1f1f;
+    border-top: 2px solid var(--doc-dorado);
+    border-bottom: 2px solid var(--doc-dorado);
+    border-radius: 6px;
+
+    padding: 14px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+/* CONTENEDOR DE CADA SELECT */
+.doc-filtros .select-tipo.doc-select {
+    width: 220px;
+    height: 40px;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 8px;
-    border: 1px solid var(--doc-dorado);
-    border-radius: 4px;
-    padding: 6px 12px;
-    color: var(--doc-dorado);
+
+    background: #212020;
+    border: 1px solid #D09E10;
+    border-radius: 5px;
+
+    padding: 0 3px;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-.doc-select select {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--doc-dorado);
-    font: inherit;
-    font-size: 1rem;
+/* ICONO */
+.doc-filtros .doc-select > span {
+    width: 22px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #D09E10;
+    flex-shrink: 0;
+}
+
+/* SELECT */
+.doc-filtros .doc-select select.custom-select {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0;
+
+    background-color: transparent !important;
+    color: #c1bdbd;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    padding: 0 12px 0 4px;
+    margin: 0;
+
     cursor: pointer;
+    box-sizing: border-box;
+
+    /* Elimina la apariencia nativa */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* Flecha personalizada */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23D09E10' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 4px center !important;
+    background-size: 14px !important;
 }
 
-/* Las opciones de la lista desplegable necesitan fondo propio */
-.doc-select option,
-.doc-registros option {
-    background: var(--doc-tarjeta);
+/* OPCIONES DESPLEGABLES */
+.doc-filtros .doc-select select.custom-select option {
+    background-color: #141414;
     color: #ffffff;
+    border: none !important;
+    outline: none !important;
 }
+
+/* HOVER Y FOCO */
+.doc-filtros .doc-select:focus-within {
+    border-color: #D09E10;
+    box-shadow: 0 0 0 1px rgba(208, 158, 16, 0.15);
+}
+
+/* BOTÓN DE FILTRAR */
+.doc-btn-filtro {
+    margin-left: auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+    .doc-filtros .select-tipo.doc-select {
+        width: 100%;
+        flex: 1 1 220px;
+    }
+
+    .doc-btn-filtro {
+        margin-left: 0;
+    }
+}
+
 
 .doc-btn-filtro {
     margin-left: auto;
@@ -190,7 +285,6 @@ body {
 
 .doc-tabla td {
     padding: 12px 10px;
-    border-bottom: 1px solid var(--doc-gris-borde);
     text-align: center;
     vertical-align: middle;
 }
@@ -216,7 +310,7 @@ body {
 .doc-avatar {
     width: 54px;
     height: 54px;
-    border-radius: 50%;
+    border-radius: 60%;
     border: 1px solid var(--doc-dorado);
     background: #000;
     display: flex;
@@ -225,6 +319,15 @@ body {
     font-size: 0.95rem;
     font-weight: 600;
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.doc-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .doc-alumno-nombre {
@@ -344,7 +447,7 @@ body {
 }
 
 .doc-registros select {
-    background: transparent;
+    background: #000000bd;
     color: #ffffff;
     border: 1px solid var(--doc-gris-borde);
     border-radius: 3px;

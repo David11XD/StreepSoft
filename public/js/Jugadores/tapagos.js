@@ -113,13 +113,13 @@ function filaCumpleFiltros(fila) {
         return false;
     }
 
-    const estado = filtroEstado.value;
-    if (estado !== "todo" && fila.dataset.estado !== estado) {
+    const estadoJugador = filtroEstado.value;
+    if (estadoJugador !== "todo" && fila.dataset.estado !== estadoJugador) {
         return false;
     }
 
-    const pago = filtroPago.value;
-    if (pago !== "todo" && fila.dataset.pago !== pago) {
+    const estadoDeuda = filtroPago.value;
+    if (estadoDeuda !== "todo" && fila.dataset.pago !== estadoDeuda) {
         return false;
     }
 
@@ -345,3 +345,50 @@ document.addEventListener("keydown", (e) => {
         }
     }
 });
+
+// Mostrar/ocultar el recaudo anual y recordar la elección entre recargas.
+(() => {
+    const botonOjo = document.getElementById('btnOjoRecaudo');
+    const valorRecaudo = document.getElementById('valorRecaudoAnual');
+
+    if (!botonOjo || !valorRecaudo) return;
+
+    const clavePreferencia = 'streepsoft_recaudo_anual_oculto';
+    const iconoVisible = `
+        <svg class="icono-ojo" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </svg>`;
+    const iconoOculto = `
+        <svg class="icono-ojo" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m3 3 18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"></path>
+            <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10 10 0 0 0 4-.8"></path>
+        </svg>`;
+
+    let oculto = false;
+    try {
+        oculto = localStorage.getItem(clavePreferencia) === 'true';
+    } catch (error) {
+        console.warn('No se pudo recuperar la preferencia de privacidad del recaudo.', error);
+    }
+
+    const aplicarEstado = () => {
+        valorRecaudo.textContent = oculto ? '••••••••' : valorRecaudo.dataset.valor;
+        botonOjo.innerHTML = oculto ? iconoOculto : iconoVisible;
+        botonOjo.setAttribute('aria-pressed', oculto ? 'true' : 'false');
+        botonOjo.setAttribute('aria-label', oculto ? 'Mostrar recaudo anual' : 'Ocultar recaudo anual');
+        botonOjo.title = oculto ? 'Mostrar recaudo anual' : 'Ocultar recaudo anual';
+    };
+
+    botonOjo.addEventListener('click', () => {
+        oculto = !oculto;
+        try {
+            localStorage.setItem(clavePreferencia, String(oculto));
+        } catch (error) {
+            console.warn('No se pudo guardar la preferencia de privacidad del recaudo.', error);
+        }
+        aplicarEstado();
+    });
+
+    aplicarEstado();
+})();

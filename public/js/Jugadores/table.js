@@ -108,18 +108,23 @@ function filaCumpleFiltros(fila) {
         return false;
     }
 
-    const beca = filtroBeca.value;
-    if (beca !== "todo" && fila.dataset.beca !== beca) {
+    const normalizar = valor => (valor ?? "")
+        .toString()
+        .trim()
+        .toLocaleLowerCase("es-CO");
+
+    const beca = normalizar(filtroBeca.value);
+    if (beca !== "todo" && normalizar(fila.dataset.beca) !== beca) {
         return false;
     }
 
-    const estado = filtroEstado.value;
-    if (estado !== "todo" && fila.dataset.estado !== estado) {
+    const estado = normalizar(filtroEstado.value);
+    if (estado !== "todo" && normalizar(fila.dataset.estado) !== estado) {
         return false;
     }
 
-    const pago = filtroPago.value;
-    if (pago !== "todo" && fila.dataset.pago !== pago) {
+    const pago = normalizar(filtroPago.value);
+    if (pago !== "todo" && normalizar(fila.dataset.pago) !== pago) {
         return false;
     }
 
