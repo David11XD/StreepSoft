@@ -1,5 +1,13 @@
 {
-    "require": {
-        "phpmailer/phpmailer": "^7.1"
+  "require": {
+    "phpmailer/phpmailer": "^7.1",
+    "phpoffice/phpspreadsheet": "^2.0",
+    "dompdf/dompdf": "^3.0",
+    "phpoffice/phpword": "^1.0"
+  },
+  "config": {
+    "platform": {
+      "php": "8.0.30"
     }
+  }
 }

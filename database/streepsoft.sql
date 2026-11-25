@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2026 a las 22:45:48
+-- Tiempo de generación: 25-11-2026 a las 22:01:07
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,25 +24,165 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `actividad`
+--
+
+CREATE TABLE `actividad` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `descripcion` varchar(150) NOT NULL,
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad` (`id`, `id_usuario`, `descripcion`, `creado_en`) VALUES
+(1, 5, 'Actualizó su información de perfil', '2026-09-02 00:10:49'),
+(2, 5, 'Actualizó su información de perfil', '2026-09-17 19:22:36'),
+(3, 5, 'Actualizó su información de perfil', '2026-09-17 19:25:42'),
+(4, 5, 'Actualizó su información de perfil', '2026-10-05 04:11:55');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cambios_masivos_estado`
+--
+
+CREATE TABLE `cambios_masivos_estado` (
+  `id_cambio` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `estado_aplicado` enum('activo','inactivo') NOT NULL,
+  `motivo` varchar(150) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `jugadores_afectados` int(11) NOT NULL DEFAULT 0,
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cambios_masivos_estado`
+--
+
+INSERT INTO `cambios_masivos_estado` (`id_cambio`, `id_usuario`, `estado_aplicado`, `motivo`, `descripcion`, `jugadores_afectados`, `creado_en`) VALUES
+(9, 5, 'inactivo', 'Ajuste administrativo', NULL, 1, '2026-10-31 00:00:47'),
+(11, 5, 'inactivo', 'Ajuste administrativo', NULL, 3, '2026-11-01 00:56:02'),
+(14, 5, 'inactivo', 'Ajuste administrativo', 'Se retira del club', 1, '2026-11-04 19:17:21'),
+(15, 5, 'inactivo', 'Mora de mensualidad', NULL, 1, '2026-11-06 01:38:01'),
+(19, 5, 'inactivo', 'Ajuste administrativo', NULL, 2, '2026-11-10 20:26:16'),
+(22, 5, 'inactivo', 'Mora de mensualidad', NULL, 1, '2026-11-14 15:48:20'),
+(23, 5, 'activo', 'Reactivación de jugador', 'Reactivación individual desde el detalle del historial.', 1, '2026-11-14 15:52:32'),
+(24, 5, 'inactivo', 'Mora de mensualidad', NULL, 1, '2026-11-14 16:14:17'),
+(25, 5, 'activo', 'Reactivación de jugador', 'Reactivación individual desde el detalle del historial.', 1, '2026-11-14 16:15:18');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cambios_masivos_jugadores`
+--
+
+CREATE TABLE `cambios_masivos_jugadores` (
+  `id` int(11) NOT NULL,
+  `id_cambio` int(11) NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  `estado_anterior` enum('activo','inactivo','retirado') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cambios_masivos_jugadores`
+--
+
+INSERT INTO `cambios_masivos_jugadores` (`id`, `id_cambio`, `id_jugadores`, `estado_anterior`) VALUES
+(9, 9, 32, 'activo'),
+(11, 11, 34, 'activo'),
+(12, 11, 35, 'activo'),
+(13, 11, 36, 'activo'),
+(16, 14, 33, 'activo'),
+(17, 15, 36, 'activo'),
+(21, 19, 34, 'activo'),
+(22, 19, 35, 'activo'),
+(25, 22, 35, 'activo'),
+(26, 23, 35, 'inactivo'),
+(27, 24, 34, 'activo'),
+(28, 25, 34, 'inactivo');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categorias`
 --
 
 CREATE TABLE `categorias` (
   `id_categorias` int(11) NOT NULL,
-  `nombre` varchar(30) NOT NULL
+  `nombre` varchar(30) NOT NULL,
+  `id_instructor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`id_categorias`, `nombre`) VALUES
-(2, 'Sub-10'),
-(3, 'Sub-13'),
-(4, 'Sub-15'),
-(5, 'Sub-17'),
-(6, 'Sub-20'),
-(1, 'Sub-6');
+INSERT INTO `categorias` (`id_categorias`, `nombre`, `id_instructor`) VALUES
+(1, 'Sub-6', 6),
+(2, 'Sub-10', 2),
+(3, 'Sub-13', 1),
+(4, 'Sub-15', 3),
+(5, 'Sub-17', 4),
+(6, 'Sub-20', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ciclos_anio`
+--
+
+CREATE TABLE `ciclos_anio` (
+  `id_ciclo` int(11) NOT NULL,
+  `anio` year(4) NOT NULL,
+  `estado` enum('cerrado','activo','proximo') NOT NULL DEFAULT 'proximo',
+  `fecha_cierre` date DEFAULT NULL,
+  `alumnos_migrados` int(11) DEFAULT NULL,
+  `total_recaudado` decimal(12,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion`
+--
+
+CREATE TABLE `configuracion` (
+  `clave` varchar(50) NOT NULL,
+  `valor` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `configuracion`
+--
+
+INSERT INTO `configuracion` (`clave`, `valor`) VALUES
+('dias_gracia', '5'),
+('dia_cobro', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion_ciclos`
+--
+
+CREATE TABLE `configuracion_ciclos` (
+  `id_configuracion` int(11) NOT NULL,
+  `generacion_automatica` tinyint(1) NOT NULL DEFAULT 0,
+  `actualizado_en` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_usuario_actualizacion` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `configuracion_ciclos`
+--
+
+INSERT INTO `configuracion_ciclos` (`id_configuracion`, `generacion_automatica`, `actualizado_en`, `id_usuario_actualizacion`) VALUES
+(1, 1, '2026-09-06 02:33:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -54,11 +194,16 @@ CREATE TABLE `deudas` (
   `id_deudas` int(11) NOT NULL,
   `id_jugadores` int(11) NOT NULL,
   `matricula` decimal(10,2) DEFAULT 0.00,
+  `mensualidad` decimal(10,2) NOT NULL DEFAULT 0.00,
   `mes` enum('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre') NOT NULL,
   `anio` year(4) NOT NULL,
   `totalidad` decimal(10,2) DEFAULT 0.00,
   `fecha_limite_pago` date NOT NULL,
   `fecha_pago` date DEFAULT NULL,
+  `id_metodo_pago` int(11) DEFAULT NULL,
+  `concepto` varchar(100) DEFAULT NULL,
+  `descuento_porcentaje` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `valor_pagado` decimal(10,2) DEFAULT NULL,
   `pago` enum('pagado','pendiente','mora') DEFAULT 'pendiente',
   `id_tipo_becas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -67,9 +212,37 @@ CREATE TABLE `deudas` (
 -- Volcado de datos para la tabla `deudas`
 --
 
-INSERT INTO `deudas` (`id_deudas`, `id_jugadores`, `matricula`, `mes`, `anio`, `totalidad`, `fecha_limite_pago`, `fecha_pago`, `pago`, `id_tipo_becas`) VALUES
-(6, 10, 100000.00, 'Junio', '2026', 150000.00, '2026-06-30', NULL, 'pendiente', 1),
-(7, 9, 90000.00, 'Junio', '2026', 80000.00, '2026-06-29', NULL, 'pendiente', 2);
+INSERT INTO `deudas` (`id_deudas`, `id_jugadores`, `matricula`, `mensualidad`, `mes`, `anio`, `totalidad`, `fecha_limite_pago`, `fecha_pago`, `id_metodo_pago`, `concepto`, `descuento_porcentaje`, `valor_pagado`, `pago`, `id_tipo_becas`) VALUES
+(35, 32, 0.00, 80000.00, 'Abril', '2027', 80000.00, '2027-04-02', NULL, NULL, 'Mensualidad Abril 2027', 0, NULL, 'pendiente', 1),
+(44, 36, 0.00, 80000.00, 'Diciembre', '2026', 80000.00, '2026-12-02', NULL, NULL, 'Mensualidad Diciembre 2026', 0, NULL, 'pendiente', 1),
+(45, 33, 0.00, 80000.00, 'Diciembre', '2026', 80000.00, '2026-12-02', NULL, NULL, 'Mensualidad Diciembre 2026', 0, NULL, 'pendiente', 1),
+(47, 37, 0.00, 85000.00, 'Diciembre', '2026', 85000.00, '2026-12-02', NULL, NULL, 'Mensualidad Diciembre 2026', 0, NULL, 'pendiente', 1),
+(48, 35, 0.00, 80000.00, 'Diciembre', '2026', 80000.00, '2026-12-02', NULL, NULL, 'Mensualidad Diciembre 2026', 0, NULL, 'pendiente', 2),
+(49, 34, 0.00, 80000.00, 'Diciembre', '2026', 80000.00, '2026-12-01', NULL, NULL, 'Mensualidad Diciembre 2026', 0, NULL, 'pendiente', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `deuda_inactivos`
+--
+
+CREATE TABLE `deuda_inactivos` (
+  `id_deudas` int(11) NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  `matricula` decimal(10,2) DEFAULT 0.00,
+  `mensualidad` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `mes` enum('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre') NOT NULL,
+  `anio` year(4) NOT NULL,
+  `totalidad` decimal(10,2) DEFAULT 0.00,
+  `fecha_limite_pago` date NOT NULL,
+  `fecha_pago` date DEFAULT NULL,
+  `id_metodo_pago` int(11) DEFAULT NULL,
+  `concepto` varchar(100) DEFAULT NULL,
+  `descuento_porcentaje` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `valor_pagado` decimal(10,2) DEFAULT NULL,
+  `pago` enum('pagado','pendiente','mora') DEFAULT 'pendiente',
+  `id_tipo_becas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -89,8 +262,46 @@ CREATE TABLE `documentos` (
 --
 
 INSERT INTO `documentos` (`id_documento`, `id_jugadores`, `documento`, `id_tipo_documento`) VALUES
-(7, 10, '1023456789', 2),
-(8, 9, '1034567890', 2);
+(29, 32, '1069257598', 3),
+(30, 33, '355085', 2),
+(31, 34, '20873774', 3),
+(32, 35, '1098366445', 2),
+(33, 36, '1069257598', 2),
+(34, 37, '1016734927', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `documentos_gestion`
+--
+
+CREATE TABLE `documentos_gestion` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  `clave` enum('cedula','consentimiento','idrd','eps') NOT NULL,
+  `nombre_original` varchar(255) NOT NULL,
+  `ruta_archivo` varchar(500) NOT NULL,
+  `tamano_bytes` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `estado` enum('verificar','verificado','rechazado') NOT NULL DEFAULT 'verificar',
+  `id_usuario_subio` int(11) DEFAULT NULL,
+  `subido_por` varchar(100) DEFAULT NULL,
+  `fecha_subida` datetime NOT NULL DEFAULT current_timestamp(),
+  `id_usuario_verifico` int(11) DEFAULT NULL,
+  `verificado_por` varchar(100) DEFAULT NULL,
+  `fecha_verificacion` datetime DEFAULT NULL,
+  `motivo_rechazo` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `documentos_gestion`
+--
+
+INSERT INTO `documentos_gestion` (`id`, `id_jugadores`, `clave`, `nombre_original`, `ruta_archivo`, `tamano_bytes`, `estado`, `id_usuario_subio`, `subido_por`, `fecha_subida`, `id_usuario_verifico`, `verificado_por`, `fecha_verificacion`, `motivo_rechazo`) VALUES
+(2, 36, 'consentimiento', 'Consetimiento Informado.pdf', '36/af51ed49ff1464141b176a0c0f9dd3d6a59e.pdf', 27401, 'verificado', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:25:47', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:40:12', NULL),
+(3, 36, 'idrd', 'Ficha IDRD.pdf', '36/d8250031cebd8e875b98300256443bfd4661.pdf', 28095, 'verificado', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:30:36', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:40:17', NULL),
+(4, 36, 'eps', 'EPS Certificado.pdf', '36/e4a9b4894d9d2fc9266315211b4650a1b810.pdf', 21017, 'verificado', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:31:51', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:40:25', NULL),
+(5, 36, 'cedula', 'cedula_Cristian.pdf', '36/3657028c74df4208737bda0eb6480495d669.pdf', 147960, 'verificado', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:40:03', 5, 'cdavidg4396@gmail.com', '2026-11-05 15:40:07', NULL),
+(6, 35, 'eps', 'EPS Certificado.pdf', '35/937ea3bf6bb777b7cad8ec12163e0f0da2b0.pdf', 21017, 'verificado', 5, 'cdavidg4396@gmail.com', '2026-11-07 23:01:03', 5, 'cdavidg4396@gmail.com', '2026-11-07 23:01:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -127,24 +338,94 @@ INSERT INTO `eps` (`id_eps`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `historial_ciclo_jugadores`
+--
+
+CREATE TABLE `historial_ciclo_jugadores` (
+  `id_historial` int(11) NOT NULL,
+  `id_ciclo` int(11) NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  `id_categorias` int(11) NOT NULL,
+  `estado_cierre` enum('activo','inactivo','retirado') NOT NULL,
+  `migro_siguiente_ciclo` tinyint(1) NOT NULL DEFAULT 0,
+  `total_pagado` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `deuda_pendiente` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `creado_en` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial_deuda`
+--
+
+CREATE TABLE `historial_deuda` (
+  `id_historial` int(11) NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  `id_deuda_original` int(11) DEFAULT NULL,
+  `mes` enum('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre') NOT NULL,
+  `anio` year(4) NOT NULL,
+  `matricula` decimal(10,2) DEFAULT 0.00,
+  `mensualidad` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `totalidad` decimal(10,2) DEFAULT 0.00,
+  `fecha_limite_pago` date NOT NULL,
+  `fecha_pago` date NOT NULL,
+  `id_metodo_pago` int(11) DEFAULT NULL,
+  `id_tipo_becas` int(11) NOT NULL,
+  `concepto` varchar(255) DEFAULT NULL,
+  `descuento_porcentaje` int(11) DEFAULT 0,
+  `valor_pagado` decimal(10,2) DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial_deuda`
+--
+
+INSERT INTO `historial_deuda` (`id_historial`, `id_jugadores`, `id_deuda_original`, `mes`, `anio`, `matricula`, `mensualidad`, `totalidad`, `fecha_limite_pago`, `fecha_pago`, `id_metodo_pago`, `id_tipo_becas`, `concepto`, `descuento_porcentaje`, `valor_pagado`) VALUES
+(8, 32, 29, 'Octubre', '2026', 90000.00, 80000.00, 170000.00, '2026-10-02', '2026-10-20', 3, 1, 'Matrícula y mensualidad de inscripción', 0, 170000.00),
+(9, 32, 30, 'Noviembre', '2026', 0.00, 80000.00, 80000.00, '2026-11-02', '2026-10-22', 3, 1, 'Mensualidad Noviembre 2026', 0, 80000.00),
+(10, 32, 31, 'Diciembre', '2026', 0.00, 80000.00, 80000.00, '2026-12-02', '2026-10-28', 3, 1, 'Mensualidad Diciembre 2026', 0, 80000.00),
+(11, 32, 32, 'Enero', '2027', 0.00, 80000.00, 80000.00, '2027-01-02', '2026-10-28', 3, 1, 'Mensualidad Enero 2027', 0, 800000.00),
+(12, 32, 33, 'Febrero', '2027', 0.00, 80000.00, 80000.00, '2027-02-02', '2026-10-28', 3, 1, 'Mensualidad Febrero 2027', 0, 80000.00),
+(13, 32, 34, 'Marzo', '2027', 0.00, 80000.00, 80000.00, '2027-03-02', '2026-10-28', 3, 1, 'Mensualidad Marzo 2027', 0, 80000.00),
+(14, 33, 36, 'Octubre', '2026', 90000.00, 80000.00, 170000.00, '2026-10-02', '2026-10-31', 3, 1, 'Matrícula y mensualidad de inscripción', 0, 170000.00),
+(15, 34, 38, 'Octubre', '2026', 90000.00, 80000.00, 170000.00, '2026-10-02', '2026-10-31', 3, 1, 'Matrícula y mensualidad de inscripción', 0, 170000.00),
+(16, 35, 40, 'Octubre', '2026', 90000.00, 80000.00, 80000.00, '2026-10-02', '2026-10-31', 3, 2, 'Matrícula y mensualidad de inscripción', 0, 170000.00),
+(17, 36, 42, 'Octubre', '2026', 90000.00, 80000.00, 170000.00, '2026-10-02', '2026-10-31', 3, 1, 'Matrícula y mensualidad de inscripción', 0, 170000.00),
+(18, 36, 43, 'Noviembre', '2026', 0.00, 800000.00, 800000.00, '2026-11-02', '2026-11-02', 3, 1, 'Mensualidad Noviembre 2026', 0, 80000.00),
+(19, 33, 37, 'Noviembre', '2026', 0.00, 80000.00, 80000.00, '2026-11-02', '2026-11-10', 2, 1, 'Mensualidad Noviembre 2026', 0, 80000.00),
+(20, 37, 46, 'Noviembre', '2026', 90000.00, 85000.00, 175000.00, '2026-11-02', '2026-11-14', 1, 1, 'Matrícula y mensualidad de inscripción', 0, 175000.00),
+(21, 35, 41, 'Noviembre', '2026', 0.00, 80000.00, 80000.00, '2026-11-02', '2026-11-14', 3, 2, 'Mensualidad Noviembre 2026', 20, 64000.00),
+(22, 34, 39, 'Noviembre', '2026', 0.00, 80000.00, 800000.00, '2026-11-02', '2026-11-14', 3, 1, 'Mensualidad Noviembre 2026', 0, 800000.00);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `instructor`
 --
 
 CREATE TABLE `instructor` (
   `id_instructor` int(11) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `nombres` varchar(20) DEFAULT NULL,
   `apellidos` varchar(20) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL,
-  `numero_instructor` varchar(10) DEFAULT NULL
+  `numero_celular` varchar(20) DEFAULT NULL,
+  `id_categorias` int(11) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `estado` enum('activo','inactivo') NOT NULL DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `instructor`
 --
 
-INSERT INTO `instructor` (`id_instructor`, `nombres`, `apellidos`, `edad`, `numero_instructor`) VALUES
-(1, 'Saenz', '', 20, '+57 300000'),
-(2, 'Julian', '', 20, '+57 300000');
+INSERT INTO `instructor` (`id_instructor`, `foto`, `nombres`, `apellidos`, `edad`, `numero_celular`, `id_categorias`, `descripcion`, `estado`) VALUES
+(1, '034123d83ab0e2a2ac54502288581907.jpg', 'Crisitan Ivan', 'Saenz', 20, '+57 3000000000', 3, 'Estadio la Aurora', 'activo'),
+(2, '4c454c45b18eb3ddf68c827f2cb9ae9d.jpg', 'Julian David', 'Munevar', 20, '+57 3000000000', 2, 'Estadio la Aurora', 'activo'),
+(3, 'f4c569340c3f3d5edd08d4e6a59e4c3e.jpg', 'Esteban', 'Moreno Rojas', 25, '+57 3000000000', 4, 'Estadio la Aurora', 'activo'),
+(4, 'cc2c8f2c01ee635baf88b3a342680b37.jpg', 'Luis Camilo', 'Beltran', 25, '+57 3000000000', 5, 'Estadio la Aurora', 'activo'),
+(6, 'e7e5d5cd2b831c8a8d1c6f70a6524fee.jpg', 'Yonatan Javier', 'verga', 20, '+57 3000000000', 6, 'Estadio la Aurora', 'activo');
 
 -- --------------------------------------------------------
 
@@ -159,21 +440,160 @@ CREATE TABLE `jugadores` (
   `apellidos` varchar(100) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `iniciales` varchar(10) DEFAULT NULL,
-  `acudiente` varchar(100) NOT NULL,
-  `numero_acudiente` varchar(20) NOT NULL,
+  `id_responsable` int(11) DEFAULT NULL,
   `id_categorias` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `id_eps` int(11) NOT NULL,
-  `id_instructor` int(11) NOT NULL
+  `id_instructor` int(11) NOT NULL,
+  `id_uniforme` int(11) DEFAULT NULL,
+  `estado` enum('activo','inactivo','retirado') NOT NULL DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `jugadores`
 --
 
-INSERT INTO `jugadores` (`id_jugadores`, `foto`, `nombres`, `apellidos`, `fecha_nacimiento`, `iniciales`, `acudiente`, `numero_acudiente`, `id_categorias`, `created_at`, `id_eps`, `id_instructor`) VALUES
-(9, 'juan.jpg', 'Juan David', 'Pérez Gómez', '2010-05-15', 'JDPG', 'Carlos Pérez', '3001234567', 1, '2026-06-22 04:51:13', 2, 1),
-(10, 'maria.jpg', 'María Fernanda', 'López Ruiz', '2011-08-20', 'MFLR', 'Ana Ruiz', '3119876543', 1, '2026-06-22 04:51:13', 1, 1);
+INSERT INTO `jugadores` (`id_jugadores`, `foto`, `nombres`, `apellidos`, `fecha_nacimiento`, `iniciales`, `id_responsable`, `id_categorias`, `created_at`, `id_eps`, `id_instructor`, `id_uniforme`, `estado`) VALUES
+(32, '39058e57d119768de3a5c6e60d27fae0.jpg', 'Cristian', 'Motta', '2000-02-01', 'CMT', 18, 6, '2026-10-20 21:10:57', 6, 6, 3, 'activo'),
+(33, '2be90d1c7973712705645fd38662af21.jpg', 'Santiago', 'Rua', '2013-10-31', 'RSA', 20, 4, '2026-10-31 22:54:19', 9, 3, NULL, 'activo'),
+(34, 'a2ceb372676e791a951da58334116ee3.jpg', 'Mariana', 'Gil', '2011-10-31', 'GMA', 21, 5, '2026-10-31 23:03:38', 2, 6, NULL, 'activo'),
+(35, '5684ba5dae6bf96dbb2d8c64b4fabcae.jpg', 'Ana', 'Franco', '2011-07-06', 'FAn', 22, 3, '2026-10-31 23:18:10', 10, 1, 4, 'activo'),
+(36, '6cc1677bd166b8a36dc3de959575e023.jpg', 'Andres', 'Castaño', '2010-09-08', 'CAD', 23, 5, '2026-10-31 23:21:32', 2, 2, 1, 'activo'),
+(37, NULL, 'Tiago', 'Rodriguez Aguirre', '2014-11-06', 'TRA', 24, 2, '2026-11-14 15:41:53', 4, 2, 2, 'activo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jugadores_inactivos`
+--
+
+CREATE TABLE `jugadores_inactivos` (
+  `id_jugadores` int(11) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `iniciales` varchar(10) DEFAULT NULL,
+  `id_responsable` int(11) DEFAULT NULL,
+  `id_categorias` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_eps` int(11) NOT NULL,
+  `id_instructor` int(11) NOT NULL,
+  `fecha_inactivacion` datetime NOT NULL DEFAULT current_timestamp(),
+  `motivo_inactivacion` varchar(150) DEFAULT NULL,
+  `descripcion_inactivacion` text DEFAULT NULL,
+  `id_usuario_inactivacion` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `metodo_pago`
+--
+
+CREATE TABLE `metodo_pago` (
+  `id_metodo_pago` int(11) NOT NULL,
+  `tipo_metodo_pago` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `metodo_pago`
+--
+
+INSERT INTO `metodo_pago` (`id_metodo_pago`, `tipo_metodo_pago`) VALUES
+(1, 'Nequi'),
+(2, 'Transferencia'),
+(3, 'Efectivo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificaciones`
+--
+
+CREATE TABLE `notificaciones` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `clave_unica` varchar(190) NOT NULL,
+  `tipo` varchar(40) NOT NULL,
+  `prioridad` enum('alta','media','baja') NOT NULL DEFAULT 'media',
+  `id_jugadores` int(11) DEFAULT NULL,
+  `titulo` varchar(180) NOT NULL,
+  `mensaje` text NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `fecha_evento` datetime NOT NULL,
+  `estado` enum('nueva','revisada','resuelta') NOT NULL DEFAULT 'nueva',
+  `resolucion` enum('manual','auto') DEFAULT NULL,
+  `creada_en` datetime NOT NULL,
+  `actualizada_en` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`id`, `clave_unica`, `tipo`, `prioridad`, `id_jugadores`, `titulo`, `mensaje`, `url`, `fecha_evento`, `estado`, `resolucion`, `creada_en`, `actualizada_en`) VALUES
+(4, 'docs_pendientes:32', 'documento_pendiente', 'media', 32, 'Documentos pendientes', 'Cristian Motta · Falta: Certificado EPS, Consentimiento informado, Ficha IDRD', 'documentos/gestionar/32', '2026-11-11 16:17:00', 'revisada', NULL, '2026-11-10 14:41:10', '2026-11-24 16:01:49'),
+(5, 'docs_pendientes:33', 'documento_pendiente', 'media', 33, 'Documentos pendientes', 'Santiago Rua · Falta: Certificado EPS, Consentimiento informado, Ficha IDRD', 'documentos/gestionar/33', '2026-11-10 14:41:10', 'revisada', NULL, '2026-11-10 14:41:10', '2026-11-24 16:01:50'),
+(14, 'docs_pendientes:37', 'documento_pendiente', 'media', 37, 'Documentos pendientes', 'Tiago Rodriguez Aguirre · Falta: Certificado EPS, Consentimiento informado, Ficha IDRD', 'documentos/gestionar/37', '2026-11-14 10:41:54', 'revisada', NULL, '2026-11-14 10:41:54', '2026-11-24 16:01:48'),
+(17, 'docs_pendientes:35', 'documento_pendiente', 'media', 35, 'Documentos pendientes', 'Ana Franco · Falta: Consentimiento informado, Ficha IDRD', 'documentos/gestionar/35', '2026-11-14 10:52:36', 'revisada', NULL, '2026-11-14 10:52:36', '2026-11-24 16:01:51'),
+(20, 'docs_pendientes:34', 'documento_pendiente', 'media', 34, 'Documentos pendientes', 'Mariana Gil · Falta: Certificado EPS, Consentimiento informado, Ficha IDRD', 'documentos/gestionar/34', '2026-11-21 15:47:26', 'revisada', NULL, '2026-11-14 11:15:30', '2026-11-24 16:01:46');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificaciones_configuracion`
+--
+
+CREATE TABLE `notificaciones_configuracion` (
+  `clave` varchar(60) NOT NULL,
+  `valor` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `notificaciones_configuracion`
+--
+
+INSERT INTO `notificaciones_configuracion` (`clave`, `valor`) VALUES
+('activar_documentos_pendientes', '1'),
+('activar_documentos_rechazados', '1'),
+('activar_inactivos', '1'),
+('activar_mora', '1'),
+('activar_pagos', '1'),
+('activar_vencimientos', '1'),
+('dias_anticipacion', '1'),
+('frecuencia_documentos', '1'),
+('frecuencia_inactivos', '1'),
+('frecuencia_mora', '1'),
+('monto_pago_importante', '0'),
+('ultima_generacion', '2026-11-25 16:00:14');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `responsables`
+--
+
+CREATE TABLE `responsables` (
+  `id_responsable` int(11) NOT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `id_tipo_documento` int(11) NOT NULL,
+  `identificacion` varchar(25) NOT NULL,
+  `numero_celular` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `responsables`
+--
+
+INSERT INTO `responsables` (`id_responsable`, `nombres`, `apellidos`, `id_tipo_documento`, `identificacion`, `numero_celular`) VALUES
+(18, 'Juan', 'Motta', 3, '20037766', '3127788222'),
+(19, 'Camilo', 'Rua', 3, '30456644', '3129987374'),
+(20, 'Camilo', 'Rua', 3, '30456644', '3127788222'),
+(21, 'Hector', 'Gil', 1, '334565768', '3215577444'),
+(22, 'Mario', 'Franco', 3, '40995555', '3158886696'),
+(23, 'Julian', 'Castaño', 3, '346675758', '3127788484'),
+(24, 'hUGO', 'FLOREZ CLABIJO', 3, '19437461', '3134731884');
 
 -- --------------------------------------------------------
 
@@ -220,6 +640,31 @@ INSERT INTO `tipo_documento` (`id_tipo_documento`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `uniformes_tallas`
+--
+
+CREATE TABLE `uniformes_tallas` (
+  `id_uniforme` int(11) NOT NULL,
+  `numero_camisa` varchar(3) DEFAULT NULL,
+  `talla_camisa` varchar(10) DEFAULT NULL,
+  `talla_pantalon` varchar(10) DEFAULT NULL,
+  `talla_media` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `uniformes_tallas`
+--
+
+INSERT INTO `uniformes_tallas` (`id_uniforme`, `numero_camisa`, `talla_camisa`, `talla_pantalon`, `talla_media`, `created_at`) VALUES
+(1, '10', '36', '36', '32', '2026-11-13 02:01:22'),
+(2, '6', '16', NULL, NULL, '2026-11-14 15:41:53'),
+(3, '10', 'XL', NULL, 'Adolescente', '2026-11-17 17:17:31'),
+(4, '25', 'L', NULL, 'Adolescente', '2026-11-20 03:58:55');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -227,6 +672,9 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre_completo` varchar(50) NOT NULL,
   `usuario` varchar(50) NOT NULL,
+  `documento_identidad` varchar(20) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `contrasena` varchar(255) NOT NULL,
   `creado_en` timestamp NULL DEFAULT current_timestamp(),
   `pin_recuperacion` varchar(255) DEFAULT NULL,
@@ -239,11 +687,13 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre_completo`, `usuario`, `contrasena`, `creado_en`, `pin_recuperacion`, `token_password`, `expired_session`, `request_password`) VALUES
-(1, 'David mora', 'davi1@gmail.com', '$2y$10$aFuRwi7s9XI9m0nDGWM92OEqSXninYWWIg5RexHdyVtd4EpFbX5DW', '0000-00-00 00:00:00', '$2y$10$mszLjkxG3FaN1OuvMayYSO0i4YQSFLFqQQtEx6q7AeKFI97DsjbYS', 'e2b15e21a6f6c04d8a3fbf2a9c0ab3ccda0289c837a63c3ad49428cf41c30664', '2026-05-28 05:30:53', 0),
-(2, 'Noni', 'Noni@gmail.com', '$2y$10$aFuRwi7s9XI9m0nDGWM92OEqSXninYWWIg5RexHdyVtd4EpFbX5DW', '2026-05-17 23:20:48', NULL, NULL, NULL, 0),
-(5, 'cristian', 'cdavidg4396@gmail.com', '$2y$10$6TKJ0r3kI0JmzeDoikbPueQQmrZ2TXl9yaXkXzCZUd5UrFJlC3OR6', '2026-05-26 15:54:10', NULL, NULL, NULL, 1),
-(6, 'JuanS', 'jsebastian1315@gmail.com', '$2y$10$StsqBLHimiWOmybVBZxeHuw647eiOScW4jTFzNclez3hKUbOkR.0W', '2026-05-26 23:19:13', '$2y$10$lcZhEPBjM5Bz0vqathKdBeZWLK2DE1cmhhllwc9yVV8j61TRSQ6vK', '838bf82c3ec38969945a291649aed9051db2977de555f6d01bf22ba4ab41218e', '2026-05-27 01:39:19', 0);
+INSERT INTO `usuarios` (`id`, `nombre_completo`, `usuario`, `documento_identidad`, `telefono`, `foto`, `contrasena`, `creado_en`, `pin_recuperacion`, `token_password`, `expired_session`, `request_password`) VALUES
+(1, 'David mora', 'davi1@gmail.com', NULL, NULL, NULL, '$2y$10$aFuRwi7s9XI9m0nDGWM92OEqSXninYWWIg5RexHdyVtd4EpFbX5DW', '0000-00-00 00:00:00', '$2y$10$uVpBPJnHhM96bhIH2fzFS.Cy3OTnWOlvJPpTaoM3CX1W0TURplSfW', '4f5a39adaecee0ee98e902f88bdb268e7a2675607282b61211893a968bc564aa', '2026-08-04 05:40:14', 0),
+(2, 'Noni', 'Noni@gmail.com', NULL, NULL, NULL, '$2y$10$aFuRwi7s9XI9m0nDGWM92OEqSXninYWWIg5RexHdyVtd4EpFbX5DW', '2026-05-17 23:20:48', NULL, NULL, NULL, 0),
+(5, 'Cristian David', 'cdavidg4396@gmail.com', '1099922278', '3146649076', '340cfd556ea011ee667590bb710acd60.jpg', '$2y$10$r1/x7fnmYAPmyZDJiEDysO1BobAk3y5kNsmvyN7aF4mjFjxmNpXvu', '2026-05-26 15:54:10', NULL, NULL, NULL, 1),
+(6, 'JuanS', 'jsebastian1315@gmail.com', NULL, NULL, NULL, '$2y$10$StsqBLHimiWOmybVBZxeHuw647eiOScW4jTFzNclez3hKUbOkR.0W', '2026-05-26 23:19:13', '$2y$10$aTDDQCYkr.HaM/jb/0VdOe6F9NgZfaoB4MY28rLKkJ9ZwRFULX63K', '9bba13f36a47a4570ea8ef80d5919ecbf8862a215f9dc4448ddd541c067fd4af', '2026-07-20 07:58:29', 0),
+(7, 'David Angel', 'davidangel11222@gmail.com', NULL, NULL, NULL, '$2y$10$rIIaAD07wWtThQHaLq6M3uaZaC4W1fKCrjGaNuw/1Pbn9VdVjItcm', '2026-07-23 03:58:21', NULL, NULL, NULL, 0),
+(12, 'Eliana', 'karitolcortes2008@gmail.com', '1021790153', '3222876543', NULL, '$2y$10$QiyoMhcq.djPoDzGDwIJguATOo7B0TUV/unwCS1cn3KCrFt7kc3Xe', '2026-10-21 00:47:49', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -256,7 +706,15 @@ CREATE TABLE `vista_jugadores` (
 ,`foto` varchar(255)
 ,`apellidos` varchar(100)
 ,`nombres` varchar(100)
+,`iniciales` varchar(10)
+,`id_categorias` int(11)
+,`id_eps` int(11)
+,`id_instructor` int(11)
+,`id_responsable` int(11)
+,`responsable_nombre` varchar(201)
+,`id_tipo_documento` int(11)
 ,`documentos` varchar(25)
+,`tipo_documento` varchar(100)
 ,`fecha_nacimiento` date
 ,`edad` bigint(21)
 ,`categoria` varchar(30)
@@ -264,6 +722,7 @@ CREATE TABLE `vista_jugadores` (
 ,`instructor` varchar(20)
 ,`estado` varchar(8)
 ,`fecha_pago` date
+,`fecha_limite_pago` date
 ,`pago` enum('pagado','pendiente','mora')
 );
 
@@ -274,18 +733,61 @@ CREATE TABLE `vista_jugadores` (
 --
 DROP TABLE IF EXISTS `vista_jugadores`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_jugadores`  AS SELECT `j`.`id_jugadores` AS `id_jugadores`, `j`.`foto` AS `foto`, `j`.`apellidos` AS `apellidos`, `j`.`nombres` AS `nombres`, `dc`.`documento` AS `documentos`, `j`.`fecha_nacimiento` AS `fecha_nacimiento`, timestampdiff(YEAR,`j`.`fecha_nacimiento`,curdate()) AS `edad`, `c`.`nombre` AS `categoria`, `tb`.`nombre` AS `tipo_beca`, `i`.`nombres` AS `instructor`, CASE WHEN `d`.`pago` = 'mora' THEN 'Inactivo' ELSE 'Activo' END AS `estado`, `d`.`fecha_pago` AS `fecha_pago`, `d`.`pago` AS `pago` FROM (((((`jugadores` `j` join `categorias` `c` on(`j`.`id_categorias` = `c`.`id_categorias`)) left join `deudas` `d` on(`d`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipos_beca` `tb` on(`tb`.`id_tipo_beca` = `d`.`id_tipo_becas`)) left join `documentos` `dc` on(`dc`.`id_jugadores` = `j`.`id_jugadores`)) left join `instructor` `i` on(`i`.`id_instructor` = `j`.`id_instructor`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_jugadores`  AS SELECT `j`.`id_jugadores` AS `id_jugadores`, `j`.`foto` AS `foto`, `j`.`apellidos` AS `apellidos`, `j`.`nombres` AS `nombres`, `j`.`iniciales` AS `iniciales`, `j`.`id_categorias` AS `id_categorias`, `j`.`id_eps` AS `id_eps`, `j`.`id_instructor` AS `id_instructor`, `j`.`id_responsable` AS `id_responsable`, concat(coalesce(`r`.`nombres`,''),' ',coalesce(`r`.`apellidos`,'')) AS `responsable_nombre`, `dc`.`id_tipo_documento` AS `id_tipo_documento`, `dc`.`documento` AS `documentos`, `td`.`nombre` AS `tipo_documento`, `j`.`fecha_nacimiento` AS `fecha_nacimiento`, timestampdiff(YEAR,`j`.`fecha_nacimiento`,curdate()) AS `edad`, `c`.`nombre` AS `categoria`, `tb`.`nombre` AS `tipo_beca`, `i`.`nombres` AS `instructor`, CASE `j`.`estado` WHEN 'activo' THEN 'Activo' WHEN 'inactivo' THEN 'Inactivo' WHEN 'retirado' THEN 'Retirado' ELSE 'Activo' END AS `estado`, `d`.`fecha_pago` AS `fecha_pago`, `d`.`fecha_limite_pago` AS `fecha_limite_pago`, `d`.`pago` AS `pago` FROM (((((((`jugadores` `j` join `categorias` `c` on(`j`.`id_categorias` = `c`.`id_categorias`)) left join `deudas` `d` on(`d`.`id_jugadores` = `j`.`id_jugadores` and `d`.`pago` in ('pendiente','mora'))) left join `tipos_beca` `tb` on(`tb`.`id_tipo_beca` = `d`.`id_tipo_becas`)) left join `documentos` `dc` on(`dc`.`id_jugadores` = `j`.`id_jugadores`)) left join `tipo_documento` `td` on(`td`.`id_tipo_documento` = `dc`.`id_tipo_documento`)) left join `instructor` `i` on(`i`.`id_instructor` = `j`.`id_instructor`)) left join `responsables` `r` on(`r`.`id_responsable` = `j`.`id_responsable`)) ;
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `cambios_masivos_estado`
+--
+ALTER TABLE `cambios_masivos_estado`
+  ADD PRIMARY KEY (`id_cambio`),
+  ADD KEY `fk_cambio_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `cambios_masivos_jugadores`
+--
+ALTER TABLE `cambios_masivos_jugadores`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_cambio_jugador` (`id_cambio`,`id_jugadores`),
+  ADD KEY `fk_detalle_jugador` (`id_jugadores`);
+
+--
 -- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categorias`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
+  ADD UNIQUE KEY `nombre` (`nombre`),
+  ADD KEY `fk_categorias_instructor` (`id_instructor`);
+
+--
+-- Indices de la tabla `ciclos_anio`
+--
+ALTER TABLE `ciclos_anio`
+  ADD PRIMARY KEY (`id_ciclo`),
+  ADD UNIQUE KEY `anio` (`anio`);
+
+--
+-- Indices de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  ADD PRIMARY KEY (`clave`);
+
+--
+-- Indices de la tabla `configuracion_ciclos`
+--
+ALTER TABLE `configuracion_ciclos`
+  ADD PRIMARY KEY (`id_configuracion`),
+  ADD KEY `fk_config_usuario` (`id_usuario_actualizacion`);
 
 --
 -- Indices de la tabla `deudas`
@@ -293,7 +795,17 @@ ALTER TABLE `categorias`
 ALTER TABLE `deudas`
   ADD PRIMARY KEY (`id_deudas`),
   ADD KEY `id_jugadores` (`id_jugadores`),
-  ADD KEY `fk_deuda_beca` (`id_tipo_becas`);
+  ADD KEY `fk_deuda_beca` (`id_tipo_becas`),
+  ADD KEY `fk_deudas_metodo_pago` (`id_metodo_pago`);
+
+--
+-- Indices de la tabla `deuda_inactivos`
+--
+ALTER TABLE `deuda_inactivos`
+  ADD PRIMARY KEY (`id_deudas`),
+  ADD KEY `idx_deuda_inactivos_jugador` (`id_jugadores`),
+  ADD KEY `idx_deuda_inactivos_beca` (`id_tipo_becas`),
+  ADD KEY `idx_deuda_inactivos_metodo` (`id_metodo_pago`);
 
 --
 -- Indices de la tabla `documentos`
@@ -304,16 +816,42 @@ ALTER TABLE `documentos`
   ADD KEY `fk_jugadores_documentos` (`id_jugadores`);
 
 --
+-- Indices de la tabla `documentos_gestion`
+--
+ALTER TABLE `documentos_gestion`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_documento_jugador_tipo` (`id_jugadores`,`clave`),
+  ADD KEY `idx_documentos_gestion_estado` (`estado`),
+  ADD KEY `fk_documentos_gestion_usuario_subio` (`id_usuario_subio`),
+  ADD KEY `fk_documentos_gestion_usuario_verifico` (`id_usuario_verifico`);
+
+--
 -- Indices de la tabla `eps`
 --
 ALTER TABLE `eps`
   ADD PRIMARY KEY (`id_eps`);
 
 --
+-- Indices de la tabla `historial_ciclo_jugadores`
+--
+ALTER TABLE `historial_ciclo_jugadores`
+  ADD PRIMARY KEY (`id_historial`),
+  ADD UNIQUE KEY `uq_ciclo_jugador` (`id_ciclo`,`id_jugadores`),
+  ADD KEY `fk_historial_jugador` (`id_jugadores`),
+  ADD KEY `fk_historial_categoria` (`id_categorias`);
+
+--
+-- Indices de la tabla `historial_deuda`
+--
+ALTER TABLE `historial_deuda`
+  ADD PRIMARY KEY (`id_historial`);
+
+--
 -- Indices de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  ADD PRIMARY KEY (`id_instructor`);
+  ADD PRIMARY KEY (`id_instructor`),
+  ADD KEY `fk_instructor_categoria` (`id_categorias`);
 
 --
 -- Indices de la tabla `jugadores`
@@ -322,7 +860,45 @@ ALTER TABLE `jugadores`
   ADD PRIMARY KEY (`id_jugadores`),
   ADD KEY `fk_jugador_categoria` (`id_categorias`),
   ADD KEY `idx_jugador_instructor` (`id_instructor`),
-  ADD KEY `fk_jugadores_eps` (`id_eps`);
+  ADD KEY `fk_jugadores_eps` (`id_eps`),
+  ADD KEY `fk_jugadores_responsable` (`id_responsable`),
+  ADD KEY `fk_jugadores_uniforme_tallas` (`id_uniforme`);
+
+--
+-- Indices de la tabla `jugadores_inactivos`
+--
+ALTER TABLE `jugadores_inactivos`
+  ADD PRIMARY KEY (`id_jugadores`),
+  ADD KEY `idx_jugadores_inactivos_fecha` (`fecha_inactivacion`),
+  ADD KEY `idx_jugadores_inactivos_categoria` (`id_categorias`);
+
+--
+-- Indices de la tabla `metodo_pago`
+--
+ALTER TABLE `metodo_pago`
+  ADD PRIMARY KEY (`id_metodo_pago`);
+
+--
+-- Indices de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_notificaciones_clave` (`clave_unica`),
+  ADD KEY `idx_notificaciones_estado` (`estado`,`prioridad`),
+  ADD KEY `idx_notificaciones_jugador` (`id_jugadores`);
+
+--
+-- Indices de la tabla `notificaciones_configuracion`
+--
+ALTER TABLE `notificaciones_configuracion`
+  ADD PRIMARY KEY (`clave`);
+
+--
+-- Indices de la tabla `responsables`
+--
+ALTER TABLE `responsables`
+  ADD PRIMARY KEY (`id_responsable`),
+  ADD KEY `fk_responsable_tipo_documento` (`id_tipo_documento`);
 
 --
 -- Indices de la tabla `tipos_beca`
@@ -337,6 +913,12 @@ ALTER TABLE `tipo_documento`
   ADD PRIMARY KEY (`id_tipo_documento`);
 
 --
+-- Indices de la tabla `uniformes_tallas`
+--
+ALTER TABLE `uniformes_tallas`
+  ADD PRIMARY KEY (`id_uniforme`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -348,22 +930,58 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `cambios_masivos_estado`
+--
+ALTER TABLE `cambios_masivos_estado`
+  MODIFY `id_cambio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de la tabla `cambios_masivos_jugadores`
+--
+ALTER TABLE `cambios_masivos_jugadores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id_categorias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `ciclos_anio`
+--
+ALTER TABLE `ciclos_anio`
+  MODIFY `id_ciclo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `configuracion_ciclos`
+--
+ALTER TABLE `configuracion_ciclos`
+  MODIFY `id_configuracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `deudas`
 --
 ALTER TABLE `deudas`
-  MODIFY `id_deudas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_deudas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT de la tabla `documentos_gestion`
+--
+ALTER TABLE `documentos_gestion`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `eps`
@@ -372,16 +990,46 @@ ALTER TABLE `eps`
   MODIFY `id_eps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT de la tabla `historial_ciclo_jugadores`
+--
+ALTER TABLE `historial_ciclo_jugadores`
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_deuda`
+--
+ALTER TABLE `historial_deuda`
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
 -- AUTO_INCREMENT de la tabla `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `id_instructor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_instructor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id_jugadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_jugadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de la tabla `metodo_pago`
+--
+ALTER TABLE `metodo_pago`
+  MODIFY `id_metodo_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `responsables`
+--
+ALTER TABLE `responsables`
+  MODIFY `id_responsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_beca`
@@ -396,21 +1044,67 @@ ALTER TABLE `tipo_documento`
   MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `uniformes_tallas`
+--
+ALTER TABLE `uniformes_tallas`
+  MODIFY `id_uniforme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  ADD CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `cambios_masivos_estado`
+--
+ALTER TABLE `cambios_masivos_estado`
+  ADD CONSTRAINT `fk_cambio_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `cambios_masivos_jugadores`
+--
+ALTER TABLE `cambios_masivos_jugadores`
+  ADD CONSTRAINT `fk_detalle_cambio` FOREIGN KEY (`id_cambio`) REFERENCES `cambios_masivos_estado` (`id_cambio`),
+  ADD CONSTRAINT `fk_detalle_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`);
+
+--
+-- Filtros para la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD CONSTRAINT `fk_categorias_instructor` FOREIGN KEY (`id_instructor`) REFERENCES `instructor` (`id_instructor`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `configuracion_ciclos`
+--
+ALTER TABLE `configuracion_ciclos`
+  ADD CONSTRAINT `fk_config_usuario` FOREIGN KEY (`id_usuario_actualizacion`) REFERENCES `usuarios` (`id`);
+
+--
 -- Filtros para la tabla `deudas`
 --
 ALTER TABLE `deudas`
   ADD CONSTRAINT `deudas_ibfk_1` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`),
-  ADD CONSTRAINT `fk_deuda_beca` FOREIGN KEY (`id_tipo_becas`) REFERENCES `tipos_beca` (`id_tipo_beca`);
+  ADD CONSTRAINT `fk_deuda_beca` FOREIGN KEY (`id_tipo_becas`) REFERENCES `tipos_beca` (`id_tipo_beca`),
+  ADD CONSTRAINT `fk_deudas_metodo_pago` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`);
+
+--
+-- Filtros para la tabla `deuda_inactivos`
+--
+ALTER TABLE `deuda_inactivos`
+  ADD CONSTRAINT `fk_deuda_inactivos_beca` FOREIGN KEY (`id_tipo_becas`) REFERENCES `tipos_beca` (`id_tipo_beca`),
+  ADD CONSTRAINT `fk_deuda_inactivos_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_deuda_inactivos_metodo` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`);
 
 --
 -- Filtros para la tabla `documentos`
@@ -420,12 +1114,54 @@ ALTER TABLE `documentos`
   ADD CONSTRAINT `fk_tipo_documento` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`);
 
 --
+-- Filtros para la tabla `documentos_gestion`
+--
+ALTER TABLE `documentos_gestion`
+  ADD CONSTRAINT `fk_documentos_gestion_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_documentos_gestion_usuario_subio` FOREIGN KEY (`id_usuario_subio`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_documentos_gestion_usuario_verifico` FOREIGN KEY (`id_usuario_verifico`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `historial_ciclo_jugadores`
+--
+ALTER TABLE `historial_ciclo_jugadores`
+  ADD CONSTRAINT `fk_historial_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id_categorias`),
+  ADD CONSTRAINT `fk_historial_ciclo` FOREIGN KEY (`id_ciclo`) REFERENCES `ciclos_anio` (`id_ciclo`),
+  ADD CONSTRAINT `fk_historial_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`);
+
+--
+-- Filtros para la tabla `instructor`
+--
+ALTER TABLE `instructor`
+  ADD CONSTRAINT `fk_instructor_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id_categorias`);
+
+--
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
   ADD CONSTRAINT `fk_jugador_categoria` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id_categorias`),
   ADD CONSTRAINT `fk_jugadores_eps` FOREIGN KEY (`id_eps`) REFERENCES `eps` (`id_eps`),
-  ADD CONSTRAINT `fk_jugadores_instructores` FOREIGN KEY (`id_instructor`) REFERENCES `instructor` (`id_instructor`);
+  ADD CONSTRAINT `fk_jugadores_instructores` FOREIGN KEY (`id_instructor`) REFERENCES `instructor` (`id_instructor`),
+  ADD CONSTRAINT `fk_jugadores_responsable` FOREIGN KEY (`id_responsable`) REFERENCES `responsables` (`id_responsable`),
+  ADD CONSTRAINT `fk_jugadores_uniforme_tallas` FOREIGN KEY (`id_uniforme`) REFERENCES `uniformes_tallas` (`id_uniforme`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `jugadores_inactivos`
+--
+ALTER TABLE `jugadores_inactivos`
+  ADD CONSTRAINT `fk_jugadores_inactivos_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `fk_notificaciones_jugador` FOREIGN KEY (`id_jugadores`) REFERENCES `jugadores` (`id_jugadores`) ON DELETE SET NULL;
+
+--
+-- Filtros para la tabla `responsables`
+--
+ALTER TABLE `responsables`
+  ADD CONSTRAINT `fk_responsable_tipo_documento` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

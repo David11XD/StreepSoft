@@ -4,22 +4,14 @@ declare(strict_types=1);
 /**
  * Jugador - Modelo de jugadores
  * 
- * ¿Qué hace?
- * - Obtiene jugadores de la base de datos
- * - Crea, actualiza, elimina jugadores
- * - Comunica con vista_jugadores
  */
 class Jugador extends Model
 {
     /**
      * Obtener todos los jugadores
-     * 
-     * ¿Qué hace?
-     * - Consulta la base de datos
-     * - Retorna un array con todos los jugadores
-     * 
-     * @return array - Lista de jugadores
+     * a
      */
+
     public function obtenerTodos(): array
     {
         $sql = "
@@ -32,29 +24,71 @@ class Jugador extends Model
     }
 
     /**
-     * Obtener un jugador por ID
-     * 
-     * @param int $id - ID del jugador
-     * @return array|null - Datos del jugador o null si no existe
+     * Jugadores visibles en la tabla principal de Gestión.
+     * Los inactivos se gestionan desde Desactivación y no aparecen aquí.
+     * Los retirados se conservan visibles, sin modificar su lógica actual.
      */
+    public function obtenerVisiblesGestion(): array
+    {
+        $sql = "
+            SELECT v.*, r.numero_celular AS numero_acudiente
+            FROM vista_jugadores v
+            LEFT JOIN responsables r ON r.id_responsable = v.id_responsable
+            WHERE CAST(LOWER(v.estado) AS BINARY) <> CAST('inactivo' AS BINARY)
+            ORDER BY v.apellidos, v.nombres
+        ";
+
+        return $this->query($sql);
+    }
+
+    /**
+     * Obtener un jugador por ID
+     */
+
     public function obtenerPorId(int $id): ?array
     {
         $sql = "
-            SELECT * 
-            FROM vista_jugadores
-            WHERE id_jugadores = ?
+            SELECT
+                v.*,
+                u.numero_camisa,
+                u.talla_camisa,
+                u.talla_media
+            FROM vista_jugadores v
+            LEFT JOIN jugadores j ON j.id_jugadores = v.id_jugadores
+            LEFT JOIN uniformes_tallas u ON u.id_uniforme = j.id_uniforme
+            WHERE v.id_jugadores = ?
             LIMIT 1
         ";
         
         return $this->queryOne($sql, [$id]);
     }
 
+    /** Datos básicos del jugador para la cabecera de su historial de pagos. */
+    public function obtenerParaHistorial(int $id): ?array
+    {
+        $sql = "
+            SELECT
+                j.id_jugadores,
+                j.nombres,
+                j.apellidos,
+                j.foto,
+                j.iniciales,
+                j.estado,
+                c.nombre AS categoria
+            FROM jugadores j
+            LEFT JOIN categorias c ON c.id_categorias = j.id_categorias
+            WHERE j.id_jugadores = ?
+            LIMIT 1
+        ";
+
+        return $this->queryOne($sql, [$id]);
+    }
+
     /**
      * Obtener jugadores por categoría
      * 
-     * @param int $categoriaId - ID de la categoría
-     * @return array - Jugadores de esa categoría
      */
+
     public function obtenerPorCategoria(int $categoriaId): array
     {
         $sql = "
@@ -77,7 +111,7 @@ class Jugador extends Model
         $sql = "
             SELECT * 
             FROM vista_jugadores
-            WHERE tiene_deuda = 1
+            WHERE pago IS NOT NULL
             ORDER BY apellidos, nombres
         ";
         
@@ -86,65 +120,115 @@ class Jugador extends Model
 
     /**
      * Crear un nuevo jugador
-     * 
-     * @param array $datos - Datos del jugador
-     * @return bool - True si fue exitoso
+     *
      */
-    public function crear(array $datos): bool
+    public function crear(array $datos): int
     {
         $sql = "
             INSERT INTO jugadores (
                 nombres,
                 apellidos,
-                email,
-                telefono,
-                id_categoria
-            ) VALUES (?, ?, ?, ?, ?)
+                fecha_nacimiento,
+                id_responsable,
+                id_categorias,
+                id_eps,
+                id_instructor,
+                foto,
+                iniciales,
+                id_uniforme
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ";
-        
-        return $this->execute($sql, [
-            $datos['nombres'] ?? null,
-            $datos['apellidos'] ?? null,
-            $datos['email'] ?? null,
-            $datos['telefono'] ?? null,
-            $datos['id_categoria'] ?? null,
+
+        $exito = $this->execute($sql, [
+            $datos['nombres'],
+            $datos['apellidos'],
+            $datos['fecha_nacimiento'],
+            $datos['id_responsable'] ?? null,
+            $datos['id_categorias'],
+            $datos['id_eps'],
+            $datos['id_instructor'],
+            $datos['foto'] ?? null,
+            $datos['iniciales'] ?? null,
+            $datos['id_uniforme'] ?? null,
         ]);
+
+        // Si el INSERT no funcionó, no hay id que devolver
+        if (!$exito) {
+            return 0;
+        }
+
+        // lastInsertId() viene de la clase base Model (ver Model.php)
+        return $this->lastInsertId();
     }
+
+    public function obtenerParaEditar(int $id): ?array
+    {
+        $sql = "
+            SELECT
+                j.*,
+                doc.documento,
+                doc.id_tipo_documento,
+                r.nombres AS responsable_nombres,
+                r.apellidos AS responsable_apellidos,
+                r.id_tipo_documento AS responsable_id_tipo_documento,
+                r.identificacion AS responsable_identificacion,
+                r.numero_celular AS responsable_numero_celular,
+                u.numero_camisa,
+                u.talla_camisa,
+                u.talla_media
+            FROM jugadores j
+            LEFT JOIN uniformes_tallas u ON u.id_uniforme = j.id_uniforme
+            LEFT JOIN documentos doc ON doc.id_jugadores = j.id_jugadores
+            LEFT JOIN responsables r ON r.id_responsable = j.id_responsable
+            WHERE j.id_jugadores = ?
+            LIMIT 1
+        ";
+
+        return $this->queryOne($sql, [$id]);
+    }
+
+
 
     /**
      * Actualizar un jugador
-     * 
-     * @param int $id - ID del jugador
-     * @param array $datos - Nuevos datos
-     * @return bool - True si fue exitoso
      */
     public function actualizar(int $id, array $datos): bool
     {
+        // NOTA: se corrigió igual que crear() -> mismas columnas reales
+        // de la tabla jugadores. Aún no está conectada a ninguna ruta,
+        // pero la dejamos coherente con el resto del modelo.
         $sql = "
             UPDATE jugadores
             SET nombres = ?,
                 apellidos = ?,
-                email = ?,
-                telefono = ?,
-                id_categoria = ?
+                fecha_nacimiento = ?,
+                id_responsable = ?,
+                id_categorias = ?,
+                id_eps = ?,
+                id_instructor = ?,
+                iniciales = ?,
+                foto = COALESCE(?, foto),
+                id_uniforme = ?
             WHERE id_jugadores = ?
         ";
-        
+
         return $this->execute($sql, [
             $datos['nombres'] ?? null,
             $datos['apellidos'] ?? null,
-            $datos['email'] ?? null,
-            $datos['telefono'] ?? null,
-            $datos['id_categoria'] ?? null,
+            $datos['fecha_nacimiento'] ?? null,
+            $datos['id_responsable'] ?? null,
+            $datos['id_categorias'] ?? null,
+            $datos['id_eps'] ?? null,
+            $datos['id_instructor'] ?? null,
+            $datos['iniciales'] ?? null,
+            $datos['foto'] ?? null,
+            $datos['id_uniforme'] ?? null,
             $id
         ]);
     }
 
     /**
      * Eliminar un jugador
-     * 
-     * @param int $id - ID del jugador a eliminar
-     * @return bool - True si fue exitoso
      */
     public function eliminar(int $id): bool
     {
@@ -154,8 +238,6 @@ class Jugador extends Model
 
     /**
      * Contar jugadores
-     * 
-     * @return int - Total de jugadores
      */
     public function contar(): int
     {

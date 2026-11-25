@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('../hamburguesa/hamburguer.css');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #252525; /* Fondo general oscuro acorde al diseño */
+    font-family: "Poppins", sans-serif;
+    padding: 0px 3px 2px;
+}
+
+.card-pagos{
+    width: 100%;
+}
+
+.card-text{
+    width: 100%;
+    padding: 12px 12px 22px;
+}
+
+.text-pagos{
+    margin: 12px;
+    padding: 12px 12px 22px;
+}
+
+.text-pagos h2{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+}
+
+.text-pagos p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    top: 10px;
+}
+
+.card-detalle-pago{
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(2, 5fr);
+    padding: 3px 16px;
+    margin-top: -15px;
+    margin-left: 12px;
+}
+
+
+.info-pagos h3{
+    color: #4C534B;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.info-pagos p{
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    margin-left: auto;
+}
+
+.text-total h1{
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffff;
+} 
+
+.text-total p{
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    margin-left: auto;
+}
+
+.card-seleccion{
+    width: 179%;
+    height: 340px;
+    border-radius: 5px;
+    border: 1px solid #D09E10;
+    box-shadow: 0px 0px 10px rgba(208, 158, 16, 0.5);
+}
+
+.card-registros{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    width: 90%;
+    padding: 12px 9px;
+    margin: auto;
+    margin-top: 24px;
+}
+
+.registro p{
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #D9D9D9;
+}
+
+.card-info{
+    background: #5b5a5a;
+    border-radius: 12px;
+    width: 90%;
+    height: 30px;
+}
+
+.input-pago{
+    width: 100%;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+    text-align: justify;
+    padding: 0px 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    background: transparent;
+}
+
+.input-pago::placeholder{
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.select-tipo{
+    width: 90%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    background: #5b5a5a;
+    border-radius: 15px;
+    overflow: hidden;
+    align-items: center;
+    padding: 0px 12px;
+}
+
+.select-tipo select{
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.select-tipo label{
+    width: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+select, ::picker(select){
+    appearance: base-select;
+}
+
+select{
+    background: #010101;
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+::picker(select){
+    background: #000000;
+    color: #ffff;
+    border: none;
+    border-radius: 5px;
+}
+
+select option{
+    padding: 5px;
+}
+
+select option:hover, select option:checked{
+    background: #D09E10;
+}
+
+.card-guardar{
+    width: 100%;
+    padding: 28px 24px 22px;
+}
+
+.card-g-pago{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    gap: 12px;
+}
+
+.btn-cancelar{
+    margin-top: 22px;
+    margin-left: auto;
+}
+
+.btn-cancelar button{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    padding: 9px 18px;
+    border: none;
+    border-radius: 5px;
+    background: #4C534B;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.btn-aceptar{
+    margin-top: 22px;
+}
+
+.btn-aceptar button{
+    width: 120px;
+    height: 40px;
+    display: flex;
+    padding: 9px 30px;
+    border: none;
+    border-radius: 5px;
+    background: #D09E10;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #FFFFFF;
+}
