@@ -1,11 +1,44 @@
+<?php
+/** @var array $jugadores */
+/** @var array $jugadoresVisibles */
+/** @var int $diasGracia */
+$diasGracia = max(0, min(30, (int)($diasGracia ?? 5))); 
+
+$totalAlumnos = count($jugadores);
+$totalActivos = 0;
+$totalInactivos = 0;
+$totalRetirados = 0;
+$totalConDeuda = 0;
+$totalVencePronto = 0;
+$hoy = new DateTime();
+
+foreach ($jugadores as $j){
+    switch ($j['estado'] ?? '') {
+        case 'Activo':
+            $totalActivos++;
+            break;
+        case 'Retirado':
+            $totalRetirados++;
+            break;
+        default:
+            $totalInactivos++;
+    }
+
+    if (!empty($j['pago'])){
+        $totalConDeuda++;
+    }
+}
+
+$pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/streepsoft/public/css/Instructor/instructor.css">
+    <link rel="stylesheet" href="/streepsoft/public/css/jugadores/tablejugadores.css">
     <link rel="shortcut icon" href="/streepsoft/public/assets/img/logofavi.ico" type="image/x-icon">
-    <title>Instructor</title>
+    <title>Jugadores</title>
 </head>
 <body>
 
@@ -14,59 +47,116 @@
     <div class="main-content">
         <div class="card-body">
             <div class="text-card">
-                <h1>Registro | Instructores </h1>
+                <h1>Registro | Jugadores </h1>
             </div>
+            <?php if (isset($_GET['success'])): ?>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: <?= json_encode([
+                            'creado' => 'Jugador registrado exitosamente',
+                            'eliminado' => 'Jugador eliminado correctamente',
+                        ][$_GET['success']] ?? 'Operación exitosa') ?>,
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#f5c400',
+                        background: '#232323',
+                        color: '#ffffff',
+                        iconColor: '#2ecc71'
+                    }).then(() => {
+                        // Limpia el ?success=... de la URL para que no
+                        // vuelva a salir el mensaje si recargas la página
+                        window.history.replaceState({}, '', '/streepsoft/jugadores/gestion');
+                    });
+                </script>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['error'])): ?>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: <?= json_encode([
+                            'csrf' => 'Token de seguridad inválido, intenta de nuevo.',
+                            'campos_vacios' => 'Faltan campos obligatorios por completar.',
+                            'fecha_invalida' => 'La fecha ingresada no es válida.',
+                            'creacion_fallida' => 'No se pudo registrar el jugador.',
+                            'eliminacion_fallida' => 'No se pudo eliminar el jugador.',
+                        ][$_GET['error']] ?? 'Ocurrió un error.') ?>,
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#f5c400',
+                        background: '#232323',
+                        color: '#ffffff',
+                        iconColor: '#e74c3c'
+                    }).then(() => {
+                        window.history.replaceState({}, '', '/streepsoft/jugadores/gestion');
+                    });
+                </script>
+            <?php endif; ?>
 
             <div class="card-ets">
-                <div class="card-instructores">
+                <div class="card-alumno">
                     <div class="icon-circle">
                         <div class="circle">
-                            <div class="fa6-solid--user-tie"></div>
+                            <div class="mingcute--user-add-fill"></div>
                         </div>
                     </div>
-                    <div class="text-instructor">
-                        <h2>Total de Instructores</h2>
-                        <h3><?= $totalInstructores ?></h3>
-                        <p>Registrados</p>
+                    <div class="text-alumno">
+                        <h2><?= $totalAlumnos ?></h2>
+                        <h3>Total de Alumnos</h3>
+                        <p>esta temporada</p>
                     </div>
                 </div>
 
-                <div class="card-instructores">
+                <div class="card-alumno">
                     <div class="icon-circle">
                         <div class="circle-1">
-                            <div class="bi--check-lg"></div>
+                            <div class="boxicons--user-filled"></div>
                         </div>
                     </div>
-                    <div class="text-instructor">
-                        <h2>Activos</h2>
-                        <h3><?= $totalActivos ?></h3>
-                        <p>Actualmente</p>
+                    <div class="text-alumno">
+                        <h2><?= $totalActivos ?></h2>
+                        <h3>Activos</h3>
+                        <p><?= $pct($totalActivos) ?>% del total</p>
                     </div>
                 </div>
 
-                <div class="card-instructores">
+                <div class="card-alumno">
                     <div class="icon-circle">
                         <div class="circle-2">
-                            <div class="dashicons--no-alt"></div>
+                            <div class="boxicons--user-filled-1"></div>
                         </div>
                     </div>
-                    <div class="text-instructor">
-                        <h2>Inactivos</h2>
-                        <h3><?= $totalInactivos ?></h3>
-                        <p>No disponible</p>
+                    <div class="text-alumno">
+                        <h2><?= $totalInactivos ?></h2>
+                        <h3>Inactivos</h3>
+                        <p><?= $pct($totalInactivos) ?>% del total</p>
                     </div>
                 </div>
                 
-                <div class="card-instructores">
+                <div class="card-alumno">
                     <div class="icon-circle">
                         <div class="circle">
-                            <div class="ph--users-four-fill "></div>
+                            <div class="si--money-fill"></div>
                         </div>
                     </div>
-                    <div class="text-instructor">
-                        <h2>Jugadores</h2>
-                        <h3><?= $totalJugadoresAsignados ?></h3>
-                        <p>Asignados</p>
+                    <div class="text-alumno">
+                        <h2><?= $totalConDeuda ?></h2>
+                        <h3>con deuda</h3>
+                        <p><?= $pct($totalConDeuda) ?>% del total</p>
+                    </div>
+                </div>
+
+                <div class="card-alumno">
+                    <div class="icon-circle">
+                        <div class="circle">
+                            <div class="solar--calendar-broken "></div>
+                        </div>
+                    </div>
+                    <div class="text-alumno">
+                        <h2><?= $totalVencePronto ?></h2>
+                        <h3>Vence pronto</h3>
+                        <p>proximos 30 dias</p>
                     </div>
                 </div>
             </div>
@@ -89,17 +179,33 @@
 
                         <div class="card-select">
                             <div class="select-tipo">
-                                <span class="material-symbols--brightness-1"></span>
-                                <select class="custom-select" id="filtroEstado">
-                                    <button>
-                                        <selectedcontent></selectedcontent>
-                                    </button>
-                                    <option value="todo">Estado</option>
-                                    <option value="">Inactivo</option>
-                                    <option value="">Activo</option>
+                                <label class="la--users"></label>
+                                <select class="custom-select" id="filtroBeca">
+                                    <option value="todo">Todas las becas</option>
+                                    <option value="Beca completa">Beca completa</option>
+                                    <option value="Media beca">Media beca</option>
+                                    <option value="Sin beca">Sin beca</option>
                                 </select>
                             </div>
 
+                            <div class="select-tipo">
+                                <span class="material-symbols--brightness-1"></span>
+                                <select class="custom-select" id="filtroEstado">
+                                    <option value="todo">Estado</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                    <option value="Activo">Activo</option>
+                                </select>
+                            </div>
+
+                            <div class="select-tipo">
+                                <span class="tdesign--money-filled"></span>
+                                <select class="custom-select" id="filtroPago">
+                                    <option value="todo">Estado de pago</option>
+                                    <option value="vigente">Vigente</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="mora">Mora</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="card-filter">
@@ -109,82 +215,70 @@
 
                             <div class="menu-filtro" id="menuFiltro">
 
-                                <!-- ORDEN -->
                                 <div class="filtro-seccion">
-
                                     <span class="filtro-titulo">
                                         Ordenar
                                     </span>
-
                                     <button class="opcion-filtro" data-orden="az">
                                         A → Z
                                     </button>
-
                                     <button class="opcion-filtro" data-orden="za">
                                         Z → A
                                     </button>
-
                                 </div>
 
-
-                                <!-- COLUMNAS -->
                                 <div class="filtro-seccion">
-
                                     <span class="filtro-titulo">
                                         Columnas
                                     </span>
-
                                     <label>
                                         <input type="checkbox" data-columna="0" checked>
                                         Foto
                                     </label>
-
                                     <label>
                                         <input type="checkbox" data-columna="1" checked>
                                         Apellidos
                                     </label>
-
                                     <label>
                                         <input type="checkbox" data-columna="2" checked>
                                         Nombres
                                     </label>
-
                                     <label>
                                         <input type="checkbox" data-columna="3" checked>
                                         Edad
                                     </label>
-
                                     <label>
                                         <input type="checkbox" data-columna="4" checked>
-                                        Numero Celular
+                                        Categoria
                                     </label>
-
                                     <label>
                                         <input type="checkbox" data-columna="5" checked>
-                                        Categorias
+                                        Acudientes
                                     </label>
                                     
                                     <label>
                                         <input type="checkbox" data-columna="6" checked>
-                                        Descripcion
+                                        Instructor
                                     </label>
-
                                     <label>
                                         <input type="checkbox" data-columna="7" checked>
                                         Estado
                                     </label>
+                                    <label>
+                                        <input type="checkbox" data-columna="8" checked>
+                                        fecha limite
+                                    </label>
                                 </div>
-
+                            
                             </div>
-
                         </div>
                     </div>
 
                     <div class="card-two">
                         <div class="card-registrar">
-                            <a href="#" class="registrar" id="btnNuevoJugador">
+                            <a href="#"  id="btnNuevoJugador"  class="registrar">
                                 <span class="ic--round-plus"></span>
-                                <h2>Nuevo Instructor</h2>
+                                <h2>Nuevo Jugador</h2>
                             </a>
                         </div>
                     </div>
@@ -194,109 +288,170 @@
             <div class="card-tb">
                 <div class="card-tables">
                     <div class="table-responsive">
-                        <table id="tablaInstrutores">
+                        <table id="tablaJugadores">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Apellidos</th>
                                     <th>Nombres</th>
                                     <th>Edad</th>
-                                    <th>Numero celular</th>
                                     <th>Categorias</th>
-                                    <th>Sede</th>
+                                    <th>Acudientes</th>
+                                    <th>Instructor</th>
                                     <th>Estado</th>
+                                    <th>Fecha limite</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                                <tbody>
-                                    <?php if (empty($instructores)): ?>
-                                        <tr>
-                                            <td colspan="8" style="text-align:center; padding: 24px;">
-                                                No hay deudas registradas todavia.
-                                            </td>
-                                        </tr>
-                                    <?php endif; ?>
-                                    <?php  foreach ($instructores as $instructor): ?>
-                                            <?php
-                                                $estado = strtolower($instructor['estado'] ?? '');
-                                                $claseContenedor = $estado === 'activo' ? 'estado' : 'estado-i';
-                                                $claseCirculo    = $estado === 'activo' ? 'ci' : 'ci-i';
-                                            ?>
+                            <tbody>
+                                <?php if (empty($jugadoresVisibles)): ?>
                                     <tr>
-                                        <td>
-                                            <div class="foto">
-                                                <?php if(!empty($instructor['foto'])): ?>
-                                                    <img src="/streepsoft/public/Image/instructores/<?= htmlspecialchars($instructor['foto']) ?>" alt="Foto">
-                                                <?php else: ?>
-                                                    <?php
-                                                        // A partir del primer nombre y primer apellido.
-                                                        $iniciales = trim((string)($instructor['iniciales'] ?? ''));
-                                                        if($iniciales === ''){
-                                                            $iniciales = mb_strtoupper(
-                                                                mb_substr((string)($instructor['nombres'] ?? ''), 0, 1) .
-                                                                mb_substr((string)($instructor['apellidos'] ?? ''), 0, 1)
-                                                            );
-                                                        }
-                                                        echo htmlspecialchars($iniciales);
-                                                    ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-text">
-                                                <h3><?= htmlspecialchars($instructor['apellidos']) ?></h3>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-text">
-                                                <h2><?= htmlspecialchars($instructor['nombres']) ?></h2>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-text">
-                                                <h3><?= htmlspecialchars($instructor['edad']) ?></h3>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-text">   
-                                                <h2><?= htmlspecialchars($instructor['numero_celular']) ?></h2>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-text">
-                                                <h2><?= htmlspecialchars($instructor['categoria'] ?? '') ?></h2>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-text">
-                                                <h3><?= htmlspecialchars($instructor['descripcion'] ?? '-') ?></h3>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="<?= $claseContenedor ?>">
-                                                <div class="<?= $claseCirculo ?>"></div>
-                                                <p><?= htmlspecialchars($instructor['estado'] ?? '') ?></p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-accion">
-                                                <button class="btn-menu-accion" type="button">
-                                                    <span class="uil--ellipsis-v"></span>
-                                                </button>
-                                                
-                                                <div class="menu-acciones">
-                                                    <button class="btn-editar" type="button" data-id-instructor="<?= (int) $instructor['id_instructor'] ?>">Editar</button>
-                                                </div>
-                                            </div>
+                                        <td colspan="10" style="text-align: center;">
+                                            No hay jugadores activos o retirados para mostrar.
                                         </td>
                                     </tr>
-                                    <?php endforeach;?>
-                                </tbody>
+                                <?php endif; ?>
+                                <?php foreach ($jugadoresVisibles as $jugador): ?>
+                                <?php
+                                    $becaFila = trim((string)($jugador['tipo_beca'] ?? 'Sin beca'));
+                                    if ($becaFila === '') $becaFila = 'Sin beca';
+                                    $fechaLimiteFila = $jugador['fecha_limite_pago'] ?? null;
+                                    $pagoRegistradoFila = strtolower(trim((string)($jugador['pago'] ?? '')));
+                                    $estadoPagoFiltro = 'vigente';
+                                    if ($pagoRegistradoFila === 'pagado') {
+                                        $estadoPagoFiltro = 'pagado';
+                                    } elseif (!empty($fechaLimiteFila)) {
+                                        try {
+                                            $limiteFiltro = new DateTimeImmutable((string)$fechaLimiteFila);
+                                            $hoyFiltro = new DateTimeImmutable('today');
+                                            $diasVencidosFiltro = (int)$hoyFiltro->diff($limiteFiltro)->format('%r%a') * -1;
+                                            if ($diasVencidosFiltro > $diasGracia) {
+                                                $estadoPagoFiltro = 'mora';
+                                            } elseif ($diasVencidosFiltro > 0) {
+                                                $estadoPagoFiltro = 'pendiente';
+                                            }
+                                        } catch (Throwable $e) {
+                                            $estadoPagoFiltro = $pagoRegistradoFila === 'mora' ? 'mora' : 'pendiente';
+                                        }
+                                    } else {
+                                        $estadoPagoFiltro = $pagoRegistradoFila === 'mora' ? 'mora' : ($pagoRegistradoFila === 'pagado' ? 'pagado' : 'pendiente');
+                                    }
+                                    ?>
+                                <tr data-beca="<?= htmlspecialchars($becaFila, ENT_QUOTES, 'UTF-8') ?>" data-estado="<?= htmlspecialchars(mb_strtolower(trim((string)($jugador['estado'] ?? ''))), ENT_QUOTES, 'UTF-8') ?>" data-pago="<?= htmlspecialchars($estadoPagoFiltro, ENT_QUOTES, 'UTF-8') ?>">
+                                    <td>
+                                        <div class="foto">
+                                            <?php if (!empty($jugador['foto'])): ?>
+                                                <img src="/streepsoft/public/Image/jugadores/<?= htmlspecialchars($jugador['foto'] ?? '') ?>" alt="Foto">
+                                            <?php else: ?>
+                                                <?php
+                                                    // Usa las iniciales guardadas; si no hay, las calcula 
+                                                    // A partir del primer nombre y primer apellido.
+                                                    $iniciales = trim((string)($jugador['iniciales'] ?? ''));
+                                                    if($iniciales === ''){
+                                                        $iniciales = mb_strtoupper(
+                                                            mb_substr((string)($jugador['nombres'] ?? ''), 0, 1) .
+                                                            mb_substr((string)($jugador['apellidos'] ?? ''), 0, 1)
+                                                        );
+                                                    }
+                                                    echo htmlspecialchars($iniciales);
+                                                ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-text">
+                                            <h3><?= htmlspecialchars($jugador['apellidos']) ?></h3>
+                                            <p><?= htmlspecialchars(trim(($jugador['tipo_documento'] ?? '') . ' ' . ($jugador['documentos'] ?? ''))) ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-text">
+                                            <h2><?= htmlspecialchars($jugador['nombres'])  ?></h2>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-text">
+                                            <h3><?= htmlspecialchars($jugador['edad']) ?></h3>
+                                            <p><?= htmlspecialchars($jugador['fecha_nacimiento']) ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-text">
+                                            <h2><?= htmlspecialchars($jugador['categoria']) ?></h2>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-text">
+                                            <h3><?= htmlspecialchars($jugador['responsable_nombre']) ?></h3>
+                                            <p><?= htmlspecialchars($jugador['numero_acudiente']) ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-text">
+                                            <h2><?= htmlspecialchars($jugador['instructor']) ?></h2>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="estado">
+                                            <?php
+                                                $claseCirculo = [
+                                                    'Activo'   => 'ci',
+                                                    'Inactivo' => 'ci-i',
+                                                    'Retirado' => 'ci-r',
+                                                ][$jugador['estado'] ?? ''] ?? 'ci';
+                                            ?>
+                                            <div class="<?= $claseCirculo ?>"></div>
+                                            <p><?= htmlspecialchars($jugador['estado'] ?? '') ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-text">
+                                            <h3><?= htmlspecialchars($jugador['fecha_limite_pago']) ?></h3>
+                                            <?php 
+                                                $fechaLimite = new DateTimeImmutable($jugador['fecha_limite_pago']);
+                                                $hoy = new DateTimeImmutable('today');
+                                                // Positivo: días que faltan. Negativo: días transcurridos desde el vencimiento.
+                                                $diasParaVencer = (int)$hoy->diff($fechaLimite)->format('%r%a');
+                                                $estadoDeuda = strtolower(trim((string)($jugador['pago'] ?? 'pendiente')));
+                                                $diasVencidos = max(0, -$diasParaVencer);
+
+                                                if ($estadoDeuda === 'pagado') {
+                                                    $estadoTexto = 'Pagado';
+                                                    $claseEstado = 'estado-pagado';
+                                                } elseif ($diasVencidos > $diasGracia) {
+                                                    $estadoTexto = 'Mora ' . $diasVencidos . ' días';
+                                                    $claseEstado = 'estado-mora';
+                                                } elseif ($diasVencidos > 0) {
+                                                    $estadoTexto = 'Pendiente';
+                                                    $claseEstado = 'estado-pendiente';
+                                                } else {
+                                                    $estadoTexto = 'Vigente';
+                                                    $claseEstado = 'estado-vigente';
+                                                }
+                                            ?>
+                                            <p class="table-text-estado <?= $claseEstado ?>"><?= $estadoTexto ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-accion">
+                                            <button class="btn-menu-accion" type="button">
+                                                <span class="uil--ellipsis-v"></span>
+                                            </button>
+
+                                            <div class="menu-acciones">
+                                                <button class="btn-editar" type="button" data-id-jugador="<?= (int) $jugador['id_jugadores'] ?>">Editar</button>
+                                                <button class="btn-perfil" type="button" data-id-jugador="<?= (int) $jugador['id_jugadores'] ?>">ver perfil</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endforeach;?>
+                            </tbody>
                         </table>
                     </div>
 
 
-                        <div class="card-paginacion">
+                    <div class="card-paginacion">
 
                         <div class="info-registros" id="infoRegistros">
                             <P>Mostrando 1 - 5 de 12 Jugadores</P>
@@ -338,16 +493,27 @@
         </div>
     </div>
 
-
     <div class="modal-registro" id="modalRegistro">
         <div class="modal-registro-contenido">
-        <button class="cerrar-registro" id="cerrarRegistro">&times;</button>
-        <iframe src="#" class="iframe-registro" id="iframeRegistro"></iframe>
+            <button class="cerrar-registro" id="cerrarRegistro">&times;</button>
+            <iframe src="" class="iframe-registro" id="iframeRegistro"></iframe>
+        </div>
     </div>
 
-   <script src="/streepsoft/public/js/instructor/tablainstructores.js"></script>
-    <script type="module" src="/streepsoft/public/js/nav/export.js"></script>
     <script src="/streepsoft/public/js/dashboard/dashboard.js"></script>
-</div>
+    <script src="/streepsoft/public/js/jugadores/table.js"></script>
+
+    <?php if (!empty($avisoRegistro)): ?>
+        <?php // guardar() rechazó el registro: se reabre el modal del formulario y se muestra el aviso ?>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            window.AVISO_FORMULARIO = <?= json_encode($avisoRegistro, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
+        </script>
+        <script src="/streepsoft/public/js/nuevo/avisosFormulario.js"></script>
+        <script>
+            abrirModalRegistro('/streepsoft/jugadores/crear');
+        </script>
+    <?php endif; ?>
+    <script type="module" src="/streepsoft/public/js/nav/export.js"></script>
 </body>
 </html>

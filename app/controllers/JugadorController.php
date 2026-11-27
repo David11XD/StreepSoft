@@ -73,7 +73,12 @@ class JugadorController extends Controller
             error_log("Gestión de jugadores (días de gracia): " . $e->getMessage());
         }
 
+        // Aviso que dejó guardar() al rechazar el registro de un jugador (se muestra una sola vez)
+        $avisoRegistro = $_SESSION['aviso_registro_jugador'] ?? null;
+        unset($_SESSION['aviso_registro_jugador']);
+
         $this->view('jugadores/gestionJugadores/index', [
+            'avisoRegistro' => $avisoRegistro,
             'diasGracia' => $diasGracia,
             'jugadores' => $jugadores,
             'jugadoresVisibles' => $jugadoresVisibles,
@@ -256,8 +261,28 @@ class JugadorController extends Controller
             $tipoBeca = [];
         }
 
+        // Aviso para quien entre directo a esta página con ?error=... (guardar() ya no vuelve aquí:
+        // sus errores se muestran en la tabla de jugadores con el modal abierto).
+        $avisoCrear = null;
+
+        if (isset($_GET['error']) && is_string($_GET['error'])) {
+            $mensajesError = [
+                'csrf' => 'Token de seguridad inválido, intenta de nuevo.',
+                'campos_vacios' => 'Faltan campos obligatorios por completar.',
+                'fecha_invalida' => 'La fecha ingresada no es válida.',
+                'creacion_fallida' => 'No se pudo guardar el alumno, intenta de nuevo.',
+            ];
+            $avisoCrear = [
+                'icono' => 'error',
+                'titulo' => $mensajesError[$_GET['error']] ?? 'Ocurrió un error.',
+                'faltantes' => [],
+                'mensajes' => [],
+            ];
+        }
+
         $this->view('jugadores/gestionJugadores/create', [
             'titulo' => 'Crear Jugador',
+            'avisoCrear' => $avisoCrear,
             'categorias' => $categorias,
             'instructores' => $instructores,
             'epsList' => $epsList,
@@ -353,6 +378,11 @@ class JugadorController extends Controller
             if ($datos[$campo] === '') {
                 $this->redirect('/streepsoft/jugadores/editar/' . $idJugador . '?error=campos_vacios');
             }
+        }
+
+        // Formato de nombres e identificaciones (mismo control que al crear)
+        if (!empty($this->validarFormatoPersona())) {
+            $this->redirect('/streepsoft/jugadores/editar/' . $idJugador . '?error=formato_invalido');
         }
         // La categoría manda: si tiene un instructor activo asignado, ese es el instructor
         // del jugador (aunque el formulario haya mandado otro o ninguno).
@@ -465,7 +495,7 @@ class JugadorController extends Controller
 
         // Validar CSRF (el formulario ahora incluye el campo oculto _token)
         if (!$this->validateCSRFToken($_POST['_token'] ?? '')) {
-            $this->redirect('/streepsoft/jugadores/crear?error=csrf');
+            $this->volverAGestionConAviso('Token de seguridad inválido, intenta de nuevo.');
         }
 
         // 1) Recoger y limpiar los datos de texto del formulario
@@ -496,17 +526,10 @@ class JugadorController extends Controller
         $idTipoBecas = (int) ($_POST['id_tipo_becas'] ?? 0);
         
 
-        // 2) Validar los campos obligatorios 
-        $obligatorios = [
-            'nombres', 'apellidos', 'fecha_nacimiento',
-            'acudiente', 'numero_acudiente',
-        ];
-
-        foreach ($obligatorios as $campo) {
-            if ($datos[$campo] === '') {
-                $this->redirect('/streepsoft/jugadores/crear?error=campos_vacios');
-            }
-        }
+        // 2) Validar TODOS los campos obligatorios en una sola pasada para poder avisar
+        //    exactamente cuáles faltan (en el orden en que aparecen en el formulario).
+        $faltantes = [];
+        $mensajes = [];
 
         // La categoría manda: si tiene un instructor activo asignado, ese es el instructor
         // del jugador (aunque el formulario haya mandado otro o ninguno).
@@ -515,39 +538,90 @@ class JugadorController extends Controller
             $datos['id_instructor'] = $idInstructorCategoria;
         }
 
-        if ($datos['id_categorias'] <= 0 || $datos['id_eps'] <= 0 || $datos['id_instructor'] <= 0) {
-            $this->redirect('/streepsoft/jugadores/crear?error=campos_vacios');
+        // Paso 1 y 2: datos del jugador
+        if ($datos['nombres'] === '') {
+            $faltantes[] = 'Primer nombre';
+        }
+        if ($datos['apellidos'] === '') {
+            $faltantes[] = 'Primer apellido';
         }
 
-        if ($mensualidad <= 0 || $fechaPago === '' || $idMetodoPago <= 0 || $idTipoBecas <= 0){
-            $this->redirect('/streepsoft/jugadores/crear?error=campos_vacios');
-        } 
-
-        // Validar que la fecha de nacimiento tenga formato correcto y no sea futura
-        $fecha = DateTime::createFromFormat('Y-m-d', $datos['fecha_nacimiento']);
-        if (!$fecha || $fecha > new DateTime()) {
-            $this->redirect('/streepsoft/jugadores/crear?error=fecha_invalida');
+        $fecha = false;
+        if ($datos['fecha_nacimiento'] === '') {
+            $faltantes[] = 'Fecha de nacimiento';
+        } else {
+            // La fecha debe tener formato correcto y no ser futura
+            $fecha = DateTime::createFromFormat('Y-m-d', $datos['fecha_nacimiento']);
+            if (!$fecha || $fecha > new DateTime()) {
+                $mensajes[] = 'La fecha de nacimiento no es válida.';
+            }
         }
 
-        $fechaPagoObj = DateTime::createFromFormat('Y-m-d', $fechaPago);
-        if (!$fechaPagoObj) {
-            $this->redirect('/streepsoft/jugadores/crear?error=fecha_invalida');
+        if ($datos['id_eps'] <= 0) {
+            $faltantes[] = 'EPS';
+        }
+        if ($datos['id_instructor'] <= 0) {
+            $faltantes[] = 'Instructor';
+        }
+        if ($datos['id_categorias'] <= 0) {
+            $faltantes[] = 'Categoría';
         }
 
-        // Validar datos del responsable
+        // Paso 4: datos del responsable (acudiente)
         $responsableNombres = trim($_POST['responsable_nombres'] ?? '');
         $responsableApellidos = trim($_POST['responsable_apellidos'] ?? '');
         $responsableIdentificacion = trim($_POST['responsable_identificacion'] ?? '');
         $responsableCelular = trim($_POST['responsable_numero_celular'] ?? '');
         $responsableIdTipoDocumento = (int) ($_POST['responsable_id_tipo_documento'] ?? 0);
 
-        if ($responsableNombres === '' || $responsableApellidos === '' || 
-            $responsableIdentificacion === '' || $responsableCelular === '') {
-            $this->redirect('/streepsoft/jugadores/crear?error=datos_responsable_incompletos');
+        if ($responsableNombres === '') {
+            $faltantes[] = 'Nombres del acudiente';
+        }
+        if ($responsableApellidos === '') {
+            $faltantes[] = 'Apellidos del acudiente';
+        }
+        if ($responsableIdTipoDocumento <= 0) {
+            $faltantes[] = 'Tipo de documento del acudiente';
+        }
+        if ($responsableIdentificacion === '') {
+            $faltantes[] = 'Identificación del acudiente';
+        }
+        if ($responsableCelular === '') {
+            $faltantes[] = 'Celular del acudiente';
         }
 
-        if ($responsableIdTipoDocumento <= 0) {
-            $this->redirect('/streepsoft/jugadores/crear?error=tipo_documento_responsable_invalido');
+        // Paso 5: inscripción y pago inicial
+        if ($mensualidad <= 0) {
+            $faltantes[] = 'Mensualidad';
+        }
+
+        $fechaPagoObj = false;
+        if ($fechaPago === '') {
+            $faltantes[] = 'Fecha de pago';
+        } else {
+            $fechaPagoObj = DateTime::createFromFormat('Y-m-d', $fechaPago);
+            if (!$fechaPagoObj) {
+                $mensajes[] = 'La fecha de pago no es válida.';
+            }
+        }
+
+        if ($idMetodoPago <= 0) {
+            $faltantes[] = 'Método de pago';
+        }
+        if ($idTipoBecas <= 0) {
+            $faltantes[] = 'Tipo de beca';
+        }
+
+        // Formato de nombres e identificaciones (letras / números). El servidor siempre
+        // valida, porque lo que hace el JavaScript del navegador se puede saltar.
+        $mensajes = array_merge($mensajes, $this->validarFormatoPersona());
+
+        if (!empty($faltantes) || !empty($mensajes)) {
+            $this->volverAGestionConAviso(
+                !empty($faltantes) ? 'Completa los campos obligatorios' : 'Revisa los datos ingresados',
+                $faltantes,
+                $mensajes
+            );
         }
 
         // ------------------------------------------------------------
@@ -557,7 +631,7 @@ class JugadorController extends Controller
             $nombreFoto = $this->subirFotoJugador($_POST['foto_base64'] ?? null);
         } catch (Exception $e) {
             error_log("Guardar jugador (foto): " . $e->getMessage());
-            $this->redirect('/streepsoft/jugadores/crear?error=' . urlencode($e->getMessage()));
+            $this->volverAGestionConAviso('No se pudo subir la foto', [], [$e->getMessage()]);
         }
         $datos['foto'] = $nombreFoto;
 
@@ -628,8 +702,112 @@ class JugadorController extends Controller
             // No se creó el jugador: la foto que se alcanzó a subir queda sin uso, se elimina
             $this->eliminarFotoJugador($nombreFoto);
 
-            $this->redirect('/streepsoft/jugadores/gestion?error=creacion_fallida');
+            $this->volverAGestionConAviso(
+                'No se pudo registrar el jugador',
+                [],
+                ['Ocurrió un error al guardar. Intenta de nuevo.']
+            );
         }
+    }
+
+    /**
+     * Deja un aviso en sesión y vuelve a la tabla de jugadores. gestion() lo recoge y la
+     * página abre el modal de registro y muestra el aviso como toast
+     * (gestionJugadores/index.php -> avisosFormulario.js). Se usa sesión y no la URL para
+     * poder decir exactamente qué campos faltan o qué falló con la foto.
+     *
+     * @param string[] $faltantes Nombres de los campos obligatorios que faltan
+     * @param string[] $mensajes  Otros problemas (fecha inválida, error de foto, etc.)
+     */
+    /**
+     * Valida el FORMATO de los campos de texto y de identificación que llegan por POST.
+     *
+     *  - Nombres y apellidos (jugador y acudiente): solo letras (con tildes, ñ, ü),
+     *    y entre palabras se admite espacio, guion o apóstrofo. Sin números ni símbolos.
+     *  - Identificación del jugador, identificación del acudiente y celular: solo dígitos, máximo 10
+     *    (el mismo límite que tiene el formulario).
+     *
+     * Los campos vacíos se ignoran aquí: si son obligatorios, ya los revisa la validación de faltantes.
+     * Devuelve una lista de mensajes; si está vacía, todo está en orden.
+     *
+     * Por qué en el servidor: el JavaScript solo ayuda al usuario, pero cualquiera puede
+     * desactivarlo o enviar la petición a mano. Esta es la validación que de verdad protege los datos.
+     */
+    private function validarFormatoPersona(): array
+    {
+        $errores = [];
+
+        // Campo del formulario => nombre que se le muestra al usuario
+        $camposTexto = [
+            'nombre1'               => 'Primer nombre',
+            'nombre2'               => 'Segundo nombre',
+            'apellido1'             => 'Primer apellido',
+            'apellido2'             => 'Segundo apellido',
+            'responsable_nombres'   => 'Nombres del acudiente',
+            'responsable_apellidos' => 'Apellidos del acudiente',
+        ];
+
+        foreach ($camposTexto as $campo => $etiqueta) {
+            $valor = $_POST[$campo] ?? '';
+
+            // Si alguien manda nombre1[]=x, llega un arreglo y no un texto: se rechaza
+            if (!is_string($valor)) {
+                $errores[] = $etiqueta . ': el valor enviado no es válido.';
+                continue;
+            }
+
+            $valor = trim($valor);
+            if ($valor === '') {
+                continue;
+            }
+
+            // \p{L} = letra, \p{M} = tilde combinada. Palabras separadas por espacio, guion o apóstrofo.
+            if (!preg_match('/^[\p{L}\p{M}]+(?:[ \'’-][\p{L}\p{M}]+)*$/u', $valor)) {
+                $errores[] = $etiqueta . ': solo se permiten letras (sin números ni caracteres especiales).';
+            }
+        }
+
+        // Campo del formulario => [nombre para el usuario, máximo de dígitos]
+        $camposNumericos = [
+            'documento'                  => ['Identificación', 10],
+            'responsable_identificacion' => ['Identificación del acudiente', 10],
+            'responsable_numero_celular' => ['Celular del acudiente', 10],
+        ];
+
+        foreach ($camposNumericos as $campo => [$etiqueta, $maximo]) {
+            $valor = $_POST[$campo] ?? '';
+
+            if (!is_string($valor)) {
+                $errores[] = $etiqueta . ': el valor enviado no es válido.';
+                continue;
+            }
+
+            $valor = trim($valor);
+            if ($valor === '') {
+                continue;
+            }
+
+            // ctype_digit: true solo si TODOS los caracteres son 0-9 (a diferencia de is_numeric,
+            // no acepta signos, puntos, espacios ni notación científica como "1e5")
+            if (!ctype_digit($valor)) {
+                $errores[] = $etiqueta . ': solo se permiten números.';
+            } elseif (strlen($valor) > $maximo) {
+                $errores[] = $etiqueta . ': máximo ' . $maximo . ' dígitos.';
+            }
+        }
+
+        return $errores;
+    }
+
+    private function volverAGestionConAviso(string $titulo, array $faltantes = [], array $mensajes = []): void
+    {
+        $_SESSION['aviso_registro_jugador'] = [
+            'icono' => 'error',
+            'titulo' => $titulo,
+            'faltantes' => array_values($faltantes),
+            'mensajes' => array_values($mensajes),
+        ];
+        $this->redirect('/streepsoft/jugadores/gestion');
     }
 
     /**

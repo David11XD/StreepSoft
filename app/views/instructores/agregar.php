@@ -104,46 +104,6 @@
                                     placeholder="Telefono de contacto" required>
                             </div>
 
-                            <?php
-                            // Categorías del instructor: una categoría pertenece a un solo instructor,
-                            // un instructor puede tener varias. Cada casilla envía id_categorias[].
-                            $idsSeleccionados = $idsSeleccionados ?? [];
-                            $idInstructorActual = (int) ($idInstructorActual ?? 0);
-                            ?>
-                            <div class="grupo grupo-categorias">
-                                <label>Categorías</label>
-
-                                <details class="categorias-dropdown">
-                                    <summary class="categorias-dropdown-resumen">
-                                        <span class="categorias-resumen-texto">Selecciona una o varias categorías</span>
-                                        <span class="categorias-chevron" aria-hidden="true"></span>
-                                    </summary>
-                                    <div class="categorias-dropdown-opciones">
-                                        <?php foreach ($categorias as $cat): ?>
-                                            <?php
-                                            $idCat = (int) $cat['id_categorias'];
-                                            $idDueno = (int) ($cat['id_instructor'] ?? 0);
-                                            $esDeOtro = $idDueno > 0 && $idDueno !== $idInstructorActual;
-                                            ?>
-                                            <label class="categoria-check">
-                                                <input type="checkbox"
-                                                       name="id_categorias[]"
-                                                       value="<?= $idCat ?>"
-                                                       <?= in_array($idCat, $idsSeleccionados, true) ? 'checked' : '' ?>>
-                                                <span class="categoria-nombre"><?= htmlspecialchars($cat['nombre']) ?></span>
-                                                <?php if ($esDeOtro): ?>
-                                                    <small>(actualmente: <?= htmlspecialchars($cat['instructor_nombre'] ?? '') ?>)</small>
-                                                <?php endif; ?>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </details>
-
-                                <p class="ayuda-categorias">
-                                    Cada categoría tiene un solo instructor. Si marcas una que ya tiene otro,
-                                    pasa a este instructor y sus jugadores se reasignan a él.
-                                </p>
-                            </div>
 
                             <div class="grupo">
                                 <label>Estado</label>
@@ -153,6 +113,47 @@
                                     <option value="Activo" <?= ($instructor['estado'] ?? '') === 'activo' ? 'selected' : '' ?>>Activo</option>
                                     <option value="Inactivo" <?= ($instructor['estado'] ?? '') === 'inactivo' ? 'selected' : '' ?>>Inactivo</option>
                                 </select>
+                                
+                                <?php
+                                // Categorías del instructor: una categoría pertenece a un solo instructor,
+                                // un instructor puede tener varias. Cada casilla envía id_categorias[].
+                                $idsSeleccionados = $idsSeleccionados ?? [];
+                                $idInstructorActual = (int) ($idInstructorActual ?? 0);
+                                ?>
+                                <div class="grupo grupo-categorias">
+                                    <label>Categorías</label>
+
+                                    <details class="categorias-dropdown">
+                                        <summary class="categorias-dropdown-resumen">
+                                            <span class="categorias-resumen-texto">Selecciona categorías</span>
+                                            <span class="categorias-chevron" aria-hidden="true"></span>
+                                        </summary>
+                                        <div class="categorias-dropdown-opciones">
+                                            <?php foreach ($categorias as $cat): ?>
+                                                <?php
+                                                $idCat = (int) $cat['id_categorias'];
+                                                $idDueno = (int) ($cat['id_instructor'] ?? 0);
+                                                $esDeOtro = $idDueno > 0 && $idDueno !== $idInstructorActual;
+                                                ?>
+                                                <label class="categoria-check">
+                                                    <input type="checkbox"
+                                                        name="id_categorias[]"
+                                                        value="<?= $idCat ?>"
+                                                        <?= in_array($idCat, $idsSeleccionados, true) ? 'checked' : '' ?>>
+                                                    <span class="categoria-nombre"><?= htmlspecialchars($cat['nombre']) ?></span>
+                                                    <?php if ($esDeOtro): ?>
+                                                        <small>(actualmente: <?= htmlspecialchars($cat['instructor_nombre'] ?? '') ?>)</small>
+                                                    <?php endif; ?>
+                                                </label>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </details>
+
+                                    <p class="ayuda-categorias">
+                                        Cada categoría tiene un solo instructor. Si marcas una que ya tiene otro,
+                                        pasa a este instructor y sus jugadores se reasignan a él.
+                                    </p>
+                                </div>
                             </div>
 
                             <div class="grupo">

@@ -815,3 +815,33 @@ body {
     font-size: 14px;
 }
 }
+
+/* Campo obligatorio vacío (o con formato incorrecto): se marca en rojo.
+   Los selectores repiten ".grupo input/select" para ganarle en especificidad a la regla
+   base de los campos (".grupo input" trae outline: none y su propio borde y fondo). */
+.grupo input.campo-invalido,
+.grupo select.campo-invalido,
+input.campo-invalido,
+select.campo-invalido {
+    border-color: #e74c3c;
+    background: #f3c9c4;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.45);
+}
+
+.grupo input.campo-invalido::placeholder {
+    color: #a33a2e;
+}
+
+/* La etiqueta del campo también se pone roja (si el navegador soporta :has) */
+.grupo:has(.campo-invalido) > label {
+    color: #e74c3c;
+}
+
+/* Detalle del aviso (toast) */
+
+.aviso-formulario-detalle {
+    margin: 4px 0 0 !important;
+    text-align: left !important;
+    font-size: 14px !important;
+    line-height: 1.4;
+}

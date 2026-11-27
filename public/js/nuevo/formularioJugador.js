@@ -7,6 +7,11 @@
 
     let pasoActual = 0;
 
+    // La define más abajo la validación del formulario (validarFormularioJugador).
+    // Revisa los campos obligatorios del paso actual: los vacíos se pintan en rojo,
+    // se muestra el aviso y devuelve false para que NO se avance de paso.
+    let validarPasoActual = null;
+
 
     function mostrarPaso() {
 
@@ -59,6 +64,9 @@
     // SIGUIENTE
     btnSiguiente.addEventListener("click", () => {
 
+        // Si el paso actual tiene campos obligatorios vacíos, se quedan en rojo y no se avanza
+        if (validarPasoActual && !validarPasoActual()) return;
+
         if (pasoActual < pasosFormulario.length - 1) {
 
             pasoActual++;
@@ -109,16 +117,22 @@ inputFoto.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Validar tamaño (2 MB)
+    // Validar tamaño (3 MB, el mismo límite que aplica el servidor)
     if (file.size > 3 * 1024 * 1024) {
-        alert('La imagen no debe superar los 2 MB.');
+        mostrarAvisoFormulario({
+            titulo: 'No se pudo cargar la foto',
+            mensajes: ['La imagen no debe superar los 3 MB.']
+        });
         inputFoto.value = '';
         return;
     }
 
     // Validar tipo
     if (!['image/jpeg', 'image/png'].includes(file.type)) {
-        alert('Solo se permiten JPG o PNG.');
+        mostrarAvisoFormulario({
+            titulo: 'No se pudo cargar la foto',
+            mensajes: ['Solo se permiten imágenes JPG o PNG.']
+        });
         inputFoto.value = '';
         return;
     }
@@ -330,4 +344,190 @@ if (metodoPago && grupoComprobante) {
     });
 
     actualizarResumen();
+})();
+
+
+// ---------------------------------------------------------------
+// VALIDACIÓN DEL FORMULARIO (aviso tipo toast como el del login)
+//
+// El formulario tiene varios pasos y los pasos que no se ven están ocultos
+// (display: none). Con la validación nativa del navegador, un campo vacío en un
+// paso oculto bloquea el envío SIN decir nada. Por eso el <form> lleva
+// "novalidate" y aquí se revisan todos los pasos al guardar: se avisa qué falta,
+// se vuelve al primer paso con faltantes y se marcan los campos.
+// El servidor vuelve a validar lo mismo (JugadorController::guardar).
+// ---------------------------------------------------------------
+(function validarFormularioJugador() {
+    const formulario = document.getElementById('formjugador');
+    if (!formulario) return;
+
+    // Nombre con el que se le muestra cada campo al usuario
+    const ETIQUETAS = {
+        nombre1: 'Primer nombre',
+        apellido1: 'Primer apellido',
+        id_tipo_documento: 'Tipo de documento',
+        documento: 'Identificación',
+        fecha_nacimiento: 'Fecha de nacimiento',
+        edad: 'Edad',
+        sexo: 'Sexo',
+        id_eps: 'EPS',
+        id_instructor: 'Instructor',
+        id_categorias: 'Categoría',
+        responsable_nombres: 'Nombres del acudiente',
+        responsable_apellidos: 'Apellidos del acudiente',
+        responsable_id_tipo_documento: 'Tipo de documento del acudiente',
+        responsable_identificacion: 'Identificación del acudiente',
+        responsable_numero_celular: 'Celular del acudiente',
+        Matricula: 'Matrícula',
+        Mensualidad: 'Mensualidad',
+        fecha_pago: 'Fecha de pago',
+        id_metodo_pago: 'Método de pago',
+        id_tipo_becas: 'Tipo de beca',
+        comprobante: 'Número de comprobante'
+    };
+
+    function etiquetaDe(campo) {
+        return ETIQUETAS[campo.name] || campo.name;
+    }
+
+    // El comprobante solo se pide cuando su grupo está visible (Nequi / Transferencia)
+    function campoAplica(campo) {
+        const grupo = campo.closest('#grupoComprobante');
+        return !(grupo && grupo.style.display === 'none');
+    }
+
+    function hoyISO() {
+        const hoy = new Date();
+        return hoy.getFullYear() + '-' +
+            String(hoy.getMonth() + 1).padStart(2, '0') + '-' +
+            String(hoy.getDate()).padStart(2, '0');
+    }
+
+    // ambito: el paso que se quiere revisar (al pulsar Siguiente) o el formulario completo (al guardar)
+    function revisarFormulario(ambito) {
+        ambito = ambito || formulario;
+        const faltantes = [];   // { orden, etiqueta }
+        const mensajes = [];
+        const invalidos = [];
+
+        const fechaNacimiento = formulario.querySelector('[name="fecha_nacimiento"]');
+        const fechaEnAmbito = !!fechaNacimiento && ambito.contains(fechaNacimiento);
+        const fechaValor = fechaNacimiento ? fechaNacimiento.value : '';
+        const fechaFutura = fechaValor !== '' && fechaValor > hoyISO();
+        // La edad se calcula con la fecha de nacimiento: si la fecha falta o es futura,
+        // la edad queda vacía pero no se avisa dos veces.
+        const edadDependeDeFecha = fechaValor === '' || fechaFutura;
+
+        ambito.querySelectorAll('input[required], select[required], textarea[required]').forEach((campo) => {
+            if (!campoAplica(campo)) return;
+
+            const valor = (campo.value || '').trim();
+
+            if (valor === '') {
+                invalidos.push(campo);
+                if (campo.name === 'edad' && edadDependeDeFecha) return;
+                faltantes.push({
+                    orden: Object.keys(ETIQUETAS).indexOf(campo.name),
+                    etiqueta: etiquetaDe(campo)
+                });
+                return;
+            }
+
+            // Reglas de formato del propio campo (por ejemplo, pattern="[0-9]*")
+            if (campo.validity && campo.validity.patternMismatch) {
+                mensajes.push(etiquetaDe(campo) + ': solo se permiten números.');
+                invalidos.push(campo);
+            }
+        });
+
+        if (fechaFutura && fechaEnAmbito) {
+            mensajes.push('La fecha de nacimiento no puede ser futura.');
+            invalidos.push(fechaNacimiento);
+        }
+
+        // Se avisa en el mismo orden en que se llena el formulario (no en el del código fuente)
+        faltantes.sort((a, b) => a.orden - b.orden);
+        invalidos.sort((a, b) => Object.keys(ETIQUETAS).indexOf(a.name) - Object.keys(ETIQUETAS).indexOf(b.name));
+
+        return { faltantes: faltantes.map((f) => f.etiqueta), mensajes, invalidos };
+    }
+
+    function marcarInvalidos(invalidos, ambito) {
+        (ambito || formulario).querySelectorAll('.campo-invalido').forEach((c) => c.classList.remove('campo-invalido'));
+        invalidos.forEach((c) => c.classList.add('campo-invalido'));
+    }
+
+    // Pinta en rojo los campos con problema, lleva al paso donde está el primero,
+    // le da el foco y muestra el aviso. Lo usan Guardar (todo el formulario) y Siguiente (un paso).
+    function mostrarProblemas(resultado, ambito) {
+        marcarInvalidos(resultado.invalidos, ambito);
+
+        const primero = resultado.invalidos[0];
+        const paso = primero ? primero.closest('.paso-formulario') : null;
+        const indice = paso ? Array.prototype.indexOf.call(pasosFormulario, paso) : -1;
+        if (indice >= 0) {
+            pasoActual = indice;
+            mostrarPaso();
+            if (typeof primero.focus === 'function') primero.focus();
+        }
+
+        mostrarAvisoFormulario({
+            titulo: resultado.faltantes.length
+                ? 'Completa los campos obligatorios'
+                : 'Revisa los datos ingresados',
+            faltantes: resultado.faltantes,
+            mensajes: resultado.mensajes
+        });
+    }
+
+    // Se usa al pulsar "Siguiente": true = el paso está completo y se puede avanzar
+    validarPasoActual = function () {
+        const paso = pasosFormulario[pasoActual];
+        const resultado = revisarFormulario(paso);
+        if (resultado.faltantes.length === 0 && resultado.mensajes.length === 0 && resultado.invalidos.length === 0) {
+            marcarInvalidos([], paso);
+            return true;
+        }
+        mostrarProblemas(resultado, paso);
+        return false;
+    };
+
+    // Un campo obligatorio tiene problema si está vacío (solo espacios cuenta como vacío)
+    // o si su valor no cumple el formato (por ejemplo, letras donde solo van números).
+    function campoConProblema(campo) {
+        if ((campo.value || '').trim() === '') return true;
+        return !!(campo.validity && campo.validity.patternMismatch);
+    }
+
+    function esObligatorioVisible(campo) {
+        return !!(campo.matches && campo.matches('input[required], select[required], textarea[required]'))
+            && campoAplica(campo);
+    }
+
+    // Al salir de un campo obligatorio vacío (o con formato incorrecto) se marca en rojo.
+    // También ocurre al pulsar "Siguiente", porque el campo pierde el foco.
+    formulario.addEventListener('focusout', (e) => {
+        if (!esObligatorioVisible(e.target)) return;
+        e.target.classList.toggle('campo-invalido', campoConProblema(e.target));
+    });
+
+    // Al corregir un campo se le quita la marca. Se revisan todos los marcados porque algunos
+    // se llenan solos (la edad se calcula con la fecha de nacimiento).
+    function quitarMarcasCorregidas() {
+        formulario.querySelectorAll('.campo-invalido').forEach((campo) => {
+            if (!campoConProblema(campo)) campo.classList.remove('campo-invalido');
+        });
+    }
+    formulario.addEventListener('input', quitarMarcasCorregidas);
+    formulario.addEventListener('change', quitarMarcasCorregidas);
+
+    formulario.addEventListener('submit', (e) => {
+        const resultado = revisarFormulario();
+        if (resultado.faltantes.length === 0 && resultado.mensajes.length === 0) {
+            return; // todo bien: el formulario se envía normalmente
+        }
+
+        e.preventDefault();
+        mostrarProblemas(resultado, formulario);
+    });
 })();

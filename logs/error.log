@@ -16116,3 +16116,31 @@ Stack trace:
 [27-Nov-2026 10:49:17 America/Bogota] Home - quickLoginDisponible: false
 [27-Nov-2026 10:49:17 America/Bogota] Home - COOKIE quick_login_data: false
 [27-Nov-2026 10:49:17 America/Bogota] Home - COOKIE logout_manual: true
+[27-Nov-2026 13:56:02 America/Bogota] Home - quickLoginDisponible: false
+[27-Nov-2026 13:56:02 America/Bogota] Home - COOKIE quick_login_data: false
+[27-Nov-2026 13:56:02 America/Bogota] Home - COOKIE logout_manual: false
+[27-Nov-2026 13:56:21 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[27-Nov-2026 13:56:21 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[27-Nov-2026 14:03:04 America/Bogota] PHP Warning:  Undefined array key "acudiente" in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 506
+[27-Nov-2026 14:03:04 America/Bogota] PHP Warning:  Undefined array key "numero_acudiente" in C:\xampp\htdocs\streepsoft\app\controllers\JugadorController.php on line 506
+[27-Nov-2026 15:05:36 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[27-Nov-2026 15:05:36 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[27-Nov-2026 15:05:36 America/Bogota] Home - quickLoginDisponible: true
+[27-Nov-2026 15:05:36 America/Bogota] Home - COOKIE quick_login_data: true
+[27-Nov-2026 15:05:36 America/Bogota] Home - COOKIE logout_manual: false
+[27-Nov-2026 15:06:12 America/Bogota] Home - quickLoginDisponible: false
+[27-Nov-2026 15:06:12 America/Bogota] Home - COOKIE quick_login_data: false
+[27-Nov-2026 15:06:12 America/Bogota] Home - COOKIE logout_manual: false
+[27-Nov-2026 15:06:24 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[27-Nov-2026 15:06:24 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[27-Nov-2026 15:33:30 America/Bogota] Quick login cookie establecida para: cdavidg4396@gmail.com
+[27-Nov-2026 15:33:30 America/Bogota] Session expirada por timeout: cdavidg4396@gmail.com
+[27-Nov-2026 15:33:31 America/Bogota] Home - quickLoginDisponible: true
+[27-Nov-2026 15:33:31 America/Bogota] Home - COOKIE quick_login_data: true
+[27-Nov-2026 15:33:31 America/Bogota] Home - COOKIE logout_manual: false
+[27-Nov-2026 15:55:44 America/Bogota] Home - quickLoginDisponible: false
+[27-Nov-2026 15:55:44 America/Bogota] Home - COOKIE quick_login_data: false
+[27-Nov-2026 15:55:44 America/Bogota] Home - COOKIE logout_manual: false
+[27-Nov-2026 15:55:57 America/Bogota] Intento de login fallido: contraseña incorrecta: cdavidg4396@gmail.com
+[27-Nov-2026 15:56:04 America/Bogota] Login exitoso: cdavidg4396@gmail.com
+[27-Nov-2026 15:56:04 America/Bogota] Login exitoso: cdavidg4396@gmail.com

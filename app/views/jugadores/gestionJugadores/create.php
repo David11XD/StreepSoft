@@ -4,7 +4,7 @@
     <meta charset="UTF-8"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumno</title>
-    <link rel="stylesheet" href="/streepsoft/public/css/nuevo/formularioJugador.css">
+    <link rel="stylesheet" href="/streepsoft/public/css/nuevo/formularioJugador.css?v=<?= @filemtime(dirname(__DIR__, 4) . '/public/css/nuevo/formularioJugador.css') ?: 1 ?>">
 </head>
 <body>
     <div class="contenedor">
@@ -55,21 +55,8 @@
 
         </div>
 
-        <?php if (isset($_GET['error'])): ?>
-            <p style="color:#e74c3c; font-weight:bold;">
-                <?php
-                    $errores = [
-                        'csrf' => 'Token de seguridad inválido, intenta de nuevo.',
-                        'campos_vacios' => 'Faltan campos obligatorios por completar.',
-                        'fecha_invalida' => 'La fecha de nacimiento no es válida.',
-                        'creacion_fallida' => 'No se pudo guardar el alumno, intenta de nuevo.',
-                    ];
-                    echo htmlspecialchars($errores[$_GET['error']] ?? 'Ocurrió un error.');
-                ?>
-            </p>
-        <?php endif; ?>
 
-        <form action="/streepsoft/jugadores/guardar" method="POST" enctype="multipart/form-data" id="formjugador" target="_top">
+        <form action="/streepsoft/jugadores/guardar" method="POST" enctype="multipart/form-data" id="formjugador" target="_top" novalidate>
             
             <input type="hidden" name="_token" value="<?= htmlspecialchars($csrfToken ?? '') ?>">
             
@@ -111,6 +98,7 @@
                                 <label for="">segundo apellido</label>
                                 <input type="text"
                                     name="apellido2"
+                                    data-filtro="letras" maxlength="40"
                                     placeholder="Opcional">
                             </div>
 
@@ -118,6 +106,7 @@
                                 <label for="">segundo nombre</label>
                                 <input type="text"
                                     name="nombre2"
+                                    data-filtro="letras" maxlength="40"
                                     placeholder="Opcional">
                             </div>
 
@@ -125,6 +114,7 @@
                                 <label for="">primer apellido</label>
                                 <input type="text"
                                     name="apellido1"
+                                    data-filtro="letras" maxlength="40"
                                     placeholder="Obligatorio" required>
                             </div>
 
@@ -132,6 +122,7 @@
                                 <label for="">primer Nombre</label>
                                 <input type="text"
                                     name="nombre1"
+                                    data-filtro="letras" maxlength="40"
                                     placeholder="Obligatorio" required>
                             </div>
 
@@ -153,6 +144,7 @@
                                 <input type="text"
                                     inputmode="numeric"
                                     name="documento"
+                                    data-filtro="numeros"
                                     pattern="[0-9]*"
                                     maxlength="10"
                                     placeholder="Escribe tu Documento" required>
@@ -162,6 +154,7 @@
                                 <label for="">Iniciales</label>
                                 <input type="text"
                                     name="iniciales"
+                                    maxlength="3"
                                     placeholder="Opcinal">
                             </div>
                         </div>
@@ -191,6 +184,7 @@
                         <input type="text"
                             inputmode="numeric"
                             name="edad"
+                                    data-filtro="numeros"
                             pattern="[0-9]*"
                             maxlength="2"
                             required>
@@ -263,6 +257,7 @@
                             type="text"
                             id="numero_camisa"
                             name="numero_camisa"
+                                    data-filtro="numeros"
                             inputmode="numeric"
                             pattern="[0-9]*"
                             maxlength="3"
@@ -308,20 +303,22 @@
                         <label for="">Nombres del Acudiente</label>
                         <input type="text"
                             name="responsable_nombres"
-                            placeholder="Nombres">
+                                    data-filtro="letras" maxlength="60"
+                            placeholder="Nombres" required>
                     </div>
 
                     <div class="grupo">
                         <label for="">Apellidos del acudiente</label>
                         <input type="text"
                             name="responsable_apellidos"
-                            placeholder="Apellidos">
+                                    data-filtro="letras" maxlength="60"
+                            placeholder="Apellidos" required>
                     </div>
 
                     <div class="grupo">
                         <label>Tipo de documento</label>
 
-                        <select name="responsable_id_tipo_documento">
+                        <select name="responsable_id_tipo_documento" required>
                             <option value="">Seleccione</option>
                             <?php foreach (($tiposDocumento ?? []) as $tipo): ?>
                                 <option value="<?= (int)$tipo['id_tipo_documento'] ?>">
@@ -336,9 +333,10 @@
                         <input type="text"
                             inputmode="numeric"
                             name="responsable_identificacion"
+                                    data-filtro="numeros"
                             placeholder="Escribe tu Documento"
                             pattern="[0-9]*"
-                            maxlength="10">
+                            maxlength="10" required>
                     </div>
 
                     <div class="grupo">
@@ -346,9 +344,10 @@
                         <input type="text"
                             inputmode="numeric"
                             name="responsable_numero_celular"
+                                    data-filtro="numeros"
                             placeholder="Telefono de contacto"
                             pattern="[0-9]*"
-                            maxlength="10">
+                            maxlength="10" required>
                     </div>
                 </div>
             </section>
@@ -491,8 +490,15 @@
     </div>
 
 
-    <script src="/streepsoft/public/js/nuevo/formularioJugador.js"></script>
-    <script src="/streepsoft/public/js/jugadores/asignacionInstructor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Aviso que dejó el servidor al rechazar el formulario (campos faltantes, error de foto, etc.)
+        window.AVISO_FORMULARIO = <?= json_encode($avisoCrear ?? null, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
+    </script>
+    <script src="/streepsoft/public/js/nuevo/avisosFormulario.js?v=<?= @filemtime(dirname(__DIR__, 4) . '/public/js/nuevo/avisosFormulario.js') ?: 1 ?>"></script>
+    <script src="/streepsoft/public/js/nuevo/filtrosInputs.js?v=<?= @filemtime(dirname(__DIR__, 4) . '/public/js/nuevo/filtrosInputs.js') ?: 1 ?>"></script>
+    <script src="/streepsoft/public/js/nuevo/formularioJugador.js?v=<?= @filemtime(dirname(__DIR__, 4) . '/public/js/nuevo/formularioJugador.js') ?: 1 ?>"></script>
+    <script src="/streepsoft/public/js/jugadores/asignacionInstructor.js?v=<?= @filemtime(dirname(__DIR__, 4) . '/public/js/jugadores/asignacionInstructor.js') ?: 1 ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
 
 </body>

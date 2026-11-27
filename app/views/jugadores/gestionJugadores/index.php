@@ -502,6 +502,18 @@ $pct = fn($n) => $totalAlumnos > 0 ? round($n / $totalAlumnos * 100, 1) : 0;
 
     <script src="/streepsoft/public/js/dashboard/dashboard.js"></script>
     <script src="/streepsoft/public/js/jugadores/table.js"></script>
+
+    <?php if (!empty($avisoRegistro)): ?>
+        <?php // guardar() rechazó el registro: se reabre el modal del formulario y se muestra el aviso ?>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            window.AVISO_FORMULARIO = <?= json_encode($avisoRegistro, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
+        </script>
+        <script src="/streepsoft/public/js/nuevo/avisosFormulario.js?v=<?= @filemtime(dirname(__DIR__, 4) . '/public/js/nuevo/avisosFormulario.js') ?: 1 ?>"></script>
+        <script>
+            abrirModalRegistro('/streepsoft/jugadores/crear');
+        </script>
+    <?php endif; ?>
     <script type="module" src="/streepsoft/public/js/nav/export.js"></script>
 </body>
 </html>

@@ -17,6 +17,7 @@
                 title: <?= json_encode([
                     'csrf' => 'Token de seguridad inválido, intenta de nuevo.',
                     'campos_vacios' => 'Faltan campos obligatorios por completar.',
+                    'formato_invalido' => 'Revisa los datos: los nombres solo admiten letras y las identificaciones solo números.',
                     'fecha_invalida' => 'La fecha ingresada no es válida.',
                     'actualizacion_fallida' => 'No se pudo actualizar el jugador.',
                 ][$_GET['error']] ?? 'Ocurrió un error.') ?>,
@@ -120,6 +121,7 @@
                                 <label for="">segundo apellido</label>
                                 <input type="text"
                                     name="apellido2"
+                                    data-filtro="letras" maxlength="40"
                                     value="<?= htmlspecialchars($partesApellidos[1] ?? '') ?>"
                                     placeholder="Opcional">
                             </div>
@@ -128,6 +130,7 @@
                                 <label for="">segundo nombre</label>
                                 <input type="text"
                                     name="nombre2"
+                                    data-filtro="letras" maxlength="40"
                                     value="<?= htmlspecialchars($partesNombres[1] ?? '') ?>"
                                     placeholder="Opcional">
                             </div>
@@ -136,6 +139,7 @@
                                 <label for="">primer apellido</label>
                                 <input type="text"
                                     name="apellido1"
+                                    data-filtro="letras" maxlength="40"
                                     value="<?= htmlspecialchars($partesApellidos[0] ?? '') ?>"
                                     placeholder="Obligatorio" required>
                             </div>
@@ -144,6 +148,7 @@
                                 <label for="">primer Nombre</label>
                                 <input type="text"
                                     name="nombre1"
+                                    data-filtro="letras" maxlength="40"
                                     value="<?= htmlspecialchars($partesNombres[0] ?? '') ?>"
                                     placeholder="Obligatorio" required>
                             </div>
@@ -165,7 +170,11 @@
                                 <label for="">Identificacion</label>
                                 <input type="text"
                                     name="documento"
-                                    value="<?= htmlspecialchars_decode($jugador['documento'] ?? '') ?>"
+                                    value="<?= htmlspecialchars($jugador['documento'] ?? '') ?>"
+                                    inputmode="numeric"
+                                    pattern="[0-9]*"
+                                    maxlength="10"
+                                    data-filtro="numeros"
                                     placeholder="Escribe tu Documento" required>
                             </div>
 
@@ -270,6 +279,7 @@
                             type="text"
                             id="numero_camisa"
                             name="numero_camisa"
+                                    data-filtro="numeros"
                             inputmode="numeric"
                             pattern="[0-9]*"
                             maxlength="3"
@@ -319,6 +329,7 @@
                         <label for="">Nombres del acudiente</label>
                         <input type="text"
                             name="responsable_nombres"
+                                    data-filtro="letras" maxlength="60"
                             value="<?= htmlspecialchars($jugador['responsable_nombres'] ?? '') ?>"
                             placeholder="Nombres">
                     </div>
@@ -327,6 +338,7 @@
                         <label for="">Apellidos del acudiente</label>
                         <input type="text"
                             name="responsable_apellidos"
+                                    data-filtro="letras" maxlength="60"
                             value="<?= htmlspecialchars($jugador['responsable_apellidos'] ?? '') ?>"
                             placeholder="Apellidos">
                     </div>
@@ -348,6 +360,7 @@
                         <label for="">Identificacion</label>
                         <input type="text"
                             name="responsable_identificacion"
+                                    data-filtro="numeros"
                             value="<?= htmlspecialchars($jugador['responsable_identificacion'] ?? '') ?>"
                             placeholder="Escribe tu Documento"
                             pattern="[0-9]*"
@@ -358,6 +371,7 @@
                         <label for="">Numero</label>
                         <input type="text"
                             name="responsable_numero_celular"
+                                    data-filtro="numeros"
                             value="<?= htmlspecialchars($jugador['responsable_numero_celular'] ?? '') ?>"
                             placeholder="Telefono de contacto"
                             pattern="[0-9]*"
@@ -418,6 +432,7 @@
     </div>
 
 
+    <script src="/streepsoft/public/js/nuevo/filtrosInputs.js"></script>
     <script src="/streepsoft/public/js/Editar/Editar.js"></script>
     <script src="/streepsoft/public/js/jugadores/asignacionInstructor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
